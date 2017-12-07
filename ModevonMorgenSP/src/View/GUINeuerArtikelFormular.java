@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
 
-import Controller.ArtikelStrg;
+import Artikelverwaltung.ArtikelStrg;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
