@@ -153,17 +153,16 @@ public class holeNächsteNummer {
 	
 		int i = 0;
 		
-		Connection con = VerbindungDB.erstelleConnection();
-		
 		try {
 			
+			Connection con = VerbindungDB.erstelleConnection();
+			
 			Statement stmt = con.createStatement();
-			String sqlbefehl = "select max(artikelnr) from Kleidung";
+			String sqlbefehl = "select max(artikelnr) from kleidung";
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("artikelnr");
-				i = i++;
+				i = rs.getInt(1);
 			}
 			
 			stmt.close();
@@ -174,7 +173,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return i++;
 	}
 
 	public static int nächsteAccessNr() {
