@@ -94,8 +94,6 @@ public class holeNächsteNummer {
 		return i;
 	}
 	
-	public static int nächste
-
 	public static int nächsteGKundenNr() {
 		
 		int i = 0;
