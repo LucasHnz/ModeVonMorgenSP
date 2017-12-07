@@ -26,7 +26,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("Nutzernr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -37,7 +37,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 	}
 	
 	public static int nächsteAdminNr() {
@@ -53,7 +53,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("Nutzernr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -64,7 +64,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 	}
 	
 	public static int nächsteBKundenNr() {
@@ -80,7 +80,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("Nutzernr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -91,7 +91,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 	}
 	
 	public static int nächsteGKundenNr() {
@@ -108,7 +108,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("Nutzernr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -119,7 +119,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 }
 	
 	public static int nächsteSchuhNr() {
@@ -135,7 +135,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("artikelnr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -146,7 +146,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		 return (i+1);
 	}
 		
 	public static int nächsteKleidungNr() {
@@ -173,7 +173,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i++;
+		return (i+1);
 	}
 
 	public static int nächsteAccessNr() {
@@ -189,7 +189,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("artikelnr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -200,7 +200,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 	
 	}
 
@@ -218,7 +218,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("bestellposnr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -229,7 +229,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 	}
 
 	public static int nächsteRechnungsNr() {
@@ -246,7 +246,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("Rechnungsnr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -257,7 +257,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 	}
 		
 	public static int nächsteBestellNr() {
@@ -273,7 +273,7 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("Bestellnr");
-				i = i++;
+				
 			}
 			
 			stmt.close();
@@ -284,7 +284,7 @@ public class holeNächsteNummer {
 			e.printStackTrace();
 		}
 		
-		return i;
+		return (i+1);
 	}
 	
 }
