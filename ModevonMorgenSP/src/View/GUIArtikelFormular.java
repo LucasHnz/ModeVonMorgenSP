@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
 
 import Artikelverwaltung.ArtikelStrg;
+import Artikelverwaltung.Artikelsammlung;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -30,14 +31,14 @@ import javax.swing.JScrollPane;
  * @author fmaoro
  *
  */
-public class GUINeuerArtikelFormular extends JFrame {
+public class GUIArtikelFormular extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JFormattedTextField textFieldArtikelnummer;
+	private JTextField textFieldArtikelnummer;
 	private JTextField textFieldBezeichnung;
 	private JTextField textFieldArt;
 	private JLabel lblGeschlecht;
@@ -55,17 +56,24 @@ public class GUINeuerArtikelFormular extends JFrame {
 	private JLabel label_1;
 	private JTextField textField_5;
 	private JScrollPane scrollPane;
-	private String titel;
+	private String titel, Kategorie;
 	private String[] verfügbarkeiten = {"Sofort lieferbar", "Lieferbar in 1-3 Tagen", "Lieferbar in 1-3 Wochen", "Nicht mehr Verfügbar"};
 	private String[] größen = {"XS", "S", "M", "L", "XL", "XXL"};
-	private JComboBox comboBoxVerfügbarkeit;
-	private JComboBox comboBoxGröße;
+	private JComboBox<String> comboBoxVerfügbarkeit;
+	private JComboBox<String> comboBoxGröße;
 	
 
+	public static void main(String[] args) 
+	{
+		new GUIArtikelFormular("Kleidung");
+	}
+	
 	/**
-	 * Create the frame.
+	 * Öfnnet das Formular zum erstellen eines neuen Artikels.
+	 * @param kateg
 	 */
-	public GUINeuerArtikelFormular(String kateg) {
+	public GUIArtikelFormular(String kateg) {
+		Kategorie = kateg;
 		if(kateg == "Schuhe")
 			titel= "Neuer Schuh";
 		else if(kateg == "Accessoires")
@@ -74,7 +82,7 @@ public class GUINeuerArtikelFormular extends JFrame {
 			titel= "Neuer Kleidungsartikel";
 		setResizable(false);
 		setAlwaysOnTop(true);
-		setType(Type.POPUP);
+		setType(Type.NORMAL);
 		setTitle(titel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 327, 555);
@@ -90,6 +98,12 @@ public class GUINeuerArtikelFormular extends JFrame {
         preisformat.setMaximumFractionDigits(2);
         preisformat.setMinimumFractionDigits(2);
         NumberFormatter preisformatter = new NumberFormatter(preisformat); 
+
+        NumberFormat rabattformat = NumberFormat.getNumberInstance(); 
+        rabattformat.setGroupingUsed(false); 
+        rabattformat.setMaximumIntegerDigits(2);
+        rabattformat.setMinimumIntegerDigits(0);
+        NumberFormatter rabattformatter = new NumberFormatter(rabattformat); 
         
         NumberFormat schuhformat = NumberFormat.getIntegerInstance();
         schuhformat.setGroupingUsed(false);
@@ -108,10 +122,13 @@ public class GUINeuerArtikelFormular extends JFrame {
         format.setMinimumIntegerDigits(9);
         NumberFormatter formatter = new NumberFormatter(format); 
         formatter.setAllowsInvalid(false); 
-    	textFieldArtikelnummer = new JFormattedTextField(formatter);
+		
+		textFieldArtikelnummer = new JFormattedTextField(formatter);
+		textFieldArtikelnummer.setText(String.valueOf((Artikelsammlung.getHighestKey()+1)));
 		textFieldArtikelnummer.setToolTipText("Die Artikelnummer muss 9 Stellen haben");
 		textFieldArtikelnummer.setBounds(105, 12, 204, 20);
-		textFieldArtikelnummer.setHorizontalAlignment(SwingConstants.LEFT);
+		textFieldArtikelnummer.setHorizontalAlignment(SwingConstants.RIGHT);
+		textFieldArtikelnummer.setEditable(false);
 		contentPane.add(textFieldArtikelnummer);
 		textFieldArtikelnummer.setColumns(10);
 		
@@ -165,8 +182,9 @@ public class GUINeuerArtikelFormular extends JFrame {
 		lblRabatt.setBounds(5, 405, 86, 14);
 		contentPane.add(lblRabatt);
 		
-		textFieldRabatt = new JFormattedTextField(preisformatter);
+		textFieldRabatt = new JFormattedTextField(rabattformatter);
 		textFieldRabatt.setBounds(105, 402, 86, 20);
+		textFieldRabatt.setToolTipText("Prozentualer Wert, der von dem Preis abgezogen wird");
 		contentPane.add(textFieldRabatt);
 		textFieldRabatt.setColumns(10);
 		
@@ -174,18 +192,18 @@ public class GUINeuerArtikelFormular extends JFrame {
 		lblGeschlecht.setBounds(5, 445, 90, 14);
 		contentPane.add(lblGeschlecht);
 		
-		JRadioButton rdbtnWeiblich = new JRadioButton("Weiblich");
+		final JRadioButton rdbtnWeiblich = new JRadioButton("Weiblich");
 		buttonGroup.add(rdbtnWeiblich);
 		rdbtnWeiblich.setBounds(219, 441, 90, 23);
 		contentPane.add(rdbtnWeiblich);
 		
-		JRadioButton rdbtnMnnlich = new JRadioButton("M\u00E4nnlich");
+		final JRadioButton rdbtnMnnlich = new JRadioButton("M\u00E4nnlich");
 		buttonGroup.add(rdbtnMnnlich);
 		rdbtnMnnlich.setBounds(105, 441, 90, 23);
 		contentPane.add(rdbtnMnnlich);
 		
 		
-        formatter.setAllowsInvalid(false); 
+        preisformatter.setAllowsInvalid(false); 
 		textFieldPreis = new JFormattedTextField(preisformatter);
 		textFieldPreis.setBounds(105, 362, 86, 20);
 		contentPane.add(textFieldPreis);
@@ -205,13 +223,13 @@ public class GUINeuerArtikelFormular extends JFrame {
 		label.setBounds(201, 365, 46, 14);
 		contentPane.add(label);
 		
-		label_1 = new JLabel("\u20AC");
+		label_1 = new JLabel("%");
 		label_1.setBounds(201, 405, 46, 14);
 		contentPane.add(label_1);
 				
-		comboBoxVerfügbarkeit = new JComboBox(verfügbarkeiten);
+		comboBoxVerfügbarkeit = new JComboBox<String>(verfügbarkeiten);
 		comboBoxVerfügbarkeit.setBounds(105, 282, 202, 20);
-		contentPane.add(comboBoxVerfügbarkeit);
+	    contentPane.add(comboBoxVerfügbarkeit);
 	
 		if(kateg == "Accessoires") {
 			JLabel lblFarbe = new JLabel("Farbe");
@@ -233,21 +251,23 @@ public class GUINeuerArtikelFormular extends JFrame {
 			contentPane.add(textField_5);
 			textField_5.setColumns(10);
 		}
-		else if(kateg == "Größe") {
+		else if(kateg == "Kleidung") {
 			JLabel lblGröße = new JLabel("Größe");
 			lblGröße.setBounds(5, 245, 86, 14);
 			contentPane.add(lblGröße);
 					
-			comboBoxGröße = new JComboBox(größen);
-			comboBoxVerfügbarkeit.setBounds(105, 242, 204, 20);
-			contentPane.add(comboBoxVerfügbarkeit);
+			comboBoxGröße = new JComboBox<String>(größen);
+			comboBoxGröße.setBounds(105, 242, 204, 20);
+			contentPane.add(comboBoxGröße);
 		}
 		SpinnerModel model = new SpinnerNumberModel(0, 0, 99999, 1);
-		JSpinner spinnerBestand = new JSpinner(model);
+		final JSpinner spinnerBestand = new JSpinner(model);
+		spinnerBestand.setToolTipText("Lagerbestand");
 		spinnerBestand.setBounds(105, 322, 86, 20);
 		contentPane.add(spinnerBestand);
 		
-		JTextArea taLieferanten = new JTextArea("Hier die Lieferanten eintragen. Alle müssen durch ein Komma getrennt sein");
+		final JTextArea taLieferanten = new JTextArea();
+		taLieferanten.setToolTipText("Hier die Lieferanten eintragen. Alle müssen durch ein Komma getrennt sein");
 		taLieferanten.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		taLieferanten.setLineWrap(true);
 		taLieferanten.setWrapStyleWord(true);
@@ -261,10 +281,11 @@ public class GUINeuerArtikelFormular extends JFrame {
 		btnBestätigen.addActionListener(new ActionListener() {
 			
 			
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0)  {
 				int Artikelnummer = Integer.parseInt(textFieldArtikelnummer.getText());			
 				int Bestand = (int) spinnerBestand.getValue();
 				String Bezeichnung = textFieldBezeichnung.getText();
+				String Art = textFieldArt.getText();
 				String Geschlecht;
 				if(rdbtnWeiblich.isSelected())
 					Geschlecht = "Weiblich";
@@ -274,23 +295,31 @@ public class GUINeuerArtikelFormular extends JFrame {
 				String Verfügbarkeit = (String) comboBoxVerfügbarkeit.getSelectedItem();
 				String Notiz = null;
 				String[] Lieferanten = taLieferanten.getText().split(",");
-				double Preis = Double.parseDouble(textFieldPreis.getText());
-				double Rabatt = Double.parseDouble(textFieldRabatt.getText());
+				double Preis = Double.parseDouble(textFieldPreis.getText().replace(',', '.'));
+				int Rabatt = 10;
 				int Schuhgröße = 0;
 				String Farbe = null;
 				String Größe = null;
-				if(kateg == "Schuhe")
+				if(Kategorie == "Schuhe")
 					Schuhgröße = Integer.parseInt(textField_5.getText());
-				else if(kateg == "Accessoires")
+				else if(Kategorie == "Accessoires")
 					Farbe = textField_5.getText();
-				else if(kateg == "Kleidung")
+				else if(Kategorie == "Kleidung")
 					Größe = (String) comboBoxGröße.getSelectedItem();
-				ArtikelStrg.NeuerArtikel(kateg, Artikelnummer, Bestand, Bezeichnung, Geschlecht, 
+				ArtikelStrg.NeuerArtikel(Kategorie, Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, 
 						Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe,
 						Größe);
+				dispose();
 				
-		}});
+		}
+			 });
+			
 		btnBestätigen.setBounds(219, 472, 90, 40);
 		contentPane.add(btnBestätigen);
+		setVisible(true);
+	};
+	public GUIArtikelFormular(int Artikelnummer) {
+		//to be continued..
 	}
+
 }

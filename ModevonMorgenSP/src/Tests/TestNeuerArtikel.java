@@ -1,10 +1,10 @@
 package Tests;
 
-import View.GUINeuerArtikelFormular;
+import View.GUIArtikelFormular;
 
 public class TestNeuerArtikel {
 
 	public static void main(String[] args) {
-		new GUINeuerArtikelFormular("Schuhe");
+		new GUIArtikelFormular("Schuhe");
 	}
 }

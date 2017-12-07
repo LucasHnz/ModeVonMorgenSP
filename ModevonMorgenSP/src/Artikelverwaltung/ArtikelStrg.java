@@ -1,8 +1,5 @@
 package Artikelverwaltung;
 
-import Model.Artikel;
-import Model.Artikelsammlung;
-
 /**
  * 
  * @author maoro
@@ -20,11 +17,11 @@ public class ArtikelStrg {
 	 */
 	public static void EditiereArtikel(int Artikelnummer) {
 		Artikel artikel = Artikelsammlung.getArtikel(Artikelnummer);
-		if(artikel.getKategorie() == "Accessoires")
+		//if(artikel.getKategorie() == "Accessoires")
 			//GUIArtikelFormular.editiereArtikel(Artikelnummer, artikel.getKategorie());
-		else if(artikel.getKategorie() == "Schuhe")
+		//else if(artikel.getKategorie() == "Schuhe")
 			//GUIArtikelFormular.editiereArtikel(Artikelnummer, artikel.getKategorie());
-		else if(artikel.getKategorie() == "Kleidung")
+		//else if(artikel.getKategorie() == "Kleidung")
 			//GUIArtikelFormular.editiereArtikel(Artikelnummer, artikel.getKategorie());		
 		
 	}
@@ -33,9 +30,11 @@ public class ArtikelStrg {
 	 * @param kateg Eine der drei Artikelkategorien: Schuhe, Accessoires und Kleidung.
 	 * 
 	 */
-	public static void NeuerArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Geschlecht,
+	public static void NeuerArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht,
 			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, double Preis,
 			double Rabatt, int Schuhgröße, String Farbe, String Größe) {
+		Artikelsammlung.hinzufügenArtikel(kateg, Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, 
+				Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe, Größe);
 		
 	}
 }

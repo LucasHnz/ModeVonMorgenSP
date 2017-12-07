@@ -1,7 +1,5 @@
 package Artikelverwaltung;
 
-import Model.Artikel;
-
 /**
  * 
  * @author maoro
@@ -15,8 +13,8 @@ public class Accessoires extends Artikel {
 	 * @param Farbe Farbe des Accessoires.
 	 * @see Artikel
 	 */
-	public Accessoires(int artnr, int bestand, String Bezeichnung, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt, String Farbe) {
-		super(artnr, bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt);
+	public Accessoires(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt, String Farbe) {
+		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt);
 		this.Farbe=Farbe;
 		Kategorie="Accessoires";
 	}

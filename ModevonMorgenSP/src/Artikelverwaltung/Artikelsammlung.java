@@ -4,6 +4,7 @@ package Artikelverwaltung;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Iterator;
 /**
  * 
  * @author maoro
@@ -38,13 +39,13 @@ public class Artikelsammlung {
 			
 				if(kateg == "Schuhe") {
 					Schuhgröße = rs.getInt("Schuhgröße");
-					Artikelsammlung.put(Artikelnummer, new Schuhe(Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße));
+					Artikelsammlung.put(Artikelnummer, new Schuhe(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße));
 				}else if(kateg == "Accessoires") {
 					Farbe = rs.getString("Farbe");
-					Artikelsammlung.put(Artikelnummer, new Accessoires(Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Farbe));
+					Artikelsammlung.put(Artikelnummer, new Accessoires(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Farbe));
 				}else if(kateg == "Kleidung") {
 					Größe = rs.getString("Größe");
-					Artikelsammlung.put(Artikelnummer, new Kleidung(Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Größe));
+					Artikelsammlung.put(Artikelnummer, new Kleidung(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Größe));
 				}	
 			
 			}
@@ -82,17 +83,30 @@ public class Artikelsammlung {
 	 * @see Model.Artikel Artikel 
 	 * @return 
 	 */
-	public static void hinzufügenArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Geschlecht,
+	public static void hinzufügenArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht,
 			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, double Preis,
 			double Rabatt, int Schuhgröße, String Farbe, String Größe) {
 		Artikel artikel;
 		if(kateg == "Schuhe")
-			artikel = new Schuhe(Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße);
+			artikel = new Schuhe(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße);
 		else if(kateg == "Accessoires")
-			artikel = new Accessoires(Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Farbe);
+			artikel = new Accessoires(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Farbe);
 		else 
-			artikel = new Kleidung(Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Größe);
+			artikel = new Kleidung(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Größe);
 		Artikelsammlung.put(Artikelnummer, artikel);
 	}
+	
+	 public static int getHighestKey( ) {
+		Iterator<Integer> i = Artikelsammlung.keySet().iterator();
+	    int value = 0;
+	    int tmp;
+	    while ( i.hasNext() ) {
+	       tmp = i.next();
+	       if ( tmp > value ) {
+	    	   value = tmp;
+	           }
+	        }
+	    return value;
+	    }
 }
 
