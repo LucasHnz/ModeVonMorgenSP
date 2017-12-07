@@ -9,10 +9,6 @@ import java.sql.Statement;
 
 import javax.swing.*;
 
-import MainPackage.GUI;
-import MainPackage.GUIAnmelden;
-import MainPackage.GUIMitarbeiter;
-
 public class LogStrg {
 	
 	static String testEmail = "jochen.kuester@fh-bielefeld.de";
@@ -36,15 +32,15 @@ public class LogStrg {
 			String userName = rs.getString("vorname");
 			
 			if(email.equals(userEmail) && pwd.equals(userPasswort)) {
-				GUI.fensterSchlieﬂen();
+				View.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = userName;
-				new GUI(anmeldenCbList);
+				new View.GUI(anmeldenCbList);
 				
 			}
 			if(email.equals(testMailMitarbeiter) && pwd.equals(testPwMitarbeiter)) {
-				GUI.fensterSchlieﬂen();
+				View.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Mitarbeiter";
-				new GUIMitarbeiter(anmeldenCbList);
+				new View.GUIMitarbeiter(anmeldenCbList);
 			}
 		
 			

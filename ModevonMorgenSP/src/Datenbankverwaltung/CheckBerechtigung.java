@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class CheckBerechtigung {
 	
-	//Nen bisschen kompliziert, aber eine einfachere Abfrage war leider nicht möglich
+
 	public static int checkBerechtigung(String email) throws SQLException {
 		
 		String befehlMA = "select berechtigung from Mitarbeiter where email ='"+email+"'";
