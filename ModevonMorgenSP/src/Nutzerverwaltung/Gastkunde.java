@@ -25,7 +25,7 @@ public class Gastkunde {
 		this.straße = straße;
 		this.ort = ort;
 		this.plz = plz;
-		this.s = berechtigung;
+		this.berechtigung = berechtigung;
 	}
 
 	@Override
