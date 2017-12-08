@@ -3,6 +3,7 @@ package Datenbankverwaltung;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class bearbeiteMaAdmin {
 	
@@ -68,6 +69,8 @@ public class bearbeiteMaAdmin {
 				
 			}
 			
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			
 			
 			
 		}catch (SQLException e) {
@@ -124,6 +127,8 @@ public class bearbeiteMaAdmin {
 				
 			}
 			
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			
 			
 			
 		}catch (SQLException e) {
@@ -139,28 +144,30 @@ public class bearbeiteMaAdmin {
 		try {
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			PreparedStatement stmt = con.prepareStatement("update Bestandskunde set ? = ? where Nutzernr = ? ");
+			PreparedStatement stmt = con.prepareStatement("update Bestandskunde set ? = '?' where Nutzernr = ? ");
 			
-			int pk = Integer.parseInt(PK);
 
 				if ((Spalte == "Plz")) {
 				int plz = Integer.parseInt(Value);
-				
 				stmt.setString(1, Spalte);
 				stmt.setInt(2,plz);
-				stmt.setInt(3, pk);
-				
+				stmt.setString(3, PK);
+				System.out.println("1");
 				stmt.execute();
 				
 			}else {
 				
+				Value = "'"+Value+"'";
+				
 				stmt.setString(1, Spalte);
 				stmt.setString(2,Value);
-				stmt.setInt(3, pk);
-				
+				stmt.setString(3, PK);
+				System.out.println("2");
 				stmt.execute();
 				
 			}
+				
+				Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
 			
 			
@@ -169,5 +176,15 @@ public class bearbeiteMaAdmin {
 		}
 		
 		
+	}
+
+	public static void aktualisiereName(String name, String nutzernr) throws SQLException {
+		
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		
+		String sqlbefehl = "update Bestandskunde set nachname ='"+name+"' where nutzernr ="+nutzernr;
+		
+		stmt.execute(sqlbefehl)	;
 	}
 }

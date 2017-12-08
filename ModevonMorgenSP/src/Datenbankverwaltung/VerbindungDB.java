@@ -29,7 +29,7 @@ public static Connection erstelleConnection() {
 		return con;
 	}
 
-public static void schlie√üeVerbindung (Connection con, Statement stmt) {
+public static void schlieﬂeVerbindung (Connection con, Statement stmt) {
 	
 	try {
 		con.close();
