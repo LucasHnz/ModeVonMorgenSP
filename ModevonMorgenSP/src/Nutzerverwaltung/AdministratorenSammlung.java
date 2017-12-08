@@ -10,26 +10,23 @@ public class AdministratorenSammlung {
 	
 	public AdministratorenSammlung (ResultSet rs) throws SQLException {
 		
-		while(rs.next()) {
-			
+		while (rs.next()) {
+			int nutzernr = rs.getInt("Nutzernr");
+			String nachname = rs.getString("Nachname");
 			String vorname = rs.getString("Vorname");
-			String nachname = rs.getString("Name");
-			String straﬂe = rs.getString("Straﬂe");
-			int plz = rs.getInt("PLZ");
+			String email = rs.getString("Email");
+			String stra√üe = rs.getString("Stra√üe");
 			String ort = rs.getString("Ort");
-			int berechtigung = rs.getInt("Berechtigung");
-			String email = rs.getString("email");
-			int nutzernr = rs.getInt("NutzerNr");
-			int gehalt = rs.getInt("Gehalt");
+			int plz = rs.getInt("Plz");
 			String iban = rs.getString("IBAN");
+			int gehalt = rs.getInt("Gehalt");
+			int berechtigung = rs.getInt("Berechtigung");
 			String passwort = rs.getString("Passwort");
 			
-			Administrator admin = new Administrator (vorname, nachname, straﬂe, plz, ort, berechtigung, email, nutzernr, gehalt, iban, passwort );
+			Administrator admin = new Administrator(nutzernr, nachname, vorname, email, stra√üe, ort, plz, iban, gehalt, berechtigung, passwort);
 			
 			AdministratorSammlung.put(admin.getNutzernr(), admin);
-			
+		
 		}
 	}
-	
-
 }

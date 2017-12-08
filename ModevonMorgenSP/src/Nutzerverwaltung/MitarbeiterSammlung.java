@@ -18,25 +18,26 @@ public class MitarbeiterSammlung {
 		
 		while (rs.next()) {
 			
+			int nutzernr = rs.getInt("Nutzernr");
+			int adminnr = rs.getInt("Adminnr");
+			String nachname = rs.getString("Nachname");
 			String vorname = rs.getString("Vorname");
-			String nachname = rs.getString("Name");
-			String straße = rs.getString("Stra�e");
-			int plz = rs.getInt("PLZ");
+			String email = rs.getString("Email");
+			String straße = rs.getString("Straße");
 			String ort = rs.getString("Ort");
-			int berechtigung = rs.getInt("Berechtigung");
-			String email = rs.getString("email");
-			int nutzernr = rs.getInt("NutzerNr");
-			int gehalt = rs.getInt("Gehalt");
+			int plz = rs.getInt("Plz");
 			String iban = rs.getString("IBAN");
+			int gehalt = rs.getInt("Gehalt");
+			int berechtigung = rs.getInt("Berechtigung");
 			String passwort = rs.getString("Passwort");
 			
-			Mitarbeiter ma = new Mitarbeiter (vorname, nachname, straße, plz, ort, berechtigung, email, nutzernr, gehalt, iban, passwort );
+			Mitarbeiter ma = new Mitarbeiter (nutzernr, adminnr, nachname, vorname, email, straße, ort, plz, iban, gehalt, berechtigung, passwort);
 			
 			MitarbeiterSammlung.put(ma.getNutzernr(), ma);
-			
-		}
+		
 	}
 	
 	
 
+}
 }

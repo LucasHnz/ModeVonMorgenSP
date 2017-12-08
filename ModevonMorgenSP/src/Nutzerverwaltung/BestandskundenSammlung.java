@@ -16,22 +16,24 @@ public class BestandskundenSammlung {
 	
 	public BestandskundenSammlung(ResultSet rs) throws SQLException {
 		
-		String vorname = rs.getString("Vorname");
-		String nachname = rs.getString("Name");
-		String straﬂe = rs.getString("Straﬂe");
-		int plz = rs.getInt("PLZ");
-		String ort = rs.getString("Ort");
-		int berechtigung = rs.getInt("Berechtigung");
-		String email = rs.getString("email");
-		int nutzernr = rs.getInt("NutzerNr");
-		String lstraﬂe = rs.getString("lstraﬂe");
-		int lplz = rs.getInt("lplz");
-		String lort = rs.getString("lort");
-		int pss = rs.getInt("PSS");
-		String passwort = rs.getString("Passwort");
+		while (rs.next()) {
+			int nutzernr = rs.getInt("Nutzernr");
+			String nachname = rs.getString("Nachname");
+			String vorname = rs.getString("Vorname");
+			String email = rs.getString("Email");
+			String stra√üe = rs.getString("Stra√üe");
+			String ort = rs.getString("Ort");
+			int plz = rs.getInt("Plz");
+			String iban = rs.getString("IBAN");
+			int berechtigung = rs.getInt("Berechtigung");
+			String passwort = rs.getString("passwort");
+			int pss = rs.getInt("PSS");
+			
+			Bestandskunde bkunde = new Bestandskunde(nutzernr, nachname, vorname, email, stra√üe, ort, plz, iban, berechtigung, passwort, pss);
+			BestandskundenSammlung.put(bkunde.getNutzernr(), bkunde);
+			
+		}
 		
-		Bestandskunde bkunde = new Bestandskunde (vorname, nachname, straﬂe, plz, ort, berechtigung, email, nutzernr, lstraﬂe, lplz, lort, pss, passwort);
-		BestandskundenSammlung.put(bkunde.getNutzernr(), bkunde);
 	}
 
 }
