@@ -11,9 +11,9 @@ import java.sql.Statement;
  * @author julian
  *
  */
-public class holeN‰chsteNummer {
+public class holeN√§chsteNummer {
 	
-	public static int n‰chsteMaNr(){
+	public static int n√§chsteMaNr(){
 		int i = 0;
 		
 		Connection con = VerbindungDB.erstelleConnection();
@@ -40,7 +40,7 @@ public class holeN‰chsteNummer {
 		return (i+1);
 	}
 	
-	public static int n‰chsteAdminNr() {
+	public static int n√§chsteAdminNr() {
 		int i = 0;
 		
 		Connection con = VerbindungDB.erstelleConnection();
@@ -67,7 +67,7 @@ public class holeN‰chsteNummer {
 		return (i+1);
 	}
 	
-	public static int n‰chsteBKundenNr() {
+	public static int n√§chsteBKundenNr() {
 		int i = 0;
 		
 		Connection con = VerbindungDB.erstelleConnection();
@@ -94,7 +94,7 @@ public class holeN‰chsteNummer {
 		return (i+1);
 	}
 	
-	public static int n‰chsteGKundenNr() {
+	public static int n√§chsteGKundenNr() {
 		
 		int i = 0;
 		
@@ -122,7 +122,7 @@ public class holeN‰chsteNummer {
 		return (i+1);
 }
 	
-	public static int n‰chsteSchuhNr() {
+	public static int n√§chsteSchuhNr() {
 		int i = 0;
 		
 		Connection con = VerbindungDB.erstelleConnection();
@@ -149,7 +149,7 @@ public class holeN‰chsteNummer {
 		 return (i+1);
 	}
 		
-	public static int n‰chsteKleidungNr() {
+	public static int n√§chsteKleidungNr() {
 	
 		int i = 0;
 		
@@ -176,7 +176,7 @@ public class holeN‰chsteNummer {
 		return (i+1);
 	}
 
-	public static int n‰chsteAccessNr() {
+	public static int n√§chsteAccessNr() {
 		int i = 0;
 		
 		Connection con = VerbindungDB.erstelleConnection();
@@ -204,7 +204,7 @@ public class holeN‰chsteNummer {
 	
 	}
 
-	public static int n‰chsteBestellPosNr() {
+	public static int n√§chsteBestellPosNr() {
 		
 		int i = 0;
 		
@@ -232,7 +232,7 @@ public class holeN‰chsteNummer {
 		return (i+1);
 	}
 
-	public static int n‰chsteRechnungsNr() {
+	public static int n√§chsteRechnungsNr() {
 		
 		int i = 0;
 		
@@ -260,7 +260,7 @@ public class holeN‰chsteNummer {
 		return (i+1);
 	}
 		
-	public static int n‰chsteBestellNr() {
+	public static int n√§chsteBestellNr() {
 		int i = 0;
 		
 		Connection con = VerbindungDB.erstelleConnection();
