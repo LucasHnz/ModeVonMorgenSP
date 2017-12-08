@@ -20,7 +20,7 @@ public class MitarbeiterSammlung {
 			
 			String vorname = rs.getString("Vorname");
 			String nachname = rs.getString("Name");
-			String straﬂe = rs.getString("Straﬂe");
+			String stra√üe = rs.getString("StraÔøΩe");
 			int plz = rs.getInt("PLZ");
 			String ort = rs.getString("Ort");
 			int berechtigung = rs.getInt("Berechtigung");
@@ -30,7 +30,7 @@ public class MitarbeiterSammlung {
 			String iban = rs.getString("IBAN");
 			String passwort = rs.getString("Passwort");
 			
-			Mitarbeiter ma = new Mitarbeiter (vorname, nachname, straﬂe, plz, ort, berechtigung, email, nutzernr, gehalt, iban, passwort );
+			Mitarbeiter ma = new Mitarbeiter (vorname, nachname, stra√üe, plz, ort, berechtigung, email, nutzernr, gehalt, iban, passwort );
 			
 			MitarbeiterSammlung.put(ma.getNutzernr(), ma);
 			

@@ -7,52 +7,128 @@ package Nutzerverwaltung;
  *
  */
 
-public class Bestandskunde extends Nutzer {
+public class Bestandskunde{
 
-	protected String lstraﬂe, lort, passwort;
-	protected int lplz, pss;
-	public Bestandskunde(String vorname, String nachname, String straﬂe, int plz, String ort, int berechtigung, String email, int nutzernr, String lstraﬂe, int lplz, String lort, int pss, String passwort) {
-		
-		super(vorname, nachname, straﬂe, plz, ort, berechtigung, email, nutzernr);
-		
-		this.lstraﬂe = lstraﬂe;
-		this.lplz = lplz;
-		this.lort = lort;
-		this.pss = pss;
+	private int nutzernr;
+	private String nachname;
+	private String vorname;
+	private String email;
+	private String stra√üe;
+	private String ort;
+	private int plz;
+	private String iban;
+	private int berechtigung;
+	private String passwort;
+	private int pss;
+
+	public Bestandskunde(int nutzernr, String nachname, String vorname, String email, String stra√üe, String ort, int plz, String iban, int berechtigung, String passwort, int pss) {
+		this.nutzernr = nutzernr;
+		this.nachname = nachname;
+		this.vorname = vorname;
+		this.email = email;
+		this.stra√üe = stra√üe;
+		this.ort = ort;
+		this.plz = plz;
+		this.iban = iban;
+		this.berechtigung = berechtigung;
 		this.passwort = passwort;
-		
+		this.pss = pss;
 	}
-	public String getLstraﬂe() {
-		return lstraﬂe;
+
+	@Override
+	public String toString() {
+		return "Bestandskunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
+				+ email + ", stra√üe=" + stra√üe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
+				+ berechtigung + ", passwort=" + passwort + ", pss=" + pss + "]";
 	}
-	public void setLstraﬂe(String lstraﬂe) {
-		this.lstraﬂe = lstraﬂe;
+
+	public int getNutzernr() {
+		return nutzernr;
 	}
-	public String getLort() {
-		return lort;
+
+	public void setNutzernr(int nutzernr) {
+		this.nutzernr = nutzernr;
 	}
-	public void setLort(String lort) {
-		this.lort = lort;
+
+	public String getNachname() {
+		return nachname;
 	}
+
+	public void setNachname(String nachname) {
+		this.nachname = nachname;
+	}
+
+	public String getVorname() {
+		return vorname;
+	}
+
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getStra√üe() {
+		return stra√üe;
+	}
+
+	public void setStra√üe(String stra√üe) {
+		this.stra√üe = stra√üe;
+	}
+
+	public String getOrt() {
+		return ort;
+	}
+
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
+
+	public int getPlz() {
+		return plz;
+	}
+
+	public void setPlz(int plz) {
+		this.plz = plz;
+	}
+
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+
+	public int getBerechtigung() {
+		return berechtigung;
+	}
+
+	public void setBerechtigung(int berechtigung) {
+		this.berechtigung = berechtigung;
+	}
+
 	public String getPasswort() {
 		return passwort;
 	}
+
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
 	}
-	public int getLplz() {
-		return lplz;
-	}
-	public void setLplz(int lplz) {
-		this.lplz = lplz;
-	}
+
 	public int getPss() {
 		return pss;
 	}
+
 	public void setPss(int pss) {
 		this.pss = pss;
 	}
-	
 	
 
 }
