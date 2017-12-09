@@ -45,7 +45,7 @@ public class GUIHerrenAccessoires implements ActionListener {
 		this.damenCbList = damenCbList;
 		this.herrenCbList = herrenCbList;
 		this.anmeldenCbList = anmeldenCbList;
-		initializeDamen(this.damenCbList, this.herrenCbList, this.anmeldenCbList);
+		initializeDamen(damenCbList, herrenCbList, anmeldenCbList);
 	}
 
 	/**
@@ -100,33 +100,22 @@ public class GUIHerrenAccessoires implements ActionListener {
 		
 		
 		//Hauptfenster
-		
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 147, 1234, 563);
-		frame.getContentPane().add(panelMain);
+		frame.add(panelMain);
 		panelMain.setLayout(null);
 		
-		JPanel panelScrollPaneBar = new JPanel();
-		panelScrollPaneBar.setBackground(SystemColor.control);
-		panelScrollPaneBar.setLayout(null);
+		/*
+		JScrollPane scrollPaneLinks = new JScrollPane();
+		scrollPaneLinks.setBounds(10, 97, 270, 455);
+		panelMain.add(scrollPaneLinks);
+		*/
 		
-		JScrollPane scrollPaneHerrenKleidungBar = new JScrollPane(panelScrollPaneBar);
-		scrollPaneHerrenKleidungBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneHerrenKleidungBar.setBounds(10, 97, 270, 455);
-		panelMain.add(scrollPaneHerrenKleidungBar);
-		
-	
-		JPanel panelHerrenKleidung = new JPanel();
-		JScrollPane scrollPaneHerrenKleidung = new JScrollPane(panelHerrenKleidung);
-		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		panelHerrenKleidung.setPreferredSize(new Dimension(549, 2000));
-		panelHerrenKleidung.setLayout(null);
-		scrollPaneHerrenKleidung.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneHerrenKleidung.setBounds(323, 97, 901, 455);
-		panelMain.add(scrollPaneHerrenKleidung);
-		
-		frame.setVisible(true);
+		JPanel panelScrollPaneLinks = new JPanel();
+		panelScrollPaneLinks.setBounds(10, 97, 270, 455);
+		panelScrollPaneLinks.setBackground(Color.RED);
+		panelMain.add(panelScrollPaneLinks);
 	}
 	
 	@Override
