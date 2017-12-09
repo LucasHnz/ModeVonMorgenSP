@@ -29,7 +29,7 @@ public class GUIHerrenKleidung implements ActionListener{
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
 	public JButton btnZumArtikel = new JButton();
-	public JPanel panelHerrenKleidung = new JPanel();
+	//public JPanel panelHerrenKleidung = new JPanel();
 	
 
 	private JFrame frame;
@@ -112,6 +112,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelMain.add(scrollPaneHerrenKleidungBar);
 		
 	
+		JPanel panelHerrenKleidung = new JPanel();
 		JScrollPane scrollPaneHerrenKleidung = new JScrollPane(panelHerrenKleidung);
 		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		panelHerrenKleidung.setPreferredSize(new Dimension(549, 2000));

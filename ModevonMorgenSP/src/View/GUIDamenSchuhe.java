@@ -127,6 +127,7 @@ public class GUIDamenSchuhe implements ActionListener {
 		
 		JPanel panelScrollPaneRechts = new JPanel();
 		panelScrollPaneRechts.setLayout(new BoxLayout(panelScrollPaneRechts, BoxLayout.X_AXIS));
+		
 		JScrollPane scrollPaneRechts = new JScrollPane(panelScrollPaneRechts);
 		scrollPaneRechts.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneRechts.setBounds(323, 97, 901, 455);
