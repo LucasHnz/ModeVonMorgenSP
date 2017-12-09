@@ -7,12 +7,16 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 public class GUIHerrenAccessoires implements ActionListener{
 	
@@ -26,6 +30,9 @@ public class GUIHerrenAccessoires implements ActionListener{
 	public String[] anmeldenCbList;
 
 	private JFrame frame;
+	private JTextField txtSchwarzeJacke;
+	private JTextField textField_1;
+	private JTextField txtGre;
 
 	
 	/**
@@ -44,6 +51,7 @@ public class GUIHerrenAccessoires implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
+		
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
@@ -67,7 +75,6 @@ public class GUIHerrenAccessoires implements ActionListener{
 		panelBar.setBounds(0, 98, 1234, 50);
 		frame.getContentPane().add(panelBar);
 		panelBar.setLayout(null);
-		
 		
 		comboBoxDamen = new JComboBox(damenCbList);
 		comboBoxDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
@@ -102,6 +109,49 @@ public class GUIHerrenAccessoires implements ActionListener{
 		btnZurück.setBounds(10, 11, 89, 35);
 		btnZurück.addActionListener(this);
 		panelMain.add(btnZurück);
+		
+		JPanel panelScrollPaneBar = new JPanel();
+		panelScrollPaneBar.setBackground(SystemColor.control);
+		panelScrollPaneBar.setLayout(null);
+		
+		JScrollPane scrollPaneDamenKleidungBar = new JScrollPane(panelScrollPaneBar);
+		scrollPaneDamenKleidungBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneDamenKleidungBar.setBounds(10, 97, 270, 455);
+		panelMain.add(scrollPaneDamenKleidungBar);
+		
+		JPanel panelDamenKleidung = new JPanel();
+		JScrollPane scrollPaneDamenKleidung = new JScrollPane(panelDamenKleidung);
+		panelDamenKleidung.setLayout(new BoxLayout(panelDamenKleidung, BoxLayout.X_AXIS));
+		
+		JPanel panel = new JPanel();
+		panelDamenKleidung.add(panel);
+		
+	
+		
+		
+		
+	
+		scrollPaneDamenKleidung.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneDamenKleidung.setBounds(323, 97, 901, 455);
+		panelMain.add(scrollPaneDamenKleidung);
+		
+		JButton btnNewButton = new JButton("Jacken");
+		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBounds(10, 23, 248, 43);
+		panelScrollPaneBar.add(btnNewButton);
+		
+		JButton btnShirts = new JButton("Shirts");
+		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnShirts.setBackground(Color.WHITE);
+		btnShirts.setBounds(10, 87, 248, 43);
+		panelScrollPaneBar.add(btnShirts);
+		
+		JButton btnHosen = new JButton("Hosen");
+		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHosen.setBackground(Color.WHITE);
+		btnHosen.setBounds(10, 151, 248, 43);
+		panelScrollPaneBar.add(btnHosen);
 		
 		frame.setVisible(true);
 	}

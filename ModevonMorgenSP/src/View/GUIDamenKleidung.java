@@ -99,6 +99,9 @@ public class GUIDamenKleidung implements ActionListener {
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
+		
+		//Hauptfenster
+		
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 148, 1234, 563);
@@ -112,49 +115,44 @@ public class GUIDamenKleidung implements ActionListener {
 		btnZurück.addActionListener(this);
 		panelMain.add(btnZurück);
 		
-		JPanel panelScrollPaneBar = new JPanel();
-		panelScrollPaneBar.setBackground(SystemColor.control);
-		panelScrollPaneBar.setLayout(null);
-		
-		JScrollPane scrollPaneDamenKleidungBar = new JScrollPane(panelScrollPaneBar);
-		scrollPaneDamenKleidungBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneDamenKleidungBar.setBounds(10, 97, 270, 455);
-		panelMain.add(scrollPaneDamenKleidungBar);
-		
-		JPanel panelDamenKleidung = new JPanel();
-		JScrollPane scrollPaneDamenKleidung = new JScrollPane(panelDamenKleidung);
-		panelDamenKleidung.setLayout(new BoxLayout(panelDamenKleidung, BoxLayout.X_AXIS));
-		
-		JPanel panel = new JPanel();
-		panelDamenKleidung.add(panel);
-		
-	
 		
 		
+		JPanel panelScrollPaneLinks = new JPanel();
+		panelScrollPaneLinks.setBackground(SystemColor.control);
+		panelScrollPaneLinks.setLayout(null);
 		
-	
-		scrollPaneDamenKleidung.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneDamenKleidung.setBounds(323, 97, 901, 455);
-		panelMain.add(scrollPaneDamenKleidung);
+		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
+		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneLinks.setBounds(10, 97, 270, 455);
+		panelMain.add(scrollPaneLinks);
+		
+		JPanel panelScrollPaneRechts = new JPanel();
+		panelScrollPaneRechts.setLayout(new BoxLayout(panelScrollPaneRechts, BoxLayout.X_AXIS));
+		JScrollPane scrollPaneRechts = new JScrollPane(panelScrollPaneRechts);
+		scrollPaneRechts.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneRechts.setBounds(323, 97, 901, 455);
+		panelMain.add(scrollPaneRechts);
+		
 		
 		JButton btnNewButton = new JButton("Jacken");
 		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneBar.add(btnNewButton);
+		panelScrollPaneLinks.add(btnNewButton);
 		
 		JButton btnShirts = new JButton("Shirts");
 		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnShirts.setBackground(Color.WHITE);
 		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneBar.add(btnShirts);
+		panelScrollPaneLinks.add(btnShirts);
 		
 		JButton btnHosen = new JButton("Hosen");
 		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnHosen.setBackground(Color.WHITE);
 		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneBar.add(btnHosen);
+		panelScrollPaneLinks.add(btnHosen);
 		
+	
 		frame.setVisible(true);
 	}
 	
