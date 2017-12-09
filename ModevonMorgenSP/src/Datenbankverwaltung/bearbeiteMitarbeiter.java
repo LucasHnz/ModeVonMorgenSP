@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 /**
+ * 
  * 
  * @author julian
  *
  */
-public class bearbeiteBestandskunde {
+
+public class bearbeiteMitarbeiter {
 	
 	public static void aktualisiereName(String name, String nutzernr){
 		
@@ -17,7 +20,7 @@ public class bearbeiteBestandskunde {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set nachname ='"+name+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Mitarbeiter set nachname ='"+name+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		
@@ -27,6 +30,22 @@ public class bearbeiteBestandskunde {
 		}
 		
 	}
+
+	public static void aktualisiereAdminnr(String adminnr, String nutzernr) {
+		
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			
+			String sqlbefehl = "update Mitarbeiter set adminnr ='"+adminnr+"' where nutzernr ="+nutzernr;
+			
+			stmt.execute(sqlbefehl)	;
+			
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			}catch(SQLException e) {
+				e.getMessage();
+			}
+	}
 	
 	public static void aktualisiereEmail(String email, String nutzernr) {
 		
@@ -34,7 +53,7 @@ public class bearbeiteBestandskunde {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set email ='"+email+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Mitarbeiter set email ='"+email+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		
@@ -51,7 +70,7 @@ public class bearbeiteBestandskunde {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set Straﬂe ='"+straﬂe+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Mitarbeiter set Straﬂe ='"+straﬂe+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		
@@ -69,7 +88,7 @@ public class bearbeiteBestandskunde {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set ort ='"+ort+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Mitarbeiter set ort ='"+ort+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		
@@ -86,7 +105,7 @@ public class bearbeiteBestandskunde {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set PLZ ='"+plz+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Mitarbeiter set PLZ ='"+plz+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		
@@ -104,7 +123,24 @@ public class bearbeiteBestandskunde {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set IBAN ='"+iban+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Mitarbeiter set IBAN ='"+iban+"' where nutzernr ="+nutzernr;
+		
+		stmt.execute(sqlbefehl)	;
+		
+		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+		
+		}catch (SQLException e) {
+			e.getMessage();
+		}
+	}
+
+	public static void aktualisiereGehalt(String gehalt, String nutzernr) {
+		
+		try{
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		
+		String sqlbefehl = "update Mitarbeiter set Gehalt ='"+gehalt+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		
@@ -121,7 +157,7 @@ public class bearbeiteBestandskunde {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set Passwort ='"+passwort+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Mitarbeiter set Passwort ='"+passwort+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		
@@ -132,6 +168,3 @@ public class bearbeiteBestandskunde {
 		}
 	}
 }
-
-
-
