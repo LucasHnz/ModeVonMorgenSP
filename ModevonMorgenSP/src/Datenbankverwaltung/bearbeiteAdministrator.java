@@ -1,6 +1,12 @@
 package Datenbankverwaltung;
 
 import java.sql.Connection;
+
+/**
+ * 
+ * @author julian
+ * 
+ */
 import java.sql.SQLException;
 import java.sql.Statement;
 

@@ -4,6 +4,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+/**
+ * 
+ * 
+ * @author julian
+ *
+ */
+
 public class bearbeiteMitarbeiter {
 	
 	public static void aktualisiereName(String name, String nutzernr){
