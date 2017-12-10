@@ -19,8 +19,8 @@ public class LogStrg {
 	public static  void anmelden(String pwd, String email, String[]anmeldenCbList) {
 		try 
 		{
-			Connection con = DriverManager.getConnection(
-					"jdbc:oracle:thin:@aix1.fh-bielefeld.de:1521:d2");
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select email and passwort from "
 					+ "(Mitarbeiter, Kunden, Bestandskunden, Administrator)");
@@ -45,8 +45,7 @@ public class LogStrg {
 		
 			
 			rs.close();
-			stmt.close();
-			con.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
 		}catch(SQLException e) {
                             			
