@@ -114,40 +114,40 @@ public class GUIArtikel implements ActionListener {
 		panelMain.add(panel);
 		
 		
-		JLabel label = new JLabel("");
-		label.setBackground(Color.WHITE);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(70, 32, 250, 250);
-		label.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\Softwareprojekt\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		panel.add(label);
+		JLabel labelArtikelBild = new JLabel("");
+		labelArtikelBild.setBackground(Color.WHITE);
+		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
+		labelArtikelBild.setBounds(70, 32, 250, 250);
+		labelArtikelBild.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\Softwareprojekt\\SWP-Bilder\\Herrenjacke_6.jpg"));
+		panel.add(labelArtikelBild);
 		
-		JLabel lblSchwarzeJackeDenim = new JLabel("Schwarze Jacke DENIM");
-		lblSchwarzeJackeDenim.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblSchwarzeJackeDenim.setBounds(362, 11, 319, 49);
-		panel.add(lblSchwarzeJackeDenim);
+		JLabel lblArtikelTitel = new JLabel("Schwarze Jacke DENIM");
+		lblArtikelTitel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblArtikelTitel.setBounds(362, 11, 319, 49);
+		panel.add(lblArtikelTitel);
 		
-		JLabel lblAufLager = new JLabel("Auf Lager");
-		lblAufLager.setBounds(362, 57, 110, 43);
-		panel.add(lblAufLager);
-		lblAufLager.setForeground(new Color(0, 204, 51));
-		lblAufLager.setHorizontalAlignment(SwingConstants.LEFT);
-		lblAufLager.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JLabel lblArtikelStatus = new JLabel("Auf Lager");
+		lblArtikelStatus.setBounds(362, 57, 110, 43);
+		panel.add(lblArtikelStatus);
+		lblArtikelStatus.setForeground(new Color(0, 204, 51));
+		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
+		lblArtikelStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JButton btnNewButton = new JButton("In den Warenkorb");
-		btnNewButton.setBounds(361, 185, 153, 35);
-		panel.add(btnNewButton);
-		btnNewButton.setBackground(SystemColor.inactiveCaptionBorder);
+		JButton btnWarenkorbHinz = new JButton("In den Warenkorb");
+		btnWarenkorbHinz.setBounds(361, 185, 153, 35);
+		panel.add(btnWarenkorbHinz);
+		btnWarenkorbHinz.setBackground(SystemColor.inactiveCaptionBorder);
 		
-		JTextPane txtpnTestDishfinsmvaS = new JTextPane();
-		txtpnTestDishfinsmvaS.setBackground(SystemColor.inactiveCaptionBorder);
-		txtpnTestDishfinsmvaS.setText("Test dishfinsmva s");
-		txtpnTestDishfinsmvaS.setBounds(362, 272, 514, 132);
-		panel.add(txtpnTestDishfinsmvaS);
+		JTextPane txtpnArtikelBeschreibung = new JTextPane();
+		txtpnArtikelBeschreibung.setBackground(SystemColor.inactiveCaptionBorder);
+		txtpnArtikelBeschreibung.setText("Test dishfinsmva s");
+		txtpnArtikelBeschreibung.setBounds(362, 272, 514, 132);
+		panel.add(txtpnArtikelBeschreibung);
 		
-		JComboBox comboBoxGröße = new JComboBox(comboBoxGrößen);
-		comboBoxGröße.setBounds(362, 111, 152, 35);
-		comboBoxGröße.setBackground(SystemColor.inactiveCaptionBorder);
-		panel.add(comboBoxGröße);
+		JComboBox comboBoxArtikelGröße = new JComboBox(comboBoxGrößen);
+		comboBoxArtikelGröße.setBounds(362, 111, 152, 35);
+		comboBoxArtikelGröße.setBackground(SystemColor.inactiveCaptionBorder);
+		panel.add(comboBoxArtikelGröße);
 		
 		
 		frame.setVisible(true);

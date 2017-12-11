@@ -134,9 +134,9 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelArtikel.setLayout(null);
 		
 		JLabel labelArtikelBild = new JLabel("");
-		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
 		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\mann_jacke1.jpg"));
+		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
+		labelArtikelBild.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\Softwareprojekt\\SWP-Bilder\\Herrenjacke_6.jpg"));
 		labelArtikelBild.setBounds(33, 25, 133, 135);
 		panelArtikel.add(labelArtikelBild);
 		
@@ -164,8 +164,8 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 		JLabel lblStatus = new JLabel("Auf Lager");
 		lblStatus.setForeground(new Color(0, 204, 51));
-		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 12));
-		lblStatus.setBounds(203, 82, 147, 25);
+		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 13));
+		lblStatus.setBounds(203, 78, 147, 30);
 		panelArtikel.add(lblStatus);
 		
 		btnZurück = new JButton("Zur\u00FCck");
@@ -177,19 +177,19 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 		JButton btnNewButton = new JButton("Jacken");
 		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBackground(SystemColor.inactiveCaptionBorder);
 		btnNewButton.setBounds(10, 23, 248, 43);
 		panelScrollPaneBar.add(btnNewButton);
 		
 		JButton btnShirts = new JButton("Shirts");
 		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(Color.WHITE);
+		btnShirts.setBackground(SystemColor.inactiveCaptionBorder);
 		btnShirts.setBounds(10, 87, 248, 43);
 		panelScrollPaneBar.add(btnShirts);
 		
 		JButton btnHosen = new JButton("Hosen");
 		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(Color.WHITE);
+		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHosen.setBounds(10, 151, 248, 43);
 		panelScrollPaneBar.add(btnHosen);
 		
