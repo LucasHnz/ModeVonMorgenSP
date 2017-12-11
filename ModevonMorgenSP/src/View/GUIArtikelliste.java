@@ -2,6 +2,9 @@ package View;
 
 import java.awt.EventQueue;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.SortedMap;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -57,42 +60,36 @@ public class GUIArtikelliste extends JFrame {
 		}
 		
 		public Object getValueAt(int rowIndex, int columnIndex) {
+			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
 			if(columnIndex == 0) {
-				//return String.valueOf(data.get(rowIndex).getArtikelnummer());
-				return data.get(500000001).getArtikelnummer();
-				//return "500000001";
+				return data.get(keys[rowIndex]).getArtikelnummer();
 			}
 			else if(columnIndex == 1) {
-				// return data.get(rowIndex).getBezeichnung();
-				return "test";
+				return data.get(keys[rowIndex]).getBezeichnung();
 			}
 			else if(columnIndex == 2) {
-				//return data.get(rowIndex).getHersteller();
-				return "test";
+				return data.get(keys[rowIndex]).getHersteller();
 			}	
 			else if(columnIndex == 3) {
-				//return String.valueOf(data.get(rowIndex).getBestand());
-				return "test";
+				return data.get(keys[rowIndex]).getBestand();
 			}	
 			else if(columnIndex == 4) {
-				return "test";
-				//return String.valueOf(data.get(rowIndex).getPreis());
+				return data.get(keys[rowIndex]).getPreis();
 			}	
 			else if(columnIndex == 5) {
-				return "test";
-				//return String.valueOf(data.get(rowIndex).getRabatt());
+				return data.get(keys[rowIndex]).getRabatt();
 			}	
 			else if(columnIndex == 6) {
-				return "test";
-				//return data.get(rowIndex).getVerfügbarkeit();
+				return data.get(keys[rowIndex]).getVerfügbarkeit();
 			}	
 			else if(columnIndex == 7) {
 				//if(data.get(rowIndex).getNotiz() != null)
 				//	return String.valueOf(true);
 				//else
 				//	return String.valueOf(false);
-				return "test";	
+				//return "test";	
+				return data.get(keys[rowIndex]).getNotiz();
 			}	
 			else
 				return null;
@@ -141,7 +138,7 @@ public class GUIArtikelliste extends JFrame {
 		
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(30, 42, 464, 395);
+		scrollPane.setBounds(30, 42, 800, 395);
 		getContentPane().add(scrollPane);
 		
 		

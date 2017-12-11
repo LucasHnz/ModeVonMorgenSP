@@ -34,7 +34,7 @@ public class Artikelsammlung {
 				double Rabatt = rs.getDouble("Rabatt");
 				int Schuhgröße;
 				String Farbe, Größe;
-			
+				
 				if(kateg == "Schuhe") {
 					Schuhgröße = rs.getInt("Schuhgröße");
 					Artikelsammlung.put(Artikelnummer, new Schuhe(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße));

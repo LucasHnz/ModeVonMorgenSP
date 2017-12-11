@@ -20,7 +20,7 @@ public class ArtikelsammlungTest {
 		System.out.println(Artikelsammlung.getArtikelsammlung().get(500000001).getBezeichnung());
 		
 		}catch(SQLException e) {
-		
+		System.out.println(e.getMessage());
 		}
 
 	}
