@@ -35,7 +35,8 @@ public class GUIHerrenKleidung implements ActionListener{
 	public JButton btnZumArtikel = new JButton();
 	public JButton btnZumArtikel2 = new JButton();
 	JPanel panelHerrenKleidung = new JPanel();
-	public int abstand = 230;
+	public int abstandPlus = 230;
+	public int abstand = 270;
 
 	private JFrame frame;
 
@@ -218,7 +219,7 @@ public void hinzufügenArtikel() {
 		JPanel panelArtikel2 = new JPanel();
 		panelArtikel2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelArtikel2.setBackground(SystemColor.inactiveCaption);
-		panelArtikel2.setBounds(66, (30 + abstand), 680, 188);
+		panelArtikel2.setBounds(66, abstand, 680, 188);
 		panelArtikel2.setLayout(null);
 		
 		
@@ -262,7 +263,7 @@ public void hinzufügenArtikel() {
 		frame.invalidate();
 		frame.validate();
 		frame.repaint();
-		abstand = abstand * 2;
+		abstand = abstand + abstandPlus; 
 		
 	}
 	
