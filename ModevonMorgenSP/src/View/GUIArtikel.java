@@ -31,7 +31,7 @@ public class GUIArtikel implements ActionListener {
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
 	public JPanel panelHerrenKleidung = new JPanel();
-	public String[] comboBoxGrößen = {"S", "M", "L", "XL"};
+	public String[] comboBoxGrößen = {"XS, S, M, L, XL, XXL"};
 
 	private JFrame frame;
 
