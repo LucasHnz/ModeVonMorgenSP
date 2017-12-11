@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class GUIHerrenKleidung implements ActionListener{
 	
@@ -29,7 +30,7 @@ public class GUIHerrenKleidung implements ActionListener{
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
 	public JButton btnZumArtikel = new JButton();
-	//public JPanel panelHerrenKleidung = new JPanel();
+	public JPanel panelHerrenKleidung = new JPanel();
 	
 
 	private JFrame frame;
@@ -103,7 +104,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelMain.setLayout(null);
 		
 		JPanel panelScrollPaneBar = new JPanel();
-		panelScrollPaneBar.setBackground(SystemColor.control);
+		panelScrollPaneBar.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneBar.setLayout(null);
 		
 		JScrollPane scrollPaneHerrenKleidungBar = new JScrollPane(panelScrollPaneBar);
@@ -113,6 +114,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 	
 		JPanel panelHerrenKleidung = new JPanel();
+		panelHerrenKleidung.setBackground(SystemColor.inactiveCaptionBorder);
 		JScrollPane scrollPaneHerrenKleidung = new JScrollPane(panelHerrenKleidung);
 		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		panelHerrenKleidung.setPreferredSize(new Dimension(549, 2000));
@@ -125,7 +127,8 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 		//Artikelbeispiel
 		JPanel panelArtikel = new JPanel();
-		panelArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelArtikel.setBackground(SystemColor.inactiveCaption);
 		panelArtikel.setBounds(66, 30, 680, 188);
 		panelHerrenKleidung.add(panelArtikel);
 		panelArtikel.setLayout(null);
