@@ -15,17 +15,15 @@ import java.util.Iterator;
 
 public class Artikelsammlung {
 
-	static HashMap<Integer,Artikel> Artikelsammlung = new HashMap<Integer,Artikel>();
-	
-	public Artikelsammlung() {	}
+	static HashMap<Integer,Artikel> Artikelsammlung = new HashMap<Integer,Artikel>();	
 	
 	public static void füllenSammlung(ResultSet rs, String kateg) {
 		try{
 			while(rs.next()){
 		
-				int Artikelnummer = rs.getInt("Artikelnummer");
+				int Artikelnummer = rs.getInt("Artikelnr");
 				int Bestand = rs.getInt("Bestand");
-				String[] Lieferanten = rs.getString("Lieferanten").split(";");
+				String[] Lieferanten = rs.getString("Lieferant").split(";");
 				String Bezeichnung = rs.getString("Bezeichnung");
 				String Art = rs.getString("Art");
 				String Geschlecht = rs.getString("Geschlecht");
