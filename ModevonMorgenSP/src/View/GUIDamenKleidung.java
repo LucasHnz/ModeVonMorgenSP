@@ -18,6 +18,9 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Frontend.GUI;
+
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 

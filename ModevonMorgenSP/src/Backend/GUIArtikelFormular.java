@@ -1,4 +1,4 @@
-package View;
+package Backend;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

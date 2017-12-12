@@ -20,6 +20,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import Frontend.GUI;
+
 public class GUIHerrenKleidung implements ActionListener{
 	
 	JButton btnZurück = new JButton();

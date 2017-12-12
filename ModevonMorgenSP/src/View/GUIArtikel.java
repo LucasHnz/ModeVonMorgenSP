@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
+import Frontend.GUI;
+
 public class GUIArtikel implements ActionListener {
 	
 	JButton btnZurück = new JButton();

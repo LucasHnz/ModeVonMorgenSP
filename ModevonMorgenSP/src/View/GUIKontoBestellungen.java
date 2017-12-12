@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Frontend.GUI;
+
 public class GUIKontoBestellungen implements ActionListener{
 	
 	JButton btnZurück = new JButton();

@@ -37,19 +37,19 @@ public class LogStrg {
 				System.out.println("1");
 				String vorname = rs1.getString("vorname");
 				anmeldenCbList[0] = vorname;
-				View.GUI.fensterSchlieﬂen();
+				Frontend.GUI.fensterSchlieﬂen();
 			}
 			
 			if(rs2.next()) {
 				System.out.println("2");
-				View.GUI.fensterSchlieﬂen();
+				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Mitarbeiter";
 				new View.GUIMitarbeiter(anmeldenCbList);
 			}
 			
 			if(rs3.next()) {
 				System.out.println("3");
-				View.GUI.fensterSchlieﬂen();
+				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Admin";
 				new View.GUIMitarbeiter(anmeldenCbList);
 			}

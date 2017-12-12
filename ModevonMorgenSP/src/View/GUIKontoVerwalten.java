@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Frontend.GUI;
+
 public class GUIKontoVerwalten implements ActionListener{
 	
 	JButton btnZurück = new JButton();

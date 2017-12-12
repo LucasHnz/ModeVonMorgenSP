@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+import Frontend.GUI;
+
 public class GUIDamenSchuhe implements ActionListener {
 	
 	JButton btnZurück = new JButton();

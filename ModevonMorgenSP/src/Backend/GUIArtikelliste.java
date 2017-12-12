@@ -1,4 +1,4 @@
-package View;
+package Backend;
 
 import java.awt.EventQueue;
 import java.util.HashMap;
@@ -129,6 +129,7 @@ public class GUIArtikelliste extends JFrame {
 	public GUIArtikelliste() {
 		setBounds(100, 100, 878, 518);
 		getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
 		table.setFillsViewportHeight(true);

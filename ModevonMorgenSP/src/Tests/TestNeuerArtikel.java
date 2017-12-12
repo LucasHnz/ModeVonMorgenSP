@@ -1,6 +1,6 @@
 package Tests;
 
-import View.GUIArtikelFormular;
+import Backend.GUIArtikelFormular;
 
 public class TestNeuerArtikel {
 

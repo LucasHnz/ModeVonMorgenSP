@@ -16,6 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+
+import Frontend.GUI;
+
 import java.awt.Component;
 import java.awt.Dimension;
 
