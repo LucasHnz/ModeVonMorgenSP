@@ -1,4 +1,4 @@
-package View;
+package Frontend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-
-import Frontend.GUI;
 
 public class GUIDamenSchuhe implements ActionListener {
 	

@@ -1,13 +1,13 @@
-package View;
+package Frontend;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,14 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
-import javax.swing.border.LineBorder;
 
-import Frontend.GUI;
-
-public class GUIArtikel implements ActionListener {
+public class GUIDamenAccessoires implements ActionListener {
 	
 	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
@@ -32,24 +28,30 @@ public class GUIArtikel implements ActionListener {
 	public String[] damenCbList;
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
-	public JPanel panelHerrenKleidung = new JPanel();
-	public String[] comboBoxGrößen = {"XS, S, M, L, XL, XXL"};
+	
+	private JTextField txtSchwarzeJacke;
+	private JTextField textField_1;
+	private JTextField txtGre;
 
 	private JFrame frame;
 
-	
-
-	
-	public GUIArtikel(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
-		System.out.println("Ausgeführt Artikel");
+	/**
+	 * Create the application.
+	 */
+	public GUIDamenAccessoires(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
+		System.out.println("Ausgeführt DA");
 		this.damenCbList = damenCbList;
 		this.herrenCbList = herrenCbList;
 		this.anmeldenCbList = anmeldenCbList;
 		initialize(damenCbList, herrenCbList, anmeldenCbList);
+	
 	}
 
-
+	/**
+	 * Initialize the contents of the frame.
+	 */
 	private void initialize(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
+		
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
@@ -97,7 +99,7 @@ public class GUIArtikel implements ActionListener {
 		
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 147, 1234, 563);
+		panelMain.setBounds(0, 148, 1234, 563);
 		frame.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
 		
@@ -108,62 +110,59 @@ public class GUIArtikel implements ActionListener {
 		btnZurück.addActionListener(this);
 		panelMain.add(btnZurück);
 		
+		JPanel panelScrollPaneBar = new JPanel();
+		panelScrollPaneBar.setBackground(SystemColor.control);
+		panelScrollPaneBar.setLayout(null);
+		
+		JScrollPane scrollPaneDamenAccessoiresBar = new JScrollPane(panelScrollPaneBar);
+		scrollPaneDamenAccessoiresBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneDamenAccessoiresBar.setBounds(10, 97, 270, 455);
+		panelMain.add(scrollPaneDamenAccessoiresBar);
+		
+		JPanel panelDamenAccessoires = new JPanel();
+		JScrollPane scrollPaneDamenAccessoires = new JScrollPane(panelDamenAccessoires);
+		panelDamenAccessoires.setLayout(new BoxLayout(panelDamenAccessoires, BoxLayout.X_AXIS));
+		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setLayout(null);
-		panel.setBackground(SystemColor.inactiveCaption);
-		panel.setBounds(105, 60, 1051, 434);
-		panelMain.add(panel);
+		panelDamenAccessoires.add(panel);
 		
+	
 		
-		JLabel labelArtikelBild = new JLabel("");
-		labelArtikelBild.setBackground(Color.WHITE);
-		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setBounds(70, 32, 250, 250);
-		labelArtikelBild.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\Softwareprojekt\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		panel.add(labelArtikelBild);
+		scrollPaneDamenAccessoires.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneDamenAccessoires.setBounds(323, 97, 901, 455);
+		panelMain.add(scrollPaneDamenAccessoires);
 		
-		JLabel lblArtikelTitel = new JLabel("Schwarze Jacke DENIM");
-		lblArtikelTitel.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblArtikelTitel.setBounds(362, 11, 319, 49);
-		panel.add(lblArtikelTitel);
+		JButton btnNewButton = new JButton("Jacken");
+		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBounds(10, 23, 248, 43);
+		panelScrollPaneBar.add(btnNewButton);
 		
-		JLabel lblArtikelStatus = new JLabel("Auf Lager");
-		lblArtikelStatus.setBounds(362, 57, 110, 43);
-		panel.add(lblArtikelStatus);
-		lblArtikelStatus.setForeground(new Color(0, 204, 51));
-		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblArtikelStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JButton btnShirts = new JButton("Shirts");
+		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnShirts.setBackground(Color.WHITE);
+		btnShirts.setBounds(10, 87, 248, 43);
+		panelScrollPaneBar.add(btnShirts);
 		
-		JButton btnWarenkorbHinz = new JButton("In den Warenkorb");
-		btnWarenkorbHinz.setBounds(361, 185, 153, 35);
-		panel.add(btnWarenkorbHinz);
-		btnWarenkorbHinz.setBackground(SystemColor.inactiveCaptionBorder);
-		
-		JTextPane txtpnArtikelBeschreibung = new JTextPane();
-		txtpnArtikelBeschreibung.setBackground(SystemColor.inactiveCaptionBorder);
-		txtpnArtikelBeschreibung.setText("Test dishfinsmva s");
-		txtpnArtikelBeschreibung.setBounds(362, 272, 514, 132);
-		panel.add(txtpnArtikelBeschreibung);
-		
-		JComboBox comboBoxArtikelGröße = new JComboBox(comboBoxGrößen);
-		comboBoxArtikelGröße.setBounds(362, 111, 152, 35);
-		comboBoxArtikelGröße.setBackground(SystemColor.inactiveCaptionBorder);
-		panel.add(comboBoxArtikelGröße);
-		
+		JButton btnHosen = new JButton("Hosen");
+		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHosen.setBackground(Color.WHITE);
+		btnHosen.setBounds(10, 151, 248, 43);
+		panelScrollPaneBar.add(btnHosen);
 		
 		frame.setVisible(true);
-		
 	}
+	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
+	public void actionPerformed(ActionEvent e)
+	{
 		if(e.getSource() == btnZurück) 
 		{
 			frame.dispose();
 			new GUI();
 		}
-        	if(e.getSource() == comboBoxHerren){
+		
+		if(e.getSource() == comboBoxHerren){
 			
 			String auswahl = (String) comboBoxHerren.getSelectedItem();
 		    
@@ -190,7 +189,7 @@ public class GUIArtikel implements ActionListener {
 			
 			String auswahl = (String) comboBoxDamen.getSelectedItem();
 			
-				if(auswahl == "Kleidung"){
+			if(auswahl == "Kleidung"){
 				 frame.dispose();
 				 new GUIDamenKleidung(damenCbList, herrenCbList, anmeldenCbList);
 			    }
@@ -225,7 +224,6 @@ public class GUIArtikel implements ActionListener {
 			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
 			}
 		}
-
 	}
-}
 
+}

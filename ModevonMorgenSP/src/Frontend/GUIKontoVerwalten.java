@@ -1,4 +1,4 @@
-package View;
+package Frontend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
-import Frontend.GUI;
 
 public class GUIKontoVerwalten implements ActionListener{
 	

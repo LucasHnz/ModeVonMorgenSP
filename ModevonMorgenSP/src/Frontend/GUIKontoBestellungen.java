@@ -1,4 +1,4 @@
-package View;
+package Frontend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -7,51 +7,39 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 
-import Frontend.GUI;
-
-public class GUIHerrenSchuhe implements ActionListener {
+public class GUIKontoBestellungen implements ActionListener{
 	
-	JButton btnZurück;
-	JButton btnAnmelden;
-	public JComboBox<String> comboBoxHerren;
-	public JComboBox<String> comboBoxDamen;
-	public JComboBox<String> comboBoxAnmelden;
+	JButton btnZurück = new JButton();
+	public JComboBox comboBoxHerren = new JComboBox();
+	public JComboBox comboBoxDamen = new JComboBox();
+	public JComboBox comboBoxAnmelden = new JComboBox();
 	public String[] damenCbList;
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
 
 	private JFrame frame;
 
-
-
 	/**
 	 * Create the application.
 	 */
-	public GUIHerrenSchuhe(String[]damenCbList, String[]herrenCbList,String[]anmeldenCbList) {
-		System.out.println("Ausgeführt HS");
+	public GUIKontoBestellungen(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
 		this.damenCbList = damenCbList;
 		this.herrenCbList = herrenCbList;
 		this.anmeldenCbList = anmeldenCbList;
-		initialize(damenCbList, herrenCbList,anmeldenCbList);
-		
+		initialize(damenCbList, herrenCbList, anmeldenCbList);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
-		
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
@@ -97,9 +85,6 @@ public class GUIHerrenSchuhe implements ActionListener {
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
-		
-		//Hauptfenster
-		
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 148, 1234, 563);
@@ -113,50 +98,12 @@ public class GUIHerrenSchuhe implements ActionListener {
 		btnZurück.addActionListener(this);
 		panelMain.add(btnZurück);
 		
-		
-		
-		JPanel panelScrollPaneLinks = new JPanel();
-		panelScrollPaneLinks.setBackground(SystemColor.control);
-		panelScrollPaneLinks.setLayout(null);
-		
-		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
-		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneLinks.setBounds(10, 97, 270, 455);
-		panelMain.add(scrollPaneLinks);
-		
-		JPanel panelScrollPaneRechts = new JPanel();
-		panelScrollPaneRechts.setLayout(new BoxLayout(panelScrollPaneRechts, BoxLayout.X_AXIS));
-		JScrollPane scrollPaneRechts = new JScrollPane(panelScrollPaneRechts);
-		scrollPaneRechts.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneRechts.setBounds(323, 97, 901, 455);
-		panelMain.add(scrollPaneRechts);
-		
-		
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnNewButton);
-		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(Color.WHITE);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneLinks.add(btnShirts);
-		
-		JButton btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(Color.WHITE);
-		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneLinks.add(btnHosen);
-		
-	
 		frame.setVisible(true);
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
+		
 		if(e.getSource() == btnZurück) 
 		{
 			frame.dispose();
@@ -224,6 +171,8 @@ public class GUIHerrenSchuhe implements ActionListener {
 			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
 			}
 		}
+		
+		
 	}
 
 }

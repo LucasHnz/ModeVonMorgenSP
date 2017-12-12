@@ -22,17 +22,6 @@ import javax.swing.ImageIcon;
 
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
-
-import View.GUIAnmelden;
-import View.GUIDamenAccessoires;
-import View.GUIDamenKleidung;
-import View.GUIDamenSchuhe;
-import View.GUIHerrenAccessoires;
-import View.GUIHerrenKleidung;
-import View.GUIHerrenSchuhe;
-import View.GUIKontoBestellungen;
-import View.GUIKontoVerwalten;
-
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;

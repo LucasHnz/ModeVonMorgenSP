@@ -44,14 +44,14 @@ public class LogStrg {
 				System.out.println("2");
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Mitarbeiter";
-				new View.GUIMitarbeiter(anmeldenCbList);
+				new Backend.GUIMitarbeiter(anmeldenCbList);
 			}
 			
 			if(rs3.next()) {
 				System.out.println("3");
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Admin";
-				new View.GUIMitarbeiter(anmeldenCbList);
+				new Backend.GUIMitarbeiter(anmeldenCbList);
 			}
 	
 			System.out.println("Ende"); 

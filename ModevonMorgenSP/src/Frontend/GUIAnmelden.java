@@ -1,4 +1,4 @@
-package View;
+package Frontend;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;

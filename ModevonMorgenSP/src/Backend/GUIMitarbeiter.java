@@ -1,4 +1,4 @@
-package View;
+package Backend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -18,6 +18,9 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 import Frontend.GUI;
+import Frontend.GUIAnmelden;
+import Frontend.GUIKontoBestellungen;
+import Frontend.GUIKontoVerwalten;
 
 import java.awt.Component;
 import java.awt.Dimension;
