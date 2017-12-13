@@ -4,10 +4,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import Nutzerverwaltung.Bestandskunde;
-
+/**
+ * 
+ * @author annag
+ *
+ */
 public class BestandskundnStrg {
-
-
 	
 	public static void neuerKunde(int nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, String iban, int berechtigung, String passwort, int pss){
 		

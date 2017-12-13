@@ -15,6 +15,7 @@ public class Bestellposition extends Artikel {
 	/**
 	 * @param posNr Die einzigartige Positionsnummer.
 	 * @param aMenge Die Anzahl der Artikel der Bestellposition.
+	 * @param preis der Preis der ganzen Bestellposition. 
 	 * 
 	 */
 	public Bestellposition (int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt){

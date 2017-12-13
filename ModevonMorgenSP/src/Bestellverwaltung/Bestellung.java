@@ -79,7 +79,9 @@ public class Bestellung  {
 		}
 				
 	}
-
+// Bestellung mit bestellpositionen füllen ?
+	// das mit dem Datum bearbeiten/erarbeiten
+	
 	
 	
 }
