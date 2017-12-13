@@ -67,7 +67,7 @@ public class Administrator {
 		this.email = email;
 	}
 
-	public String getStraße() {
+	public String getStra�e() {
 		return straße;
 	}
 

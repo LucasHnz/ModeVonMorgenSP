@@ -1,15 +1,27 @@
 package AdministratorVerwaltung;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
+
+import Artikelverwaltung.Artikel;
 
 
 public class AdministratorSammlung {
 	
 	static HashMap<Integer, Administrator> AdministratorSammlung = new HashMap<Integer, Administrator>();
 	
-	public AdministratorSammlung (ResultSet rs) throws SQLException {
+	public static void fülleAdministratorListe() throws SQLException {
+		
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		String befehl = "Select * from Administrator";
+		
+		ResultSet rs = stmt.executeQuery(befehl);
+		
+		
 		
 		while (rs.next()) {
 			int nutzernr = rs.getInt("Nutzernr");
@@ -29,6 +41,20 @@ public class AdministratorSammlung {
 			AdministratorSammlung.put(admin.getNutzernr(), admin);
 		
 		}
+	}
+	
+	public static HashMap<Integer,Administrator> getAdminSammlung(){
+		return AdministratorSammlung;
+	}
+	
+	public static Administrator[] getAdminArray(String Filter) {
+		Administrator[] AdminList = new Administrator[AdministratorSammlung.size()];
+		AdminList = (Administrator[]) AdministratorSammlung.values().toArray();
+		return AdminList; 
+	}
+	
+	public static Administrator getAdmin(int Adminnr) {
+		return AdministratorSammlung.get(Adminnr);
 	}
 
 }
