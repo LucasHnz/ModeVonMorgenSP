@@ -1,20 +1,14 @@
-package Nutzerverwaltung;
+package BestandskundenVerwaltung;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-/**
- * 
- * 
- * @author julian
- *
- */
-public class BestandskundenSammlung {
+public class BestandskundeSammlung {
 	
-	HashMap<Integer, Bestandskunde> BestandskundenSammlung = new HashMap<Integer,Bestandskunde>();
+	static HashMap<Integer, Bestandskunde> BestandskundenSammlung = new HashMap<Integer,Bestandskunde>();
 	
-	public BestandskundenSammlung(ResultSet rs) throws SQLException {
+	public BestandskundeSammlung(ResultSet rs) throws SQLException {
 		
 		while (rs.next()) {
 			int nutzernr = rs.getInt("Nutzernr");

@@ -1,11 +1,6 @@
-package Nutzerverwaltung;
+package BestandskundenVerwaltung;
 
-/**
- * 
- * @author julian
- *
- */
-public class Administrator{
+public class Bestandskunde {
 	
 	private int nutzernr;
 	private String nachname;
@@ -15,11 +10,11 @@ public class Administrator{
 	private String ort;
 	private int plz;
 	private String iban;
-	private int gehalt;
-	private int berechtigumg;
+	private int berechtigung;
 	private String passwort;
+	private int pss;
 
-	public Administrator(int nutzernr, String nachname, String vorname, String email, String straße, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort){
+	public Bestandskunde(int nutzernr, String nachname, String vorname, String email, String straße, String ort, int plz, String iban, int berechtigung, String passwort, int pss) {
 		this.nutzernr = nutzernr;
 		this.nachname = nachname;
 		this.vorname = vorname;
@@ -28,16 +23,16 @@ public class Administrator{
 		this.ort = ort;
 		this.plz = plz;
 		this.iban = iban;
-		this.gehalt = gehalt;
-		this.berechtigumg = berechtigung;
+		this.berechtigung = berechtigung;
 		this.passwort = passwort;
+		this.pss = pss;
 	}
 
 	@Override
 	public String toString() {
-		return "Administrator [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
-				+ email + ", straße=" + straße + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", gehalt="
-				+ gehalt + ", berechtigumg=" + berechtigumg + ", passwort=" + passwort + "]";
+		return "Bestandskunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
+				+ email + ", straße=" + straße + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
+				+ berechtigung + ", passwort=" + passwort + ", pss=" + pss + "]";
 	}
 
 	public int getNutzernr() {
@@ -104,20 +99,12 @@ public class Administrator{
 		this.iban = iban;
 	}
 
-	public int getGehalt() {
-		return gehalt;
+	public int getBerechtigung() {
+		return berechtigung;
 	}
 
-	public void setGehalt(int gehalt) {
-		this.gehalt = gehalt;
-	}
-
-	public int getBerechtigumg() {
-		return berechtigumg;
-	}
-
-	public void setBerechtigumg(int berechtigumg) {
-		this.berechtigumg = berechtigumg;
+	public void setBerechtigung(int berechtigung) {
+		this.berechtigung = berechtigung;
 	}
 
 	public String getPasswort() {
@@ -127,6 +114,17 @@ public class Administrator{
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
 	}
-		
-}
+
+	public int getPss() {
+		return pss;
+	}
+
+	public void setPss(int pss) {
+		this.pss = pss;
+	}
 	
+
+}
+
+
+

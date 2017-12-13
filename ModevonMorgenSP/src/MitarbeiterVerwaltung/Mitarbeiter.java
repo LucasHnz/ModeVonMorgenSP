@@ -1,14 +1,7 @@
-package Nutzerverwaltung;
+package MitarbeiterVerwaltung;
 
-/**
- * 
- * 
- * @author julian
- *
- */
-
-public class Mitarbeiter{
-
+public class Mitarbeiter {
+	
 	protected int gehalt, adminnr;
 	protected String iban, passwort;
 	private int nutzernr;
@@ -131,5 +124,5 @@ public class Mitarbeiter{
 		this.berechtigung = berechtigung;
 	}
 
-}
 
+}

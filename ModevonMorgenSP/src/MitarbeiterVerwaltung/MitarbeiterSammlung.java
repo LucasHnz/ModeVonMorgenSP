@@ -1,17 +1,20 @@
-package Nutzerverwaltung;
+package MitarbeiterVerwaltung;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class AdministratorenSammlung {
+
+public class MitarbeiterSammlung {
 	
-	HashMap<Integer, Administrator> AdministratorSammlung = new HashMap<Integer, Administrator>();
+ static HashMap<Integer, Mitarbeiter> MitarbeiterSammlung = new HashMap<Integer, Mitarbeiter>();
 	
-	public AdministratorenSammlung (ResultSet rs) throws SQLException {
+	public MitarbeiterSammlung(ResultSet rs) throws SQLException {
 		
 		while (rs.next()) {
+			
 			int nutzernr = rs.getInt("Nutzernr");
+			int adminnr = rs.getInt("Adminnr");
 			String nachname = rs.getString("Nachname");
 			String vorname = rs.getString("Vorname");
 			String email = rs.getString("Email");
@@ -23,10 +26,14 @@ public class AdministratorenSammlung {
 			int berechtigung = rs.getInt("Berechtigung");
 			String passwort = rs.getString("Passwort");
 			
-			Administrator admin = new Administrator(nutzernr, nachname, vorname, email, straße, ort, plz, iban, gehalt, berechtigung, passwort);
+			Mitarbeiter ma = new Mitarbeiter (nutzernr, adminnr, nachname, vorname, email, straße, ort, plz, iban, gehalt, berechtigung, passwort);
 			
-			AdministratorSammlung.put(admin.getNutzernr(), admin);
+			MitarbeiterSammlung.put(ma.getNutzernr(), ma);
 		
-		}
 	}
+		
+	}
+	
 }
+
+

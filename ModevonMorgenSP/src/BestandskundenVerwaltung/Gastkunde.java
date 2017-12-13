@@ -1,14 +1,7 @@
-package Nutzerverwaltung;
+package BestandskundenVerwaltung;
 
-/**
- * 
- * 
- * @author julian
- *
- */
-
-public class Bestandskunde{
-
+public class Gastkunde {
+	
 	private int nutzernr;
 	private String nachname;
 	private String vorname;
@@ -16,12 +9,9 @@ public class Bestandskunde{
 	private String straße;
 	private String ort;
 	private int plz;
-	private String iban;
 	private int berechtigung;
-	private String passwort;
-	private int pss;
 
-	public Bestandskunde(int nutzernr, String nachname, String vorname, String email, String straße, String ort, int plz, String iban, int berechtigung, String passwort, int pss) {
+	public Gastkunde(int nutzernr, String nachname, String vorname, String email, String straße, String ort, int plz, int berechtigung) {
 		this.nutzernr = nutzernr;
 		this.nachname = nachname;
 		this.vorname = vorname;
@@ -29,17 +19,14 @@ public class Bestandskunde{
 		this.straße = straße;
 		this.ort = ort;
 		this.plz = plz;
-		this.iban = iban;
 		this.berechtigung = berechtigung;
-		this.passwort = passwort;
-		this.pss = pss;
 	}
 
 	@Override
 	public String toString() {
-		return "Bestandskunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
-				+ email + ", straße=" + straße + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
-				+ berechtigung + ", passwort=" + passwort + ", pss=" + pss + "]";
+		return "Gastkunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
+				+ email + ", straße=" + straße + ", ort=" + ort + ", plz=" + plz + ", berechtigung=" + berechtigung
+				+ "]";
 	}
 
 	public int getNutzernr() {
@@ -98,14 +85,6 @@ public class Bestandskunde{
 		this.plz = plz;
 	}
 
-	public String getIban() {
-		return iban;
-	}
-
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
-
 	public int getBerechtigung() {
 		return berechtigung;
 	}
@@ -114,22 +93,4 @@ public class Bestandskunde{
 		this.berechtigung = berechtigung;
 	}
 
-	public String getPasswort() {
-		return passwort;
-	}
-
-	public void setPasswort(String passwort) {
-		this.passwort = passwort;
-	}
-
-	public int getPss() {
-		return pss;
-	}
-
-	public void setPss(int pss) {
-		this.pss = pss;
-	}
-	
-
 }
-

@@ -1,20 +1,31 @@
-package Datenbankverwaltung;
+package MitarbeiterVerwaltung;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-/**
- * 
- * 
- * @author julian
- *
- */
-
-public class bearbeiteMitarbeiter {
+public class MitarbeiterStrg {
 	
-	public static void aktualisiereName(String name, String nutzernr){
+	public static void entferneMitarbeiter(String nutzernr) {
+		int pk = Integer.parseInt(nutzernr);
+		
+		try {
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			
+			Statement stmt = con.createStatement();
+			
+			String sqlbefehel ="delete from Mitarbeiter where nutzernr = '"+pk+"'";
+			
+			stmt.executeQuery(sqlbefehel);
+			
+			
+		}catch (SQLException e) {
+			e.getMessage();
+		}
+	}
+	
+public static void aktualisiereName(String name, String nutzernr){
 		
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -167,4 +178,37 @@ public class bearbeiteMitarbeiter {
 			e.getMessage();
 		}
 	}
+	
+	public static void hinzuf¸genMA(String nutzernr, String adminnr, String nachname, String vorname, String email, String stra√üe, String ort, String plz, String iban, String gehalt, String berechtigung, String passwort)
+	{
+		
+		int  nutzernr2 = Integer.parseInt(nutzernr);
+		int  adminnr2 = Integer.parseInt(adminnr);
+		int plz2 = Integer.parseInt(plz);
+		int gehalt2 = Integer.parseInt(gehalt);
+		int berechtigung2 = Integer.parseInt(berechtigung);
+		
+		
+		Mitarbeiter ma = new Mitarbeiter(nutzernr2, adminnr2, nachname, vorname, email, stra√üe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
+		
+		
+		try {
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			
+			Statement stmt = con.createStatement();
+			
+			String sqlbefehl = "insert into Mitarbeiter values ('"+nutzernr2+"','"+adminnr2+"','"+nachname+"','"+vorname+"','"+email+"','"+stra√üe+"','"+ort+"','"+plz2+"','"+iban+"','"+gehalt2+"','"+berechtigung2+"','"+passwort+"')";
+			
+			stmt.executeQuery(sqlbefehl);
+			
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			
+			
+		}catch (SQLException e) {
+			e.getMessage();
+		}
+		
+	}
+
 }
