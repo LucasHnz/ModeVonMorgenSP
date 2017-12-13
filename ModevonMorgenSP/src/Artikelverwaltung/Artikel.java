@@ -4,12 +4,12 @@ package Artikelverwaltung;
  * @author maoro
  *
  */
-public abstract class Artikel {
+public abstract class Artikel implements Comparable<Artikel> {
 
-	protected int Artikelnummer, Bestand;
+	protected int Artikelnummer, Bestand, Rabatt;
 	protected String Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Kategorie;
 	protected String[] Lieferanten;
-	protected double Preis, Rabatt;
+	protected double Preis;
 	/**
 	 * 
 	 * @param artnr Die einzigartige Artikelnummer.
@@ -23,7 +23,7 @@ public abstract class Artikel {
 	 * @param Preis Der Preis des Artikels.
 	 * @param Rabatt Temporäre Preisvergünstigung.
 	 */
-	public Artikel(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt) {
+	public Artikel(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, int Rabatt) {
 
 		this.Artikelnummer=artnr;
 		this.Bestand=bestand;
@@ -98,15 +98,21 @@ public abstract class Artikel {
 	public void setPreis(double preis) {
 		Preis = preis;
 	}
-	public double getRabatt() {
+	public int getRabatt() {
 		return Rabatt;
 	}
-	public void setRabatt(double rabatt) {
+	public void setRabatt(int rabatt) {
 		Rabatt = rabatt;
 	}
 	public String getKategorie() {
 		return Kategorie;
 	}
-	
+	public int compareTo(Artikel a) {
+		if (this.Artikelnummer < a.getArtikelnummer())
+			return -1;
+		else 
+			return 1;
+		
+	}
 	
 }

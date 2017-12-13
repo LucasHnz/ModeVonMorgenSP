@@ -1,18 +1,13 @@
-package Nutzerverwaltung;
+package MitarbeiterVerwaltung;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-/**
- * 
- * 
- * @author julian
- *
- */
+
 public class MitarbeiterSammlung {
 	
-	HashMap<Integer, Mitarbeiter> MitarbeiterSammlung = new HashMap<Integer, Mitarbeiter>();
+ static HashMap<Integer, Mitarbeiter> MitarbeiterSammlung = new HashMap<Integer, Mitarbeiter>();
 	
 	public MitarbeiterSammlung(ResultSet rs) throws SQLException {
 		
@@ -36,8 +31,9 @@ public class MitarbeiterSammlung {
 			MitarbeiterSammlung.put(ma.getNutzernr(), ma);
 		
 	}
+		
+	}
 	
-	
+}
 
-}
-}
+

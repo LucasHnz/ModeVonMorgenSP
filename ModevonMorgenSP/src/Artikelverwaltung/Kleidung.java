@@ -12,7 +12,7 @@ public class Kleidung extends Artikel {
 	 * 
 	 * @param Größe Die Größe des Artikels. Unterteilt in XS, S, M, L, XL, XXL.
 	 */
-	public Kleidung(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt, String Größe) {
+	public Kleidung(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, int Rabatt, String Größe) {
 		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt);
 		this.Größe=Größe;
 		Kategorie = "Kleidung";

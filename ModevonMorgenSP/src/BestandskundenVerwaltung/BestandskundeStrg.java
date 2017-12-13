@@ -1,17 +1,12 @@
-package Datenbankverwaltung;
+package BestandskundenVerwaltung;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * 
- * @author julian
- *
- */
-public class bearbeiteBestandskunde {
+public class BestandskundeStrg {
 	
-	public static void aktualisiereName(String name, String nutzernr){
+public static void aktualisiereName(String name, String nutzernr){
 		
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -131,7 +126,5 @@ public class bearbeiteBestandskunde {
 			e.getMessage();
 		}
 	}
+
 }
-
-
-

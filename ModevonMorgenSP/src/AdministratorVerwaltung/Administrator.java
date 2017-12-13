@@ -1,11 +1,6 @@
-package Nutzerverwaltung;
+package AdministratorVerwaltung;
 
-/**
- * 
- * @author julian
- *
- */
-public class Administrator{
+public class Administrator {
 	
 	private int nutzernr;
 	private String nachname;
@@ -72,7 +67,7 @@ public class Administrator{
 		this.email = email;
 	}
 
-	public String getStraße() {
+	public String getStra�e() {
 		return straße;
 	}
 

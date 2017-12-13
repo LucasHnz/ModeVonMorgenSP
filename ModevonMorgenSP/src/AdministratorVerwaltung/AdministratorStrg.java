@@ -1,18 +1,32 @@
-package Datenbankverwaltung;
+package AdministratorVerwaltung;
 
 import java.sql.Connection;
-
-/**
- * 
- * @author julian
- * 
- */
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class bearbeiteAdministrator {
+public class AdministratorStrg {
 	
-	public static void aktualisiereName(String name, String nutzernr){
+
+	public static void entferneAdmin(String adminnr) {
+		int pk = Integer.parseInt(adminnr);
+	
+	try {
+		
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		
+		Statement stmt = con.createStatement();
+		
+		String sqlbefehel ="delete from Administrator where nutzernr = '"+pk+"'";
+		
+		stmt.executeQuery(sqlbefehel);
+		
+		
+	}catch (SQLException e) {
+		e.getMessage();
+	}
+}
+	
+public static void aktualisiereName(String name, String nutzernr){
 		
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -149,4 +163,36 @@ public class bearbeiteAdministrator {
 			e.getMessage();
 		}
 	}
+	
+	public static void hinzuf¸genAdmin(String nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, String plz, String iban, String gehalt, String berechtigung, String passwort) {
+		
+		int  nutzernr2 = Integer.parseInt(nutzernr);
+		int plz2 = Integer.parseInt(plz);
+		int gehalt2 = Integer.parseInt(gehalt);
+		int berechtigung2 = Integer.parseInt(berechtigung);
+		
+		Administrator admin = new Administrator(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
+		
+		
+		try {
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			
+			Statement stmt = con.createStatement();
+			
+			String sqlbefehl = "insert into Administrator values ('"+nutzernr2+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz2+"','"+iban+"','"+gehalt2+"','"+berechtigung2+"','"+passwort+"')";
+			
+			stmt.executeQuery(sqlbefehl);
+			
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			
+			
+		}catch (SQLException e) {
+			e.getMessage();
+		}
+		
+		
+		
+	}
+
 }

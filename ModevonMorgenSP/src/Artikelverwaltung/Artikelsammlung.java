@@ -30,8 +30,10 @@ public class Artikelsammlung {
 				String Hersteller = rs.getString("Hersteller");
 				String Verfügbarkeit = rs.getString("Verfügbarkeit");
 				String Notiz = rs.getString("Notiz");
+				if(rs.wasNull())
+						Notiz = null;
 				double Preis = rs.getDouble("Preis");
-				double Rabatt = rs.getDouble("Rabatt");
+				int Rabatt = rs.getInt("Rabatt");
 				int Schuhgröße;
 				String Farbe, Größe;
 				
@@ -87,7 +89,7 @@ public class Artikelsammlung {
 	 */
 	public static void hinzufügenArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht,
 			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, double Preis,
-			double Rabatt, int Schuhgröße, String Farbe, String Größe) {
+			int Rabatt, int Schuhgröße, String Farbe, String Größe) {
 		Artikel artikel;
 		if(kateg == "Schuhe")
 			artikel = new Schuhe(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße);

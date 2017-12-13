@@ -1,26 +1,22 @@
 package Backend;
 
 import java.awt.EventQueue;
-import javax.swing.ListSelectionModel;
 import java.util.Comparator;
 import java.util.HashMap;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import AdministratorVerwaltung.Administrator;
+import AdministratorVerwaltung.AdministratorSammlung;
 
-import Artikelverwaltung.Artikel;
-import Artikelverwaltung.ArtikelStrg;
-import Artikelverwaltung.Artikelsammlung;
-
-public class GUIArtikelliste extends JScrollPane {
-	/**
-	 * 
-	 */
+public class GUIAdministratorListe extends JScrollPane{
+	
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};
+	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -29,11 +25,11 @@ public class GUIArtikelliste extends JScrollPane {
 		 */
 		private static final long serialVersionUID = 1L;
 		private String[] columnNames;
-		private HashMap<Integer, Artikel> data;
+		private HashMap<Integer, Administrator> data;
 		
-		public myTableModel(HashMap<Integer, Artikel> artikelliste, String[] columnNames) {
+		public myTableModel(HashMap<Integer, Administrator> Administratorliste, String[] columnNames) {
 			this.columnNames = columnNames;
-			this.data = artikelliste;
+			this.data = Administratorliste;
 		}
 			
 		public int getColumnCount() {
@@ -52,25 +48,25 @@ public class GUIArtikelliste extends JScrollPane {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
 			if(columnIndex == 0) {
-				return data.get(keys[rowIndex]).getArtikelnummer();
+				return data.get(keys[rowIndex]).getNutzernr();
 			}
 			else if(columnIndex == 1) {
-				return data.get(keys[rowIndex]).getBezeichnung();
+				return data.get(keys[rowIndex]).getNachname();
 			}
 			else if(columnIndex == 2) {
-				return data.get(keys[rowIndex]).getHersteller();
+				return data.get(keys[rowIndex]).getVorname();
 			}	
 			else if(columnIndex == 3) {
-				return data.get(keys[rowIndex]).getBestand();
+				return data.get(keys[rowIndex]).getEmail();
 			}	
 			else if(columnIndex == 4) {
-				return data.get(keys[rowIndex]).getPreis();
+				return data.get(keys[rowIndex]).getStraße();
 			}	
 			else if(columnIndex == 5) {
-				return data.get(keys[rowIndex]).getRabatt();
+				return data.get(keys[rowIndex]).getOrt();
 			}	
 			else if(columnIndex == 6) {
-				return data.get(keys[rowIndex]).getVerfügbarkeit();
+				return data.get(keys[rowIndex]).getPlz();
 			}	
 			else if(columnIndex == 7) {
 				//if(data.get(rowIndex).getNotiz() != null)
@@ -78,8 +74,20 @@ public class GUIArtikelliste extends JScrollPane {
 				//else
 				//	return String.valueOf(false);
 				//return "test";	
-				return data.get(keys[rowIndex]).getNotiz();
-			}	
+				return data.get(keys[rowIndex]).getIban();
+			}
+			
+			else if (columnIndex == 8) {
+				return data.get(keys[rowIndex]).getGehalt();
+			}
+			
+			else if (columnIndex == 9) {
+				return data.get(keys[rowIndex]).getBerechtigumg();
+			}
+			
+			else if ( columnIndex == 10 ) {
+				return data.get(keys[rowIndex]).getPasswort();
+			}
 			else
 				return null;
 			
@@ -96,14 +104,14 @@ public class GUIArtikelliste extends JScrollPane {
 	}
 
 	/**
-	 * Launch the application.
+	 * Starte die Anwendung
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ArtikelStrg.FülleArtikelsammlung();
-					GUIArtikelliste frame = new GUIArtikelliste();
+					AdministratorSammlung.fülleAdministratorListe();
+					GUIAdministratorListe frame = new GUIAdministratorListe();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -115,14 +123,14 @@ public class GUIArtikelliste extends JScrollPane {
 	/**
 	 * Create the frame.
 	 */
-	public GUIArtikelliste() {
+	public GUIAdministratorListe() {
 		setBounds(100, 100, 878, 518);
 		//getContentPane().setLayout(null);
 		setLayout(null);
 
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
+		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(38);
@@ -175,4 +183,7 @@ public class GUIArtikelliste extends JScrollPane {
 		setVisible(true);
 
 	}
+	
+	
+
 }

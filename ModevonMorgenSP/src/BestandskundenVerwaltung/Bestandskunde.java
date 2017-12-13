@@ -1,16 +1,7 @@
-package Nutzerverwaltung;
+package BestandskundenVerwaltung;
 
-/**
- * 
- * 
- * @author julian
- *
- */
-
-public class Mitarbeiter{
-
-	protected int gehalt, adminnr;
-	protected String iban, passwort;
+public class Bestandskunde {
+	
 	private int nutzernr;
 	private String nachname;
 	private String vorname;
@@ -18,11 +9,13 @@ public class Mitarbeiter{
 	private String straße;
 	private String ort;
 	private int plz;
+	private String iban;
 	private int berechtigung;
-	
-	public Mitarbeiter(int nutzernr,int adminnr, String nachname, String vorname, String email, String straße, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort) {
+	private String passwort;
+	private int pss;
+
+	public Bestandskunde(int nutzernr, String nachname, String vorname, String email, String straße, String ort, int plz, String iban, int berechtigung, String passwort, int pss) {
 		this.nutzernr = nutzernr;
-		this.adminnr = adminnr;
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
@@ -30,41 +23,16 @@ public class Mitarbeiter{
 		this.ort = ort;
 		this.plz = plz;
 		this.iban = iban;
-		this.gehalt = gehalt;
 		this.berechtigung = berechtigung;
 		this.passwort = passwort;
+		this.pss = pss;
 	}
 
-	public int getGehalt() {
-		return gehalt;
-	}
-
-	public void setGehalt(int gehalt) {
-		this.gehalt = gehalt;
-	}
-
-	public int getAdminnr() {
-		return adminnr;
-	}
-
-	public void setAdminnr(int adminnr) {
-		this.adminnr = adminnr;
-	}
-
-	public String getIban() {
-		return iban;
-	}
-
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
-
-	public String getPasswort() {
-		return passwort;
-	}
-
-	public void setPasswort(String passwort) {
-		this.passwort = passwort;
+	@Override
+	public String toString() {
+		return "Bestandskunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
+				+ email + ", straße=" + straße + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
+				+ berechtigung + ", passwort=" + passwort + ", pss=" + pss + "]";
 	}
 
 	public int getNutzernr() {
@@ -123,6 +91,14 @@ public class Mitarbeiter{
 		this.plz = plz;
 	}
 
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+
 	public int getBerechtigung() {
 		return berechtigung;
 	}
@@ -131,5 +107,24 @@ public class Mitarbeiter{
 		this.berechtigung = berechtigung;
 	}
 
+	public String getPasswort() {
+		return passwort;
+	}
+
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
+	}
+
+	public int getPss() {
+		return pss;
+	}
+
+	public void setPss(int pss) {
+		this.pss = pss;
+	}
+	
+
 }
+
+
 
