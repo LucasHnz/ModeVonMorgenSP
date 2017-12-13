@@ -8,7 +8,7 @@ import Artikelverwaltung.Artikel;
  */
 
 public class Bestellposition extends Artikel {
-	
+	protected double preis;
 	protected int aMenge; 
 	protected int posNr;
 	
@@ -17,8 +17,8 @@ public class Bestellposition extends Artikel {
 	 * @param aMenge Die Anzahl der Artikel der Bestellposition.
 	 * 
 	 */
-	public Bestellposition ( Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt){
-		
+	public Bestellposition (int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt){
+		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit,Notiz, Lieferanten, Preis, Rabatt);
 		this.aMenge=aMenge;
 		this.posNr=posNr;
 	}

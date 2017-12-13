@@ -1,6 +1,7 @@
 package Bestellverwaltung;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import Bestellverwaltung.Bestellposition;
 /**
@@ -9,21 +10,27 @@ import Bestellverwaltung.Bestellposition;
  *
  */
 public class Bestellung  {
-	protected double datum;
-	protected int bNr;
+	protected date datum;
+	protected int nutzerNrBestandsK;
+	protected int nutzerNrGastK;
+	protected int bestellNr;
 	protected String versandStatus; 
 	protected double gPreis;
 	/**
 	 * @param datum Eingangsdatum der Bestellung.
-	 * @param bNr Die einzigartige Bestellnummer der Bestellung.
+	 * @param nutzerNrBestandK Die Nummer des Bestandskundes der die Bestellung tätigt. Kann auch null sein.
+	 * @param nutzerNrGastK Die Nummer des Gastkundes der die Bestellung tätigt. Kann auch null sein.
+	 * @param bestellNr Die einzigartige Nummer der Bestellung
 	 * @param versandStatus Der Status der Bestellung.
 	 * @param gPreis Der gesammte Preis der Bestellung.
 	 * 
 	 */
-	public Bestellung (double datum, int bNr, double gPreis, String versandStatus) {
+	public Bestellung (date datum,int nutzerNrBestandsK,int nutzerNrGastK, int bestellNr, double gPreis, String versandStatus) {
 		
 		this.datum=datum;
-		this.bNr=bNr;
+		this.nutzerNrBestandsK=nutzerNrBestandsK;
+		this.nutzerNrGastK=nutzerNrGastK;
+		this.bestellNr=bestellNr;
 		this.versandStatus=versandStatus;
 		this.gPreis=gPreis;
 
@@ -31,17 +38,30 @@ public class Bestellung  {
 	Bestellposition bBestellposition= new Bestellposition();
 	ArrayList<Bestellposition> test =new ArrayList<Bestellposition>();
 	
-	public double getDatum() {
+	
+	public date getDatum() {
 		return datum;
 	}
-	public void setDatum(double datum) {
+	public void setDatum(date datum) {
 		this.datum = datum;
 	}
-	public int getbNr() {
-		return bNr;
+	public int getNutzerNrBestandsK() {
+		return nutzerNrBestandsK;
 	}
-	public void setbNr(int bNr) {
-		this.bNr = bNr;
+	public void setNutzerNrBestandsK(int nutzerNrBestandsK) {
+		this.nutzerNrBestandsK = nutzerNrBestandsK;
+	}
+	public int getNutzerNrGastK() {
+		return nutzerNrGastK;
+	}
+	public void setNutzerNrGastK(int nutzerNrGastK) {
+		this.nutzerNrGastK = nutzerNrGastK;
+	}
+	public int getBestellNr() {
+		return bestellNr;
+	}
+	public void setBestellNr(int bestellNr) {
+		this.bestellNr = bestellNr;
 	}
 	public String getVersandStatus() {
 		return versandStatus;
@@ -53,9 +73,9 @@ public class Bestellung  {
 		return gPreis;
 	}
 	public void setgPreis(double gPreis) {
-		int gpreis=0;
-		for ( int i=0; i>test.size() ; i++){					
-			gpreis=gpreis + bBestellposition.getPreis();
+		double gpreis=0;
+		for ( int i=0; i>test.size() ; i++){				
+			gpreis=gpreis+ bBestellposition.getPreis();
 		}
 				
 	}
