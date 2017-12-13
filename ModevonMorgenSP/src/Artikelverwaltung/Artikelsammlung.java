@@ -30,6 +30,8 @@ public class Artikelsammlung {
 				String Hersteller = rs.getString("Hersteller");
 				String Verfügbarkeit = rs.getString("Verfügbarkeit");
 				String Notiz = rs.getString("Notiz");
+				if(rs.wasNull())
+						Notiz = null;
 				double Preis = rs.getDouble("Preis");
 				int Rabatt = rs.getInt("Rabatt");
 				int Schuhgröße;

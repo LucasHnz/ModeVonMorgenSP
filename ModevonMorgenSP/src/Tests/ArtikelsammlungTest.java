@@ -17,7 +17,8 @@ public class ArtikelsammlungTest {
 		ResultSet rs1 = stmt.executeQuery(sqlbefehl1);
 		
 		Artikelsammlung.füllenSammlung(rs1, "Accessoires");
-		System.out.println(Artikelsammlung.getArtikelsammlung().get(500000001).getBezeichnung());
+		if(Artikelsammlung.getArtikelsammlung().get(500000005).getNotiz() == null)
+			System.out.println("ist null");
 		
 		}catch(SQLException e) {
 		System.out.println(e.getMessage());
