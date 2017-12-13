@@ -1,4 +1,4 @@
-package View;
+package Frontend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -18,39 +18,37 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-public class GUIDamenSchuhe implements ActionListener {
+public class GUIHerrenSchuhe implements ActionListener {
 	
-	JButton btnZurück = new JButton();
-	JButton btnAnmelden = new JButton();
-	public JComboBox comboBoxHerren;
-	public JComboBox comboBoxDamen;
-	public JComboBox comboBoxAnmelden;
+	JButton btnZurück;
+	JButton btnAnmelden;
+	public JComboBox<String> comboBoxHerren;
+	public JComboBox<String> comboBoxDamen;
+	public JComboBox<String> comboBoxAnmelden;
 	public String[] damenCbList;
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
 
 	private JFrame frame;
-	private JTextField txtSchwarzeJacke;
-	private JTextField textField_1;
-	private JTextField txtGre;
-	
+
+
 
 	/**
 	 * Create the application.
 	 */
-	public GUIDamenSchuhe(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
-		System.out.println("Ausgeführt DS");
+	public GUIHerrenSchuhe(String[]damenCbList, String[]herrenCbList,String[]anmeldenCbList) {
+		System.out.println("Ausgeführt HS");
 		this.damenCbList = damenCbList;
 		this.herrenCbList = herrenCbList;
 		this.anmeldenCbList = anmeldenCbList;
-		initialize(damenCbList, herrenCbList, anmeldenCbList);
-	
+		initialize(damenCbList, herrenCbList,anmeldenCbList);
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(String[]damenCbList,String[] herrenCbList,String[]anmeldenCbList) {
+	private void initialize(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
 		
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
@@ -119,7 +117,6 @@ public class GUIDamenSchuhe implements ActionListener {
 		panelScrollPaneLinks.setBackground(SystemColor.control);
 		panelScrollPaneLinks.setLayout(null);
 		
-		
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
@@ -127,7 +124,6 @@ public class GUIDamenSchuhe implements ActionListener {
 		
 		JPanel panelScrollPaneRechts = new JPanel();
 		panelScrollPaneRechts.setLayout(new BoxLayout(panelScrollPaneRechts, BoxLayout.X_AXIS));
-		
 		JScrollPane scrollPaneRechts = new JScrollPane(panelScrollPaneRechts);
 		scrollPaneRechts.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneRechts.setBounds(323, 97, 901, 455);

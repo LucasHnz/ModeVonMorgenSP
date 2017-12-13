@@ -30,6 +30,9 @@ public class ArtikelStrg {
 			//GUIArtikelFormular.editiereArtikel(Artikelnummer, artikel.getKategorie());		
 		
 	}
+	public static void main(String[] args) {
+		FülleArtikelsammlung();
+	}
 	/**
 	 * Fordert die Artikelsammlung auf, einen neuen Artikel mit den übergebenen Parametern hinzuzufügen.
 	 * @param kateg Eine der drei Artikelkategorien: Schuhe, Accessoires und Kleidung.

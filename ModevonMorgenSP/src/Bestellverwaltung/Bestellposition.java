@@ -17,7 +17,7 @@ public class Bestellposition extends Artikel {
 	 * @param aMenge Die Anzahl der Artikel der Bestellposition.
 	 * 
 	 */
-	public Bestellposition ( Artikelnummer,Bestand,Bezeichnung,Geschlecht,Hersteller, Verfügbarkeit, Notiz, Lieferanten,Preis,Rabatt){
+	public Bestellposition ( Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt){
 		
 		super.Preis=Preis;
 		this.aMenge=aMenge;

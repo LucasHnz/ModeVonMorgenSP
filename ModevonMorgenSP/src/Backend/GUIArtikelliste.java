@@ -1,12 +1,16 @@
-package View;
+package Backend;
 
 import java.awt.EventQueue;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.SortedMap;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import Artikelverwaltung.Artikel;
+import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 
 public class GUIArtikelliste extends JFrame {
@@ -40,7 +44,7 @@ public class GUIArtikelliste extends JFrame {
 		
 		public myTableModel(HashMap<Integer, Artikel> artikelliste, String[] columnNames) {
 			this.columnNames = columnNames;
-			this.data=artikelliste;
+			this.data = artikelliste;
 		}
 			
 		public int getColumnCount() {
@@ -55,37 +59,45 @@ public class GUIArtikelliste extends JFrame {
 			return data.size();
 		}
 		
-		public String getValueAt(int rowIndex, int columnIndex) {
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+			try {
 			if(columnIndex == 0) {
-				return String.valueOf(data.get(rowIndex).getArtikelnummer());
+				return data.get(keys[rowIndex]).getArtikelnummer();
 			}
 			else if(columnIndex == 1) {
-				return data.get(rowIndex).getBezeichnung();
+				return data.get(keys[rowIndex]).getBezeichnung();
 			}
 			else if(columnIndex == 2) {
-				return data.get(rowIndex).getHersteller();
+				return data.get(keys[rowIndex]).getHersteller();
 			}	
 			else if(columnIndex == 3) {
-				return String.valueOf(data.get(rowIndex).getBestand());
+				return data.get(keys[rowIndex]).getBestand();
 			}	
 			else if(columnIndex == 4) {
-				return String.valueOf(data.get(rowIndex).getPreis());
+				return data.get(keys[rowIndex]).getPreis();
 			}	
 			else if(columnIndex == 5) {
-				return String.valueOf(data.get(rowIndex).getRabatt());
+				return data.get(keys[rowIndex]).getRabatt();
 			}	
 			else if(columnIndex == 6) {
-				return data.get(rowIndex).getVerfügbarkeit();
+				return data.get(keys[rowIndex]).getVerfügbarkeit();
 			}	
 			else if(columnIndex == 7) {
-				if(data.get(rowIndex).getNotiz() != null)
-					return String.valueOf(true);
-				else
-					return String.valueOf(false);
+				//if(data.get(rowIndex).getNotiz() != null)
+				//	return String.valueOf(true);
+				//else
+				//	return String.valueOf(false);
+				//return "test";	
+				return data.get(keys[rowIndex]).getNotiz();
 			}	
 			else
 				return null;
 			
+		}catch(NullPointerException e) {
+			String a = null;
+			return a;
+		}
 		}
 		
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -101,6 +113,7 @@ public class GUIArtikelliste extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					ArtikelStrg.FülleArtikelsammlung();
 					GUIArtikelliste frame = new GUIArtikelliste();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -116,6 +129,7 @@ public class GUIArtikelliste extends JFrame {
 	public GUIArtikelliste() {
 		setBounds(100, 100, 878, 518);
 		getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
 		table.setFillsViewportHeight(true);
@@ -125,7 +139,7 @@ public class GUIArtikelliste extends JFrame {
 		
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(30, 42, 464, 395);
+		scrollPane.setBounds(30, 42, 800, 395);
 		getContentPane().add(scrollPane);
 		
 		

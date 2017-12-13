@@ -1,4 +1,4 @@
-package View;
+package Frontend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -7,7 +7,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,44 +15,42 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
+import javax.swing.ScrollPaneConstants;
 
-public class GUIDamenKleidung implements ActionListener {
+public class GUIDamenSchuhe implements ActionListener {
 	
 	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
-	public JComboBox comboBoxHerren = new JComboBox();
-	public JComboBox comboBoxDamen = new JComboBox();
-	public JComboBox comboBoxAnmelden = new JComboBox();
+	public JComboBox comboBoxHerren;
+	public JComboBox comboBoxDamen;
+	public JComboBox comboBoxAnmelden;
 	public String[] damenCbList;
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
-	
 
 	private JFrame frame;
 	private JTextField txtSchwarzeJacke;
 	private JTextField textField_1;
 	private JTextField txtGre;
+	
 
 	/**
 	 * Create the application.
 	 */
-	public GUIDamenKleidung(String[] damenCbList, String[] herrenCbList, String[]anmeldenCbList) {
-		System.out.println("Ausgeführt DK");
+	public GUIDamenSchuhe(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
+		System.out.println("Ausgeführt DS");
 		this.damenCbList = damenCbList;
 		this.herrenCbList = herrenCbList;
 		this.anmeldenCbList = anmeldenCbList;
-		initializeDamen(damenCbList, herrenCbList, anmeldenCbList);
+		initialize(damenCbList, herrenCbList, anmeldenCbList);
+	
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initializeDamen(String[] damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
+	private void initialize(String[]damenCbList,String[] herrenCbList,String[]anmeldenCbList) {
 		
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
@@ -121,6 +119,7 @@ public class GUIDamenKleidung implements ActionListener {
 		panelScrollPaneLinks.setBackground(SystemColor.control);
 		panelScrollPaneLinks.setLayout(null);
 		
+		
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
@@ -128,6 +127,7 @@ public class GUIDamenKleidung implements ActionListener {
 		
 		JPanel panelScrollPaneRechts = new JPanel();
 		panelScrollPaneRechts.setLayout(new BoxLayout(panelScrollPaneRechts, BoxLayout.X_AXIS));
+		
 		JScrollPane scrollPaneRechts = new JScrollPane(panelScrollPaneRechts);
 		scrollPaneRechts.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneRechts.setBounds(323, 97, 901, 455);
@@ -159,13 +159,12 @@ public class GUIDamenKleidung implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-			if(e.getSource() == btnZurück) 
-			{
+		if(e.getSource() == btnZurück) 
+		{
 			frame.dispose();
 			new GUI();
-			}
-		
-			if(e.getSource() == comboBoxHerren){
+		}
+		if(e.getSource() == comboBoxHerren){
 			
 			String auswahl = (String) comboBoxHerren.getSelectedItem();
 		    
@@ -228,4 +227,5 @@ public class GUIDamenKleidung implements ActionListener {
 			}
 		}
 	}
+
 }
