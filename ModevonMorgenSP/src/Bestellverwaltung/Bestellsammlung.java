@@ -16,7 +16,7 @@ public class Bestellsammlung {
 			double preis =rs.getDouble("Preis");
 			
 			
-			Bestellung bBestellung = new Bestellung();
+			Bestellung bBestellung = new Bestellung ();
 			Bestellsammlung.put(bBestellung.getbNr(), bBestellung);
 				
 		}

@@ -19,7 +19,6 @@ public class Bestellposition extends Artikel {
 	 */
 	public Bestellposition ( Artikelnummer, Bestand, Bezeichnung, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt){
 		
-		super.Preis=Preis;
 		this.aMenge=aMenge;
 		this.posNr=posNr;
 	}
