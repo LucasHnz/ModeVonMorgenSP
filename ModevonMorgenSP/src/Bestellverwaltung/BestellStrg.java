@@ -70,7 +70,7 @@ public class BestellStrg {
 			e.getMessage();
 		}
 		}
-	public static void anzeigenBestellungenGK(Connection con) {
+	public static void anzeigenBestellungenGK() {
 		try {
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();

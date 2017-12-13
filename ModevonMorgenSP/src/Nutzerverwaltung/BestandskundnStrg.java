@@ -54,7 +54,7 @@ public class BestandskundnStrg {
 		}
 	}
 	public static void editierenAccountDaten() {
-		// sind in der bearbeiteBestandsKunde  Klasse in Datenbankverwltung 
+		// sind in der bearbeiteBestandsKunde  Klasse in Datenbankverwaltung 
 	}
 	public static void anzeigenPunktestand(int nutzerNr){
 		int kdnr = nutzerNr;

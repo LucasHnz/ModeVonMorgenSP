@@ -36,7 +36,7 @@ public class Bestellung  {
 
 		}
 	Bestellposition bBestellposition= new Bestellposition();
-	ArrayList<Bestellposition> test =new ArrayList<Bestellposition>();
+	ArrayList<Bestellposition> test = new ArrayList<Bestellposition>();
 	
 	
 	public date getDatum() {

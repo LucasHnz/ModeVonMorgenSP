@@ -30,7 +30,7 @@ public class Bestellposition extends Artikel {
 	public void setaMenge(int aMenge) {
 		this.aMenge = aMenge;
 	}
-	public int getPosNr() {
+	public int getPosNr(){
 		return posNr;
 	}
 	public void setPosNr(int posNr) {
