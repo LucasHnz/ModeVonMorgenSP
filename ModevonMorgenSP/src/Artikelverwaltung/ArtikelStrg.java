@@ -41,7 +41,7 @@ public class ArtikelStrg {
 	public static void NeuerArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht,
 			
 			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, double Preis,
-			double Rabatt, int Schuhgröße, String Farbe, String Größe) {
+			int Rabatt, int Schuhgröße, String Farbe, String Größe) {
 		
 		Artikelsammlung.hinzufügenArtikel(kateg, Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, 
 				Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe, Größe);

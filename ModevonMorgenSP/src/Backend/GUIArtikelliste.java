@@ -1,38 +1,27 @@
 package Backend;
 
 import java.awt.EventQueue;
+import javax.swing.ListSelectionModel;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.SortedMap;
-
-import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 
-public class GUIArtikelliste extends JFrame {
+public class GUIArtikelliste extends JScrollPane {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Bestand", "Preis", "Rabatt", "Verfügbarkeit", "Notiz"};
-	private String[][] data = {	{"1", "2", "3", "4", "5", "6", "7", "8"}, 
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								{"1", "2", "3", "4", "5", "6", "7", "8"},
-								
-	};
+	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};
+
 	private class myTableModel extends AbstractTableModel{
 
 		/**
@@ -128,21 +117,61 @@ public class GUIArtikelliste extends JFrame {
 	 */
 	public GUIArtikelliste() {
 		setBounds(100, 100, 878, 518);
-		getContentPane().setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//getContentPane().setLayout(null);
+		setLayout(null);
+
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(38);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(2).setPreferredWidth(80);
+		table.getColumnModel().getColumn(3).setPreferredWidth(30);
+		table.getColumnModel().getColumn(4).setPreferredWidth(30);
+		table.getColumnModel().getColumn(5).setPreferredWidth(30);
+		table.getColumnModel().getColumn(6).setPreferredWidth(100);
+		table.getColumnModel().getColumn(7).setPreferredWidth(10);
+			
+		Comparator<Double> preiscomp = new Comparator<Double>() {
+			@Override
+			public int compare(Double o1, Double o2) {
+				if(o1 > o2)
+					return 1;
+				else if(o1 < o2)
+					return -1;
+				else
+					return 0;
+			}
+		};
 		
+		Comparator<Integer> bestandcomp = new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				if(o1 > o2)
+					return 1;
+				else if(o1 < o2)
+					return -1;
+				else
+					return 0;
+			}		
+		};
 		
-		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		sorter.setComparator(3, bestandcomp);
+		sorter.setComparator(4, preiscomp);
+		sorter.setComparator(5, preiscomp);
+		table.setRowSorter(sorter);
+		table.getRowSorter().toggleSortOrder(0);
+		table.setRowSelectionAllowed(true);
+		table.setColumnSelectionAllowed(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(30, 42, 800, 395);
-		getContentPane().add(scrollPane);
-		
-		
+		//getContentPane().add(scrollPane);
+		add(scrollPane);
 		setVisible(true);
 
 	}

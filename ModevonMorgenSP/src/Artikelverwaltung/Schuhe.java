@@ -12,7 +12,7 @@ public class Schuhe extends Artikel {
 	 * 
 	 * @param Schuhgröße Die Schuhgröße
 	 */
-	public Schuhe(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt, int Schuhgröße) {
+	public Schuhe(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, int Rabatt, int Schuhgröße) {
 		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt);
 		this.Schuhgröße=Schuhgröße;
 		Kategorie = "Schuhe";
