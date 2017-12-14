@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
@@ -30,6 +31,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+
 
 
 
@@ -94,6 +96,11 @@ public class GUI implements ActionListener {
 	
 	public static void main(String[] args) 
 	{
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		new GUI();
 	}
 	
@@ -121,7 +128,9 @@ public class GUI implements ActionListener {
 	
 	private void initializeMain() {
 		
+		
 		frame = new JFrame();
+		
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -165,6 +174,11 @@ public class GUI implements ActionListener {
 		comboBoxAnmelden.setBackground(SystemColor.control);
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
+		
+		JLabel lblPunktestand = new JLabel("1224 Punkte");
+		lblPunktestand.setForeground(Color.BLUE);
+		lblPunktestand.setBounds(947, 15, 89, 20);
+		panelBar.add(lblPunktestand);
 		
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
@@ -228,7 +242,7 @@ public class GUI implements ActionListener {
 		JLabel labelMainHintergrund = new JLabel();
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
 		panelMain.add(labelMainHintergrund);
-		
+	
 		frame.setVisible(true);
 	
 	}
@@ -343,5 +357,4 @@ public class GUI implements ActionListener {
 	
 		
 	}
-
 }

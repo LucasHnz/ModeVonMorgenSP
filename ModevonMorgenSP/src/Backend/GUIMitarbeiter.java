@@ -51,7 +51,7 @@ public class GUIMitarbeiter implements ActionListener{
 	 * Create the application.
 	 */
 	public GUIMitarbeiter(String[]anmeldenCbList) {
-		System.out.println("Ausgeführt HK");
+		System.out.println("Ausgefï¿½hrt HK");
 		this.anmeldenCbList = anmeldenCbList;
 		initialize(damenCbList, herrenCbList, anmeldenCbList);
 		for(int i = 0; i>= mitarbeiterListe.length; i++) {
@@ -117,11 +117,20 @@ public class GUIMitarbeiter implements ActionListener{
 		GUIArtikelliste liste = new GUIArtikelliste();
 		liste.setVisible(true);
 		
+		GUIAdministratorListe AdminListe = new GUIAdministratorListe();
+		AdminListe.setVisible(true);
+		
+		
 		//tabbedPane.setTitleAt(1, "Artikelliste");
 		tabbedPane.addTab("Tab 1", liste );
 		liste.invalidate();
 		liste.validate();
 		liste.repaint();
+		
+		tabbedPane.addTab("AdministratorListe", AdminListe);
+		AdminListe.invalidate();
+		AdminListe.validate();
+		AdminListe.repaint();
 		
 		
 		frame.setVisible(true);
@@ -148,12 +157,12 @@ public class GUIMitarbeiter implements ActionListener{
 		lblTitel.setFont(new Font("Lucida Bright", Font.BOLD, 17));
 		panel.add(lblTitel);
 		
-		JLabel lblGroeße = new JLabel("Größe: 34");
-		lblGroeße.setBounds(167, 50, 78, 32);
-		lblGroeße.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		panel.add(lblGroeße);
+		JLabel lblGröße = new JLabel("Grï¿½ï¿½e: 34");
+		lblGröße.setBounds(167, 50, 78, 32);
+		lblGröße.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		panel.add(lblGröße);
 		
-		JLabel lblPreis = new JLabel("34€");
+		JLabel lblPreis = new JLabel("34ï¿½");
 		lblPreis.setBounds(402, 107, 58, 28);
 		lblPreis.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		panel.add(lblPreis);

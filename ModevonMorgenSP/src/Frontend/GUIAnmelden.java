@@ -16,10 +16,6 @@ public class GUIAnmelden implements ActionListener {
 	JPasswordField anmeldenPasswort = new JPasswordField();
 	JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
-	String testEmail = "jochen.kuester@fh-bielefeld.de";
-	String testPasswort = "12345678";
-	String testPwMitarbeiter = "123";
-	String testMailMitarbeiter = "test";
 	String[] anmeldenCbList;
 
 	private JFrame frame;
@@ -37,13 +33,14 @@ public class GUIAnmelden implements ActionListener {
 		initialize();
 	}
 
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setLocationRelativeTo(GUI.frame);
-		frame.setBounds(1000, 179, 260, 90);
+		
+		frame.setBounds(1312, 320, 260, 90);
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    frame.setLayout(new GridLayout(3,2));
@@ -59,10 +56,24 @@ public class GUIAnmelden implements ActionListener {
 	    btnAnmeldenEinloggen.setBackground(SystemColor.control);
 	    btnAnmeldenEinloggen.addActionListener(this);
 	    
+	    frame.getRootPane().setDefaultButton(btnAnmeldenEinloggen);
+	    
 	  
 	    frame.setVisible(true);
 	}
 	
+	
+	public static void anmeldenFehlermeldung() {
+		
+		System.out.println("OPT");
+		JOptionPane.showOptionDialog(null, "Dies ist ein Optionsdialog",
+				"Optionsdialog",
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.WARNING_MESSAGE,
+				null,
+				new String[] {"A", "B", "C"},"B");
+		
+	}
 
 
 	@Override
