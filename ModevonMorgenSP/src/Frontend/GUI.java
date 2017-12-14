@@ -40,7 +40,7 @@ public class GUI implements ActionListener {
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten"};
-	private static JFrame frame;
+	static JFrame frame;
 	public static boolean angemeldet = false;
 	public int rotierung = 1;
 	public String[] outfitsDamenListe = {"C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau1.jpg","C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau2.jpg"};
