@@ -37,7 +37,7 @@ public class GUIAnmelden implements ActionListener {
 		initialize();
 	}
 
-	//Test
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
