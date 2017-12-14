@@ -93,19 +93,19 @@ public class GUIMitarbeiter implements ActionListener{
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
+		btnZurück = new JButton("Zur\u00FCck");
+		btnZurück.setBounds(10, 8, 89, 35);
+		panelBar.add(btnZurück);
+		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZurück.setBackground(Color.WHITE);
+		btnZurück.addActionListener(this);
+		
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 147, 1234, 563);
 		frame.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
-		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(this);
-		panelMain.add(btnZurück);
 		
 		
 		frame.setVisible(true);
