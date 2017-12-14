@@ -1,6 +1,8 @@
 package Warenkorbverwaltung;
 
 import java.util.ArrayList;
+
+import Artikelverwaltung.Artikel;
 /**
  * 
  * @author maoro
@@ -8,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Warenkorb {
 
-	private ArrayList<Artikel> Artikelliste;
+	private static ArrayList<Artikel> Artikelliste;
 	private double Gesamtpreis;
 	
 }

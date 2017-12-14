@@ -1,5 +1,7 @@
 package Rechnungsverwaltung;
 
+import java.sql.Date;
+
 /**
  * 
  * @author Bastian Walter
@@ -12,7 +14,7 @@ public class Rechnung {
 	protected String name, nachname, rechnungsadresse, iban, vstatus;
 	protected int mitgliedsID, rechnungNr, bestellNr, bestandskunde, gastkunde, plz;
 	protected double gesamtpreis, zwischenpreis, eRabatt;
-	protected date datum;
+	protected Date datum;
 	
 	public Rechnung(String name, String nachname, String rechnungsadresse, String iban, String vstatus, int mitgliedsID,
 			int rechnungNr, int bestellNr, int bestandskunde, int gastkunde, int plz, double gesamtpreis,
@@ -23,7 +25,6 @@ public class Rechnung {
 		this.rechnungsadresse = rechnungsadresse;
 		this.iban = iban;
 		this.vstatus = vstatus;
-		this.mitgliedsID = mitgliedsID;
 		this.rechnungNr = rechnungNr;
 		this.bestellNr = bestellNr;
 		this.bestandskunde = bestandskunde;

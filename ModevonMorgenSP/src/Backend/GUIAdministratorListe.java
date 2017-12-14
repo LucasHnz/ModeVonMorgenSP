@@ -3,6 +3,8 @@ package Backend;
 import java.awt.EventQueue;
 import java.util.Comparator;
 import java.util.HashMap;
+
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -12,11 +14,13 @@ import javax.swing.table.TableRowSorter;
 import AdministratorVerwaltung.Administrator;
 import AdministratorVerwaltung.AdministratorSammlung;
 
-public class GUIAdministratorListe extends JScrollPane{
+public class GUIAdministratorListe extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
+	private JScrollPane scrollpane;
+	
+	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straï¿½e", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -60,7 +64,7 @@ public class GUIAdministratorListe extends JScrollPane{
 				return data.get(keys[rowIndex]).getEmail();
 			}	
 			else if(columnIndex == 4) {
-				return data.get(keys[rowIndex]).getStraße();
+				return data.get(keys[rowIndex]).getStraï¿½e();
 			}	
 			else if(columnIndex == 5) {
 				return data.get(keys[rowIndex]).getOrt();
@@ -110,7 +114,7 @@ public class GUIAdministratorListe extends JScrollPane{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdministratorSammlung.fülleAdministratorListe();
+					AdministratorSammlung.fï¿½lleAdministratorListe();
 					GUIAdministratorListe frame = new GUIAdministratorListe();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -124,12 +128,8 @@ public class GUIAdministratorListe extends JScrollPane{
 	 * Create the frame.
 	 */
 	public GUIAdministratorListe() {
-		setBounds(100, 100, 878, 518);
-		//getContentPane().setLayout(null);
-		setLayout(null);
-
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		setLayout( null );
 		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
@@ -175,11 +175,17 @@ public class GUIAdministratorListe extends JScrollPane{
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setBounds(30,42,800, 395);
+		table.setVisible(true);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(30, 42, 800, 395);
+		scrollpane = new JScrollPane(table);
+		scrollpane.setBounds(30, 42, 800, 395);
 		//getContentPane().add(scrollPane);
-		add(scrollPane);
+		
+		scrollpane.setVisible(true);
+		
+		add(scrollpane);
+		
 		setVisible(true);
 
 	}
