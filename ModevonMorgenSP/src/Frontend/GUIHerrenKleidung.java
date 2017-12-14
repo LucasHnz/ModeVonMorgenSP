@@ -122,7 +122,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelHerrenKleidung.setBackground(SystemColor.inactiveCaptionBorder);
 		JScrollPane scrollPaneHerrenKleidung = new JScrollPane(panelHerrenKleidung);
 		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		//panelHerrenKleidung.setPreferredSize(new Dimension(549, 2000));
+		panelHerrenKleidung.setPreferredSize(new Dimension(549, 2000));
 		panelHerrenKleidung.setLayout(null);
 		scrollPaneHerrenKleidung.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneHerrenKleidung.setBounds(323, 97, 901, 455);
