@@ -166,6 +166,11 @@ public class GUI implements ActionListener {
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
+		JLabel lblPunktestand = new JLabel("1224 Punkte");
+		lblPunktestand.setForeground(Color.BLUE);
+		lblPunktestand.setBounds(947, 15, 89, 20);
+		panelBar.add(lblPunktestand);
+		
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 148, 1234, 563);
@@ -343,5 +348,4 @@ public class GUI implements ActionListener {
 	
 		
 	}
-
 }
