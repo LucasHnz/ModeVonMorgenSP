@@ -41,6 +41,8 @@ public class LogStrg {
 				anmeldenCbList[0] = vorname;
 				Frontend.GUI.fensterSchlieﬂen();
 				
+				System.out.println("BEST");
+				
 				if(rs1.getString("email") != email) {
 					System.out.println("OPT1");
 					GUIAnmelden.anmeldenFehlermeldung();
@@ -66,6 +68,8 @@ public class LogStrg {
 				anmeldenCbList[0] = "Admin";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				
+				System.out.println("ADMIN");
+				
 				if(rs3.getString("email") != email) {
 					System.out.println("OPT3");
 					GUIAnmelden.anmeldenFehlermeldung();
@@ -73,8 +77,6 @@ public class LogStrg {
 			}
 	
 		
-			
-			
 			rs1.close();
 			rs2.close();
 			rs3.close();

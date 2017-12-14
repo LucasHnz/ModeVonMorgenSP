@@ -16,10 +16,6 @@ public class GUIAnmelden implements ActionListener {
 	JPasswordField anmeldenPasswort = new JPasswordField();
 	JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
-	String testEmail = "jochen.kuester@fh-bielefeld.de";
-	String testPasswort = "12345678";
-	String testPwMitarbeiter = "123";
-	String testMailMitarbeiter = "test";
 	String[] anmeldenCbList;
 
 	private JFrame frame;
