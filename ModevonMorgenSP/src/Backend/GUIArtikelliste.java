@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -16,12 +17,13 @@ import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 
-public class GUIArtikelliste extends JScrollPane {
+public class GUIArtikelliste extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable table;
+	private JScrollPane scrollpane;
 	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};
 
 	private class myTableModel extends AbstractTableModel{
@@ -118,9 +120,9 @@ public class GUIArtikelliste extends JScrollPane {
 	 * Create the frame.
 	 */
 	public GUIArtikelliste() {
-		setBounds(100, 100, 878, 518);
-		//getContentPane().setLayout(null);
 		setLayout(null);
+		//getContentPane().setLayout(null);
+		
 
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -169,11 +171,16 @@ public class GUIArtikelliste extends JScrollPane {
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setVisible(true);
+		table.setBounds(30, 42, 800, 395);
+	
+		scrollpane = new JScrollPane(table);
+		//scrollpane.setLayout(null);
+		scrollpane.setBounds(100, 100, 878, 518);
+		scrollpane.setVisible(true);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(30, 42, 800, 395);
-		//getContentPane().add(scrollPane);
-		add(scrollPane);
+		
+		add(scrollpane);
 		setVisible(true);
 
 	}
