@@ -100,6 +100,13 @@ public class GUIMitarbeiter implements ActionListener{
 		frame.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
 		
+		btnZurück = new JButton("Zur\u00FCck");
+		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZurück.setBackground(Color.WHITE);
+		btnZurück.setBounds(10, 11, 89, 35);
+		btnZurück.addActionListener(this);
+		panelMain.add(btnZurück);
+		
 		
 		frame.setVisible(true);
 	}
