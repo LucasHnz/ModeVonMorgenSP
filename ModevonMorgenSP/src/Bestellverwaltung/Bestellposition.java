@@ -12,7 +12,7 @@ public class Bestellposition {
 	protected int aMenge; 
 	protected int posNr;
 	protected int bestellNr;
-	protected Artikel aArtikel;
+	protected Artikel  aArtikel;
 	
 	
 
