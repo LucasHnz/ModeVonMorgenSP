@@ -34,7 +34,7 @@ public class Gastkunde {
 	}
 
 	public void setNutzernr(int nutzernr) {
-		this.nutzernr = nutzernr;
+		this.nutzernr =Datenbankverwaltung.holeN�chsteNummer.n�chsteGKundenNr();
 	}
 
 	public String getNachname() {
@@ -66,7 +66,7 @@ public class Gastkunde {
 	}
 
 	public void setStraße(String straße) {
-		this.straße = straße;
+		this.straße =straße;
 	}
 
 	public String getOrt() {

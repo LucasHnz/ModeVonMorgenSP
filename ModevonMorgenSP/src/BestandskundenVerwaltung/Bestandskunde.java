@@ -40,7 +40,7 @@ public class Bestandskunde {
 	}
 
 	public void setNutzernr(int nutzernr) {
-		this.nutzernr = nutzernr;
+		this.nutzernr = Datenbankverwaltung.holeNächsteNummer.nächsteBKundenNr();
 	}
 
 	public String getNachname() {

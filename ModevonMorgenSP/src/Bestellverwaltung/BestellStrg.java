@@ -31,15 +31,18 @@ public class BestellStrg {
 	public static void einlösenRabatt() { //zs mit erfasse bestellung 
 		
 	}
-	public static void anzeigenBestellungen(int nutzernr) {
-		int kdnr=nutzernr;
+	public static void errechneRabatt() {
+		
+	}
+	public static void anzeigenBestellungen(int nutzerNrBestandsK) {
+		int kdnr=nutzerNrBestandsK;
 		try {
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehl = ("select * from RechnungBestellung where Nutzernr="+kdnr);
+			String sqlbefehl = "select * from RechnungBestellung where nutzerNrBestandsK="+kdnr;
 			
 			stmt.executeQuery(sqlbefehl);
 			
@@ -59,7 +62,7 @@ public class BestellStrg {
 			
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehl = ("select * from RechnungBestellung where nutzerNrBestandsK is not null");
+			String sqlbefehl = "select * from RechnungBestellung where nutzerNrBestandsK is not null";
 			
 			stmt.executeQuery(sqlbefehl);
 			
@@ -69,7 +72,7 @@ public class BestellStrg {
 		}catch (SQLException e) {
 			e.getMessage();
 		}
-		}
+	}
 	public static void anzeigenBestellungenGK() {
 		try {
 			
@@ -77,7 +80,7 @@ public class BestellStrg {
 			
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehl = ("select * from RechnungBestellung where nutzerNrGastK is not null");
+			String sqlbefehl = "select * from RechnungBestellung where nutzerNrGastK is not null";
 			
 			stmt.executeQuery(sqlbefehl);
 			
@@ -88,12 +91,12 @@ public class BestellStrg {
 			e.getMessage();
 		}
 		}
-	public static void ändereVersandstatus(String versandStatus, int nutzerNr) {
+	public static void ändereVersandstatus(String versandStatus, int bestellNr) {
 		try{
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehl = "update RechnungBestellung set versandStatus ='"+versandStatus+"' where nutzernr ="+nutzerNr;
+			String sqlbefehl = "update RechnungBestellung set versandStatus ='"+versandStatus+"' where bestellNr ="+bestellNr;
 			
 			stmt.execute(sqlbefehl)	;
 			
