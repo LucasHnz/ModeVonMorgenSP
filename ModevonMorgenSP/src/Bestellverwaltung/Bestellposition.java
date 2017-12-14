@@ -18,8 +18,8 @@ public class Bestellposition extends Artikel {
 	 * @param preis der Preis der ganzen Bestellposition. 
 	 * 
 	 */
-	public Bestellposition (int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt){
-		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit,Notiz, Lieferanten, Preis, Rabatt);
+	public Bestellposition (int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfï¿½gbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt, int aMenge, int posNr){
+		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfï¿½gbarkeit,Notiz, Lieferanten, Preis, Rabatt);
 		this.aMenge=aMenge;
 		this.posNr=posNr;
 	}
@@ -50,6 +50,6 @@ public class Bestellposition extends Artikel {
 	}
 	
 	
-	Artikel aArtikel= new Artikel(Artikelnummer, Bestand,Bezeichnung,Geschlecht,Hersteller, Verfügbarkeit, Notiz, Lieferanten,Preis,Rabatt);
+	Artikel aArtikel= new Artikel(Artikelnummer, Bestand,Bezeichnung,Geschlecht,Hersteller, Verfï¿½gbarkeit, Notiz, Lieferanten,Preis,Rabatt);
 	
 }
