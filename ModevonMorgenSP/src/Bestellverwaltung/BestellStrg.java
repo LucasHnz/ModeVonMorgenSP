@@ -1,13 +1,13 @@
 package Bestellverwaltung;
-import Datenbankverwaltung.VerbindungDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class BestellStrg {
-
+protected Bestellung bBestellung;
 	public static void storniereBestellung(int bestellnr) {
 		int bnr=bestellnr;
 		try{
@@ -25,15 +25,8 @@ public class BestellStrg {
 			}
 		}
 	
-	public static void erfasseBestellung() {
-		
-	}
-	public static void einlösenRabatt() { //zs mit erfasse bestellung 
-		
-	}
-	public static void errechneRabatt() {
-		
-	}
+	
+
 	public static void anzeigenBestellungen(int nutzerNrBestandsK) {
 		int kdnr=nutzerNrBestandsK;
 		try {
@@ -105,5 +98,20 @@ public class BestellStrg {
 			}catch (SQLException e) {
 				e.getMessage();
 			}
+		}
+public double errechnePreis(ArrayList<Bestellposition> test, int Punkte ) {
+		
+		double gpreis = 0;
+		int multiplikator = 1;
+		
+		Punkte = (Punkte/100);
+		
+		multiplikator = 1 - Punkte;
+		
+		for(int i = 0; i < test.size(); i++) {
+			 gpreis = gpreis + test.get(i).getPreis();
+		}
+		gpreis = gpreis * multiplikator;
+		return gpreis;
 		}
 }

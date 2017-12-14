@@ -36,8 +36,7 @@ public class Bestellung  {
 		this.versandStatus=versandStatus;
 		this.gPreis=gPreis;
 
-		
-	}
+		}
 	
 	ArrayList<Bestellposition> test = new ArrayList<Bestellposition>();
 	
@@ -77,15 +76,8 @@ public class Bestellung  {
 	public double getgPreis() {
 		return gPreis;
 	}
-	public void setgPreis(double gPreis) {
-		double gpreis=0;
-		for ( int i=0; i>test.size() ; i++){				
-			gpreis=gpreis+ bBestellposition.getPreis();
-		}
-				
-	}
-// Bestellung mit bestellpositionen füllen ?
-	// das mit dem Datum bearbeiten/erarbeiten
+	
+	
 	
 	
 	

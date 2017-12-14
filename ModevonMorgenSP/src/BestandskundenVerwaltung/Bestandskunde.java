@@ -120,7 +120,7 @@ public class Bestandskunde {
 	}
 
 	public void setPss(int pss) {
-		this.pss = pss;
+		this.pss = pss; 
 	}
 	
 
