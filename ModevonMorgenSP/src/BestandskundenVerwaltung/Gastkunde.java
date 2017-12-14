@@ -34,7 +34,7 @@ public class Gastkunde {
 	}
 
 	public void setNutzernr(int nutzernr) {
-		this.nutzernr = nutzernr;
+		this.nutzernr =Datenbankverwaltung.holeNächsteNummer.nächsteGKundenNr();
 	}
 
 	public String getNachname() {

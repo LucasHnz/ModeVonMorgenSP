@@ -17,6 +17,7 @@ public class Bestellung  {
 	protected String versandStatus; 
 	protected double gPreis;
 	protected Date datum; 
+	protected Bestellposition bBestellposition; 
 	/**
 	 * @param datum Eingangsdatum der Bestellung.
 	 * @param nutzerNrBestandK Die Nummer des Bestandskundes der die Bestellung tätigt. Kann auch null sein.
@@ -36,7 +37,7 @@ public class Bestellung  {
 		this.gPreis=gPreis;
 
 		}
-	Bestellposition bBestellposition= new Bestellposition();
+	
 	ArrayList<Bestellposition> test = new ArrayList<Bestellposition>();
 	
 	
@@ -64,7 +65,7 @@ public class Bestellung  {
 		return bestellNr;
 	}
 	public void setBestellNr(int bestellNr) {
-		this.bestellNr = bestellNr;
+		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
 	public String getVersandStatus() {
 		return versandStatus;

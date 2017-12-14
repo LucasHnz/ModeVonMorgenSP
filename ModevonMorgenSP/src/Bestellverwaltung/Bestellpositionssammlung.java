@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 
 public class Bestellpositionssammlung {
+	protected Bestellposition bBestellposition;
 
 	HashMap<Integer,Bestellposition> Bestellpositionssammlung = new HashMap<Integer,Bestellposition>();
 	
@@ -15,7 +16,7 @@ public class Bestellpositionssammlung {
 			int aMenge = rs.getInt("Menge");
 			int posNr = rs.getInt("PosNr");
 			
-			Bestellposition bBestellposition = new Bestellposition();
+		
 			Bestellpositionssammlung.put(bBestellposition.getPosNr(), bBestellposition);
 			
 		}
