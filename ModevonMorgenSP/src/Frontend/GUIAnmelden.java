@@ -66,6 +66,18 @@ public class GUIAnmelden implements ActionListener {
 	    frame.setVisible(true);
 	}
 	
+	
+	public static void anmeldenFehlermeldung() {
+		
+		System.out.println("OPT");
+		JOptionPane.showOptionDialog(null, "Dies ist ein Optionsdialog",
+				"Optionsdialog",
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.WARNING_MESSAGE,
+				null,
+				new String[] {"A", "B", "C"},"B");
+		
+	}
 
 
 	@Override

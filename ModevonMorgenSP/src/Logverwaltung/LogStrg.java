@@ -9,6 +9,8 @@ import java.sql.Statement;
 
 import javax.swing.*;
 
+import Frontend.GUIAnmelden;
+
 public class LogStrg {
 	
 	static String testEmail = "jochen.kuester@fh-bielefeld.de";
@@ -38,6 +40,12 @@ public class LogStrg {
 				String vorname = rs1.getString("vorname");
 				anmeldenCbList[0] = vorname;
 				Frontend.GUI.fensterSchlieﬂen();
+				
+				if(rs1.getString("email") != email) {
+					System.out.println("OPT1");
+					GUIAnmelden.anmeldenFehlermeldung();
+				}
+				
 			}
 			
 			if(rs2.next()) {
@@ -45,6 +53,11 @@ public class LogStrg {
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Mitarbeiter";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
+				System.out.println("MIT");
+				if(rs2.getString("email") != email) {
+					System.out.println("OPT2");
+					GUIAnmelden.anmeldenFehlermeldung();
+				}
 			}
 			
 			if(rs3.next()) {
@@ -52,9 +65,14 @@ public class LogStrg {
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Admin";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
+				
+				if(rs3.getString("email") != email) {
+					System.out.println("OPT3");
+					GUIAnmelden.anmeldenFehlermeldung();
+				}
 			}
 	
-			System.out.println("Ende"); 
+		
 			
 			
 			rs1.close();
