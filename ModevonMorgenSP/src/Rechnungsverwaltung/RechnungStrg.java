@@ -22,7 +22,7 @@ public class RechnungStrg {
 	
 	
 	public static  void erstelleRechnung(ArrayList<Artikel> Artikelliste, int nutzernr, String Straße, String ort, int plz, String iban, String vorname, String nachname, int eRabatt) throws SQLException {
-		//
+		
 		
 
 	}

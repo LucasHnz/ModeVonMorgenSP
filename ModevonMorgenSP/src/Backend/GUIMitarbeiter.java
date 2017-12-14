@@ -31,7 +31,7 @@ import javax.swing.JTabbedPane;
 
 public class GUIMitarbeiter implements ActionListener{
 	
-	JButton btnZurück = new JButton();
+	JButton btnZurï¿½ck = new JButton();
 	JButton btnAnmelden = new JButton();
 	public JComboBox comboBoxArtikelHerren = new JComboBox();
 	public JComboBox comboBoxArtikelDamen = new JComboBox();
@@ -51,7 +51,7 @@ public class GUIMitarbeiter implements ActionListener{
 	 * Create the application.
 	 */
 	public GUIMitarbeiter(String[]anmeldenCbList) {
-		System.out.println("Ausgeführt HK");
+		System.out.println("Ausgefï¿½hrt HK");
 		this.anmeldenCbList = anmeldenCbList;
 		initialize(damenCbList, herrenCbList, anmeldenCbList);
 		for(int i = 0; i>= mitarbeiterListe.length; i++) {
@@ -95,12 +95,12 @@ public class GUIMitarbeiter implements ActionListener{
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setBounds(10, 8, 89, 35);
-		panelBar.add(btnZurück);
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.addActionListener(this);
+		btnZurï¿½ck = new JButton("Zur\u00FCck");
+		btnZurï¿½ck.setBounds(10, 8, 89, 35);
+		panelBar.add(btnZurï¿½ck);
+		btnZurï¿½ck.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZurï¿½ck.setBackground(Color.WHITE);
+		btnZurï¿½ck.addActionListener(this);
 		
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
@@ -117,11 +117,20 @@ public class GUIMitarbeiter implements ActionListener{
 		GUIArtikelliste liste = new GUIArtikelliste();
 		liste.setVisible(true);
 		
+		GUIAdministratorListe AdminListe = new GUIAdministratorListe();
+		AdminListe.setVisible(true);
+		
+		
 		//tabbedPane.setTitleAt(1, "Artikelliste");
 		tabbedPane.addTab("Tab 1", liste );
 		liste.invalidate();
 		liste.validate();
 		liste.repaint();
+		
+		tabbedPane.addTab("AdministratorListe", AdminListe);
+		AdminListe.invalidate();
+		AdminListe.validate();
+		AdminListe.repaint();
 		
 		
 		frame.setVisible(true);
@@ -148,12 +157,12 @@ public class GUIMitarbeiter implements ActionListener{
 		lblTitel.setFont(new Font("Lucida Bright", Font.BOLD, 17));
 		panel.add(lblTitel);
 		
-		JLabel lblGroeße = new JLabel("Größe: 34");
-		lblGroeße.setBounds(167, 50, 78, 32);
-		lblGroeße.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		panel.add(lblGroeße);
+		JLabel lblGroeï¿½e = new JLabel("Grï¿½ï¿½e: 34");
+		lblGroeï¿½e.setBounds(167, 50, 78, 32);
+		lblGroeï¿½e.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		panel.add(lblGroeï¿½e);
 		
-		JLabel lblPreis = new JLabel("34€");
+		JLabel lblPreis = new JLabel("34ï¿½");
 		lblPreis.setBounds(402, 107, 58, 28);
 		lblPreis.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		panel.add(lblPreis);
@@ -164,7 +173,7 @@ public class GUIMitarbeiter implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() == btnZurück) 
+		if(e.getSource() == btnZurï¿½ck) 
 		{
 			frame.dispose();
 			new GUI();
