@@ -7,21 +7,26 @@ import Artikelverwaltung.Artikel;
  *
  */
 
-public class Bestellposition extends Artikel {
+public class Bestellposition {
 	protected double preis;
 	protected int aMenge; 
 	protected int posNr;
+	protected int bestellNr;
+	protected Artikel aArtikel;
 	
+	
+
 	/**
 	 * @param posNr Die einzigartige Positionsnummer.
 	 * @param aMenge Die Anzahl der Artikel der Bestellposition.
-	 * @param preis der Preis der ganzen Bestellposition. 
-	 * 
+	 * @param preis der Preis der ganzen Bestellposition.
+	 *   ..
 	 */
-	public Bestellposition (int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt){
-		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit,Notiz, Lieferanten, Preis, Rabatt);
+	public Bestellposition (Artikel aArtikel,int posNr,int aMenge) {
 		this.aMenge=aMenge;
 		this.posNr=posNr;
+		this.aArtikel=aArtikel;
+		
 	}
 	
 	public int getaMenge() {
@@ -34,22 +39,22 @@ public class Bestellposition extends Artikel {
 		return posNr;
 	}
 	public void setPosNr(int posNr) {
-		this.posNr = posNr;
+		this.posNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellPosNr();
 	}
 	public double getPreis() {
-		return this.Preis;
+		return this.preis;
 	}
 	public void setPreis(double preis) {
-		this.Preis = aArtikel.getPreis()*aMenge;
+		this.preis = aArtikel.getPreis()*aMenge;
 	}
-	public Artikel getaArtikel() {
-		return aArtikel;
+
+	public int getBestellNr() {
+		return bestellNr;
 	}
-	public void setaArtikel(Artikel aArtikel) {
-		this.aArtikel = aArtikel;
+
+	public void setBestellNr(int bestellNr) {
+		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
 	
-	
-	Artikel aArtikel= new Artikel(Artikelnummer, Bestand,Bezeichnung,Geschlecht,Hersteller, Verfügbarkeit, Notiz, Lieferanten,Preis,Rabatt);
-	
+		
 }
