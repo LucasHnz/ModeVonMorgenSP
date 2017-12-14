@@ -22,12 +22,7 @@ public class Bestellposition {
 	 * @param preis der Preis der ganzen Bestellposition.
 	 *  
 	 */
-<<<<<<< HEAD
-	public Bestellposition (int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfï¿½gbarkeit, String Notiz, String[]  Lieferanten, double Preis, double Rabatt, int aMenge, int posNr){
-		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfï¿½gbarkeit,Notiz, Lieferanten, Preis, Rabatt);
-=======
 	public Bestellposition (Artikel aArtikel,int posNr,int aMenge) {
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
 		this.aMenge=aMenge;
 		this.posNr=posNr;
 		this.aArtikel=aArtikel;
@@ -61,11 +56,5 @@ public class Bestellposition {
 		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
 	
-<<<<<<< HEAD
-	
-	Artikel aArtikel= new Artikel(Artikelnummer, Bestand,Bezeichnung,Geschlecht,Hersteller, Verfï¿½gbarkeit, Notiz, Lieferanten,Preis,Rabatt);
-	
-=======
 		
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
 }
