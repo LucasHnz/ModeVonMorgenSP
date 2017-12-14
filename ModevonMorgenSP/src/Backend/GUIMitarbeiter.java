@@ -31,7 +31,7 @@ import javax.swing.JTabbedPane;
 
 public class GUIMitarbeiter implements ActionListener{
 	
-	JButton btnZurï¿½ck = new JButton();
+	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
 	public JComboBox comboBoxArtikelHerren = new JComboBox();
 	public JComboBox comboBoxArtikelDamen = new JComboBox();
@@ -95,12 +95,12 @@ public class GUIMitarbeiter implements ActionListener{
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
-		btnZurï¿½ck = new JButton("Zur\u00FCck");
-		btnZurï¿½ck.setBounds(10, 8, 89, 35);
-		panelBar.add(btnZurï¿½ck);
-		btnZurï¿½ck.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurï¿½ck.setBackground(Color.WHITE);
-		btnZurï¿½ck.addActionListener(this);
+		btnZurück = new JButton("Zur\u00FCck");
+		btnZurück.setBounds(10, 8, 89, 35);
+		panelBar.add(btnZurück);
+		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZurück.setBackground(Color.WHITE);
+		btnZurück.addActionListener(this);
 		
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
@@ -157,10 +157,10 @@ public class GUIMitarbeiter implements ActionListener{
 		lblTitel.setFont(new Font("Lucida Bright", Font.BOLD, 17));
 		panel.add(lblTitel);
 		
-		JLabel lblGroeï¿½e = new JLabel("Grï¿½ï¿½e: 34");
-		lblGroeï¿½e.setBounds(167, 50, 78, 32);
-		lblGroeï¿½e.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		panel.add(lblGroeï¿½e);
+		JLabel lblGröße = new JLabel("Grï¿½ï¿½e: 34");
+		lblGröße.setBounds(167, 50, 78, 32);
+		lblGröße.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		panel.add(lblGröße);
 		
 		JLabel lblPreis = new JLabel("34ï¿½");
 		lblPreis.setBounds(402, 107, 58, 28);
@@ -173,7 +173,7 @@ public class GUIMitarbeiter implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() == btnZurï¿½ck) 
+		if(e.getSource() == btnZurück) 
 		{
 			frame.dispose();
 			new GUI();

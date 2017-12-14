@@ -171,8 +171,9 @@ public class GUIArtikelliste extends JPanel {
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setVisible(true);
 		table.setBounds(30, 42, 800, 395);
+		table.setVisible(true);
+		
 	
 		scrollpane = new JScrollPane(table);
 		//scrollpane.setLayout(null);
