@@ -122,6 +122,7 @@ public class GUI implements ActionListener {
 	private void initializeMain() {
 		
 		frame = new JFrame();
+		
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);

@@ -1,0 +1,64 @@
+09/29/2016 2.9.11
+- Added new style for disabled/focused button for proper foreground color.
+
+------------------------------------------------------------------------------- 
+
+08/21/2015 V2.9.10
+- Improved menu painter to support custom background color when native window decoration is enabled
+
+------------------------------------------------------------------------------- 
+
+05/22/2015 V2.9.9
+- Improved focus for selected segment toggle buttons
+- Fixed insets for ComboListCellRenderer
+
+------------------------------------------------------------------------------- 
+
+04/04/2014 V2.9.8
+- Added menuBar background color for proper support of opaque menu bars
+
+------------------------------------------------------------------------------- 
+
+06/26/2013 V2.9.7
+- Fixed IllegalArgumentException for TitledBorder on very large panels.
+
+------------------------------------------------------------------------------- 
+
+02/06/2013 V2.9.6
+- Fixed ComboBox list entry size issue for null values.
+
+------------------------------------------------------------------------------- 
+
+09/15/2012 V2.9.5
+- Fixed menubar background for native window decoration.
+
+------------------------------------------------------------------------------- 
+
+04/25/2012 V2.9.4
+- Slightly increased popup size for comboboxes.
+- Changed title panel font from Tahoma to Segoe UI.
+- Fixed fraction exception for very small titled borders.
+
+------------------------------------------------------------------------------- 
+
+10/12/2011 V2.9.3
+- Added UI-property "ToolTip.background" support.
+
+------------------------------------------------------------------------------- 
+
+06/24/2011 V2.9.2
+- Corrected left/right insets for textArea, editorPane, textPane
+- Improved text shadow painting performance 
+- Modified FileChooser sort column color 
+- Changed ScrollBar.minimumThumbSize type to lowercase - dimension.
+
+------------------------------------------------------------------------------- 
+
+03/04/2011 V2.9.1
+- Modified disabled tooltip foreground.
+- Improved foreground selection for toolbar children (requires Synthetica V2.12.1 or above). 
+
+------------------------------------------------------------------------------- 
+
+02/11/2011 V2.9.0
+- First official release of Classy LAF.
