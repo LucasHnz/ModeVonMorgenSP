@@ -11,13 +11,13 @@ public class Bestellsammlung {
 		 
 		while (rs.next()) {
 			double datum = rs.getDouble("Datum");
-			int bNr = rs.getInt("bNr");
+			int bNr = rs.getInt("bestellNr");
 			String versandStatus= rs.getString("VersandStatus");
 			double preis =rs.getDouble("Preis");
 			
 			
-			Bestellung bBestellung = new Bestellung ();
-			Bestellsammlung.put(bBestellung.getbNr(), bBestellung);
+			Bestellung bBestellung = new Bestellung();
+			Bestellsammlung.put(bBestellung.getBestellNr(), bBestellung);
 				
 		}
 	}

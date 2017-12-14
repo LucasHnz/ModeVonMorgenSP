@@ -10,12 +10,14 @@ import Bestellverwaltung.Bestellposition;
  *
  */
 public class Bestellung  {
-	protected date datum;
+
 	protected int nutzerNrBestandsK;
 	protected int nutzerNrGastK;
 	protected int bestellNr;
 	protected String versandStatus; 
 	protected double gPreis;
+	protected Date datum; 
+	protected Bestellposition bBestellposition; 
 	/**
 	 * @param datum Eingangsdatum der Bestellung.
 	 * @param nutzerNrBestandK Die Nummer des Bestandskundes der die Bestellung tätigt. Kann auch null sein.
@@ -25,7 +27,7 @@ public class Bestellung  {
 	 * @param gPreis Der gesammte Preis der Bestellung.
 	 * 
 	 */
-	public Bestellung (date datum,int nutzerNrBestandsK,int nutzerNrGastK, int bestellNr, double gPreis, String versandStatus) {
+	public Bestellung (Date datum,int nutzerNrBestandsK,int nutzerNrGastK, int bestellNr, double gPreis, String versandStatus) {
 		
 		this.datum=datum;
 		this.nutzerNrBestandsK=nutzerNrBestandsK;
@@ -34,16 +36,19 @@ public class Bestellung  {
 		this.versandStatus=versandStatus;
 		this.gPreis=gPreis;
 
-		}
-	Bestellposition bBestellposition= new Bestellposition();
+		
+	}
+	
 	ArrayList<Bestellposition> test = new ArrayList<Bestellposition>();
 	
 	
-	public date getDatum() {
-		return datum;
+	public Date getDatum() {
+		return new Date( datum.getTime() );
+
 	}
-	public void setDatum(date datum) {
-		this.datum = datum;
+	public void setDatum(Date datum) {
+		 this.datum = new Date( datum.getTime() );
+
 	}
 	public int getNutzerNrBestandsK() {
 		return nutzerNrBestandsK;
@@ -61,7 +66,7 @@ public class Bestellung  {
 		return bestellNr;
 	}
 	public void setBestellNr(int bestellNr) {
-		this.bestellNr = bestellNr;
+		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
 	public String getVersandStatus() {
 		return versandStatus;
