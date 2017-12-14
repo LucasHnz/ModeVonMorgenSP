@@ -24,8 +24,10 @@ import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
@@ -38,7 +40,7 @@ public class GUI implements ActionListener {
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten"};
-	private static JFrame frame;
+	static JFrame frame;
 	public static boolean angemeldet = false;
 	public int rotierung = 1;
 	public String[] outfitsDamenListe = {"C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau1.jpg","C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau2.jpg"};
@@ -84,8 +86,8 @@ public class GUI implements ActionListener {
 	
 	public void wechselOutfitHerrenLinks() 
 	{
-		
-		 labelMainHerren.setIcon(new ImageIcon("C:\\\\Users\\hinzl\\Desktop\\SWP-Bilder\\mann1.jpg"));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/SWP-Bilder/Herrenkleidung_1.jpg").getImage().getScaledInstance(380, 450, Image.SCALE_DEFAULT));
+		labelMainHerren.setIcon(imageIcon);
 		
 	}
 
@@ -217,9 +219,8 @@ public class GUI implements ActionListener {
 		labelMainDamen.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\frau2.jpg"));
 		panelMain.add(labelMainDamen);
 		
-		labelMainHerren = new JLabel("New label");
+		labelMainHerren = new JLabel("");
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setVerticalAlignment(SwingConstants.TOP);
 		labelMainHerren.setBounds(656, 76, 380, 450);
 		labelMainHerren.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\mann1.jpg"));
 		panelMain.add(labelMainHerren);
