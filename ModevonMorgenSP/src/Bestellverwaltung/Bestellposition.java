@@ -19,7 +19,7 @@ public class Bestellposition {
 	/**
 	 * @param posNr Die einzigartige Positionsnummer.
 	 * @param aMenge Die Anzahl der Artikel der Bestellposition.
-	 * @param preis der Preis der ganzen Bestellposition. 
+	 * @param preis der Preis der ganzen Bestellposition
 	 * 
 	 */
 	public Bestellposition (Artikel aArtikel,int posNr,int aMenge) {

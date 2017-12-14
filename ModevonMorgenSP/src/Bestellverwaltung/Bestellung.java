@@ -36,7 +36,8 @@ public class Bestellung  {
 		this.versandStatus=versandStatus;
 		this.gPreis=gPreis;
 
-		}
+		
+	}
 	
 	ArrayList<Bestellposition> test = new ArrayList<Bestellposition>();
 	

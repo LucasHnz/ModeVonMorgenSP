@@ -72,7 +72,7 @@ public class BestellStrg {
 		}catch (SQLException e) {
 			e.getMessage();
 		}
-		}
+	}
 	public static void anzeigenBestellungenGK() {
 		try {
 			

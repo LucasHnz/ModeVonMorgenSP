@@ -11,7 +11,6 @@ public class Bestellpositionssammlung {
 	HashMap<Integer,Bestellposition> Bestellpositionssammlung = new HashMap<Integer,Bestellposition>();
 	
 	public Bestellpositionssammlung(ResultSet rs) throws SQLException {
-		 
 		while (rs.next()) {
 			int aMenge = rs.getInt("Menge");
 			int posNr = rs.getInt("PosNr");

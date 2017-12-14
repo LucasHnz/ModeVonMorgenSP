@@ -66,7 +66,7 @@ public class Gastkunde {
 	}
 
 	public void setStraße(String straße) {
-		this.straße = straße;
+		this.straße =straße;
 	}
 
 	public String getOrt() {
