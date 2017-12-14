@@ -56,6 +56,5 @@ public class Bestellposition {
 		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
 	
-	
-	
+		
 }
