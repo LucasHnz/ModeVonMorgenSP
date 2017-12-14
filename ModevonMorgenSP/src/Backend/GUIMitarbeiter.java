@@ -104,28 +104,19 @@ public class GUIMitarbeiter implements ActionListener{
 		
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
-		panelMain.setBackground(Color.WHITE);
+		panelMain.setBackground(Color.DARK_GRAY);
 		panelMain.setBounds(10, 147, 1224, 563);
 		frame.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 11, 1214, 541);
+		tabbedPane.setBounds(10, 11, 1204, 541);
 		panelMain.add(tabbedPane);
-		
-		
-		GUIArtikelliste liste = new GUIArtikelliste();
 		
 		GUIAdministratorListe AdminListe = new GUIAdministratorListe();
 		AdminListe.setVisible(true);
 		
-		
-		//tabbedPane.setTitleAt(1, "Artikelliste");
-		tabbedPane.addTab("Artikelliste", liste );
-		//liste.invalidate();
-		//liste.validate();
-		//liste.repaint();
-		
+		tabbedPane.addTab("Artikelliste", new GUIArtikelliste() );
 		tabbedPane.addTab("AdministratorListe", AdminListe);
 		AdminListe.invalidate();
 		AdminListe.validate();

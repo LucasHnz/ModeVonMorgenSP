@@ -2,6 +2,9 @@ package Backend;
 
 import java.awt.EventQueue;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.util.Comparator;
 import java.util.HashMap;
 
@@ -19,6 +22,7 @@ import Artikelverwaltung.Artikelsammlung;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class GUIArtikelliste extends JPanel {
 	/**
@@ -123,6 +127,7 @@ public class GUIArtikelliste extends JPanel {
 	 * Create the frame.
 	 */
 	public GUIArtikelliste() {
+		setBackground(Color.DARK_GRAY);
 		ArtikelStrg.FülleArtikelsammlung();
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
@@ -156,7 +161,6 @@ public class GUIArtikelliste extends JPanel {
 		scrollpane = new JScrollPane();
 		//scrollpane.setLayout(null);
 		scrollpane.setBounds(10, 11, 900, 490);
-		scrollpane.setVisible(true);
 		
 		
 		
@@ -182,6 +186,8 @@ public class GUIArtikelliste extends JPanel {
 		sorter.setComparator(3, intcomp);
 		sorter.setComparator(4, doublecomp);
 		sorter.setComparator(5, intcomp);
+		
+	
 		
 		add(scrollpane);
 		
@@ -213,6 +219,13 @@ public class GUIArtikelliste extends JPanel {
 		add(btnNeuesAccessoir);
 		
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
+		btnEditiereArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+			}
+		});
 		btnEditiereArtikel.setBounds(920, 188, 270, 48);
 		add(btnEditiereArtikel);
 		

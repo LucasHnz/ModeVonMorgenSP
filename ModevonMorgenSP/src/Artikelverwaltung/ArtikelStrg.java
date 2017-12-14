@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -21,18 +22,126 @@ public class ArtikelStrg {
 	 * 
 	 * @param Artikelnummer
 	 */
-	public static void EditiereArtikel(int Artikelnummer) {
+	public static void EditiereArtikel(int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht, 
+			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, Double Preis, int Rabatt, int Schuhgröße, String Farbe,
+			String Größe) {
+		Statement stmt = null;
+		String sqlUpdate = null;
 		Artikel artikel = Artikelsammlung.getArtikel(Artikelnummer);
-		//if(artikel.getKategorie() == "Accessoires")
-			//GUIArtikelFormular.editiereArtikel(Artikelnummer, artikel.getKategorie());
-		//else if(artikel.getKategorie() == "Schuhe")
-			//GUIArtikelFormular.editiereArtikel(Artikelnummer, artikel.getKategorie());
-		//else if(artikel.getKategorie() == "Kleidung")
-			//GUIArtikelFormular.editiereArtikel(Artikelnummer, artikel.getKategorie());		
+		Accessoires artikel1;
+		Schuhe artikel2;
+		Kleidung artikel3;
 		
+		
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement(); 
+			
+			if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires") {
+		    	artikel1 = (Accessoires) artikel;
+		    	artikel1.setBezeichnung(Bezeichnung);
+		    	artikel1.setArt(Art);
+		    	artikel1.setGeschlecht(Geschlecht);
+		    	artikel1.setHersteller(Hersteller);
+		    	artikel1.setLieferanten(Lieferanten);
+		    	artikel1.setBestand(Bestand);
+		    	artikel1.setPreis(Preis);
+		    	artikel1.setRabatt(Rabatt);
+		    	artikel1.setVerfügbarkeit(Verfügbarkeit);
+		    	artikel1.setNotiz(Notiz);
+		    	artikel1.setFarbe(Farbe);
+		    	
+		    	String str = Arrays.toString(Artikelsammlung.getArtikel(Artikelnummer).getLieferanten());
+				str = str.replace("[", "");
+				str = str.replace("]", "");
+				
+		    	sqlUpdate = "update Accessoires set Bezeichnung = '" + artikel1.getBezeichnung() 
+					+ "', Art = '" + artikel1.getArt()
+					+ "', Geschlecht = '" + artikel1.getGeschlecht()
+					+ "', Hersteller = '" + artikel1.getHersteller()
+					+ "', Lieferant = '" + 	str
+					+ "', Bestand =  " + artikel1.getBestand()
+					+ " , Preis =  " + artikel1.getPreis()
+					+ " , Rabatt =  " + artikel1.getRabatt()
+					+ " , Verfügbarkeit = '" + artikel1.getVerfügbarkeit()
+					+ "', Notiz = '" + artikel1.getNotiz()
+					+ "', farbe = '" + artikel1.getFarbe()
+					+ "'  where artikelnr =  " + artikel1.getArtikelnummer();  
+		    	}
+		     else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe") {
+		    	artikel2 = (Schuhe) artikel;
+		    	artikel2.setBezeichnung(Bezeichnung);
+		    	artikel2.setArt(Art);
+		    	artikel2.setGeschlecht(Geschlecht);
+		    	artikel2.setHersteller(Hersteller);
+		    	artikel2.setLieferanten(Lieferanten);
+		    	artikel2.setBestand(Bestand);
+		    	artikel2.setPreis(Preis);
+		    	artikel2.setRabatt(Rabatt);
+		    	artikel2.setVerfügbarkeit(Verfügbarkeit);
+		    	artikel2.setNotiz(Notiz);
+		    	artikel2.setSchuhgröße(Schuhgröße);
+		    	
+		    	String str = Arrays.toString(Artikelsammlung.getArtikel(Artikelnummer).getLieferanten());
+				str = str.replace("[", "");
+				str = str.replace("]", "");
+				
+		    	sqlUpdate = "update Schuhe set Bezeichnung = '" + artikel2.getBezeichnung() 
+					+ "', Art = '" + artikel2.getArt()
+					+ "', Geschlecht = '" + artikel2.getGeschlecht()
+					+ "', Hersteller = '" + artikel2.getHersteller()
+					+ "', Lieferant = '" + 	str
+					+ "', Bestand =  " + artikel2.getBestand()
+					+ " , Preis =  " + artikel2.getPreis()
+					+ " , Rabatt =  " + artikel2.getRabatt()
+					+ " , Verfügbarkeit = '" + artikel2.getVerfügbarkeit()
+					+ "', Notiz = '" + artikel2.getNotiz()
+					+ "', schuhgröße = " + artikel2.getSchuhgröße()
+					+ "  where artikelnr =  " + artikel2.getArtikelnummer(); 
+		    	
+		    	}
+		    else if(artikel.getClass().getName() == "Artikelverwaltung.Kleidung") {
+		    	artikel3 = (Kleidung) artikel;
+		    	artikel3.setBezeichnung(Bezeichnung);
+		    	artikel3.setArt(Art);
+		    	artikel3.setGeschlecht(Geschlecht);
+		    	artikel3.setHersteller(Hersteller);
+		    	artikel3.setLieferanten(Lieferanten);
+		    	artikel3.setBestand(Bestand);
+		    	artikel3.setPreis(Preis);
+		    	artikel3.setRabatt(Rabatt);
+		    	artikel3.setVerfügbarkeit(Verfügbarkeit);
+		    	artikel3.setNotiz(Notiz);
+		    	artikel3.setGröße(Farbe);
+		    	
+		    	String str = Arrays.toString(Artikelsammlung.getArtikel(Artikelnummer).getLieferanten());
+				str = str.replace("[", "");
+				str = str.replace("]", "");
+				
+		    	sqlUpdate = "update Kleidung set Bezeichnung = '" + artikel3.getBezeichnung() 
+					+ "', Art = '" + artikel3.getArt()
+					+ "', Geschlecht = '" + artikel3.getGeschlecht()
+					+ "', Hersteller = '" + artikel3.getHersteller()
+					+ "', Lieferant = '" + 	str
+					+ "', Bestand =  " + artikel3.getBestand()
+					+ " , Preis =  " + artikel3.getPreis()
+					+ " , Rabatt =  " + artikel3.getRabatt()
+					+ " , Verfügbarkeit = '" + artikel3.getVerfügbarkeit()
+					+ "', Notiz = '" + artikel3.getNotiz()
+					+ "', größe = '" + artikel3.getGröße()
+					+ "'  where artikelnr =  " + artikel3.getArtikelnummer(); 
+		    	}
+			
+			stmt.executeUpdate(sqlUpdate);
+			stmt.close();
+			con.close();
+			}catch(SQLException e) {
+		    	e.printStackTrace();
+		    }
 	}
 	public static void main(String[] args) {
 		FülleArtikelsammlung();
+		ArtikelDBSichern();
 	}
 	/**
 	 * Fordert die Artikelsammlung auf, einen neuen Artikel mit den übergebenen Parametern hinzuzufügen.
@@ -144,7 +253,7 @@ public class ArtikelStrg {
 		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
 		Statement stmt = null;
 		String sqlUpdate = null;
-		Artikel test;
+		
 		
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -152,14 +261,14 @@ public class ArtikelStrg {
 			
 			
 			for(Map.Entry<Integer, Artikel> entry : Sammlung.entrySet()) {
-			    int key = entry.getKey();
+			
 			    Artikel artikel = entry.getValue();
 			    Accessoires artikel1;
 			    Schuhe artikel2;
 			    Kleidung artikel3;
 			    //System.out.println(key + " " + artikel.getArtikelnummer() + " " + artikel.getClass().toString());
 			    
-			    if(artikel.getClass().toString() == "Artikelverwaltung.Accessoires") {
+			    if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires") {
 			    	artikel1 = (Accessoires) entry.getValue();
 			    	sqlUpdate = "update Accessoires set Bezeichnung = '" + artikel1.getBezeichnung() 
 			    			+ "', Art = '" + artikel1.getArt()
@@ -174,7 +283,7 @@ public class ArtikelStrg {
 			    			+ "', Farbe = '" + artikel1.getFarbe()
 			    			+ "  where artikelnr = '" + artikel1.getArtikelnummer() + "'"; 
 			    	}
-			     else if(artikel.getClass().toString() == "Artikelverwaltung.Schuhe") {
+			     else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe") {
 			    	artikel2 = (Schuhe) entry.getValue();
 			    	sqlUpdate = "update Accessoires set Bezeichnung = '" + artikel2.getBezeichnung() 
 	    				+ "', Art = '" + artikel2.getArt()
@@ -189,7 +298,7 @@ public class ArtikelStrg {
 	    				+ "', Farbe = '" + artikel2.getSchuhgröße()
 	    				+ "  where artikelnr = '" + artikel2.getArtikelnummer() + "'"; 
 			    	}
-			    else if(artikel.getClass().toString() == "Artikelverwaltung.Schuhe") {
+			    else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe") {
 			    	artikel3 = (Kleidung) entry.getValue();
 			    	sqlUpdate = "update Accessoires set Bezeichnung = '" + artikel3.getBezeichnung() 
 	    				+ "', Art = '" + artikel3.getArt()
