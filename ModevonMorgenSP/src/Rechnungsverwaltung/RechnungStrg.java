@@ -200,7 +200,7 @@ public double errechnePreis(ArrayList<Bestellposition> test, int Punkte ) {
 		}
 		gpreis = gpreis * multiplikator;
 		return gpreis;
-		}
+		
 }
 
 }
