@@ -18,40 +18,73 @@ import java.sql.Statement;
 public class RechnungStrg {
 	
 	
-	public static  void erstelleRechnung(String pwd, String email, String[]anmeldenCbList) {
+	public static  void erstelleRechnung(String email) {
 		try
 		//Abfrage nach BenutzerID ob Bestands- und Gastkunden.
 		{
-			Connection con = DriverManager.getConnection(
-					"jdbc:oracle:thin:@aix1.fh-bielefeld.de:1521:d2");
+			String befehlMA = "select berechtigung from Mitarbeiter where email ='"+email+"'";
+			String befehlAdmin = "select berechtigung from Administrator where email ='"+email+"'";
+			String befehlBKunde = "select berechtigung from Bestandskunde where email ='"+email+"'";
+			int i = 0;
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select Rechnungsnummer and IBAN and Name and Nachname from Bestandskunde"
-					+ "(Mitarbeiter, Kunden, Bestandskunden, Administrator)");
 			
-			rs.next();
+			ResultSet rs1 = stmt.executeQuery(befehlMA);
+			ResultSet rs2 = stmt.executeQuery(befehlBKunde);
+			ResultSet rs3 = stmt.executeQuery(befehlAdmin);
 			
-			String Rechnungsnummer = rs.getString("rechNr");
-			String IBAN = rs.getString("iban");
-			String Name = rs.getString("name");
-			String Nachname = rs.getString("nachname");
+			if (rs1.next()) {
+				i=3;
+			}
+			if (rs2.next()) {
+				i=2;
+			}
+			
+			if (rs3.next()) {
+				i=4;
+			}
 			
 			
+			if (i = 2) {
+				
+				String sqlbefehlbk = ("select nutzernr, name, nachname, straﬂe, ort, plz from Bestandskunde where ...");
+				String sqlbefehlbp = ("bestellposnr, bestellnr, artikelnr, preis from Bestellposition where ...");
+				
+			}else if (i = 3){
+				
+				String sqlbefehlmia = ("select nutzernr, name, nachname, straﬂe, ort, plz from Mitarbeiter where ...");
+				String sqlbefehlbp = ("bestellposnr, bestellnr, artikelnr, preis from Bestellposition where ...");
+				
+			}else if (i = 4) {
+				
+				String sqlbefehlad = ("select nutzernr, name, nachname, straﬂe, ort, plz from Administrator where ...");
+				String sqlbefehlbp = ("bestellposnr, bestellnr, artikelnr, preis from Bestellposition where ...");
+				
+			}else {
+				//JPanelabfrage f¸r Gastkunden
+			}
+			
+			//Warenkorb implementieren
+			
+			//Rechnung erstellen und verschicken
 			
 			
+			//int rechnungsnummer = rs.getString("rechNr");
+			//String iban = rs.getString("iban");
+			//String name = rs.getString("name");
+			//String nachname = rs.getString("nachname");
 			
-			rs.close();
-			stmt.close();
-			con.close();
+			
+			//stmt.execute(sqlbefehl);
+			
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
 		}catch(SQLException e) {
                           
 			e.getMessage();
 			
 		}
-		
-		//Zusammenrechnen des Warenkorbbetrags und Aufz‰hlung der Artikelnamen und ID.
-		
-		
-		// Erzeugen einer Rechnungseite und versand per e-mail.
 
-}}
+	}
+}
