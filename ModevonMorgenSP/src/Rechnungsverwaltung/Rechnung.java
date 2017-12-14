@@ -9,24 +9,30 @@ package Rechnungsverwaltung;
 
 public class Rechnung {
 	
-	protected String name, nachname, ort, straﬂe, iban;
-	protected int mitgliedsID, rechnungNr, plz;
-	protected double gesamtpreis, bRabatt;
+	protected String name, nachname, rechnungsadresse, iban, vstatus;
+	protected int mitgliedsID, rechnungNr, bestellNr, bestandskunde, gastkunde, plz;
+	protected double gesamtpreis, zwischenpreis, eRabatt;
+	protected date datum;
 	
-	
-	public Rechnung(String name, String nachname, String ort, String straﬂe, String iban, int mitgliedsID,
-			int rechnungNr, int plz, double gesamtpreis, double bRabatt) {
+	public Rechnung(String name, String nachname, String rechnungsadresse, String iban, String vstatus, int mitgliedsID,
+			int rechnungNr, int bestellNr, int bestandskunde, int gastkunde, int plz, double gesamtpreis,
+			double zwischenpreis, double eRabatt, date datum) {
 		
 		this.name = name;
 		this.nachname = nachname;
-		this.ort = ort;
-		this.straﬂe = straﬂe;
+		this.rechnungsadresse = rechnungsadresse;
 		this.iban = iban;
+		this.vstatus = vstatus;
 		this.mitgliedsID = mitgliedsID;
 		this.rechnungNr = rechnungNr;
+		this.bestellNr = bestellNr;
+		this.bestandskunde = bestandskunde;
+		this.gastkunde = gastkunde;
 		this.plz = plz;
 		this.gesamtpreis = gesamtpreis;
-		this.bRabatt = bRabatt;
+		this.zwischenpreis = zwischenpreis;
+		this.eRabatt = eRabatt;
+		this.datum = datum;
 	}
 
 	public String getName() {
@@ -45,20 +51,12 @@ public class Rechnung {
 		this.nachname = nachname;
 	}
 
-	public String getOrt() {
-		return ort;
+	public String getRechnungsadresse() {
+		return rechnungsadresse;
 	}
 
-	public void setOrt(String ort) {
-		this.ort = ort;
-	}
-
-	public String getStraﬂe() {
-		return straﬂe;
-	}
-
-	public void setStraﬂe(String straﬂe) {
-		this.straﬂe = straﬂe;
+	public void setRechnungsadresse(String rechnungsadresse) {
+		this.rechnungsadresse = rechnungsadresse;
 	}
 
 	public String getIban() {
@@ -67,6 +65,14 @@ public class Rechnung {
 
 	public void setIban(String iban) {
 		this.iban = iban;
+	}
+
+	public String getVstatus() {
+		return vstatus;
+	}
+
+	public void setVstatus(String vstatus) {
+		this.vstatus = vstatus;
 	}
 
 	public int getMitgliedsID() {
@@ -85,6 +91,30 @@ public class Rechnung {
 		this.rechnungNr = rechnungNr;
 	}
 
+	public int getBestellNr() {
+		return bestellNr;
+	}
+
+	public void setBestellNr(int bestellNr) {
+		this.bestellNr = bestellNr;
+	}
+
+	public int getBestandskunde() {
+		return bestandskunde;
+	}
+
+	public void setBestandskunde(int bestandskunde) {
+		this.bestandskunde = bestandskunde;
+	}
+
+	public int getGastkunde() {
+		return gastkunde;
+	}
+
+	public void setGastkunde(int gastkunde) {
+		this.gastkunde = gastkunde;
+	}
+
 	public int getPlz() {
 		return plz;
 	}
@@ -101,12 +131,30 @@ public class Rechnung {
 		this.gesamtpreis = gesamtpreis;
 	}
 
-	public double getbRabatt() {
-		return bRabatt;
+	public double getZwischenpreis() {
+		return zwischenpreis;
 	}
 
-	public void setbRabatt(double bRabatt) {
-		this.bRabatt = bRabatt;
+	public void setZwischenpreis(double zwischenpreis) {
+		this.zwischenpreis = zwischenpreis;
 	}
+
+	public double geteRabatt() {
+		return eRabatt;
+	}
+
+	public void seteRabatt(double eRabatt) {
+		this.eRabatt = eRabatt;
+	}
+
+	public date getDatum() {
+		return datum;
+	}
+
+	public void setDatum(date datum) {
+		this.datum = datum;
+	}
+	
+	
 
 }
