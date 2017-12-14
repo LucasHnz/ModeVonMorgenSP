@@ -42,8 +42,8 @@ public class GUIAnmelden implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(1000, 179, 260, 90);
 		frame.setLocationRelativeTo(GUI.frame);
+		frame.setBounds(1000, 179, 260, 90);
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    frame.setLayout(new GridLayout(3,2));
