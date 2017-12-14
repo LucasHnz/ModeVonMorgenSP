@@ -16,10 +16,6 @@ public class GUIAnmelden implements ActionListener {
 	JPasswordField anmeldenPasswort = new JPasswordField();
 	JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
-	String testEmail = "jochen.kuester@fh-bielefeld.de";
-	String testPasswort = "12345678";
-	String testPwMitarbeiter = "123";
-	String testMailMitarbeiter = "test";
 	String[] anmeldenCbList;
 
 	private JFrame frame;
@@ -37,7 +33,7 @@ public class GUIAnmelden implements ActionListener {
 		initialize();
 	}
 
-	//Test
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -66,6 +62,18 @@ public class GUIAnmelden implements ActionListener {
 	    frame.setVisible(true);
 	}
 	
+	
+	public static void anmeldenFehlermeldung() {
+		
+		System.out.println("OPT");
+		JOptionPane.showOptionDialog(null, "Dies ist ein Optionsdialog",
+				"Optionsdialog",
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.WARNING_MESSAGE,
+				null,
+				new String[] {"A", "B", "C"},"B");
+		
+	}
 
 
 	@Override
