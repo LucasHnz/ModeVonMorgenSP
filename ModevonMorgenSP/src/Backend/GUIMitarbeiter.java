@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +27,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JList;
+import javax.swing.JTabbedPane;
 
 public class GUIMitarbeiter implements ActionListener{
 	
@@ -93,12 +95,33 @@ public class GUIMitarbeiter implements ActionListener{
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
+		btnZurück = new JButton("Zur\u00FCck");
+		btnZurück.setBounds(10, 8, 89, 35);
+		panelBar.add(btnZurück);
+		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZurück.setBackground(Color.WHITE);
+		btnZurück.addActionListener(this);
+		
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 147, 1234, 563);
 		frame.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(10, 11, 1214, 541);
+		panelMain.add(tabbedPane);
+		
+		
+		GUIArtikelliste liste = new GUIArtikelliste();
+		liste.setVisible(true);
+		
+		//tabbedPane.setTitleAt(1, "Artikelliste");
+		tabbedPane.addTab("Tab 1", liste );
+		liste.invalidate();
+		liste.validate();
+		liste.repaint();
 		
 		
 		frame.setVisible(true);

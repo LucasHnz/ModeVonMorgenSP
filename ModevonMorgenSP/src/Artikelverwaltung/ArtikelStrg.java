@@ -50,10 +50,10 @@ public class ArtikelStrg {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement(); 
 			String sqlInsert = null;
-			// Befehl mach ich noch, keine Sorge :D
+			
 			if(kateg == "Accessoires") {
 		    	
-		    	sqlInsert = "update Accessoires set Bezeichnung = '" + Bezeichnung
+		    	sqlInsert = "insert into Accessoires values ( '" + Bezeichnung
 		    			+ "', Art = '" + Art
 		    			+ "', Geschlecht = '" + Geschlecht
 		    			+ "', Hersteller = '" + Hersteller
@@ -61,38 +61,38 @@ public class ArtikelStrg {
 		    			+ "', Bestand = '" + Bestand
 		    			+ "', Preis = '" + Preis
 		    			+ "', Rabatt = '" + Rabatt
-		    			+ "', Verügbarkeit = '" + Verfügbarkeit
+		    			+ "', Verfügbarkeit = '" + Verfügbarkeit
 		    			+ "', Notiz = '" + Notiz
 		    			+ "', Farbe = '" + Farbe
-		    			+ "  where artikelnr = '" + Artikelnummer + "'"; 
+		    			+ "  where artikelnr = '" + Artikelnummer + "' )"; 
 		    	}
 		     else if(kateg == "Schuhe") {
-		    	sqlInsert = "update Accessoires set Bezeichnung = '" + Bezeichnung
-    				+ "', Art = '" + Art
-    				+ "', Geschlecht = '" + Geschlecht
-    				+ "', Hersteller = '" + Hersteller
-    				+ "', Lieferant = '" + Lieferanten
-    				+ "', Bestand = '" + Bestand
-    				+ "', Preis = '" + Preis
-    				+ "', Rabatt = '" + Rabatt
-    				+ "', Verügbarkeit = '" + Verfügbarkeit
-    				+ "', Notiz = '" + Notiz
-    				+ "', Farbe = '" + Schuhgröße
-    				+ "  where artikelnr = '" + Artikelnummer + "'"; 
+		    	sqlInsert = "insert into Accessoires values ( '" + Bezeichnung
+		    			+ "', Art = '" + Art
+		    			+ "', Geschlecht = '" + Geschlecht
+		    			+ "', Hersteller = '" + Hersteller
+		    			+ "', Lieferant = '" + Lieferanten
+		    			+ "', Bestand = '" + Bestand
+		    			+ "', Preis = '" + Preis
+		    			+ "', Rabatt = '" + Rabatt
+		    			+ "', Verfügbarkeit = '" + Verfügbarkeit
+		    			+ "', Notiz = '" + Notiz
+		    			+ "', Größe = '" + Größe
+		    			+ "  where artikelnr = '" + Artikelnummer + "' )";  
 		    	}
 		    else if(kateg == "Schuhe") {
-		    	sqlInsert = "update Accessoires set Bezeichnung = '" + Bezeichnung 
-    				+ "', Art = '" + Art
-    				+ "', Geschlecht = '" + Geschlecht
-    				+ "', Hersteller = '" + Hersteller
-    				+ "', Lieferant = '" + Lieferanten
-    				+ "', Bestand = '" + Bestand
-    				+ "', Preis = '" + Preis
-    				+ "', Rabatt = '" + Rabatt
-    				+ "', Verügbarkeit = '" + Verfügbarkeit
-    				+ "', Notiz = '" + Notiz
-    				+ "', Farbe = '" + Größe
-    				+ "  where artikelnr = '" + Artikelnummer + "'"; 
+		    	sqlInsert = "insert into Accessoires values ( '" + Bezeichnung
+		    			+ "', Art = '" + Art
+		    			+ "', Geschlecht = '" + Geschlecht
+		    			+ "', Hersteller = '" + Hersteller
+		    			+ "', Lieferant = '" + Lieferanten
+		    			+ "', Bestand = '" + Bestand
+		    			+ "', Preis = '" + Preis
+		    			+ "', Rabatt = '" + Rabatt
+		    			+ "', Verfügbarkeit = '" + Verfügbarkeit
+		    			+ "', Notiz = '" + Notiz
+		    			+ "', Schuhgröße = '" + Schuhgröße
+		    			+ "  where artikelnr = '" + Artikelnummer + "' )"; 
 		    	}
 		    stmt.addBatch(sqlInsert);
 		
@@ -164,7 +164,7 @@ public class ArtikelStrg {
 			    			+ "', Bestand = '" + artikel1.getBestand()
 			    			+ "', Preis = '" + artikel1.getPreis()
 			    			+ "', Rabatt = '" + artikel1.getRabatt()
-			    			+ "', Verügbarkeit = '" + artikel1.getVerfügbarkeit()
+			    			+ "', Verfügbarkeit = '" + artikel1.getVerfügbarkeit()
 			    			+ "', Notiz = '" + artikel1.getNotiz()
 			    			+ "', Farbe = '" + artikel1.getFarbe()
 			    			+ "  where artikelnr = '" + artikel1.getArtikelnummer() + "'"; 
@@ -179,7 +179,7 @@ public class ArtikelStrg {
 	    				+ "', Bestand = '" + artikel2.getBestand()
 	    				+ "', Preis = '" + artikel2.getPreis()
 	    				+ "', Rabatt = '" + artikel2.getRabatt()
-	    				+ "', Verügbarkeit = '" + artikel2.getVerfügbarkeit()
+	    				+ "', Verfügbarkeit = '" + artikel2.getVerfügbarkeit()
 	    				+ "', Notiz = '" + artikel2.getNotiz()
 	    				+ "', Farbe = '" + artikel2.getSchuhgröße()
 	    				+ "  where artikelnr = '" + artikel2.getArtikelnummer() + "'"; 
@@ -194,7 +194,7 @@ public class ArtikelStrg {
 	    				+ "', Bestand = '" + artikel3.getBestand()
 	    				+ "', Preis = '" + artikel3.getPreis()
 	    				+ "', Rabatt = '" + artikel3.getRabatt()
-	    				+ "', Verügbarkeit = '" + artikel3.getVerfügbarkeit()
+	    				+ "', Verfügbarkeit = '" + artikel3.getVerfügbarkeit()
 	    				+ "', Notiz = '" + artikel3.getNotiz()
 	    				+ "', Farbe = '" + artikel3.getGröße()
 	    				+ "  where artikelnr = '" + artikel3.getArtikelnummer() + "'"; 

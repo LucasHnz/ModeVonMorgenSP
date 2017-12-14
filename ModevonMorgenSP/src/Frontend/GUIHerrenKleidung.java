@@ -34,7 +34,7 @@ public class GUIHerrenKleidung implements ActionListener{
 	public String[] anmeldenCbList;
 	public JButton btnZumArtikel = new JButton();
 	public JButton btnZumArtikel2 = new JButton();
-	JPanel panelHerrenKleidung = new JPanel();
+	public JPanel panelHerrenKleidung = new JPanel();
 	public int abstandPlus = 230;
 	public int abstand = 270;
 
@@ -121,7 +121,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelHerrenKleidung = new JPanel();
 		panelHerrenKleidung.setBackground(SystemColor.inactiveCaptionBorder);
 		JScrollPane scrollPaneHerrenKleidung = new JScrollPane(panelHerrenKleidung);
-		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelHerrenKleidung.setPreferredSize(new Dimension(549, 2000));
 		panelHerrenKleidung.setLayout(null);
 		scrollPaneHerrenKleidung.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
