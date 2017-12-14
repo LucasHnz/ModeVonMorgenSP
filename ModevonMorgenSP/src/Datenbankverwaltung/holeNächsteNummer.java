@@ -107,7 +107,7 @@ public class holeNächsteNummer {
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("Nutzernr");
+				i = rs.getInt("nutzernr");
 				
 			}
 			
@@ -134,7 +134,7 @@ public class holeNächsteNummer {
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("artikelnr");
+				i = rs.getInt("max(artikelnr)");
 				
 			}
 			
@@ -162,7 +162,7 @@ public class holeNächsteNummer {
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt(1);
+				i = rs.getInt("max(artikelnr)");
 			}
 			
 			stmt.close();
@@ -188,7 +188,7 @@ public class holeNächsteNummer {
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("artikelnr");
+				i = rs.getInt("max(artikelnr)");
 				
 			}
 			

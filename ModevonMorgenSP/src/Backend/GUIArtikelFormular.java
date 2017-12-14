@@ -84,7 +84,6 @@ public class GUIArtikelFormular extends JFrame {
 		setAlwaysOnTop(true);
 		setType(Type.NORMAL);
 		setTitle(titel);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 327, 555);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -124,7 +123,12 @@ public class GUIArtikelFormular extends JFrame {
         formatter.setAllowsInvalid(false); 
 		
 		textFieldArtikelnummer = new JFormattedTextField(formatter);
-		textFieldArtikelnummer.setText(String.valueOf((Artikelsammlung.getHighestKey()+1)));
+		if(kateg == "Schuhe")
+			textFieldArtikelnummer.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteSchuhNr()));
+		else if(kateg == "Accessoires")
+			textFieldArtikelnummer.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteAccessNr()));
+		else if(kateg == "Kleidung")
+			textFieldArtikelnummer.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteKleidungNr()));
 		textFieldArtikelnummer.setToolTipText("Die Artikelnummer muss 9 Stellen haben");
 		textFieldArtikelnummer.setBounds(105, 12, 204, 20);
 		textFieldArtikelnummer.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -288,14 +292,15 @@ public class GUIArtikelFormular extends JFrame {
 				String Art = textFieldArt.getText();
 				String Geschlecht;
 				if(rdbtnWeiblich.isSelected())
-					Geschlecht = "Weiblich";
+					Geschlecht = "W";
 				else 
-					Geschlecht = "Männlich";				
+					Geschlecht = "M";				
 				String Hersteller = textFieldHersteller.getText(); 
 				String Verfügbarkeit = (String) comboBoxVerfügbarkeit.getSelectedItem();
 				String Notiz = null;
 				String[] Lieferanten = taLieferanten.getText().split(",");
 				double Preis = Double.parseDouble(textFieldPreis.getText().replace(',', '.'));
+				System.out.println(Preis);
 				int Rabatt = 10;
 				int Schuhgröße = 0;
 				String Farbe = null;

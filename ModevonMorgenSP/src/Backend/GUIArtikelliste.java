@@ -17,6 +17,8 @@ import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUIArtikelliste extends JPanel {
 	/**
@@ -121,10 +123,11 @@ public class GUIArtikelliste extends JPanel {
 	 * Create the frame.
 	 */
 	public GUIArtikelliste() {
+		ArtikelStrg.FülleArtikelsammlung();
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
 			
-		Comparator<Double> preiscomp = new Comparator<Double>() {
+		Comparator<Double> doublecomp = new Comparator<Double>() {
 			@Override
 			public int compare(Double o1, Double o2) {
 				if(o1 > o2)
@@ -136,7 +139,7 @@ public class GUIArtikelliste extends JPanel {
 			}
 		};
 		
-		Comparator<Integer> bestandcomp = new Comparator<Integer>() {
+		Comparator<Integer> intcomp = new Comparator<Integer>() {
 			@Override
 			public int compare(Integer o1, Integer o2) {
 				if(o1 > o2)
@@ -152,7 +155,7 @@ public class GUIArtikelliste extends JPanel {
 	
 		scrollpane = new JScrollPane();
 		//scrollpane.setLayout(null);
-		scrollpane.setBounds(10, 11, 900, 500);
+		scrollpane.setBounds(10, 11, 900, 490);
 		scrollpane.setVisible(true);
 		
 		
@@ -176,36 +179,59 @@ public class GUIArtikelliste extends JPanel {
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		sorter.setComparator(3, bestandcomp);
-		sorter.setComparator(4, preiscomp);
-		sorter.setComparator(5, preiscomp);
+		sorter.setComparator(3, intcomp);
+		sorter.setComparator(4, doublecomp);
+		sorter.setComparator(5, intcomp);
 		
 		add(scrollpane);
 		
-		JButton btnNeuerArtikel = new JButton("Neuer Artikel");
-		btnNeuerArtikel.setBounds(1000, 54, 89, 23);
-		add(btnNeuerArtikel);
+		JButton btnNeuerSchuhartikel = new JButton("Neuer Schuhartikel");
+		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new GUIArtikelFormular("Schuhe");
+			}
+		});
+		btnNeuerSchuhartikel.setBounds(920, 11, 270, 48);
+		add(btnNeuerSchuhartikel);
+		
+		JButton btnNeuerKleidungsartikel = new JButton("Neuer Kleidungsartikel");
+		btnNeuerKleidungsartikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new GUIArtikelFormular("Kleidung");
+			}
+		});
+		btnNeuerKleidungsartikel.setBounds(920, 70, 270, 48);
+		add(btnNeuerKleidungsartikel);
+		
+		JButton btnNeuesAccessoir = new JButton("Neues Accessoir");
+		btnNeuesAccessoir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new GUIArtikelFormular("Accessoires");
+			}
+		});
+		btnNeuesAccessoir.setBounds(920, 129, 270, 48);
+		add(btnNeuesAccessoir);
 		
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
-		btnEditiereArtikel.setBounds(1000, 125, 89, 23);
+		btnEditiereArtikel.setBounds(920, 188, 270, 48);
 		add(btnEditiereArtikel);
 		
 		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
-		btnEntferneArtikel.setBounds(1000, 204, 89, 23);
+		btnEntferneArtikel.setBounds(920, 247, 270, 48);
 		add(btnEntferneArtikel);
 		
 		JButton btnRabatt = new JButton("Rabatt ändern");
-		btnRabatt.setBounds(1000, 304, 89, 23);
+		btnRabatt.setBounds(920, 306, 270, 48);
 		add(btnRabatt);
 		setVisible(true);
 		
 		JButton btnNotiz = new JButton("Notiz ansehen");
-		btnNotiz.setBounds(1000, 404, 89, 23);
+		btnNotiz.setBounds(920, 424, 270, 48);
 		add(btnNotiz);
 		setVisible(true);
 		
 		JButton btnBestand = new JButton("Bestand ändern");
-		btnBestand.setBounds(1000, 304, 89, 23);
+		btnBestand.setBounds(920, 365, 270, 48);
 		add(btnBestand);
 		setVisible(true);
 

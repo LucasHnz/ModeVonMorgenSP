@@ -79,7 +79,7 @@ public class GUIMitarbeiter implements ActionListener{
 		
 		JLabel labelLogo = new JLabel("New label");
 		labelLogo.setBounds(56, 0, 1226, 99);
-		labelLogo.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\modeLogo.jpg"));
+		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
 		panelLogo.add(labelLogo);
 		
 		JPanel panelBar = new JPanel();
@@ -105,7 +105,7 @@ public class GUIMitarbeiter implements ActionListener{
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 147, 1234, 563);
+		panelMain.setBounds(10, 147, 1224, 563);
 		frame.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
 		
@@ -115,17 +115,16 @@ public class GUIMitarbeiter implements ActionListener{
 		
 		
 		GUIArtikelliste liste = new GUIArtikelliste();
-		liste.setVisible(true);
 		
 		GUIAdministratorListe AdminListe = new GUIAdministratorListe();
 		AdminListe.setVisible(true);
 		
 		
 		//tabbedPane.setTitleAt(1, "Artikelliste");
-		tabbedPane.addTab("Tab 1", liste );
-		liste.invalidate();
-		liste.validate();
-		liste.repaint();
+		tabbedPane.addTab("Artikelliste", liste );
+		//liste.invalidate();
+		//liste.validate();
+		//liste.repaint();
 		
 		tabbedPane.addTab("AdministratorListe", AdminListe);
 		AdminListe.invalidate();

@@ -90,7 +90,7 @@ public class GUI implements ActionListener {
 	{
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/SWP-Bilder/Herrenkleidung_1.jpg").getImage().getScaledInstance(380, 450, Image.SCALE_DEFAULT));
 		labelMainHerren.setIcon(imageIcon);
-		
+		 	
 	}
 
 	
@@ -145,7 +145,7 @@ public class GUI implements ActionListener {
 		
 		JLabel labelLogo = new JLabel("New label");
 		labelLogo.setBounds(56, 0, 1226, 99);
-		labelLogo.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\modeLogo.jpg"));
+		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
 		panelLogo.add(labelLogo);
 		
 		JPanel panelBar = new JPanel();

@@ -53,50 +53,55 @@ public class ArtikelStrg {
 			
 			if(kateg == "Accessoires") {
 		    	
-		    	sqlInsert = "insert into Accessoires values ( '" + Bezeichnung
-		    			+ "', Art = '" + Art
-		    			+ "', Geschlecht = '" + Geschlecht
-		    			+ "', Hersteller = '" + Hersteller
-		    			+ "', Lieferant = '" + Lieferanten
-		    			+ "', Bestand = '" + Bestand
-		    			+ "', Preis = '" + Preis
-		    			+ "', Rabatt = '" + Rabatt
-		    			+ "', Verfügbarkeit = '" + Verfügbarkeit
-		    			+ "', Notiz = '" + Notiz
-		    			+ "', Farbe = '" + Farbe
-		    			+ "  where artikelnr = '" + Artikelnummer + "' )"; 
+		    	sqlInsert = "insert into Accessoires  (artikelnr, bezeichnung, Art, Geschlecht, Hersteller, Lieferant, Bestand, Preis, Rabatt, Verfügbarkeit, Notiz, Farbe) values "
+		    			+ "(   " + Artikelnummer
+		    			+ " , '" + Bezeichnung
+		    			+ "', '" + Art
+		    			+ "', '" + Geschlecht
+		    			+ "', '" + Hersteller
+		    			+ "', '" + Lieferanten
+		    			+ "',  " + Bestand
+		    			+ " ,  " + Preis
+		    			+ " ,  " + Rabatt
+		    			+ " , '" + Verfügbarkeit
+		    			+ "', '" + Notiz
+		    			+ "', '" + Farbe
+		    			+ "')" ; 
 		    	}
 		     else if(kateg == "Schuhe") {
-		    	sqlInsert = "insert into Accessoires values ( '" + Bezeichnung
-		    			+ "', Art = '" + Art
-		    			+ "', Geschlecht = '" + Geschlecht
-		    			+ "', Hersteller = '" + Hersteller
-		    			+ "', Lieferant = '" + Lieferanten
-		    			+ "', Bestand = '" + Bestand
-		    			+ "', Preis = '" + Preis
-		    			+ "', Rabatt = '" + Rabatt
-		    			+ "', Verfügbarkeit = '" + Verfügbarkeit
-		    			+ "', Notiz = '" + Notiz
-		    			+ "', Größe = '" + Größe
-		    			+ "  where artikelnr = '" + Artikelnummer + "' )";  
+		    	sqlInsert = "insert into Schuhe  (artikelnr, bezeichnung, Art, Geschlecht, Hersteller, Lieferant, Bestand, Preis, Rabatt, Verfügbarkeit, Notiz, Schuhgröße) values "
+		    			+ "(   " + Artikelnummer
+		    			+ " , '" + Bezeichnung
+		    			+ "', '" + Art
+		    			+ "', '" + Geschlecht
+		    			+ "', '" + Hersteller
+		    			+ "', '" + Lieferanten
+		    			+ "',  " + Bestand
+		    			+ " ,  " + Preis
+		    			+ " ,  " + Rabatt
+		    			+ " , '" + Verfügbarkeit
+		    			+ "', '" + Notiz
+		    			+ "',  " + Schuhgröße
+		    			+ ")" ; 
 		    	}
-		    else if(kateg == "Schuhe") {
-		    	sqlInsert = "insert into Accessoires values ( '" + Bezeichnung
-		    			+ "', Art = '" + Art
-		    			+ "', Geschlecht = '" + Geschlecht
-		    			+ "', Hersteller = '" + Hersteller
-		    			+ "', Lieferant = '" + Lieferanten
-		    			+ "', Bestand = '" + Bestand
-		    			+ "', Preis = '" + Preis
-		    			+ "', Rabatt = '" + Rabatt
-		    			+ "', Verfügbarkeit = '" + Verfügbarkeit
-		    			+ "', Notiz = '" + Notiz
-		    			+ "', Schuhgröße = '" + Schuhgröße
-		    			+ "  where artikelnr = '" + Artikelnummer + "' )"; 
+		    else if(kateg == "Kleidung") {
+		    	 sqlInsert = "insert into Kleidung  (artikelnr, bezeichnung, Art, Geschlecht, Hersteller, Lieferant, Bestand, Preis, Rabatt, Verfügbarkeit, Notiz, Größe) values "
+		    			+ "(   " + Artikelnummer
+		    			+ " , '" + Bezeichnung
+		    			+ "', '" + Art
+		    			+ "', '" + Geschlecht
+		    			+ "', '" + Hersteller
+		    			+ "', '" + Lieferanten
+		    			+ "',  " + Bestand
+		    			+ " ,  " + Preis
+		    			+ " ,  " + Rabatt
+		    			+ " , '" + Verfügbarkeit
+		    			+ "', '" + Notiz
+		    			+ "', '" + Größe
+		    			+ "')" ; 
 		    	}
-		    stmt.addBatch(sqlInsert);
-		
-		stmt.executeBatch();
+				
+		stmt.executeUpdate(sqlInsert);
 		
 		stmt.close();
 		con.close();
