@@ -27,7 +27,7 @@ public class MitarbeiterStrg {
 		}
 	}
 	
-public static void aktualisiereName(String name, String nutzernr){
+public static void aktualisiereName(String name, int nutzernr){
 		
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -44,7 +44,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		
 	}
 
-	public static void aktualisiereAdminnr(String adminnr, String nutzernr) {
+	public static void aktualisiereAdminnr(String adminnr, int nutzernr) {
 		
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -60,7 +60,7 @@ public static void aktualisiereName(String name, String nutzernr){
 			}
 	}
 	
-	public static void aktualisiereEmail(String email, String nutzernr) {
+	public static void aktualisiereEmail(String email, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -77,7 +77,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		}
 	}
 	
-	public static void aktualisiereStraﬂe(String straﬂe, String nutzernr) {
+	public static void aktualisiereStraﬂe(String straﬂe, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -95,7 +95,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		
 	}
 	
-	public static void aktualisiereOrt(String ort, String nutzernr) {
+	public static void aktualisiereOrt(String ort, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -112,7 +112,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		}
 	}
 	
-	public static void aktualisierePLZ(String plz, String nutzernr) {
+	public static void aktualisierePLZ(String plz, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -130,7 +130,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		
 	}
 
-	public static void aktualisiereIBAN(String iban, String nutzernr) {
+	public static void aktualisiereIBAN(String iban, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -147,7 +147,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		}
 	}
 
-	public static void aktualisiereGehalt(String gehalt, String nutzernr) {
+	public static void aktualisiereGehalt(String gehalt, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -164,13 +164,30 @@ public static void aktualisiereName(String name, String nutzernr){
 		}
 	}
 
-	public static void aktualisierePasswort(String passwort, String nutzernr) {
+	public static void aktualisierePasswort(String passwort, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
 		String sqlbefehl = "update Mitarbeiter set Passwort ='"+passwort+"' where nutzernr ="+nutzernr;
+		
+		stmt.execute(sqlbefehl)	;
+		
+		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+		
+		}catch (SQLException e) {
+			e.getMessage();
+		}
+	}
+	
+public static void aktualisiereVorname(String vorname, int nutzernr) {
+		
+		try{
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		
+		String sqlbefehl = "update Mitarbeiter set Vorname ='"+vorname+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		

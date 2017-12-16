@@ -164,7 +164,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(169, 30, 161, 16);
 		
-		ResultSet rs = Datenbankverwaltung.HoleAlleNummernAdmin.AdminNummern();
+		ResultSet rs = Datenbankverwaltung.HoleDatenSatz.AdminNummern();
 		while(rs.next()) {
 			int i = rs.getInt("Nutzernr");
 			comboBox.addItem(i);

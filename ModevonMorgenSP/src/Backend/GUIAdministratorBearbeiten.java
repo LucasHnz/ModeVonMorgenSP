@@ -210,16 +210,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		                JOptionPane.WARNING_MESSAGE, null, 
 		                new String[]{"Ok"}, "Ok");  
 				
-				textField.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteAdminNr()));
-				textField_2.setText("");
-				textField_3.setText("");
-				textField_4.setText("");
-				textField_5.setText("");
-				textField_6.setText("");
-				textField_7.setText("");
-				textField_8.setText("");
-				textField_9.setText("");
-				textField_10.setText("");
+				dispose();
 				
 			}
 		
