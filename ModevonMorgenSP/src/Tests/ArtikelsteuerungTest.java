@@ -6,6 +6,6 @@ public class ArtikelsteuerungTest {
 
 	public static void main(String[] args) {
 		ArtikelStrg.FülleArtikelsammlung();
-		ArtikelStrg.ArtikelDBSichern();
+		ArtikelStrg.entferneArtikel(700000013);
 	}
 }

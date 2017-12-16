@@ -143,6 +143,32 @@ public class ArtikelStrg {
 		FülleArtikelsammlung();
 		ArtikelDBSichern();
 	}
+	public static void entferneArtikel(int Artikelnr) {
+		int pk = Artikelnr;
+		Artikel artikel = Artikelsammlung.getArtikel(Artikelnr);
+		String sqlbefehel = null;
+		
+		try {
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			
+			if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
+				sqlbefehel ="delete from Schuhe where artikelnr = '"+pk+"'";
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires")
+				sqlbefehel ="delete from Accessoires where artikelnr = '"+pk+"'";
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Kleidung")
+				sqlbefehel ="delete from Kleidung where artikelnr = '"+pk+"'";
+			
+			stmt.executeQuery(sqlbefehel);
+			Artikelsammlung.removeArtikel(Artikelnr);
+			stmt.close();
+			con.close();
+			
+		}catch (SQLException e) {
+			e.getMessage();
+		}
+	}
 	/**
 	 * Fordert die Artikelsammlung auf, einen neuen Artikel mit den übergebenen Parametern hinzuzufügen.
 	 * @param kateg Eine der drei Artikelkategorien: Schuhe, Accessoires und Kleidung.
@@ -323,9 +349,5 @@ public class ArtikelStrg {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-	
 	}
 }

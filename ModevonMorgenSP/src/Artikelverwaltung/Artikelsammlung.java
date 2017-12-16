@@ -57,6 +57,9 @@ public class Artikelsammlung {
 	public static HashMap<Integer, Artikel> getArtikelsammlung(){
 		return Artikelsammlung;
 	}
+	public static void removeArtikel(int Artikelnummer) {
+		Artikelsammlung.remove(Artikelnummer);
+	}
 	
 	public static Artikel[] getArtikelArray(String Filter) {
 	 
