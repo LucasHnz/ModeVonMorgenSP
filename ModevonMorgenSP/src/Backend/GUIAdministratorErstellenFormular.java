@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -199,6 +200,11 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 				textField_8.setText("");
 				textField_9.setText("");
 				textField_10.setText("");
+				
+				JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Administrator Erstellung",
+		                JOptionPane.YES_NO_CANCEL_OPTION,
+		                JOptionPane.WARNING_MESSAGE, null, 
+		                new String[]{"Ok"}, "Ok");
 			}
 			
 		});

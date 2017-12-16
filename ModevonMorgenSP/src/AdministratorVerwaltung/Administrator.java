@@ -6,7 +6,7 @@ public class Administrator {
 	private String nachname;
 	private String vorname;
 	private String email;
-	private String stra√üe;
+	private String straﬂe;
 	private String ort;
 	private int plz;
 	private String iban;
@@ -14,12 +14,12 @@ public class Administrator {
 	private int berechtigumg;
 	private String passwort;
 
-	public Administrator(int nutzernr, String nachname, String vorname, String email, String stra√üe, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort){
+	public Administrator(int nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort){
 		this.nutzernr = nutzernr;
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
-		this.stra√üe = stra√üe;
+		this.straﬂe = straﬂe;
 		this.ort = ort;
 		this.plz = plz;
 		this.iban = iban;
@@ -31,7 +31,7 @@ public class Administrator {
 	@Override
 	public String toString() {
 		return "Administrator [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
-				+ email + ", stra√üe=" + stra√üe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", gehalt="
+				+ email + ", straﬂe=" + straﬂe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", gehalt="
 				+ gehalt + ", berechtigumg=" + berechtigumg + ", passwort=" + passwort + "]";
 	}
 
@@ -68,11 +68,11 @@ public class Administrator {
 	}
 
 	public String getStraﬂe() {
-		return stra√üe;
+		return straﬂe;
 	}
 
-	public void setStra√üe(String stra√üe) {
-		this.stra√üe = stra√üe;
+	public void setStraﬂe(String straﬂe) {
+		this.straﬂe = straﬂe;
 	}
 
 	public String getOrt() {
