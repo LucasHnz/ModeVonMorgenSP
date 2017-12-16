@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import AdministratorVerwaltung.Administrator;
+
 public class MitarbeiterStrg {
 	
 	public static void entferneMitarbeiter(String nutzernr) {
@@ -183,13 +185,12 @@ public static void aktualisiereName(String name, String nutzernr){
 	{
 		
 		int  nutzernr2 = Integer.parseInt(nutzernr);
-		int  adminnr2 = Integer.parseInt(adminnr);
+		int adminnr2 = Integer.parseInt(adminnr);
 		int plz2 = Integer.parseInt(plz);
 		int gehalt2 = Integer.parseInt(gehalt);
 		int berechtigung2 = Integer.parseInt(berechtigung);
 		
-		
-		Mitarbeiter ma = new Mitarbeiter(nutzernr2, adminnr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
+		Mitarbeiter ma = new Mitarbeiter(nutzernr2,adminnr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
 		
 		
 		try {
@@ -197,7 +198,8 @@ public static void aktualisiereName(String name, String nutzernr){
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			
 			Statement stmt = con.createStatement();
-						String sqlbefehl = "insert into Mitarbeiter values ('"+nutzernr2+"','"+adminnr2+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz2+"','"+iban+"','"+gehalt2+"','"+berechtigung2+"','"+passwort+"')";
+			
+			String sqlbefehl = "insert into Mitarbeiter values ('"+nutzernr2+"','"+adminnr2+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz2+"','"+iban+"','"+gehalt2+"','"+berechtigung2+"','"+passwort+"')";
 			
 			stmt.executeQuery(sqlbefehl);
 			
@@ -207,7 +209,6 @@ public static void aktualisiereName(String name, String nutzernr){
 		}catch (SQLException e) {
 			e.getMessage();
 		}
-		
 	}
 
 }

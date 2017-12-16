@@ -52,7 +52,7 @@ public class holeNächsteNummer {
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("Nutzernr");
+				i = rs.getInt(1);
 				
 			}
 			
