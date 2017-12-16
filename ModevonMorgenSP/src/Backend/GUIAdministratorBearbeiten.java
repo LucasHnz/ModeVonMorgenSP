@@ -31,7 +31,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		setBounds(200, 100, 354, 298);
 		setResizable(false);
 		setAlwaysOnTop(true);
-		setTitle("Administrator Erstellen Formular");
+		setTitle("Administrator Bearbeiten Formular");
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();

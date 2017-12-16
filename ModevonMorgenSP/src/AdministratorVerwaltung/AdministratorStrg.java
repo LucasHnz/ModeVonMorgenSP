@@ -7,8 +7,7 @@ import java.sql.Statement;
 public class AdministratorStrg {
 	
 
-	public static void entferneAdmin(String adminnr) {
-		int pk = Integer.parseInt(adminnr);
+	public static void entferneAdmin(int i) {
 	
 	try {
 		
@@ -16,7 +15,7 @@ public class AdministratorStrg {
 		
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehel ="delete from Administrator where nutzernr = '"+pk+"'";
+		String sqlbefehel ="delete from Administrator where nutzernr = '"+i+"'";
 		
 		stmt.executeQuery(sqlbefehel);
 		
