@@ -205,6 +205,9 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 		                JOptionPane.YES_NO_CANCEL_OPTION,
 		                JOptionPane.WARNING_MESSAGE, null, 
 		                new String[]{"Ok"}, "Ok");
+				
+				dispose();
+				
 			}
 			
 		});
