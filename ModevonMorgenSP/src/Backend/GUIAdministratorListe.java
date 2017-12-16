@@ -20,7 +20,7 @@ public class GUIAdministratorListe extends JPanel{
 	private JTable table;
 	private JScrollPane scrollpane;
 	
-	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straï¿½e", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
+	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -64,7 +64,7 @@ public class GUIAdministratorListe extends JPanel{
 				return data.get(keys[rowIndex]).getEmail();
 			}	
 			else if(columnIndex == 4) {
-				return data.get(keys[rowIndex]).getStraï¿½e();
+				return data.get(keys[rowIndex]).getStraße();
 			}	
 			else if(columnIndex == 5) {
 				return data.get(keys[rowIndex]).getOrt();
@@ -114,7 +114,7 @@ public class GUIAdministratorListe extends JPanel{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdministratorSammlung.fï¿½lleAdministratorListe();
+					AdministratorSammlung.fülleAdministratorListe();
 					GUIAdministratorListe frame = new GUIAdministratorListe();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -128,6 +128,8 @@ public class GUIAdministratorListe extends JPanel{
 	 * Create the frame.
 	 */
 	public GUIAdministratorListe() {
+		
+		
 		
 		setLayout( null );
 		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));

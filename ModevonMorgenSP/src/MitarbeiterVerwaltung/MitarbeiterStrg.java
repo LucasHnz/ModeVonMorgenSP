@@ -179,7 +179,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		}
 	}
 	
-	public static void hinzuf¸genMA(String nutzernr, String adminnr, String nachname, String vorname, String email, String stra√üe, String ort, String plz, String iban, String gehalt, String berechtigung, String passwort)
+	public static void hinzuf¸genMA(String nutzernr, String adminnr, String nachname, String vorname, String email, String straﬂe, String ort, String plz, String iban, String gehalt, String berechtigung, String passwort)
 	{
 		
 		int  nutzernr2 = Integer.parseInt(nutzernr);
@@ -189,7 +189,7 @@ public static void aktualisiereName(String name, String nutzernr){
 		int berechtigung2 = Integer.parseInt(berechtigung);
 		
 		
-		Mitarbeiter ma = new Mitarbeiter(nutzernr2, adminnr2, nachname, vorname, email, stra√üe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
+		Mitarbeiter ma = new Mitarbeiter(nutzernr2, adminnr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
 		
 		
 		try {
@@ -197,8 +197,7 @@ public static void aktualisiereName(String name, String nutzernr){
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			
 			Statement stmt = con.createStatement();
-			
-			String sqlbefehl = "insert into Mitarbeiter values ('"+nutzernr2+"','"+adminnr2+"','"+nachname+"','"+vorname+"','"+email+"','"+stra√üe+"','"+ort+"','"+plz2+"','"+iban+"','"+gehalt2+"','"+berechtigung2+"','"+passwort+"')";
+						String sqlbefehl = "insert into Mitarbeiter values ('"+nutzernr2+"','"+adminnr2+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz2+"','"+iban+"','"+gehalt2+"','"+berechtigung2+"','"+passwort+"')";
 			
 			stmt.executeQuery(sqlbefehl);
 			
