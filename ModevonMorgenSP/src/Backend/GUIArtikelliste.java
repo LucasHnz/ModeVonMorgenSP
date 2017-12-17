@@ -13,6 +13,8 @@ import javax.swing.table.TableRowSorter;
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -47,7 +49,35 @@ public class GUIArtikelliste extends JPanel {
 		public int getColumnCount() {
 			return columnNames.length;
 		}
-		
+		@Override
+		public Class getColumnClass(int columnIndex){
+			if(columnIndex == 0) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 1) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 2) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 3) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 4) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 5) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 6) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 7) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else 
+				return null;
+		}
 		public String getColumnName(int columnIndex) {
 			return columnNames[columnIndex].toString();
 		}
@@ -60,7 +90,7 @@ public class GUIArtikelliste extends JPanel {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
 				if(columnIndex == 0) {
-					return data.get(keys[rowIndex]).getArtikelnummer();
+					return String.valueOf(data.get(keys[rowIndex]).getArtikelnummer());
 				}
 				else if(columnIndex == 1) {
 					return data.get(keys[rowIndex]).getBezeichnung();
@@ -81,12 +111,10 @@ public class GUIArtikelliste extends JPanel {
 					return data.get(keys[rowIndex]).getVerfügbarkeit();
 				}	
 				else if(columnIndex == 7) {
-				//	if(data.get(rowIndex).getNotiz() != null)
-				//	return String.valueOf(true);
-				//else
-				//	return String.valueOf(false);
-				//return "test";	
-					return data.get(keys[rowIndex]).getNotiz();
+					if(data.get(keys[rowIndex]).getNotiz() != null)
+						return new ImageIcon("src\\Icons\\exclamation-mark.png");
+					else
+						return new ImageIcon();				
 				}	
 				else
 					return null;
@@ -156,8 +184,8 @@ public class GUIArtikelliste extends JPanel {
 		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(38);
-		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(32);
+		table.getColumnModel().getColumn(1).setPreferredWidth(120);
 		table.getColumnModel().getColumn(2).setPreferredWidth(80);
 		table.getColumnModel().getColumn(3).setPreferredWidth(30);
 		table.getColumnModel().getColumn(4).setPreferredWidth(30);
@@ -242,14 +270,45 @@ public class GUIArtikelliste extends JPanel {
 		add(btnEntferneArtikel);
 		
 		JButton btnRabatt = new JButton("Rabatt ändern");
+		btnRabatt.addActionListener(new ActionListener() {
+			final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+			public void actionPerformed(ActionEvent arg0) {
+				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Rabatt: " 
+							+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt() + " %", "Rabatt ändern", 
+							JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt());
+				ArtikelStrg.aktualisiereRabatt(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+				}
+		});
 		btnRabatt.setBounds(920, 306, 270, 48);
 		add(btnRabatt);
 				
 		JButton btnNotiz = new JButton("Notiz ansehen");
+		btnNotiz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktuelle Notiz:\n" 
+						+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz(), "Notiz ändern", 
+						JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz());
+			ArtikelStrg.aktualisiereNotiz(optionPane, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+			}
+		});
 		btnNotiz.setBounds(920, 424, 270, 48);
 		add(btnNotiz);
 				
 		JButton btnBestand = new JButton("Bestand ändern");
+		btnBestand.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Bestand: " 
+						+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand(), "Bestand ändern", 
+						JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand() );
+				ArtikelStrg.aktualisiereBestand(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+			
+			}
+		});
 		btnBestand.setBounds(920, 365, 270, 48);
 		add(btnBestand);
 		

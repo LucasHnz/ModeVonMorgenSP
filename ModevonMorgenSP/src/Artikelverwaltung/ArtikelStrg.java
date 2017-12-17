@@ -292,8 +292,7 @@ public class ArtikelStrg {
 			    Accessoires artikel1;
 			    Schuhe artikel2;
 			    Kleidung artikel3;
-			    //System.out.println(key + " " + artikel.getArtikelnummer() + " " + artikel.getClass().toString());
-			    
+			    			    
 			    if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires") {
 			    	artikel1 = (Accessoires) entry.getValue();
 			    	sqlUpdate = "update Accessoires set Bezeichnung = '" + artikel1.getBezeichnung() 
@@ -349,5 +348,77 @@ public class ArtikelStrg {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void aktualisiereRabatt(int Rabatt, int Artikelnummer) {
+		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
+		Statement stmt = null;
+		String sqlUpdate = null;
+		Artikel artikel = Sammlung.get(Artikelnummer);
+		try{
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement();
+			
+			if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires")
+				sqlUpdate = "update Accessoires set rabatt ='"+Rabatt+"' where Artikelnr ="+Artikelnummer;
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Kleidung")
+				sqlUpdate = "update Kleidung set rabatt ='"+Rabatt+"' where Artikelnr ="+Artikelnummer;
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
+				sqlUpdate = "update Schuhe set rabatt ='"+Rabatt+"' where Artikelnr ="+Artikelnummer;
+			System.out.println(sqlUpdate);
+			stmt.execute(sqlUpdate)	;
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			artikel.setRabatt(Rabatt);
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+	public static void aktualisiereBestand(int Bestand, int Artikelnummer) {
+		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
+		Statement stmt = null;
+		String sqlUpdate = null;
+		Artikel artikel = Sammlung.get(Artikelnummer);
+		try{
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement();
+			
+			if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires")
+				sqlUpdate = "update Accessoires set Bestand ='"+Bestand+"' where Artikelnr ="+Artikelnummer;
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Kleidung")
+				sqlUpdate = "update Kleidung set Bestand ='"+Bestand+"' where Artikelnr ="+Artikelnummer;
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
+				sqlUpdate = "update Schuhe set Bestand ='"+Bestand+"' where Artikelnr ="+Artikelnummer;
+			System.out.println(sqlUpdate);
+			stmt.execute(sqlUpdate)	;
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			artikel.setBestand(Bestand);
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+	public static void aktualisiereNotiz(String Notiz, int Artikelnummer) {
+		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
+		Statement stmt = null;
+		String sqlUpdate = null;
+		Artikel artikel = Sammlung.get(Artikelnummer);
+		try{
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement();
+			
+			if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires")
+				sqlUpdate = "update Accessoires set Notiz ='"+Notiz+"' where Artikelnr ="+Artikelnummer;
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Kleidung")
+				sqlUpdate = "update Kleidung set Notiz ='"+Notiz+"' where Artikelnr ="+Artikelnummer;
+			else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
+				sqlUpdate = "update Schuhe set Notiz ='"+Notiz+"' where Artikelnr ="+Artikelnummer;
+			System.out.println(sqlUpdate);
+			stmt.execute(sqlUpdate)	;
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			artikel.setNotiz(Notiz);
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
 	}
 }
