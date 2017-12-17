@@ -124,8 +124,8 @@ public class GUIArtikelliste extends JPanel {
 	 * Create the frame.
 	 */
 	public GUIArtikelliste() {
-		setBackground(Color.DARK_GRAY);
 		ArtikelStrg.FülleArtikelsammlung();
+		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
 			
@@ -153,16 +153,7 @@ public class GUIArtikelliste extends JPanel {
 			}		
 		};
 		
-		
-	
-		scrollpane = new JScrollPane();
-		//scrollpane.setLayout(null);
-		scrollpane.setBounds(10, 11, 900, 490);
-		
-		
-		
 		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
-		scrollpane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(38);
@@ -184,8 +175,9 @@ public class GUIArtikelliste extends JPanel {
 		sorter.setComparator(4, doublecomp);
 		sorter.setComparator(5, intcomp);
 		
-	
-		
+		scrollpane = new JScrollPane();
+		scrollpane.setBounds(10, 11, 900, 490);
+		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
 		JButton btnNeuerSchuhartikel = new JButton("Neuer Schuhartikel");
@@ -252,17 +244,15 @@ public class GUIArtikelliste extends JPanel {
 		JButton btnRabatt = new JButton("Rabatt ändern");
 		btnRabatt.setBounds(920, 306, 270, 48);
 		add(btnRabatt);
-		setVisible(true);
-		
+				
 		JButton btnNotiz = new JButton("Notiz ansehen");
 		btnNotiz.setBounds(920, 424, 270, 48);
 		add(btnNotiz);
-		setVisible(true);
-		
+				
 		JButton btnBestand = new JButton("Bestand ändern");
 		btnBestand.setBounds(920, 365, 270, 48);
 		add(btnBestand);
+		
 		setVisible(true);
-
 	}
 }

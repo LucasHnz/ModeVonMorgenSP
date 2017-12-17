@@ -1,5 +1,6 @@
 package Backend;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +27,6 @@ public class GUIAdministratorListe extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	
 	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
 
 	private class myTableModel extends AbstractTableModel{
@@ -135,10 +135,11 @@ public class GUIAdministratorListe extends JPanel{
 	 * Create the frame.
 	 */
 	public GUIAdministratorListe() {
+		AdministratorSammlung.fülleAdministratorListe();
+		setLayout(null);
+		setBounds(90, 100, 1200, 600);
+		setBackground(Color.DARK_GRAY);
 		
-		
-		
-		setLayout( null );
 		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
@@ -187,15 +188,12 @@ public class GUIAdministratorListe extends JPanel{
 		table.setBounds(30,42,800, 395);
 		table.setVisible(true);
 		
-		scrollpane = new JScrollPane(table);
-		scrollpane.setBounds(30, 42, 800, 395);
-		//getContentPane().add(scrollPane);
-		
+		scrollpane = new JScrollPane();
+		scrollpane.setBounds(10, 11, 900, 490);
 		scrollpane.setVisible(true);
-		
+		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
-		setVisible(true);
 		
 		JButton btnNeuerAdministrator = new JButton("Administrator hinzufügen");
 		btnNeuerAdministrator.addActionListener(new ActionListener() {
@@ -203,7 +201,6 @@ public class GUIAdministratorListe extends JPanel{
 				try {
 					new GUIAdministratorErstellenFormular();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -229,7 +226,7 @@ public class GUIAdministratorListe extends JPanel{
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 				
-				JOptionPane.showOptionDialog(null, "Sie sind dabei einen Admin zu löschen! /nFortfahren ?","Administrator Bearbeitung",
+				JOptionPane.showOptionDialog(null, "Sie sind dabei einen Admin zu löschen! \nFortfahren ?","Administrator Bearbeitung",
 		                JOptionPane.YES_NO_CANCEL_OPTION,
 		                JOptionPane.WARNING_MESSAGE, null, 
 		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
@@ -241,6 +238,7 @@ public class GUIAdministratorListe extends JPanel{
 		btnLöscheAdmin.setBounds(920,136,270,48);
 		add(btnLöscheAdmin);
 		
+		setVisible(true);
 
 	}
 	
