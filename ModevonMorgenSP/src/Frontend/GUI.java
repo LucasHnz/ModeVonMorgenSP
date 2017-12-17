@@ -41,7 +41,7 @@ import java.awt.SystemColor;
 //ABC
 
 
-public class GUI implements ActionListener {
+    public class GUI implements ActionListener {
 	
 	
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
@@ -73,6 +73,9 @@ public class GUI implements ActionListener {
 	private JPasswordField passwordField;
 	//public static JButton btnAnmelden = new JButton();
 	public JPanel panelAnmelden = new JPanel();
+	
+	
+	
 	
 	public static void fensterSchlieﬂen() {
 		frame.dispose();
@@ -112,6 +115,13 @@ public class GUI implements ActionListener {
 		frame.repaint();
 	}
 	
+	public ImageIcon bildAnpassen(String imageRoot) {
+		
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(380, 450, Image.SCALE_DEFAULT));
+		return imageIcon;
+	}
+	
+	
 		static void anmeldenFehlermeldung() {
 		
 		System.out.println("OPT");
@@ -127,28 +137,28 @@ public class GUI implements ActionListener {
 	public void wechselOutfitDamenRechts() 
 	{
 		
-		 labelMainDamen.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\frau1.jpg"));
+		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_6.jpg"));
 		 
 	}
 	
 	public void wechselOutfitDamenLinks() 
 	{
 		
-		 labelMainDamen.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\frau2.jpg"));
+		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
 		
 	}
 	
 	public void wechselOutfitHerrenRechts() 
 	{
 		
-		 labelMainHerren.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\mann2.jpg"));
+		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenkleidung_1.jpg"));
 
 	}
 	
 	public void wechselOutfitHerrenLinks() 
 	{
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/SWP-Bilder/Herrenkleidung_1.jpg").getImage().getScaledInstance(380, 450, Image.SCALE_DEFAULT));
-		labelMainHerren.setIcon(imageIcon);
+		
+		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
 		 	
 	}
 
@@ -290,13 +300,13 @@ public class GUI implements ActionListener {
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
 		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\frau2.jpg"));
+		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
 		panelMain.add(labelMainDamen);
 		
 		labelMainHerren = new JLabel("");
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\mann1.jpg"));
+		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
 		panelMain.add(labelMainHerren);
 		
 		JLabel labelMainHintergrund = new JLabel();
