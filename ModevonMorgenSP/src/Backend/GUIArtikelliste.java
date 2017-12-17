@@ -59,42 +59,42 @@ public class GUIArtikelliste extends JPanel {
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
-			if(columnIndex == 0) {
-				return data.get(keys[rowIndex]).getArtikelnummer();
-			}
-			else if(columnIndex == 1) {
-				return data.get(keys[rowIndex]).getBezeichnung();
-			}
-			else if(columnIndex == 2) {
-				return data.get(keys[rowIndex]).getHersteller();
-			}	
-			else if(columnIndex == 3) {
-				return data.get(keys[rowIndex]).getBestand();
-			}	
-			else if(columnIndex == 4) {
-				return data.get(keys[rowIndex]).getPreis();
-			}	
-			else if(columnIndex == 5) {
-				return data.get(keys[rowIndex]).getRabatt();
-			}	
-			else if(columnIndex == 6) {
-				return data.get(keys[rowIndex]).getVerfügbarkeit();
-			}	
-			else if(columnIndex == 7) {
-				//if(data.get(rowIndex).getNotiz() != null)
+				if(columnIndex == 0) {
+					return data.get(keys[rowIndex]).getArtikelnummer();
+				}
+				else if(columnIndex == 1) {
+					return data.get(keys[rowIndex]).getBezeichnung();
+				}
+				else if(columnIndex == 2) {
+					return data.get(keys[rowIndex]).getHersteller();
+				}	
+				else if(columnIndex == 3) {
+					return data.get(keys[rowIndex]).getBestand();
+				}	
+				else if(columnIndex == 4) {
+					return data.get(keys[rowIndex]).getPreis();
+				}	
+				else if(columnIndex == 5) {
+					return data.get(keys[rowIndex]).getRabatt();
+				}	
+				else if(columnIndex == 6) {
+					return data.get(keys[rowIndex]).getVerfügbarkeit();
+				}	
+				else if(columnIndex == 7) {
+				//	if(data.get(rowIndex).getNotiz() != null)
 				//	return String.valueOf(true);
 				//else
 				//	return String.valueOf(false);
 				//return "test";	
-				return data.get(keys[rowIndex]).getNotiz();
-			}	
-			else
-				return null;
+					return data.get(keys[rowIndex]).getNotiz();
+				}	
+				else
+					return null;
 			
-		}catch(NullPointerException e) {
-			String a = null;
-			return a;
-		}
+			}catch(NullPointerException e) {
+				String a = null;
+				return a;
+			}
 		}
 		
 		public boolean isCellEditable(int rowIndex, int columnIndex) {

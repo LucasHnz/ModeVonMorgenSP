@@ -1,13 +1,11 @@
 package Backend;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,15 +17,13 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import AdministratorVerwaltung.Administrator;
 import AdministratorVerwaltung.AdministratorSammlung;
-import Artikelverwaltung.Artikel;
-import Artikelverwaltung.Artikelsammlung;
 
 public class GUIAdministratorListe extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
+	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Passwort"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -58,77 +54,49 @@ public class GUIAdministratorListe extends JPanel{
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
-			if(columnIndex == 0) {
-				return data.get(keys[rowIndex]).getNutzernr();
-			}
-			else if(columnIndex == 1) {
-				return data.get(keys[rowIndex]).getNachname();
-			}
-			else if(columnIndex == 2) {
-				return data.get(keys[rowIndex]).getVorname();
-			}	
-			else if(columnIndex == 3) {
-				return data.get(keys[rowIndex]).getEmail();
-			}	
-			else if(columnIndex == 4) {
-				return data.get(keys[rowIndex]).getStraße();
-			}	
-			else if(columnIndex == 5) {
-				return data.get(keys[rowIndex]).getOrt();
-			}	
-			else if(columnIndex == 6) {
-				return data.get(keys[rowIndex]).getPlz();
-			}	
-			else if(columnIndex == 7) {
-				//if(data.get(rowIndex).getNotiz() != null)
-				//	return String.valueOf(true);
-				//else
-				//	return String.valueOf(false);
-				//return "test";	
-				return data.get(keys[rowIndex]).getIban();
-			}
+				if(columnIndex == 0) {
+					return data.get(keys[rowIndex]).getNutzernr();
+				}
+				else if(columnIndex == 1) {
+					return data.get(keys[rowIndex]).getNachname();
+				}
+				else if(columnIndex == 2) {
+					return data.get(keys[rowIndex]).getVorname();
+				}		
+				else if(columnIndex == 3) {
+					return data.get(keys[rowIndex]).getEmail();
+				}	
+				else if(columnIndex == 4) {
+					return data.get(keys[rowIndex]).getStraße();
+				}	
+				else if(columnIndex == 5) {
+					return data.get(keys[rowIndex]).getOrt();
+				}	
+				else if(columnIndex == 6) {
+					return data.get(keys[rowIndex]).getPlz();
+				}	
+				else if(columnIndex == 7) {
+					return data.get(keys[rowIndex]).getIban();
+				}
+				else if (columnIndex == 8) {
+					return data.get(keys[rowIndex]).getGehalt();
+				}
+				else if ( columnIndex == 9 ) {
+					return data.get(keys[rowIndex]).getPasswort();
+				}		
+				else
+					return null;
 			
-			else if (columnIndex == 8) {
-				return data.get(keys[rowIndex]).getGehalt();
-			}
-			
-			else if (columnIndex == 9) {
-				return data.get(keys[rowIndex]).getBerechtigumg();
-			}
-			
-			else if ( columnIndex == 10 ) {
-				return data.get(keys[rowIndex]).getPasswort();
-			}
-			else
-				return null;
-			
-		}catch(NullPointerException e) {
-			String a = null;
-			return a;
-		}
+			}catch(NullPointerException e) {
+				String a = null;
+				return a;
+			}	
 		}
 		
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
 			return false;	
 		}
 					
-	}
-
-	/**
-	 * Starte die Anwendung
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdministratorSammlung.fülleAdministratorListe();
-					GUIAdministratorListe frame = new GUIAdministratorListe();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 
 	/**
@@ -143,28 +111,18 @@ public class GUIAdministratorListe extends JPanel{
 		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(38);
-		table.getColumnModel().getColumn(1).setPreferredWidth(100);
-		table.getColumnModel().getColumn(2).setPreferredWidth(80);
-		table.getColumnModel().getColumn(3).setPreferredWidth(30);
-		table.getColumnModel().getColumn(4).setPreferredWidth(30);
-		table.getColumnModel().getColumn(5).setPreferredWidth(30);
-		table.getColumnModel().getColumn(6).setPreferredWidth(100);
-		table.getColumnModel().getColumn(7).setPreferredWidth(10);
-			
-		Comparator<Double> preiscomp = new Comparator<Double>() {
-			@Override
-			public int compare(Double o1, Double o2) {
-				if(o1 > o2)
-					return 1;
-				else if(o1 < o2)
-					return -1;
-				else
-					return 0;
-			}
-		};
+		table.getColumnModel().getColumn(0).setPreferredWidth(60);
+		table.getColumnModel().getColumn(1).setPreferredWidth(80);
+		table.getColumnModel().getColumn(2).setPreferredWidth(60);
+		table.getColumnModel().getColumn(3).setPreferredWidth(120);
+		table.getColumnModel().getColumn(4).setPreferredWidth(100);
+		table.getColumnModel().getColumn(5).setPreferredWidth(80);
+		table.getColumnModel().getColumn(6).setPreferredWidth(35);
+		table.getColumnModel().getColumn(7).setPreferredWidth(100);
+		table.getColumnModel().getColumn(8).setPreferredWidth(40);
+		table.getColumnModel().getColumn(9).setPreferredWidth(80);
 		
-		Comparator<Integer> bestandcomp = new Comparator<Integer>() {
+		Comparator<Integer> intcomp = new Comparator<Integer>() {
 			@Override
 			public int compare(Integer o1, Integer o2) {
 				if(o1 > o2)
@@ -177,9 +135,7 @@ public class GUIAdministratorListe extends JPanel{
 		};
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
-		sorter.setComparator(3, bestandcomp);
-		sorter.setComparator(4, preiscomp);
-		sorter.setComparator(5, preiscomp);
+		sorter.setComparator(8, intcomp);
 		table.setRowSorter(sorter);
 		table.getRowSorter().toggleSortOrder(0);
 		table.setRowSelectionAllowed(true);
@@ -216,7 +172,7 @@ public class GUIAdministratorListe extends JPanel{
 				new GUIAdministratorBearbeiten(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 			}
 		});
-		btnEditiereAdministrator.setBounds(920,76,270,48);
+		btnEditiereAdministrator.setBounds(920,70,270,48);
 		add(btnEditiereAdministrator);
 		
 		JButton btnLöscheAdmin = new JButton("Administrator löschen");
@@ -235,13 +191,10 @@ public class GUIAdministratorListe extends JPanel{
 			
 			}
 		});
-		btnLöscheAdmin.setBounds(920,136,270,48);
+		btnLöscheAdmin.setBounds(920,129,270,48);
 		add(btnLöscheAdmin);
 		
 		setVisible(true);
 
 	}
-	
-	
-
 }

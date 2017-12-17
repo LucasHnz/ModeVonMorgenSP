@@ -113,15 +113,11 @@ public class GUIMitarbeiter implements ActionListener{
 		tabbedPane.setBounds(10, 11, 1204, 541);
 		panelMain.add(tabbedPane);
 		
-		GUIAdministratorListe AdminListe = new GUIAdministratorListe();
-		AdminListe.setVisible(true);
-		
 		tabbedPane.addTab("Artikelliste", new GUIArtikelliste() );
-		tabbedPane.addTab("AdministratorListe", AdminListe);
-		AdminListe.invalidate();
-		AdminListe.validate();
-		AdminListe.repaint();
 		
+		if(anmeldenCbList[0] == "Admin")
+			tabbedPane.addTab("AdministratorListe", new GUIAdministratorListe());
+				
 		
 		frame.setVisible(true);
 	}
