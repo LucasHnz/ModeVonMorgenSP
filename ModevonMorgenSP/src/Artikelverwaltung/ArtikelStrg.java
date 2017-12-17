@@ -364,7 +364,7 @@ public class ArtikelStrg {
 				sqlUpdate = "update Kleidung set rabatt ='"+Rabatt+"' where Artikelnr ="+Artikelnummer;
 			else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
 				sqlUpdate = "update Schuhe set rabatt ='"+Rabatt+"' where Artikelnr ="+Artikelnummer;
-			System.out.println(sqlUpdate);
+	
 			stmt.execute(sqlUpdate)	;
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			artikel.setRabatt(Rabatt);
@@ -388,7 +388,7 @@ public class ArtikelStrg {
 				sqlUpdate = "update Kleidung set Bestand ='"+Bestand+"' where Artikelnr ="+Artikelnummer;
 			else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
 				sqlUpdate = "update Schuhe set Bestand ='"+Bestand+"' where Artikelnr ="+Artikelnummer;
-			System.out.println(sqlUpdate);
+			
 			stmt.execute(sqlUpdate)	;
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			artikel.setBestand(Bestand);
@@ -412,7 +412,7 @@ public class ArtikelStrg {
 				sqlUpdate = "update Kleidung set Notiz ='"+Notiz+"' where Artikelnr ="+Artikelnummer;
 			else if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
 				sqlUpdate = "update Schuhe set Notiz ='"+Notiz+"' where Artikelnr ="+Artikelnummer;
-			System.out.println(sqlUpdate);
+			
 			stmt.execute(sqlUpdate)	;
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			artikel.setNotiz(Notiz);

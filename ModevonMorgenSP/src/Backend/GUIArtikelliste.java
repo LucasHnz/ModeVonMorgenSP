@@ -49,6 +49,7 @@ public class GUIArtikelliste extends JPanel {
 		public int getColumnCount() {
 			return columnNames.length;
 		}
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
 		public Class getColumnClass(int columnIndex){
 			if(columnIndex == 0) {
@@ -111,7 +112,7 @@ public class GUIArtikelliste extends JPanel {
 					return data.get(keys[rowIndex]).getVerfügbarkeit();
 				}	
 				else if(columnIndex == 7) {
-					if(data.get(keys[rowIndex]).getNotiz() != null)
+					if(data.get(keys[rowIndex]).getNotiz() != null && data.get(keys[rowIndex]).getNotiz() != "")
 						return new ImageIcon("src\\Icons\\exclamation-mark.png");
 					else
 						return new ImageIcon();				
@@ -127,8 +128,7 @@ public class GUIArtikelliste extends JPanel {
 		
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
 			return false;	
-		}
-					
+		}				
 	}
 
 	/**
@@ -277,13 +277,18 @@ public class GUIArtikelliste extends JPanel {
 				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Rabatt: " 
 							+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt() + " %", "Rabatt ändern", 
 							JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt());
-				ArtikelStrg.aktualisiereRabatt(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-				}
+				if(optionPane != null) {
+					ArtikelStrg.aktualisiereRabatt(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+					JOptionPane.showMessageDialog(null,  "Rabatt wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+				}else if(optionPane == null) {
+					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+				}		
+			}
 		});
 		btnRabatt.setBounds(920, 306, 270, 48);
 		add(btnRabatt);
 				
-		JButton btnNotiz = new JButton("Notiz ansehen");
+		JButton btnNotiz = new JButton("Notiz ändern");
 		btnNotiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
@@ -291,7 +296,12 @@ public class GUIArtikelliste extends JPanel {
 				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktuelle Notiz:\n" 
 						+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz(), "Notiz ändern", 
 						JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz());
-			ArtikelStrg.aktualisiereNotiz(optionPane, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+				if(optionPane != null) {
+					ArtikelStrg.aktualisiereNotiz(optionPane, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+					JOptionPane.showMessageDialog(null,  "Notiz wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+				}else if(optionPane == null) {
+					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+				}		
 			}
 		});
 		btnNotiz.setBounds(920, 424, 270, 48);
@@ -305,8 +315,12 @@ public class GUIArtikelliste extends JPanel {
 				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Bestand: " 
 						+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand(), "Bestand ändern", 
 						JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand() );
-				ArtikelStrg.aktualisiereBestand(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-			
+				if(optionPane != null) {
+					ArtikelStrg.aktualisiereBestand(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+					JOptionPane.showMessageDialog(null,  "Bestand wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+				}else if(optionPane == null) {
+					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+				}		
 			}
 		});
 		btnBestand.setBounds(920, 365, 270, 48);
