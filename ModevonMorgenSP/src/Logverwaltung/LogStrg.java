@@ -41,15 +41,9 @@ public class LogStrg {
 				System.out.println("1");
 				String vorname = rs1.getString("vorname");
 				anmeldenCbList[0] = vorname;
-				anmeldenCbList[3] = "Abmelden";
+				//anmeldenCbList[3] = "Abmelden";
 				Frontend.GUI.fensterSchlieﬂen();
 				
-				System.out.println("BEST");
-				
-				if(rs1.getString("email") != email) {
-					System.out.println("OPT1");
-					GUIAnmelden.anmeldenFehlermeldung();
-				}
 				
 			}
 			
@@ -57,28 +51,22 @@ public class LogStrg {
 				System.out.println("2");
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Mitarbeiter";
-				anmeldenCbList[3] = "Abmelden";
+				//anmeldenCbList[3] = "Abmelden";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				System.out.println("MIT");
-				if(rs2.getString("email") != email) {
-					System.out.println("OPT2");
-					GUIAnmelden.anmeldenFehlermeldung();
-				}
+				
 			}
 			
 			if(rs3.next()) {
 				System.out.println("3");
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Admin";
-				anmeldenCbList[3] = "Abmelden";
+				//anmeldenCbList[3] = "Abmelden";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				
 				System.out.println("ADMIN");
 				
-				if(rs3.getString("email") != email) {
-					System.out.println("OPT3");
-					GUIAnmelden.anmeldenFehlermeldung();
-				}
+				
 			}
 	
 		
