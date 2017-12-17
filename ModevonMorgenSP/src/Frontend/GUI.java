@@ -203,10 +203,12 @@ public class GUI implements ActionListener {
 		frame.getContentPane().add(panelLogo);
 		panelLogo.setLayout(null);
 		
-		JLabel labelLogo = new JLabel("New label");
+		JLabel labelLogo = new JLabel("");
 		labelLogo.setBounds(56, 0, 1226, 99);
 		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
 		panelLogo.add(labelLogo);
+		
+	
 		
 		JPanel panelBar = new JPanel();
 		panelBar.setBackground(SystemColor.control);
