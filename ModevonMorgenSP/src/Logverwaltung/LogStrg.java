@@ -21,7 +21,7 @@ public class LogStrg {
 	public static  void anmelden(String passwort, String email, String[]anmeldenCbList) {
 		try 
 		{
-			System.out.println("Huier");
+			System.out.println("Hier");
 			
 			Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Connection con2 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
