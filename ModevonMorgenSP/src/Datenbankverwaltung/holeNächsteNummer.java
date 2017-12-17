@@ -13,7 +13,7 @@ import java.sql.Statement;
  */
 public class holeN‰chsteNummer {
 	
-	public static int n√§chsteMaNr(){
+	public static int n‰chsteMaNr(){
 		int i = 0;
 		
 		Connection con = VerbindungDB.erstelleConnection();
@@ -25,7 +25,7 @@ public class holeN‰chsteNummer {
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("Nutzernr");
+				i = rs.getInt(1);
 				
 			}
 			
@@ -52,7 +52,7 @@ public class holeN‰chsteNummer {
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("Nutzernr");
+				i = rs.getInt(1);
 				
 			}
 			

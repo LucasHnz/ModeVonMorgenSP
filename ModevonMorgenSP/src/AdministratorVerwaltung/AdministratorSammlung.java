@@ -28,7 +28,7 @@ public class AdministratorSammlung {
 			String nachname = rs.getString("Nachname");
 			String vorname = rs.getString("Vorname");
 			String email = rs.getString("Email");
-			String stra√üe = rs.getString("Stra√üe");
+			String straﬂe = rs.getString("Straﬂe");
 			String ort = rs.getString("Ort");
 			int plz = rs.getInt("Plz");
 			String iban = rs.getString("IBAN");
@@ -36,7 +36,7 @@ public class AdministratorSammlung {
 			int berechtigung = rs.getInt("Berechtigung");
 			String passwort = rs.getString("Passwort");
 			
-			Administrator admin = new Administrator(nutzernr, nachname, vorname, email, stra√üe, ort, plz, iban, gehalt, berechtigung, passwort);
+			Administrator admin = new Administrator(nutzernr, nachname, vorname, email, straﬂe, ort, plz, iban, gehalt, berechtigung, passwort);
 			
 			AdministratorSammlung.put(admin.getNutzernr(), admin);
 		

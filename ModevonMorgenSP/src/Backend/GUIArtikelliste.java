@@ -2,24 +2,20 @@ package Backend;
 
 import java.awt.EventQueue;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
 import java.util.Comparator;
 import java.util.HashMap;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -42,6 +38,7 @@ public class GUIArtikelliste extends JPanel {
 		private String[] columnNames;
 		private HashMap<Integer, Artikel> data;
 		
+		
 		public myTableModel(HashMap<Integer, Artikel> artikelliste, String[] columnNames) {
 			this.columnNames = columnNames;
 			this.data = artikelliste;
@@ -58,7 +55,7 @@ public class GUIArtikelliste extends JPanel {
 		public int getRowCount() {
 			return data.size();
 		}
-		
+				
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
@@ -230,6 +227,25 @@ public class GUIArtikelliste extends JPanel {
 		add(btnEditiereArtikel);
 		
 		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
+		btnEntferneArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				
+				final Object optionPane = JOptionPane.showConfirmDialog(null,
+						"Wollen Sie den Artikel: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBezeichnung() 
+						+ "\nArtikelnummer: " + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer()
+						+ "\nwirklich löschen?", "Abfrage",
+						JOptionPane.YES_NO_OPTION);
+					
+				if(optionPane.equals(0)) {
+					ArtikelStrg.entferneArtikel(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+					JOptionPane.showMessageDialog(null,  "Artikel wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
+				}else if(optionPane.equals(1)) {
+					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+				}			
+			}
+		});
 		btnEntferneArtikel.setBounds(920, 247, 270, 48);
 		add(btnEntferneArtikel);
 		

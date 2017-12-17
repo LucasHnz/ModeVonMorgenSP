@@ -8,18 +8,18 @@ public class Mitarbeiter {
 	private String nachname;
 	private String vorname;
 	private String email;
-	private String stra√üe;
+	private String straﬂe;
 	private String ort;
 	private int plz;
 	private int berechtigung;
 	
-	public Mitarbeiter(int nutzernr,int adminnr, String nachname, String vorname, String email, String stra√üe, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort) {
+	public Mitarbeiter(int nutzernr,int adminnr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort) {
 		this.nutzernr = nutzernr;
 		this.adminnr = adminnr;
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
-		this.stra√üe = stra√üe;
+		this.straﬂe = straﬂe;
 		this.ort = ort;
 		this.plz = plz;
 		this.iban = iban;
@@ -92,12 +92,12 @@ public class Mitarbeiter {
 		this.email = email;
 	}
 
-	public String getStra√üe() {
-		return stra√üe;
+	public String getStraﬂe() {
+		return straﬂe;
 	}
 
-	public void setStra√üe(String stra√üe) {
-		this.stra√üe = stra√üe;
+	public void setStraﬂe(String straﬂe) {
+		this.straﬂe = straﬂe;
 	}
 
 	public String getOrt() {

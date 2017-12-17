@@ -1,9 +1,14 @@
 package Backend;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,6 +18,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import AdministratorVerwaltung.Administrator;
 import AdministratorVerwaltung.AdministratorSammlung;
+import Artikelverwaltung.Artikel;
+import Artikelverwaltung.Artikelsammlung;
 
 public class GUIAdministratorListe extends JPanel{
 	
@@ -20,7 +27,7 @@ public class GUIAdministratorListe extends JPanel{
 	private JTable table;
 	private JScrollPane scrollpane;
 	
-	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straï¿½e", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
+	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Berechtigung", "Passwort"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -64,7 +71,7 @@ public class GUIAdministratorListe extends JPanel{
 				return data.get(keys[rowIndex]).getEmail();
 			}	
 			else if(columnIndex == 4) {
-				return data.get(keys[rowIndex]).getStraï¿½e();
+				return data.get(keys[rowIndex]).getStraße();
 			}	
 			else if(columnIndex == 5) {
 				return data.get(keys[rowIndex]).getOrt();
@@ -114,7 +121,7 @@ public class GUIAdministratorListe extends JPanel{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdministratorSammlung.fï¿½lleAdministratorListe();
+					AdministratorSammlung.fülleAdministratorListe();
 					GUIAdministratorListe frame = new GUIAdministratorListe();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -128,6 +135,8 @@ public class GUIAdministratorListe extends JPanel{
 	 * Create the frame.
 	 */
 	public GUIAdministratorListe() {
+		
+		
 		
 		setLayout( null );
 		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
@@ -187,6 +196,51 @@ public class GUIAdministratorListe extends JPanel{
 		add(scrollpane);
 		
 		setVisible(true);
+		
+		JButton btnNeuerAdministrator = new JButton("Administrator hinzufügen");
+		btnNeuerAdministrator.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					new GUIAdministratorErstellenFormular();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnNeuerAdministrator.setBounds(920, 11, 270, 48);
+		add(btnNeuerAdministrator);
+		
+		JButton btnEditiereAdministrator = new JButton("Administrator editieren");
+		btnEditiereAdministrator.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final HashMap<Integer, Administrator> data = AdministratorSammlung.getAdminSammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				new GUIAdministratorBearbeiten(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+			}
+		});
+		btnEditiereAdministrator.setBounds(920,76,270,48);
+		add(btnEditiereAdministrator);
+		
+		JButton btnLöscheAdmin = new JButton("Administrator löschen");
+		btnLöscheAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final HashMap<Integer, Administrator> data = AdministratorSammlung.getAdminSammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+				
+				JOptionPane.showOptionDialog(null, "Sie sind dabei einen Admin zu löschen! /nFortfahren ?","Administrator Bearbeitung",
+		                JOptionPane.YES_NO_CANCEL_OPTION,
+		                JOptionPane.WARNING_MESSAGE, null, 
+		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
+				
+				AdministratorVerwaltung.AdministratorStrg.entferneAdmin(i);
+			
+			}
+		});
+		btnLöscheAdmin.setBounds(920,136,270,48);
+		add(btnLöscheAdmin);
+		
 
 	}
 	
