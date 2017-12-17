@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import java.awt.Color;
@@ -23,8 +24,12 @@ import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
+import Logverwaltung.LogStrg;
+
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -42,10 +47,15 @@ public class GUI implements ActionListener {
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten"};
-	static JFrame frame;
+    static JFrame frame;
 	public static boolean angemeldet = false;
 	public int rotierung = 1;
 	public String[] outfitsDamenListe = {"C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau1.jpg","C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau2.jpg"};
+	JTextField anmeldenEmail = new JTextField();
+	JPasswordField anmeldenPasswort = new JPasswordField();
+	JButton btnAnmeldenEinloggen = new JButton("Einloggen");
+	JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
+	JPanel panelMain = new JPanel();
 	
 	public JButton btnProduktDamenLinks = new JButton();
 	public JButton btnProduktDamenRechts = new JButton();
@@ -59,10 +69,59 @@ public class GUI implements ActionListener {
 	public JComboBox comboBoxDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
 	public JButton btnZurück = new JButton();
+	private JTextField textFieldEmail;
+	private JPasswordField passwordField;
 	//public static JButton btnAnmelden = new JButton();
+	public JPanel panelAnmelden = new JPanel();
 	
 	public static void fensterSchließen() {
 		frame.dispose();
+	}
+	
+	public void öffnenAnmeldefenster() {
+		
+        System.out.println("ANMD");
+        panelAnmelden = new JPanel();
+		panelAnmelden.setLayout(null);
+		panelAnmelden.setBounds(1040, 0, 194, 118);
+		panelMain.add(panelAnmelden);
+		
+		btnAnmeldenEinloggen = new JButton("Einloggen");
+		btnAnmeldenEinloggen.setBounds(0, 95, 89, 23);
+		panelAnmelden.add(btnAnmeldenEinloggen);
+		btnAnmeldenEinloggen.addActionListener(this);
+		panelAnmelden.getRootPane().setDefaultButton(btnAnmeldenEinloggen);
+	
+		
+		btnAnmeldenAbbrechen = new JButton("Abbrechen");
+		btnAnmeldenAbbrechen.setBounds(105, 95, 89, 23);
+		btnAnmeldenAbbrechen.addActionListener(this);
+		panelAnmelden.add(btnAnmeldenAbbrechen);
+		
+		anmeldenEmail = new JTextField();
+		anmeldenEmail.setBounds(10, 11, 174, 28);
+		panelAnmelden.add(anmeldenEmail);
+		anmeldenEmail.setColumns(10);
+		
+		anmeldenPasswort = new JPasswordField();
+		anmeldenPasswort.setBounds(10, 45, 174, 28);
+		panelAnmelden.add(anmeldenPasswort);
+		
+		frame.invalidate();
+		frame.validate();
+		frame.repaint();
+	}
+	
+		static void anmeldenFehlermeldung() {
+		
+		System.out.println("OPT");
+		JOptionPane.showOptionDialog(null, "Dies ist ein Optionsdialog",
+				"Optionsdialog",
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.WARNING_MESSAGE,
+				null,
+				new String[] {"A", "B", "C"},"B");
+		
 	}
 	
 	public void wechselOutfitDamenRechts() 
@@ -180,7 +239,7 @@ public class GUI implements ActionListener {
 		lblPunktestand.setBounds(947, 15, 89, 20);
 		panelBar.add(lblPunktestand);
 		
-		JPanel panelMain = new JPanel();
+		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 148, 1234, 563);
 		frame.getContentPane().add(panelMain);
@@ -242,15 +301,33 @@ public class GUI implements ActionListener {
 		JLabel labelMainHintergrund = new JLabel();
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
 		panelMain.add(labelMainHintergrund);
-	
+		
+		
+		
+		
+		
 		frame.setVisible(true);
 	
 	}
 	
 
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource() == btnAnmeldenAbbrechen) {
+			panelAnmelden.setVisible(false);
+		}
+		
+		
+		  if(e.getSource() == btnAnmeldenEinloggen) {
+		
+			  String pwd = new String(anmeldenPasswort.getPassword());
+			  String email = anmeldenEmail.getText();
+			  
+			  LogStrg.anmelden(pwd, email, anmeldenCbList);
+			  panelAnmelden.setVisible(false);
+				
+		  }
 		
 		if(e.getSource() == btnProduktDamen) 
 		{
@@ -337,21 +414,22 @@ public class GUI implements ActionListener {
 			String auswahl = (String) comboBoxAnmelden.getSelectedItem();
 			
 			if(auswahl == "Anmelden") {
-				new GUIAnmelden(anmeldenCbList);
+				 öffnenAnmeldefenster();
+				
 			}
 
 		    if(auswahl == "Meine Bestellungen" && angemeldet == true) {
 			    new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
 			}
 		    if(auswahl == "Meine Bestellungen" && angemeldet == false) {
-		    	new GUIAnmelden(anmeldenCbList);
+		    	 öffnenAnmeldefenster();
 		    }
 		    
 		    if(auswahl == "Konto verwalten" && angemeldet == true) {
 			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
 			}
 		    if(auswahl == "Konto verwalten" && angemeldet == false) {
-		    	new GUIAnmelden(anmeldenCbList);
+		    	 öffnenAnmeldefenster();
 		    }
 		}
 	
