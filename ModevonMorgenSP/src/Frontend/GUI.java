@@ -188,7 +188,6 @@ public class GUI implements ActionListener {
 	
 	private void initializeMain() {
 		
-		
 		frame = new JFrame();
 		
 		frame.setBounds(20, 20, 1250, 750);
@@ -208,8 +207,7 @@ public class GUI implements ActionListener {
 		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
 		panelLogo.add(labelLogo);
 		
-	
-		
+
 		JPanel panelBar = new JPanel();
 		panelBar.setBackground(SystemColor.control);
 		panelBar.setBounds(0, 98, 1234, 50);
@@ -305,10 +303,7 @@ public class GUI implements ActionListener {
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
 		panelMain.add(labelMainHintergrund);
 		
-		
-		
-		
-		
+	
 		frame.setVisible(true);
 	
 	}
