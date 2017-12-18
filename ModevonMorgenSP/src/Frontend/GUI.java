@@ -34,6 +34,8 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
@@ -46,7 +48,7 @@ import java.awt.SystemColor;
 	
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten"};
+	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
     static JFrame frame;
 	public static boolean angemeldet = false;
 	public int rotierung = 1;
@@ -102,11 +104,13 @@ import java.awt.SystemColor;
 		panelAnmelden.add(btnAnmeldenAbbrechen);
 		
 		anmeldenEmail = new JTextField();
+		anmeldenEmail.setToolTipText("Email Adresse");
 		anmeldenEmail.setBounds(10, 11, 174, 28);
 		panelAnmelden.add(anmeldenEmail);
 		anmeldenEmail.setColumns(10);
 		
 		anmeldenPasswort = new JPasswordField();
+		anmeldenPasswort.setToolTipText("Passwort");
 		anmeldenPasswort.setBounds(10, 45, 174, 28);
 		panelAnmelden.add(anmeldenPasswort);
 		
@@ -438,6 +442,11 @@ import java.awt.SystemColor;
 			}
 		    if(auswahl == "Konto verwalten" && angemeldet == false) {
 		    	 öffnenAnmeldefenster();
+		    }
+		    if(auswahl == "Abmelden") {
+		    	System.out.println("DADA");
+		    	 LogStrg.abmelden(anmeldenCbList);
+		    	 angemeldet = false;
 		    }
 		}
 	

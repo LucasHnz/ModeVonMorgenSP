@@ -9,6 +9,7 @@ import java.sql.Statement;
 
 import javax.swing.*;
 
+import Frontend.GUI;
 import Frontend.GUIAnmelden;
 
 public class LogStrg {
@@ -41,7 +42,6 @@ public class LogStrg {
 				System.out.println("1");
 				String vorname = rs1.getString("vorname");
 				anmeldenCbList[0] = vorname;
-				//anmeldenCbList[3] = "Abmelden";
 				Frontend.GUI.fensterSchlieﬂen();
 				
 				
@@ -51,7 +51,6 @@ public class LogStrg {
 				System.out.println("2");
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Mitarbeiter";
-				//anmeldenCbList[3] = "Abmelden";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				System.out.println("MIT");
 				
@@ -61,7 +60,6 @@ public class LogStrg {
 				System.out.println("3");
 				Frontend.GUI.fensterSchlieﬂen();
 				anmeldenCbList[0] = "Admin";
-				//anmeldenCbList[3] = "Abmelden";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				
 				System.out.println("ADMIN");
@@ -83,5 +81,11 @@ public class LogStrg {
 		}
 
 	
+	}
+	
+	public static void abmelden(String[] anmeldenCbList) {
+		Frontend.GUI.fensterSchlieﬂen();
+		anmeldenCbList[0] = "Anmelden";
+		new Frontend.GUI();
 	}
 }

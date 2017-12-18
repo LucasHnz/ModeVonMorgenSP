@@ -22,6 +22,7 @@ import Frontend.GUI;
 import Frontend.GUIAnmelden;
 import Frontend.GUIKontoBestellungen;
 import Frontend.GUIKontoVerwalten;
+import Logverwaltung.LogStrg;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -199,6 +200,10 @@ public class GUIMitarbeiter implements ActionListener{
 		    if(auswahl == "Konto verwalten") {
 			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
 			}
+		    if(auswahl == "Abmelden") {
+		    	System.out.println("DADA");
+		    	 LogStrg.abmelden(anmeldenCbList);
+		    }
 		}
 	}
 }
