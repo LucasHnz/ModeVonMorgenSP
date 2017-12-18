@@ -1,9 +1,8 @@
 package Datenbankverwaltung;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,25 +25,26 @@ public class BlobLaden {
 			//Verbindungsaufbau sowie Initialisierung
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			PreparedStatement pstmt = con.prepareStatement(befehl);
-			File bild = new File (Dateipfad);
-			FileInputStream fis = new FileInputStream(bild);
+			//File bild = new File (Dateipfad);
+			InputStream photoStream = new BufferedInputStream( new FileInputStream(Dateipfad));
+			//FileInputStream fis = new FileInputStream(bild);
 			
 			//Statement füllen und abfeuern
-			pstmt.setBinaryStream(1, fis, (int) bild.length());
+			pstmt.setBinaryStream(1, photoStream, photoStream.available());		
 			pstmt.execute();
 			
 			
-			fis.close();
+			photoStream.close();
 			pstmt.close();
 			con.close();
 			
 			
 		}catch (Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 	
-	public static BufferedImage runterladenBlob(String befehl,String dateipfad) {
+	public static BufferedImage runterladenBlob(String befehl) {
 		
 		BufferedImage bild = null;
 		
@@ -54,22 +54,15 @@ public class BlobLaden {
 			ResultSet rs = pstmt.executeQuery(befehl);
 			
 			while(rs.next()) {
-				File file = new File (dateipfad);
-				FileOutputStream fos = new FileOutputStream (file);
-				
-				byte[] buffer = new byte [1];
-				InputStream is = rs.getBinaryStream("Bild");
-				
-				while (is.read(buffer)>0) {
-					fos.write(buffer);
-				}
-				
-				fos.close();
-				bild = ImageIO.read(file);
+				//File file = new File (dateipfad);
+				//FileOutputStream fos = new FileOutputStream (file);
+				BufferedInputStream bis = new BufferedInputStream( rs.getBinaryStream(1) );
+				bild = ImageIO.read(bis)  ;
+				bis.close();
 			}
 			
 		}catch ( Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		return bild;
 		

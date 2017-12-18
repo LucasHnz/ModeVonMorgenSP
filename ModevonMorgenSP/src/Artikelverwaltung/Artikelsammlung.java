@@ -60,14 +60,7 @@ public class Artikelsammlung {
 	public static void removeArtikel(int Artikelnummer) {
 		Artikelsammlung.remove(Artikelnummer);
 	}
-	
-	public static Artikel[] getArtikelArray(String Filter) {
-	 
-		Artikel[] a = new Artikel[Artikelsammlung.size()];
-		a = (Artikel[]) Artikelsammlung.values().toArray();
-		return a;
-	}
-	
+		
 	public static Artikel getArtikel(int Artikelnummer) {
 		return Artikelsammlung.get(Artikelnummer);
 	}
@@ -103,17 +96,12 @@ public class Artikelsammlung {
 		Artikelsammlung.put(Artikelnummer, artikel);
 	}
 	
-	 public static int getHighestKey( ) {
-		Iterator<Integer> i = Artikelsammlung.keySet().iterator();
-	    int value = 0;
-	    int tmp;
-	    while ( i.hasNext() ) {
-	       tmp = i.next();
-	       if ( tmp > value ) {
-	    	   value = tmp;
-	           }
-	        }
-	    return value;
-	    }
+	 public static void loadImages() {
+		 for(Artikel a : Artikelsammlung.values()) {
+			 a.downloadImage();
+		 }
+			 
+		 
+	 }
 }
 

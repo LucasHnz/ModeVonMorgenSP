@@ -306,7 +306,7 @@ public class GUIArtikelliste extends JPanel {
 		});
 		btnNotiz.setBounds(920, 424, 270, 48);
 		add(btnNotiz);
-				
+			
 		JButton btnBestand = new JButton("Bestand ändern");
 		btnBestand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
