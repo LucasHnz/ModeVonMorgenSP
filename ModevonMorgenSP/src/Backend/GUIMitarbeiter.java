@@ -202,7 +202,8 @@ public class GUIMitarbeiter implements ActionListener{
 			}
 		    if(auswahl == "Abmelden") {
 		    	System.out.println("DADA");
-		    	 LogStrg.abmelden(anmeldenCbList);
+		    	LogStrg.abmelden(anmeldenCbList);
+		    	frame.dispose();
 		    }
 		}
 	}
