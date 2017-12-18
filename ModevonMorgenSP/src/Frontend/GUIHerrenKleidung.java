@@ -140,7 +140,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelArtikel.setLayout(null);
 		
 		
-		ImageIcon icon = new ImageIcon("C:\\\\Users\\\\hinzl\\\\Desktop\\\\Softwareprojekt\\\\SWP-Bilder\\\\Herrenjacke_6.jpg");
+		ImageIcon icon = new ImageIcon("src\\SWP-Bilder\\Logo.jpg");
         int width = icon.getIconHeight() / 2;
         int height = icon.getIconWidth() / 2;
         Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
@@ -223,7 +223,7 @@ public void hinzufügenArtikel() {
 		panelArtikel2.setLayout(null);
 		
 		
-		ImageIcon icon2 = new ImageIcon("C:\\\\Users\\\\hinzl\\\\Desktop\\\\Softwareprojekt\\\\SWP-Bilder\\\\Herrenjacke_6.jpg");
+		ImageIcon icon2 = new ImageIcon("src\\SWP-Bilder\\Herrenjacke_6.jpg");
         int width2 = icon2.getIconHeight() / 2;
         int height2 = icon2.getIconWidth() / 2;
         Image img2 = icon2.getImage().getScaledInstance(width2, height2, Image.SCALE_FAST);
