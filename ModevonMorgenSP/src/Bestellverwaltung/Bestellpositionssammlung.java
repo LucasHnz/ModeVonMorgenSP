@@ -3,12 +3,15 @@ package Bestellverwaltung;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
-
 
 import Artikelverwaltung.Artikel;
 
+/**
+ * 
+ * @author annag
+ *
+ */
 
 
 public class Bestellpositionssammlung {
@@ -35,13 +38,13 @@ public class Bestellpositionssammlung {
 	}
 	
 	public static HashMap<Integer, Bestellposition> getBestellpositionssammlung(){
-		return Bestellpositionssammlung;
+		return BestellpositionsSammlung;
 	}
 	public static void removePosition(int posNr) {
 		Bestellpositionssammlung.remove(posNr);
 	}
 		
-	public static Artikel getArtikel(int posNr) {
+	public static Bestellpositionssammlung getPosNr(int posNr) {
 		return Bestellpositionssammlung.get(posNr);
 	}
 	/**

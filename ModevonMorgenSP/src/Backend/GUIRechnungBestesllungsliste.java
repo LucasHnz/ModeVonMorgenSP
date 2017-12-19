@@ -18,6 +18,12 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import Rechnungsverwaltung.Rechnung;
+import Rechnungsverwaltung.RechnungsSammlung;
+/**
+ * 
+ * @author annag
+ *
+ */
 
 public class GUIRechnungBestesllungsliste extends JPanel{
 
@@ -101,7 +107,7 @@ private class myTableModel extends AbstractTableModel{
 	setBounds(90, 100, 1200, 600);
 	setBackground(Color.DARK_GRAY);
 	
-	table = new JTable(new myTableModel(RechnungSammlung.getRechnungSammlung(), columnNames));
+	table = new JTable(new myTableModel(RechnungsSammlung.getRechnungsSammlung(), columnNames));
 	table.setFillsViewportHeight(true);
 	table.setDragEnabled(false);
 	table.getColumnModel().getColumn(0).setPreferredWidth(60);
@@ -145,7 +151,7 @@ private class myTableModel extends AbstractTableModel{
 	JButton btnAnzeigenBestellungBK = new JButton("BestandskundenBestellungen");
 	btnAnzeigenBestellungBK.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
-			
+			//methode aufrufen
 		}
 	});
 	btnAnzeigenBestellungBK.setBounds(920, 11, 270, 48);
@@ -155,9 +161,10 @@ private class myTableModel extends AbstractTableModel{
 	btnAnzeigenBestellungGK.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			
-	
+	//methode aufrufen
 		}
 	});
+	
 	btnAnzeigenBestellungGK.setBounds(920,70,270,48);
 	add(btnAnzeigenBestellungGK);
 	

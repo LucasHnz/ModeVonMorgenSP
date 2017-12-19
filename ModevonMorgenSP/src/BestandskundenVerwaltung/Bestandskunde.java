@@ -6,7 +6,7 @@ public class Bestandskunde {
 	private String nachname;
 	private String vorname;
 	private String email;
-	private String stra√üe;
+	private String straﬂe;
 	private String ort;
 	private int plz;
 	private String iban;
@@ -14,12 +14,12 @@ public class Bestandskunde {
 	private String passwort;
 	private int pss;
 
-	public Bestandskunde(int nutzernr, String nachname, String vorname, String email, String stra√üe, String ort, int plz, String iban, int berechtigung, String passwort, int pss) {
+	public Bestandskunde(int nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, String iban, int berechtigung, String passwort, int pss) {
 		this.nutzernr = nutzernr;
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
-		this.stra√üe = stra√üe;
+		this.straﬂe = straﬂe;
 		this.ort = ort;
 		this.plz = plz;
 		this.iban = iban;
@@ -31,7 +31,7 @@ public class Bestandskunde {
 	@Override
 	public String toString() {
 		return "Bestandskunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
-				+ email + ", stra√üe=" + stra√üe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
+				+ email + ", stra√üe=" + straﬂe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
 				+ berechtigung + ", passwort=" + passwort + ", pss=" + pss + "]";
 	}
 
@@ -67,12 +67,12 @@ public class Bestandskunde {
 		this.email = email;
 	}
 
-	public String getStra√üe() {
-		return stra√üe;
+	public String getStraﬂe() {
+		return straﬂe;
 	}
 
-	public void setStra√üe(String stra√üe) {
-		this.stra√üe = stra√üe;
+	public void setStraﬂe(String straﬂe) {
+		this.straﬂe = straﬂe;
 	}
 
 	public String getOrt() {
