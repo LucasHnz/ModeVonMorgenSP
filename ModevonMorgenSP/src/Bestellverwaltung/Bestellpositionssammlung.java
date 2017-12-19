@@ -59,7 +59,7 @@ public class Bestellpositionssammlung {
 	public static void hinzufügenPosition(Artikel aArtikel,int aMenge, int posNr) {
 		
 		Bestellposition	bpos= new Bestellposition(aArtikel,aMenge, posNr);
-			Bestellpositionssammlung.put(posNr, bpos);
+			BestellpositionsSammlung.put(posNr, bpos);
 	}
 	
 	

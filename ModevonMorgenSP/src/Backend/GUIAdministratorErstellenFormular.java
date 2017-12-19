@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import AdministratorVerwaltung.AdministratorSammlung;
+
 public class GUIAdministratorErstellenFormular extends JFrame {
 	
 	/**
@@ -188,6 +190,7 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 				String berechtigung = "4";
 				String passwort = textField_10.getText();
 				
+				AdministratorSammlung.hinzufügenAdmin(Integer.parseInt(nutzernr), nachname, vorname, email, straße, ort,Integer.parseInt( plz), iban, Integer.parseInt(gehalt), Integer.parseInt(berechtigung), passwort);
 				AdministratorVerwaltung.AdministratorStrg.hinzufügenAdmin(nutzernr, nachname, vorname, email, straße, ort, plz, iban, gehalt, berechtigung, passwort);
 				System.out.println(nutzernr);
 				textField.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteAdminNr()));
