@@ -37,6 +37,7 @@ public class BlobLaden {
 			photoStream.close();
 			pstmt.close();
 			con.close();
+			System.out.println("erfolgreich hochgeladen");
 			
 			
 		}catch (Exception e) {

@@ -122,7 +122,7 @@ public abstract class Artikel implements Comparable<Artikel> {
 	public void downloadImage() {
 		String klasse = this.getClass().getName();
 		klasse = klasse.substring(18);
-		String befehl = "select Bild from " +klasse+ " where Artikelnr = " + this.Artikelnummer;;
+		String befehl = "select Bild from " +klasse+ " where Artikelnr = " + this.Artikelnummer;
 		image = Datenbankverwaltung.BlobLaden.runterladenBlob(befehl);
 		
 	}
