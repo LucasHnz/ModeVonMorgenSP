@@ -29,7 +29,7 @@ public class Bestellpositionssammlung {
 				Artikel aArtikel=rs.getObject("Artikel");
 				Bestellposition bpos = new Bestellposition (aArtikel, bestellNr, bestellNr);
 				
-				Bestellpositionssammlung.put(bpos.getPosNr(),bpos);
+				BestellpositionsSammlung.put(bpos.getPosNr(),bpos);
 			
 			}
 		}catch(SQLException e) {
@@ -41,12 +41,10 @@ public class Bestellpositionssammlung {
 		return BestellpositionsSammlung;
 	}
 	public static void removePosition(int posNr) {
-		Bestellpositionssammlung.remove(posNr);
+		BestellpositionsSammlung.remove(posNr);
 	}
 		
-	public static Bestellpositionssammlung getPosNr(int posNr) {
-		return Bestellpositionssammlung.get(posNr);
-	}
+	
 	/**
 	 * Fügt der Bestellpositionssammlung einen neuen Bestellposition hinzu.
 	 * @param kateg Die Kategorie des Artikels. Also Schuhe, Accessoires oder Kleidung
@@ -59,12 +57,9 @@ public class Bestellpositionssammlung {
 	public static void hinzufügenPosition(Artikel aArtikel,int aMenge, int posNr) {
 		
 		Bestellposition	bpos= new Bestellposition(aArtikel,aMenge, posNr);
-			Bestellpositionssammlung.put(posNr, bpos);
+			BestellpositionsSammlung.put(posNr, bpos);
 	}
 	
-	
-			 
-		 
-	 }
+}
 
 

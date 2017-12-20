@@ -5,7 +5,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import java.sql.Date;
-
+/**
+ * 
+ * @author annag
+ *
+ */
 
 public class RechnungsSammlung {
 static HashMap<Integer, Rechnung> RechnungsSammlung = new HashMap<Integer,Rechnung>();
