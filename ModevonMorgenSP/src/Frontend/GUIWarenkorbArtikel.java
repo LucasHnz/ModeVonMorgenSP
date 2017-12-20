@@ -84,7 +84,7 @@ public class GUIWarenkorbArtikel extends JPanel {
 		btnDelete.setBackground(Color.WHITE);
 		btnDelete.setBorder(null);
 		btnDelete.setBorderPainted(false);
-		btnDelete.setIcon(new ImageIcon(GUIWarenkorbArtikel.class.getResource("/Icons/rubbish-bin.png")));
+		btnDelete.setIcon(new ImageIcon(GUIWarenkorbArtikel.class.getResource("/Icons 32x32/trash.png")));
 		btnDelete.setBounds(605, 28, 44, 44);
 		add(btnDelete);
 		
