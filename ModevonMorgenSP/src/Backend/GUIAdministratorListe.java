@@ -187,6 +187,7 @@ public class GUIAdministratorListe extends JPanel{
 		                JOptionPane.WARNING_MESSAGE, null, 
 		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
 				
+				data.remove(i);
 				AdministratorVerwaltung.AdministratorStrg.entferneAdmin(i);
 			
 			}

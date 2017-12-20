@@ -19,8 +19,16 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class GUIArtikelliste extends JPanel {
 	/**
@@ -153,6 +161,7 @@ public class GUIArtikelliste extends JPanel {
 	 */
 	public GUIArtikelliste() {
 		ArtikelStrg.FülleArtikelsammlung();
+		
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
@@ -208,31 +217,31 @@ public class GUIArtikelliste extends JPanel {
 		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
-		JButton btnNeuerSchuhartikel = new JButton("Neuer Schuhartikel");
+		JButton btnNeuerSchuhartikel = new JButton("Schuh");
 		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new GUIArtikelFormular("Schuhe");
 			}
 		});
-		btnNeuerSchuhartikel.setBounds(920, 11, 270, 48);
+		btnNeuerSchuhartikel.setBounds(1105, 51, 86, 48);
 		add(btnNeuerSchuhartikel);
 		
-		JButton btnNeuerKleidungsartikel = new JButton("Neuer Kleidungsartikel");
+		JButton btnNeuerKleidungsartikel = new JButton("Kleidung");
 		btnNeuerKleidungsartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIArtikelFormular("Kleidung");
 			}
 		});
-		btnNeuerKleidungsartikel.setBounds(920, 70, 270, 48);
+		btnNeuerKleidungsartikel.setBounds(1013, 51, 86, 48);
 		add(btnNeuerKleidungsartikel);
 		
-		JButton btnNeuesAccessoir = new JButton("Neues Accessoir");
+		JButton btnNeuesAccessoir = new JButton("Accessoire");
 		btnNeuesAccessoir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIArtikelFormular("Accessoires");
 			}
 		});
-		btnNeuesAccessoir.setBounds(920, 129, 270, 48);
+		btnNeuesAccessoir.setBounds(921, 51, 86, 48);
 		add(btnNeuesAccessoir);
 		
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
@@ -243,7 +252,7 @@ public class GUIArtikelliste extends JPanel {
 				new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
 			}
 		});
-		btnEditiereArtikel.setBounds(920, 188, 270, 48);
+		btnEditiereArtikel.setBounds(921, 120, 270, 48);
 		add(btnEditiereArtikel);
 		
 		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
@@ -266,7 +275,7 @@ public class GUIArtikelliste extends JPanel {
 				}			
 			}
 		});
-		btnEntferneArtikel.setBounds(920, 247, 270, 48);
+		btnEntferneArtikel.setBounds(921, 179, 270, 48);
 		add(btnEntferneArtikel);
 		
 		JButton btnRabatt = new JButton("Rabatt ändern");
@@ -285,7 +294,7 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
-		btnRabatt.setBounds(920, 306, 270, 48);
+		btnRabatt.setBounds(921, 238, 270, 48);
 		add(btnRabatt);
 				
 		JButton btnNotiz = new JButton("Notiz ändern");
@@ -304,7 +313,7 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
-		btnNotiz.setBounds(920, 424, 270, 48);
+		btnNotiz.setBounds(921, 356, 270, 48);
 		add(btnNotiz);
 			
 		JButton btnBestand = new JButton("Bestand ändern");
@@ -323,9 +332,34 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
-		btnBestand.setBounds(920, 365, 270, 48);
+		btnBestand.setBounds(921, 297, 270, 48);
 		add(btnBestand);
 		
+		JButton btnArtikelbildHochladen = new JButton("Artikelbild hochladen");
+		btnArtikelbildHochladen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				GUIFileChooser chooser = new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+				
+				
+			}
+		});
+		btnArtikelbildHochladen.setBounds(921, 415, 270, 48);
+		add(btnArtikelbildHochladen);
+		
+		JLabel lblNeuerArtikel = new JLabel("Neuer Artikel");
+		lblNeuerArtikel.setOpaque(true);
+		lblNeuerArtikel.setIgnoreRepaint(true);
+		lblNeuerArtikel.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNeuerArtikel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNeuerArtikel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNeuerArtikel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblNeuerArtikel.setBackground(UIManager.getColor("Button.background"));
+		lblNeuerArtikel.setBounds(920, 12, 270, 35);
+		add(lblNeuerArtikel);
+		
 		setVisible(true);
+		//Artikelsammlung.loadImages();
 	}
 }
