@@ -143,6 +143,11 @@ public class GUIArtikelliste extends JPanel {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -356,7 +361,7 @@ public class GUIArtikelliste extends JPanel {
 		lblNeuerArtikel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNeuerArtikel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNeuerArtikel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNeuerArtikel.setBackground(UIManager.getColor("Button.background"));
+		lblNeuerArtikel.setBackground(Color.WHITE);
 		lblNeuerArtikel.setBounds(920, 12, 270, 35);
 		add(lblNeuerArtikel);
 		

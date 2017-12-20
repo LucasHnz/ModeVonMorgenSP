@@ -6,8 +6,10 @@ import javax.swing.border.LineBorder;
 
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
+import Warenkorbverwaltung.Warenkorb;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
@@ -19,14 +21,23 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class GUIWarenkorbArtikel extends JPanel {
+public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
+	JButton btnDelete;
+	int ArtNr;
+	double Preis;
+	JLabel lblGesamtpreis;
+	String Gesamtpreis;
 	public GUIWarenkorbArtikel(int Artikelnummer, int Anzahl) {
 		Artikel a = Artikelsammlung.getArtikel(Artikelnummer);
-		
+		ArtNr = Artikelnummer;
 		setLayout(null);
-		setBorder(new LineBorder(new Color(0, 0, 0)));
-		setBackground(SystemColor.inactiveCaption);
+		setBorder(null);
+		setBackground(new Color(240, 255, 240));
 		//setBounds(0, 0, 680, 99);
 		setSize(new Dimension(680, 100));
 		
@@ -51,7 +62,7 @@ public class GUIWarenkorbArtikel extends JPanel {
 		lblBezeichnung.setBounds(116, 9, 213, 19);
 		add(lblBezeichnung);
 		
-		Double Preis = a.getPreis() * (100 - a.getRabatt()) * 0.01;
+		Preis = a.getPreis() * (100 - a.getRabatt()) * 0.01;
 		String Einzelpreis = String.format("%.2f", Preis);
 		JLabel lblEInzelpreis = new JLabel(Einzelpreis + "€");	//Rabatt einberechnen
 		lblEInzelpreis.setFont(new Font("Calibri", Font.PLAIN, 14));
@@ -64,8 +75,8 @@ public class GUIWarenkorbArtikel extends JPanel {
 		lblVerfügbarkeit.setBounds(116, 64, 213, 30);
 		add(lblVerfügbarkeit);
 		
-		String Gesamtpreis = String.format("%.2f",Preis * (int) spinnerAnzahl.getValue() );
-		JLabel lblGesamtpreis = new JLabel(Gesamtpreis + "€");  //noch zu fixen
+		Gesamtpreis = String.format("%.2f",Preis * (int) spinnerAnzahl.getValue() );
+		lblGesamtpreis = new JLabel(Gesamtpreis + "€");  //noch zu fixen
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblGesamtpreis.setBounds(515, 40, 80, 20);
 		add(lblGesamtpreis);
@@ -80,7 +91,8 @@ public class GUIWarenkorbArtikel extends JPanel {
 		btnZumArtikel.setBounds(339, 67, 103, 29);
 		add(btnZumArtikel);
 		
-		JButton btnDelete = new JButton();		
+		btnDelete = new JButton();		
+		btnDelete.addActionListener(this);
 		btnDelete.setOpaque(false);
 		btnDelete.setBorder(null);
 		btnDelete.setIcon(new ImageIcon("src\\Icons 32x32\\trash.png"));
@@ -89,9 +101,30 @@ public class GUIWarenkorbArtikel extends JPanel {
 		btnDelete.setBounds(605, 28, 44, 44);
 		add(btnDelete);
 		
+		spinnerAnzahl.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				updatePreisLabel();
+			}
+		});
 		
 		
 		setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnDelete) {
+			Warenkorb.ArtikelEntfernen(Artikelsammlung.getArtikel(ArtNr).getArtikelnummer());
+			GUIWarenkorb w = (GUIWarenkorb) getTopLevelAncestor();
+			w.getPanel().removeAll();
+			w.BuildPanel();
+			System.out.println("delete");
+			
+		}
+		
+	}
+	public void updatePreisLabel() {
+		lblGesamtpreis.setText(Gesamtpreis +"€");
 	}
 
 }
