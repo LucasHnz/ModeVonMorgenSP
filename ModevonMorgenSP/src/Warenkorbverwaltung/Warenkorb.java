@@ -1,8 +1,12 @@
 package Warenkorbverwaltung;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import Artikelverwaltung.Artikel;
+import Artikelverwaltung.ArtikelStrg;
+import Artikelverwaltung.Artikelsammlung;
 /**
  * 
  * @author maoro
@@ -10,26 +14,39 @@ import Artikelverwaltung.Artikel;
  */
 public class Warenkorb {
 
-	private ArrayList<Artikel> Artikelliste;
-	private double Gesamtpreis = 0;
+	private static HashMap<Integer, Integer> Artikelmap = new HashMap<Integer, Integer>();
 	
-	public Warenkorb() {
+	private static double Gesamtpreis = 0;
+	
+	public static void main(String[] args) {
+		ArtikelStrg.FülleArtikelsammlung();
+		ArtikelHinzufügen(Artikelsammlung.getArtikel(500000001), 2);
+	}
+		
+	public static void ArtikelHinzufügen(Artikel artikel, int anzahl) {
+		Artikelmap.put(artikel.getArtikelnummer(), anzahl);
 		
 	}
-	public void ArtikelHinzufügen(Artikel artikel, int anzahl) {
-		for(int i = 0; i <= anzahl; i++) {
-			Artikelliste.add(artikel);
-		}
+	
+	public static void ArtikelEntfernen(Artikel artikel) {
+		Artikelmap.remove(artikel.getArtikelnummer());
 	}
-	public void ArtikelEntfernen(Artikel artikel) {
-		Artikelliste.remove(artikel);
+	
+	public static void ArtikelEntfernen(int artikelnummer) {
+		Artikelmap.remove(artikelnummer);
 	}
-	public double getGesamtpreis() {
+	
+	public static double getGesamtpreis() {
 		double temp;
-		for(Artikel a : Artikelliste) {
-			temp = a.getPreis() * (100 - a.getRabatt()) * 0.01;
-			Gesamtpreis = Gesamtpreis + temp;
-		}
+		for (Map.Entry<Integer, Integer> entry : Artikelmap.entrySet()) {
+			temp= Artikelsammlung.getArtikel(entry.getKey()).getPreis() * (100 - Artikelsammlung.getArtikel(entry.getKey()).getRabatt()) *0.01;
+			temp = temp * entry.getValue();
+			Gesamtpreis = Gesamtpreis + temp;		
+			}
 		return Gesamtpreis;
+	}
+	
+	public static HashMap<Integer, Integer> getWarenkorb(){
+		return Artikelmap;
 	}
 }
