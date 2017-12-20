@@ -7,13 +7,29 @@ import java.sql.Statement;
 
 public class BestandskundeStrg {
 	
-public static void aktualisiereName(String name, String nutzernr){
+public static void aktualisiereNachname(String nachname, String nutzernr){
 		
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		
-		String sqlbefehl = "update Bestandskunde set nachname ='"+name+"' where nutzernr ="+nutzernr;
+		String sqlbefehl = "update Bestandskunde set nachname ='"+nachname+"' where nutzernr ="+nutzernr;
+		
+		stmt.execute(sqlbefehl)	;
+		
+		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+		}catch(SQLException e) {
+			e.getMessage();
+		}
+		
+	}
+public static void aktualisiereVorname(String vorname, String nutzernr){
+		
+		try {
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		
+		String sqlbefehl = "update Bestandskunde set vorname ='"+vorname+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
 		

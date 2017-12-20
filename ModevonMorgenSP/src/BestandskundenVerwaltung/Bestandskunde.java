@@ -31,7 +31,7 @@ public class Bestandskunde {
 	@Override
 	public String toString() {
 		return "Bestandskunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
-				+ email + ", stra√üe=" + straﬂe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
+				+ email + ", straﬂe=" + straﬂe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
 				+ berechtigung + ", passwort=" + passwort + ", pss=" + pss + "]";
 	}
 

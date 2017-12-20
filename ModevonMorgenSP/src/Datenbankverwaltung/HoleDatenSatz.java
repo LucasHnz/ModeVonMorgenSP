@@ -3,6 +3,7 @@ package Datenbankverwaltung;
 import java.sql.Statement;
 
 import AdministratorVerwaltung.Administrator;
+import BestandskundenVerwaltung.Bestandskunde;
 import MitarbeiterVerwaltung.Mitarbeiter;
 
 import java.sql.Connection;
@@ -79,6 +80,30 @@ public class HoleDatenSatz {
 		}
 		
 		return ma;
+		
+	}
+	
+public static Bestandskunde holeKunde(int nutzernr) {
+		
+		Bestandskunde bk = null;
+		
+		try {
+			Connection con = VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select * from Bestandskunde where nutzernr = '"+nutzernr+"'";
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			rs.next();
+			
+			bk= new Bestandskunde(rs.getInt("nutzernr"), rs.getString("nachname"),rs.getString("vorname") ,rs.getString("email"),rs.getString("straﬂe"), rs.getString("ort"),rs.getInt("plz"), rs.getString("iban"),rs.getInt("berechtigung"),rs.getString("passwort"), rs.getInt("pss"));
+		
+			rs.close();
+		}
+		catch (SQLException e) {
+			e.getMessage();
+		}
+		
+		return bk;
 		
 	}
 
