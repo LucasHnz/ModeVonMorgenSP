@@ -122,6 +122,7 @@ public class GUIMitarbeiterListe extends JPanel{
 
 	/**
 	 * Launch the application.
+	 * @throws SQLException 
 	 */
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -140,9 +141,9 @@ public class GUIMitarbeiterListe extends JPanel{
 	/**
 	 * Create the frame.
 	 */
-	public GUIMitarbeiterListe() {
+	public GUIMitarbeiterListe() throws SQLException {
 		setBackground(Color.DARK_GRAY);
-		ArtikelStrg.FülleArtikelsammlung();
+		MitarbeiterSammlung.mitarbeiterSammlung();
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
 			
@@ -226,6 +227,7 @@ public class GUIMitarbeiterListe extends JPanel{
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				try {
 					new GUIMitarbeiterBearbeiten(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+					
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
