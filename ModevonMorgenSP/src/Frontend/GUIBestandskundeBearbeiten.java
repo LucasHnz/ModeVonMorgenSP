@@ -14,7 +14,11 @@ import javax.swing.JTextField;
 
 import BestandskundenVerwaltung.Bestandskunde;
 
-
+/**
+ * 
+ * @author annag
+ *
+ */
 
 
 public class GUIBestandskundeBearbeiten  extends JFrame{
@@ -182,7 +186,7 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 			}
 			
 			if(textField_9.getText() != kunde.getPasswort()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_9.getText() ,kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_9.getText(), .getNutzernr());
 			}
 			
 			JOptionPane.showOptionDialog(null, "Datensatz wurde bearbeitet","Bestandskunden Bearbeitung",
@@ -228,14 +232,11 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 	
 }
 
-public static void main(String[]args) {
-	int nutzernr = 400000001;
-	new GUIBestandskundeBearbeiten(nutzernr);
-}
-
-
-	
-	
-	
+	public static void main(String[]args) {
+		int nutzernr = 400000001;
+		new GUIBestandskundeBearbeiten(nutzernr);
 	}
+
+
+}
 
