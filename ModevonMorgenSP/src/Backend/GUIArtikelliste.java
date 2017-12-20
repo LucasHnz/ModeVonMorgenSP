@@ -121,7 +121,7 @@ public class GUIArtikelliste extends JPanel {
 				}	
 				else if(columnIndex == 7) {
 					if(data.get(keys[rowIndex]).getNotiz() != null && data.get(keys[rowIndex]).getNotiz() != "")
-						return new ImageIcon("src\\Icons\\exclamation-mark.png");
+						return new ImageIcon("src\\Icons 16x16\\exclamation-mark.png");
 					else
 						return new ImageIcon();				
 				}	
@@ -223,6 +223,7 @@ public class GUIArtikelliste extends JPanel {
 				new GUIArtikelFormular("Schuhe");
 			}
 		});
+		btnNeuerSchuhartikel.setIcon(new ImageIcon("src\\Icons 32x32\\shoe.png"));
 		btnNeuerSchuhartikel.setBounds(1105, 51, 86, 48);
 		add(btnNeuerSchuhartikel);
 		

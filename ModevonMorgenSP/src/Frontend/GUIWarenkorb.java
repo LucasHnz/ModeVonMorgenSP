@@ -29,6 +29,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import java.awt.Font;
 import javax.swing.JSpinner;
@@ -43,6 +44,14 @@ public class GUIWarenkorb extends JFrame {
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000001), 3);
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000002), 3);
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000003), 10);
+		try{
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+			//UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}catch(Throwable e) {
+			e.printStackTrace();
+		}
+
 		new GUIWarenkorb();
 	}
 	public GUIWarenkorb() {

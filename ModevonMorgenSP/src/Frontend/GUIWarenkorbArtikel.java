@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
@@ -31,7 +32,7 @@ public class GUIWarenkorbArtikel extends JPanel {
 		
 		JSpinner spinnerAnzahl = new JSpinner();
 		spinnerAnzahl.setFont(new Font("Calibri", Font.PLAIN, 13));
-		spinnerAnzahl.setBounds(398, 37, 45, 26);
+		spinnerAnzahl.setBounds(372, 33, 71, 35);
 		spinnerAnzahl.setValue(Anzahl);
 		add(spinnerAnzahl);
 		
@@ -76,15 +77,15 @@ public class GUIWarenkorbArtikel extends JPanel {
 		JButton btnZumArtikel = new JButton("Zum Artikel");
 		btnZumArtikel.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnZumArtikel.setBackground(Color.WHITE);
-		btnZumArtikel.setBounds(339, 67, 103, 19);
+		btnZumArtikel.setBounds(339, 67, 103, 29);
 		add(btnZumArtikel);
 		
-		JButton btnDelete = new JButton("");
+		JButton btnDelete = new JButton();		
 		btnDelete.setOpaque(false);
-		btnDelete.setBackground(Color.WHITE);
 		btnDelete.setBorder(null);
-		btnDelete.setBorderPainted(false);
-		btnDelete.setIcon(new ImageIcon(GUIWarenkorbArtikel.class.getResource("/Icons 32x32/trash.png")));
+		btnDelete.setIcon(new ImageIcon("src\\Icons 32x32\\trash.png"));
+		btnDelete.setBorder(BorderFactory.createEmptyBorder());
+		btnDelete.setContentAreaFilled(false);
 		btnDelete.setBounds(605, 28, 44, 44);
 		add(btnDelete);
 		
