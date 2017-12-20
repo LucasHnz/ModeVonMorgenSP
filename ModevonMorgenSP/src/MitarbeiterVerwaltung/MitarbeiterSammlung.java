@@ -22,7 +22,7 @@ public class MitarbeiterSammlung {
 		while (rs.next()) {
 			
 			int nutzernr = rs.getInt("Nutzernr");
-			int adminnr = rs.getInt("Adminnr");
+			int adminnr = rs.getInt("Admin");
 			String nachname = rs.getString("Nachname");
 			String vorname = rs.getString("Vorname");
 			String email = rs.getString("Email");

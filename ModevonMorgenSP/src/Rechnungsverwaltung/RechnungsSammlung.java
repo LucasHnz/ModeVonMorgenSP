@@ -12,7 +12,8 @@ import java.sql.Date;
  */
 
 public class RechnungsSammlung {
-static HashMap<Integer, Rechnung> RechnungsSammlung = new HashMap<Integer,Rechnung>();
+	
+public static HashMap<Integer, Rechnung> RechnungsSammlung = new HashMap<Integer,Rechnung>();
 	
 	public RechnungsSammlung(ResultSet rs) throws SQLException {
 		try {
@@ -23,6 +24,8 @@ static HashMap<Integer, Rechnung> RechnungsSammlung = new HashMap<Integer,Rechnu
 			String ort = rs.getString("Ort");
 			String iban = rs.getString("IBAN");
 			String vstatus=rs.getString("Versandstatus");
+			
+			//Wird nicht funktionieren, MitgliedsID gibt es nicht
 			int mitgliedsID=rs.getInt("MitgliedsID");
 			int rechnungNr=rs.getInt("RechnungsNr");
 			int bestellNr=rs.getInt("BestellNr");

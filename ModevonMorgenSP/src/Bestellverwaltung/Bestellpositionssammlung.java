@@ -14,6 +14,8 @@ import Artikelverwaltung.Artikel;
  */
 
 
+//Brauchen wir diese Klasse überhaupt? eine Liste der Bestellpositionen ist nicht im Gebrauch ?
+
 public class Bestellpositionssammlung {
 	
 	static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
