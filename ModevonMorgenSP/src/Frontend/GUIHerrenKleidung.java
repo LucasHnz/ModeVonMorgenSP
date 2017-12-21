@@ -10,10 +10,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +27,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import Warenkorbverwaltung.Warenkorb;
 
 public class GUIHerrenKleidung implements ActionListener{
 	
@@ -39,6 +43,7 @@ public class GUIHerrenKleidung implements ActionListener{
 	public int abstand = 270;
 
 	public JFrame frame = new JFrame();
+	static JPanel panel = new JPanel();
 
 	/**
 	 * Create the application.
@@ -62,11 +67,13 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 148, 1234, 563);
 		panelMain.setLayout(null);
+		BuildPanel();
 		
 		JPanel panelScrollPaneBar = new JPanel();
 		panelScrollPaneBar.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneBar.setLayout(null);
 		
+		/*
 		JScrollPane scrollPaneHerrenKleidungBar = new JScrollPane(panelScrollPaneBar);
 		scrollPaneHerrenKleidungBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneHerrenKleidungBar.setBounds(10, 97, 270, 455);
@@ -83,10 +90,10 @@ public class GUIHerrenKleidung implements ActionListener{
 		scrollPaneHerrenKleidung.setBounds(323, 97, 901, 455);
 		panelMain.add(scrollPaneHerrenKleidung);
 		
-		
+		*/
 		
 		//Artikelbeispiel
-		
+		/*
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelArtikel.setBackground(SystemColor.inactiveCaption);
@@ -155,14 +162,10 @@ public class GUIHerrenKleidung implements ActionListener{
 		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHosen.setBounds(10, 151, 248, 43);
 		panelScrollPaneBar.add(btnHosen);
+		*/
 		 /////
 		
 		/////
-		
-		btnHinz = new JButton("Hinz");
-		btnHinz.setBounds(355, 48, 89, 23);
-		btnHinz.addActionListener(this);
-		panelMain.add(btnHinz);
 		
 		frame.add(panelMain);
 		panelMain.setVisible(true);
@@ -172,14 +175,32 @@ public class GUIHerrenKleidung implements ActionListener{
 	}
 	
 	
-public ImageIcon bildAnpassen(String imageRoot) {
+	public ImageIcon bildAnpassen(String imageRoot) {
 		
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(133, 135, Image.SCALE_DEFAULT));
 		return imageIcon;
 	}
+
+	
+	public static void BuildPanel() {
+	panel.setAutoscrolls(true);
+	panel.setOpaque(false);
+	panel.setBackground(SystemColor.inactiveCaptionBorder);
+	
+	int length = Warenkorb.getWarenkorb().size() * 100;
+	panel.setPreferredSize(new Dimension(270, length));
+	
+	for (Map.Entry<Integer, Integer> entry : Warenkorb.getWarenkorb().entrySet()) {
+	    Integer artikelnummer = entry.getKey();
+	    Integer anzahl = entry.getValue();
+	    panel.add(new GUIWarenkorbArtikel(artikelnummer, anzahl));
+	 
+	}		
+	panel.setLayout(new GridLayout(0, 2, 0, 0));
+	}
 	
 
-public void hinzufügenArtikel() {
+	public void hinzufügenArtikel() {
 		
 		System.out.println("HINZ");
 		
