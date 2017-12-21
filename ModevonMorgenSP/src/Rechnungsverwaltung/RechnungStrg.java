@@ -50,17 +50,17 @@ public class RechnungStrg {
 			}
 			
 			
-			if (i = 2) {
+			if (i == 2) {
 				
 				String sqlbefehlbk = ("select nutzernr, name, nachname, straﬂe, ort, plz from Bestandskunde where ...");
 				String sqlbefehlbp = ("bestellposnr, bestellnr, artikelnr, preis from Bestellposition where ...");
 				
-			}else if (i = 3){
+			}else if (i == 3){
 				
 				String sqlbefehlmia = ("select nutzernr, name, nachname, straﬂe, ort, plz from Mitarbeiter where ...");
 				String sqlbefehlbp = ("bestellposnr, bestellnr, artikelnr, preis from Bestellposition where ...");
 				
-			}else if (i = 4) {
+			}else if (i == 4) {
 				
 				String sqlbefehlad = ("select nutzernr, name, nachname, straﬂe, ort, plz from Administrator where ...");
 				String sqlbefehlbp = ("bestellposnr, bestellnr, artikelnr, preis from Bestellposition where ...");
@@ -113,7 +113,7 @@ public class RechnungStrg {
 		}
 	
 	
-
+	// Was macht diese Methode ?
 	public static void anzeigenBestellungen(int nutzerNrBestandsK) {
 		int kdnr=nutzerNrBestandsK;
 		try {
@@ -135,6 +135,8 @@ public class RechnungStrg {
 		}
 	
 	
+	
+	// Diese Methode hat keinen return Value ??
 	public static void anzeigenBestellungenBK() {
 		try {
 			
@@ -153,6 +155,8 @@ public class RechnungStrg {
 			e.getMessage();
 		}
 	}
+	
+	// Was macht diese Methode
 	public static void anzeigenBestellungenGK() {
 		try {
 			

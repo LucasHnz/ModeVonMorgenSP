@@ -210,6 +210,20 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		                JOptionPane.WARNING_MESSAGE, null, 
 		                new String[]{"Ok"}, "Ok");  
 				
+				String nutzernr =textField.getText();
+				String nachname = textField_2.getText();
+				String vorname = textField_3.getText();
+				String email = textField_4.getText();
+				String straﬂe = textField_5.getText();
+				String ort = textField_6.getText();
+				String plz = textField_7.getText();
+				String iban = textField_8.getText();
+				String gehalt = textField_9.getText();
+				String berechtigung = "4";
+				String passwort = textField_10.getText();
+				
+				Administrator admin = new Administrator(Integer.parseInt(nutzernr), nachname, vorname, email, straﬂe, ort,Integer.parseInt( plz), iban, Integer.parseInt(gehalt), Integer.parseInt(berechtigung), passwort);
+				
 				dispose();
 				
 			}

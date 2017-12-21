@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -114,10 +115,20 @@ public class GUIMitarbeiter implements ActionListener{
 		tabbedPane.setBounds(10, 11, 1204, 541);
 		panelMain.add(tabbedPane);
 		
-		tabbedPane.addTab("Artikelliste", new GUIArtikelliste() );
+		tabbedPane.addTab("Artikel Liste", new GUIArtikelliste() );
+		tabbedPane.addTab("Bestellungs Liste", new GUIRechnungBestellungListe());
 		
 		if(anmeldenCbList[0] == "Admin")
-			tabbedPane.addTab("AdministratorListe", new GUIAdministratorListe());
+			tabbedPane.addTab("Administrator Liste", new GUIAdministratorListe());
+		if(anmeldenCbList[0] == "Admin")
+			try {
+				tabbedPane.addTab("Mitarbeiter Liste", new GUIMitarbeiterListe());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		
 				
 		
 		frame.setVisible(true);

@@ -60,5 +60,14 @@ public class AdministratorSammlung {
 	public static Administrator getAdmin(int Adminnr) {
 		return AdministratorSammlung.get(Adminnr);
 	}
+	
+	public static void hinzufügenAdmin(int nutzernr, String nachname , String vorname, String email, String straße, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort) {
+		
+		
+		
+		Administrator admin = new Administrator(nutzernr,nachname,  vorname,email, straße,  ort,plz,  iban, gehalt, berechtigung, passwort);
+		AdministratorSammlung.put(nutzernr, admin);
+		
+	}
 
 }

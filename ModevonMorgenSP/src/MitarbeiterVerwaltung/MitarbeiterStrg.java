@@ -8,8 +8,8 @@ import AdministratorVerwaltung.Administrator;
 
 public class MitarbeiterStrg {
 	
-	public static void entferneMitarbeiter(String nutzernr) {
-		int pk = Integer.parseInt(nutzernr);
+	public static void entferneMitarbeiter(int nutzernr) {
+		
 		
 		try {
 			
@@ -17,7 +17,7 @@ public class MitarbeiterStrg {
 			
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehel ="delete from Mitarbeiter where nutzernr = '"+pk+"'";
+			String sqlbefehel ="delete from Mitarbeiter where nutzernr = '"+nutzernr+"'";
 			
 			stmt.executeQuery(sqlbefehel);
 			

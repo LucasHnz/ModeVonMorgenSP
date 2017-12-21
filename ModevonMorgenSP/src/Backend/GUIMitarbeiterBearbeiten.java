@@ -16,6 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import MitarbeiterVerwaltung.Mitarbeiter;
+import MitarbeiterVerwaltung.MitarbeiterSammlung;
 
 public class GUIMitarbeiterBearbeiten extends JFrame{
 	
@@ -196,6 +197,7 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 				
 				
 				if(textField_2.getText() != ma.getNachname()) {
+				
 					MitarbeiterVerwaltung.MitarbeiterStrg.aktualisiereName(textField_2.getText(),ma.getNutzernr());
 				}
 				
@@ -205,6 +207,7 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 				
 				if(textField_4.getText() != ma.getEmail()) {
 					MitarbeiterVerwaltung.MitarbeiterStrg.aktualisiereEmail(textField_4.getText(), ma.getNutzernr());
+					
 				}
 				
 				if(textField_5.getText() != ma.getStraﬂe()) {

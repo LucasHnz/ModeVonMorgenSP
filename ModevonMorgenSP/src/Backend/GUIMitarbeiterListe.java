@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,10 +18,13 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import AdministratorVerwaltung.Administrator;
+import AdministratorVerwaltung.AdministratorSammlung;
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import MitarbeiterVerwaltung.Mitarbeiter;
+import MitarbeiterVerwaltung.MitarbeiterSammlung;
 
 public class GUIMitarbeiterListe extends JPanel{
 	
@@ -117,6 +122,7 @@ public class GUIMitarbeiterListe extends JPanel{
 
 	/**
 	 * Launch the application.
+	 * @throws SQLException 
 	 */
 	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -135,9 +141,9 @@ public class GUIMitarbeiterListe extends JPanel{
 	/**
 	 * Create the frame.
 	 */
-	public GUIMitarbeiterListe() {
+	public GUIMitarbeiterListe() throws SQLException {
 		setBackground(Color.DARK_GRAY);
-		ArtikelStrg.FülleArtikelsammlung();
+		MitarbeiterSammlung.mitarbeiterSammlung();
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
 			
@@ -173,7 +179,7 @@ public class GUIMitarbeiterListe extends JPanel{
 		
 		
 		
-		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
+		table = new JTable(new myTableModel(MitarbeiterSammlung.getMitarbeitersammlung(), columnNames));
 		scrollpane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
@@ -200,61 +206,54 @@ public class GUIMitarbeiterListe extends JPanel{
 		
 		add(scrollpane);
 		
-		JButton btnNeuerSchuhartikel = new JButton("Neuer Schuhartikel");
-		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
+		JButton btnNeuerMitarbeiter = new JButton("Mitarbeiter hinzufügen");
+		btnNeuerMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new GUIArtikelFormular("Schuhe");
+				try {
+					new GUIMitarbeiterErstellenFormular();
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
 			}
 		});
-		btnNeuerSchuhartikel.setBounds(920, 11, 270, 48);
-		add(btnNeuerSchuhartikel);
+		btnNeuerMitarbeiter.setBounds(920, 11, 270, 48);
+		add(btnNeuerMitarbeiter);
 		
-		JButton btnNeuerKleidungsartikel = new JButton("Neuer Kleidungsartikel");
-		btnNeuerKleidungsartikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new GUIArtikelFormular("Kleidung");
-			}
-		});
-		btnNeuerKleidungsartikel.setBounds(920, 70, 270, 48);
-		add(btnNeuerKleidungsartikel);
-		
-		JButton btnNeuesAccessoir = new JButton("Neues Accessoir");
-		btnNeuesAccessoir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new GUIArtikelFormular("Accessoires");
-			}
-		});
-		btnNeuesAccessoir.setBounds(920, 129, 270, 48);
-		add(btnNeuesAccessoir);
-		
-		JButton btnEditiereArtikel = new JButton("Artikel editieren");
-		btnEditiereArtikel.addActionListener(new ActionListener() {
+		JButton btnEditiereMitarbeiter = new JButton("Mitarbeiter editieren");
+		btnEditiereMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+				final HashMap<Integer, Mitarbeiter> data = MitarbeiterSammlung.getMitarbeitersammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+				try {
+					new GUIMitarbeiterBearbeiten(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		btnEditiereArtikel.setBounds(920, 188, 270, 48);
-		add(btnEditiereArtikel);
+		btnEditiereMitarbeiter.setBounds(920,70,270,48);
+		add(btnEditiereMitarbeiter);
 		
-		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
-		btnEntferneArtikel.setBounds(920, 247, 270, 48);
-		add(btnEntferneArtikel);
-		
-		JButton btnRabatt = new JButton("Rabatt ändern");
-		btnRabatt.setBounds(920, 306, 270, 48);
-		add(btnRabatt);
-		setVisible(true);
-		
-		JButton btnNotiz = new JButton("Notiz ansehen");
-		btnNotiz.setBounds(920, 424, 270, 48);
-		add(btnNotiz);
-		setVisible(true);
-		
-		JButton btnBestand = new JButton("Bestand ändern");
-		btnBestand.setBounds(920, 365, 270, 48);
-		add(btnBestand);
+		JButton btnLöscheMitarbeiter = new JButton("Mitarbeiter löschen");
+		btnLöscheMitarbeiter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				final HashMap<Integer, Mitarbeiter> data = MitarbeiterSammlung.getMitarbeitersammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+				
+				JOptionPane.showOptionDialog(null, "Sie sind dabei einen Mitarbeiter zu löschen! \nFortfahren ?","Mitarbeiter Bearbeitung",
+		                JOptionPane.YES_NO_CANCEL_OPTION,
+		                JOptionPane.WARNING_MESSAGE, null, 
+		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
+				
+				MitarbeiterVerwaltung.MitarbeiterStrg.entferneMitarbeiter(i);
+			
+			}
+		});
+		btnLöscheMitarbeiter.setBounds(920,129,270,48);
+		add(btnLöscheMitarbeiter);
 		setVisible(true);
 
 	}
@@ -262,4 +261,4 @@ public class GUIMitarbeiterListe extends JPanel{
 	
 	
 
-}
+

@@ -1,4 +1,7 @@
 package Artikelverwaltung;
+
+import java.awt.image.BufferedImage;
+
 /**
  * 
  * @author maoro
@@ -10,6 +13,8 @@ public abstract class Artikel implements Comparable<Artikel> {
 	protected String Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Kategorie;
 	protected String[] Lieferanten;
 	protected double Preis;
+	protected BufferedImage image;
+	
 	/**
 	 * 
 	 * @param artnr Die einzigartige Artikelnummer.
@@ -113,6 +118,24 @@ public abstract class Artikel implements Comparable<Artikel> {
 		else 
 			return 1;
 		
+	}
+	public void downloadImage() {
+		String klasse = this.getClass().getName();
+		klasse = klasse.substring(18);
+		String befehl = "select Bild from " +klasse+ " where Artikelnr = " + this.Artikelnummer;
+		image = Datenbankverwaltung.BlobLaden.runterladenBlob(befehl);
+		
+	}
+	
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	public void uploadImage(String Dateipfad) {
+		String klasse = this.getClass().getName();
+		klasse = klasse.substring(18);
+		String befehl = "update " +klasse+ " set Bild = ? where Artikelnr= " + this.Artikelnummer;
+		Datenbankverwaltung.BlobLaden.hochladenBlob(befehl, Dateipfad);
 	}
 	
 }

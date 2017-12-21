@@ -11,18 +11,19 @@ import java.sql.Date;
 
 public class Rechnung {
 	
-	protected String name, nachname, rechnungsadresse, iban, vstatus;
+	protected String name, nachname,straﬂe,ort,iban, vstatus;
 	protected int mitgliedsID, rechnungNr, bestellNr, bestandskunde, gastkunde, plz;
 	protected double gesamtpreis, zwischenpreis, eRabatt;
 	protected Date datum;
 	
-	public Rechnung(String name, String nachname, String rechnungsadresse, String iban, String vstatus, int mitgliedsID,
+	public Rechnung(String name, String nachname, String straﬂe, String ort, String iban, String vstatus, int mitgliedsID,
 			int rechnungNr, int bestellNr, int bestandskunde, int gastkunde, int plz, double gesamtpreis,
-			double zwischenpreis, double eRabatt, date datum) {
+			double zwischenpreis, double eRabatt, Date datum) {
 		
 		this.name = name;
 		this.nachname = nachname;
-		this.rechnungsadresse = rechnungsadresse;
+		this.straﬂe=straﬂe;
+		this.ort=ort;
 		this.iban = iban;
 		this.vstatus = vstatus;
 		this.rechnungNr = rechnungNr;
@@ -52,12 +53,21 @@ public class Rechnung {
 		this.nachname = nachname;
 	}
 
-	public String getRechnungsadresse() {
-		return rechnungsadresse;
+	
+	public String getStraﬂe() {
+		return straﬂe;
 	}
 
-	public void setRechnungsadresse(String rechnungsadresse) {
-		this.rechnungsadresse = rechnungsadresse;
+	public void setStraﬂe(String straﬂe) {
+		this.straﬂe = straﬂe;
+	}
+
+	public String getOrt() {
+		return ort;
+	}
+
+	public void setOrt(String ort) {
+		this.ort = ort;
 	}
 
 	public String getIban() {
@@ -148,12 +158,12 @@ public class Rechnung {
 		this.eRabatt = eRabatt;
 	}
 
-	public date getDatum() {
+	public Date getDatum() {
 		return datum;
 	}
 
-	public void setDatum(date datum) {
-		this.datum = datum;
+	public void setDatum(Date datum) {
+		 this.datum = new Date( datum.getTime() );
 	}
 	
 	
