@@ -40,7 +40,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
 
-//ABC
+
 
 
     public class GUI implements ActionListener {
