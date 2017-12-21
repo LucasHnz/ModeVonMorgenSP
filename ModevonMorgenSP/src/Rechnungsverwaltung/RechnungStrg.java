@@ -151,6 +151,7 @@ public class RechnungStrg {
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
 			
+			
 		}catch (SQLException e) {
 			e.getMessage();
 		}
@@ -185,6 +186,7 @@ public class RechnungStrg {
 			stmt.execute(sqlbefehl)	;
 			
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			// RechnungsSammlung.getRechnung(bestellNr);
 			
 			}catch (SQLException e) {
 				e.getMessage();

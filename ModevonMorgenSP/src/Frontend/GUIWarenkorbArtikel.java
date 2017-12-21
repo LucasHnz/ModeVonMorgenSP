@@ -115,9 +115,8 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnDelete) {
 			Warenkorb.ArtikelEntfernen(Artikelsammlung.getArtikel(ArtNr).getArtikelnummer());
-			GUIWarenkorb w = (GUIWarenkorb) getTopLevelAncestor();
-			w.getPanel().removeAll();
-			w.BuildPanel();
+			GUIWarenkorb.getPanel().removeAll();
+			GUIWarenkorb.BuildPanel();
 			System.out.println("delete");
 			
 		}

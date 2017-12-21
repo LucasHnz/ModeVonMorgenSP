@@ -27,9 +27,9 @@ public class Bestellpositionssammlung {
 				int poNr = rs.getInt("PosNr");
 				int aMenge = rs.getInt("ArtikelMenge");
 				int bestellNr =rs.getInt("BestellNr");
-				double Preis = rs.getDouble("Preis");
-				Artikel aArtikel=rs.getObject("Artikel");
-				Bestellposition bpos = new Bestellposition (aArtikel, bestellNr, bestellNr);
+				
+				int artikelnummer=rs.getInt("ArtikelNr");
+				Bestellposition bpos = new Bestellposition (poNr, artikelnummer, aMenge, bestellNr);
 				
 				BestellpositionsSammlung.put(bpos.getPosNr(),bpos);
 			

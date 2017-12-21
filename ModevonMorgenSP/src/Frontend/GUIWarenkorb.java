@@ -37,9 +37,11 @@ import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
 
-public class GUIWarenkorb extends JFrame {
+public class GUIWarenkorb  {
 	
-	private JPanel panel = new JPanel();
+	static JFrame frame = new JFrame();
+	static JPanel panel = new JPanel();
+	
 	public static void main(String[] args) {
 		ArtikelStrg.FülleArtikelsammlung();
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000001), 3);
@@ -55,14 +57,14 @@ public class GUIWarenkorb extends JFrame {
 			e.printStackTrace();
 		}
 
-		new GUIWarenkorb();
+		getGUIWarenkorb();
 	}
 	
-	public GUIWarenkorb() {
-		setResizable(false);
-		getContentPane().setLayout(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(0,0,1000,600);
+	public static JFrame getGUIWarenkorb() {
+		frame.setResizable(false);
+		frame.getContentPane().setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(0,0,1000,600);
 		BuildPanel();
 		JButton btnZurKasse = new JButton("Zur Kasse");
 		btnZurKasse.addActionListener(new ActionListener() {
@@ -70,28 +72,30 @@ public class GUIWarenkorb extends JFrame {
 			}
 		});
 		btnZurKasse.setBounds(648, 424, 227, 46);
-		getContentPane().add(btnZurKasse);
+		frame.add(btnZurKasse);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(panel);
 		scrollPane.setBounds(10, 11, 865, 402);
 				
-		getContentPane().add(scrollPane);
+		frame.add(scrollPane);
 		
 		String Gesamtpreis = String.format("%.2f",Warenkorb.getGesamtpreis());
 		JLabel lblGesamtpreis = new JLabel("Gesamtpreis: " +Gesamtpreis + "€");
 		lblGesamtpreis.setBackground(Color.WHITE);
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblGesamtpreis.setBounds(415, 423, 223, 46);
-		getContentPane().add(lblGesamtpreis);
-		setVisible(true);
+		frame.add(lblGesamtpreis);
+		frame.setVisible(true);
+		
+		return frame;
 	}
 	
-	public JPanel getPanel() {
+	public static JPanel getPanel() {
 		return panel;
 	}
 	
-	public void BuildPanel() {
+	public static void BuildPanel() {
 		panel.setAutoscrolls(true);
 		panel.setOpaque(false);
 		panel.setBackground(SystemColor.inactiveCaptionBorder);
