@@ -1,6 +1,7 @@
 package Bestellverwaltung;
 
 import Artikelverwaltung.Artikel;
+import Artikelverwaltung.Artikelsammlung;
 /**
  * 
  * @author annag
@@ -12,7 +13,7 @@ public class Bestellposition {
 	protected int aMenge; 
 	protected int posNr;
 	protected int bestellNr;
-	protected Artikel aArtikel;
+	protected int artikelnummer;
 	
 	
 
@@ -22,11 +23,13 @@ public class Bestellposition {
 	 * @param preis der Preis der ganzen Bestellposition.
 	 *  
 	 */
-	public Bestellposition (Artikel aArtikel,int posNr,int aMenge) {
+	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis) {
 		this.aMenge=aMenge;
-		this.posNr=posNr;
-		this.aArtikel=aArtikel;
-		
+		this.posNr = posNr;
+		this.artikelnummer = artikelnummer;
+		this.bestellNr = bestellNr;
+		//this.preis = Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
+		this.preis = preis;
 	}
 	
 	public int getaMenge() {
@@ -38,14 +41,8 @@ public class Bestellposition {
 	public int getPosNr(){
 		return posNr;
 	}
-	public void setPosNr(int posNr) {
-		this.posNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellPosNr();
-	}
 	public double getPreis() {
 		return this.preis;
-	}
-	public void setPreis(double preis) {
-		this.preis = aArtikel.getPreis()*aMenge;
 	}
 
 	public int getBestellNr() {

@@ -263,7 +263,7 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 	}
 	
 	public static void main (String []args) throws SQLException {
-		int i = 300000002;
+		int i = 300000001;
 		new GUIMitarbeiterBearbeiten(i);
 	}
 
