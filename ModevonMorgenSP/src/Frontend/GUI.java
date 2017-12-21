@@ -56,7 +56,7 @@ import java.awt.SystemColor;
 	JPasswordField anmeldenPasswort = new JPasswordField();
 	JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
-	JPanel panelMain = new JPanel();
+	static JPanel panelMain = new JPanel();
 	
 	public JButton btnProduktDamenLinks = new JButton();
 	public JButton btnProduktDamenRechts = new JButton();
@@ -252,11 +252,6 @@ import java.awt.SystemColor;
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
-		JLabel lblPunktestand = new JLabel("1224 Punkte");
-		lblPunktestand.setForeground(Color.BLUE);
-		lblPunktestand.setBounds(947, 15, 89, 20);
-		panelBar.add(lblPunktestand);
-		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 148, 1234, 563);
@@ -316,10 +311,11 @@ import java.awt.SystemColor;
 		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
 		panelMain.add(labelMainHerren);
 		
+		/*
 		JLabel labelMainHintergrund = new JLabel();
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
 		panelMain.add(labelMainHintergrund);
-		
+		*/
 	
 		frame.setVisible(true);
 	
@@ -383,20 +379,20 @@ import java.awt.SystemColor;
 			String auswahl = (String) comboBoxHerren.getSelectedItem();
 		    
 			if(auswahl == "Kleidung"){
-				frame.dispose();
-			  new GUIHerrenKleidung(damenCbList, herrenCbList, anmeldenCbList);
+				panelMain.setVisible(false);
+			    new GUIHerrenKleidung(frame);
 			 
 		    }
 		  
 			if(auswahl == "Schuhe"){
-			  frame.dispose();
-			  new GUIHerrenSchuhe(damenCbList, herrenCbList, anmeldenCbList);
+				panelMain.setVisible(false);
+				new GUIHerrenSchuhe(frame);
 			  
 			}
 			
 			if(auswahl == "Accessoires"){
-				frame.dispose();
-			  new GUIHerrenAccessoires(damenCbList, herrenCbList, anmeldenCbList);
+				panelMain.setVisible(false);
+			    new GUIHerrenAccessoires(frame);
 			  
 			}
 		}
@@ -406,20 +402,18 @@ import java.awt.SystemColor;
 			String auswahl = (String) comboBoxDamen.getSelectedItem();
 			
 			if(auswahl == "Kleidung"){
-				 frame.dispose();
-				 new GUIDamenKleidung(damenCbList, herrenCbList, anmeldenCbList);
+				panelMain.setVisible(false);
+			    new GUIDamenKleidung(frame);
 			    }
 			  
 				if(auswahl == "Schuhe"){
-					frame.dispose();
-				  new GUIDamenSchuhe(damenCbList, herrenCbList, anmeldenCbList);
-				 
+					panelMain.setVisible(false);
+				    new GUIDamenSchuhe(frame);
 				}
 				
 				if(auswahl == "Accessoires"){
-					frame.dispose();
-				  new GUIDamenAccessoires(damenCbList, herrenCbList, anmeldenCbList);
-				  
+					panelMain.setVisible(false);
+				    new GUIDamenAccessoires(frame);
 				}
 				
 		}
@@ -434,14 +428,14 @@ import java.awt.SystemColor;
 			}
 
 		    if(auswahl == "Meine Bestellungen" && angemeldet == true) {
-			    new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
+			  //  new GUIKontoBestellungen(frame);
 			}
 		    if(auswahl == "Meine Bestellungen" && angemeldet == false) {
 		    	 öffnenAnmeldefenster();
 		    }
 		    
 		    if(auswahl == "Konto verwalten" && angemeldet == true) {
-			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
+			    //new GUIKontoVerwalten(frame);
 			}
 		    if(auswahl == "Konto verwalten" && angemeldet == false) {
 		    	 öffnenAnmeldefenster();
