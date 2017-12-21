@@ -75,18 +75,18 @@ public class GUIMitarbeiter implements ActionListener{
 		
 		JPanel panelLogo = new JPanel();
 		panelLogo.setBackground(Color.WHITE);
-		panelLogo.setBounds(0, 0, 1234, 99);
+		panelLogo.setBounds(0, 0, 1248, 99);
 		frame.getContentPane().add(panelLogo);
 		panelLogo.setLayout(null);
 		
-		JLabel labelLogo = new JLabel("New label");
-		labelLogo.setBounds(56, 0, 1226, 99);
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setBounds(59, 0, 1248, 99);
 		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
 		panelLogo.add(labelLogo);
 		
 		JPanel panelBar = new JPanel();
 		panelBar.setBackground(SystemColor.control);
-		panelBar.setBounds(0, 98, 1234, 50);
+		panelBar.setBounds(0, 98, 1248, 50);
 		frame.getContentPane().add(panelBar);
 		panelBar.setLayout(null);
 		
@@ -115,7 +115,7 @@ public class GUIMitarbeiter implements ActionListener{
 		tabbedPane.setBounds(10, 11, 1204, 541);
 		panelMain.add(tabbedPane);
 		
-		tabbedPane.addTab("Artikel Liste", new GUIArtikelliste() );
+		tabbedPane.addTab("Artikelverwaltung", new GUIArtikelliste() );
 		tabbedPane.addTab("Bestellungs Liste", new GUIRechnungBestellungListe());
 		
 		if(anmeldenCbList[0] == "Admin")

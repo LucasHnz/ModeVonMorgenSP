@@ -273,7 +273,7 @@ public class GUIArtikelFormular extends JFrame {
 		SpinnerModel model = new SpinnerNumberModel(0, 0, 99999, 1);
 		final JSpinner spinnerBestand = new JSpinner(model);
 		spinnerBestand.setToolTipText("Lagerbestand");
-		spinnerBestand.setBounds(105, 322, 86, 20);
+		spinnerBestand.setBounds(105, 322, 86, 30);
 		contentPane.add(spinnerBestand);
 		
 		final JTextArea taLieferanten = new JTextArea();
@@ -331,6 +331,9 @@ public class GUIArtikelFormular extends JFrame {
 	};
 	
 	
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public GUIArtikelFormular(int Artikelnummer) {
 		
 		setResizable(false);
@@ -534,7 +537,7 @@ public class GUIArtikelFormular extends JFrame {
 		SpinnerModel model = new SpinnerNumberModel(0, 0, 99999, 1);
 		final JSpinner spinnerBestand = new JSpinner(model);
 		spinnerBestand.setToolTipText("Lagerbestand");
-		spinnerBestand.setBounds(105, 322, 86, 20);
+		spinnerBestand.setBounds(105, 322, 86, 30);
 		spinnerBestand.setValue(Artikelsammlung.getArtikel(Artikelnummer).getBestand());
 		contentPane.add(spinnerBestand);
 		

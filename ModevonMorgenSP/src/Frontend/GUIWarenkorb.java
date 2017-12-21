@@ -1,6 +1,8 @@
 package Frontend;
 
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.event.ActionListener;
@@ -17,6 +19,15 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.SwingConstants;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.Component;
 
 public class GUIWarenkorb  {
 	
@@ -50,6 +61,8 @@ public class GUIWarenkorb  {
 		frame.setBounds(0,0,1000,600);
 		BuildPanel();
 		JButton btnZurKasse = new JButton("Zur Kasse");
+		btnZurKasse.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnZurKasse.setIconTextGap(4);
 		btnZurKasse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//BestellStrg.neueBestellung(Warenkorb.getWarenkorb()); 
@@ -58,6 +71,7 @@ public class GUIWarenkorb  {
 			}
 		});
 		btnZurKasse.setBounds(648, 424, 227, 46);
+		btnZurKasse.setBorder(null);
 		frame.getContentPane().add(btnZurKasse);
 		
 		JScrollPane scrollPane = new JScrollPane();

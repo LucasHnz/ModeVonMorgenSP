@@ -50,7 +50,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		add(spinnerAnzahl);
 		
 		ImageIcon icon = new ImageIcon("src\\SWP-Bilder\\Damenkleidung_4.jpg");
-        Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_FAST);
+        Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_SMOOTH);
 		
 		JLabel lblImage = new JLabel("image");		//new ImageIcon(a.getImage())
 		lblImage.setIcon(new ImageIcon(img));
