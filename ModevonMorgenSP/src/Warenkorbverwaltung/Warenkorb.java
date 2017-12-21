@@ -16,7 +16,7 @@ public class Warenkorb {
 
 	private static HashMap<Integer, Integer> Artikelmap = new HashMap<Integer, Integer>();
 	
-	private static double Gesamtpreis = 0;
+	private static double Gesamtpreis;
 	
 	public static void main(String[] args) {
 		ArtikelStrg.FülleArtikelsammlung();
@@ -36,8 +36,13 @@ public class Warenkorb {
 		Artikelmap.remove(artikelnummer);
 	}
 	
+	public static void AnzahlÄndern(int Artikelnummer, int Anzahl) {
+		Artikelmap.put(Artikelnummer, Anzahl);
+	}
+	
 	public static double getGesamtpreis() {
 		double temp;
+		Gesamtpreis = 0;
 		for (Map.Entry<Integer, Integer> entry : Artikelmap.entrySet()) {
 			temp= Artikelsammlung.getArtikel(entry.getKey()).getPreis() * (100 - Artikelsammlung.getArtikel(entry.getKey()).getRabatt()) *0.01;
 			temp = temp * entry.getValue();

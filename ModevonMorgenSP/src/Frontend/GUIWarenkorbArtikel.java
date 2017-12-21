@@ -1,22 +1,15 @@
 package Frontend;
 
 import javax.swing.JPanel;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
-
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
 import Warenkorbverwaltung.Warenkorb;
-
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,17 +20,26 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
+	
 	JButton btnDelete;
 	int ArtNr;
-	double Preis;
+	double Einzelpreis;
 	JLabel lblGesamtpreis;
 	String Gesamtpreis;
+	String EinzelpreisString;
+	
 	public GUIWarenkorbArtikel(int Artikelnummer, int Anzahl) {
 		Artikel a = Artikelsammlung.getArtikel(Artikelnummer);
 		ArtNr = Artikelnummer;
+		
+		Einzelpreis = a.getPreis() * (100 - a.getRabatt()) * 0.01;
+		EinzelpreisString = String.format("%.2f", Einzelpreis);
+		//Gesamtpreis = String.format("%.2f",Einzelpreis * (int) spinnerAnzahl.getValue() );
+		Gesamtpreis = String.format("%.2f",Einzelpreis * Warenkorb.getWarenkorb().get(Artikelnummer).intValue() );
+		
 		setLayout(null);
 		setBorder(null);
-		setBackground(new Color(240, 255, 240));
+		setBackground(new Color(204, 255, 255));
 		//setBounds(0, 0, 680, 99);
 		setSize(new Dimension(680, 100));
 		
@@ -48,7 +50,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		add(spinnerAnzahl);
 		
 		ImageIcon icon = new ImageIcon("src\\SWP-Bilder\\Damenkleidung_4.jpg");
-        Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_FAST);
+        Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_SMOOTH);
 		
 		JLabel lblImage = new JLabel("image");		//new ImageIcon(a.getImage())
 		lblImage.setIcon(new ImageIcon(img));
@@ -62,9 +64,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		lblBezeichnung.setBounds(116, 9, 213, 19);
 		add(lblBezeichnung);
 		
-		Preis = a.getPreis() * (100 - a.getRabatt()) * 0.01;
-		String Einzelpreis = String.format("%.2f", Preis);
-		JLabel lblEInzelpreis = new JLabel(Einzelpreis + "€");	//Rabatt einberechnen
+		JLabel lblEInzelpreis = new JLabel(EinzelpreisString + "€");	//Rabatt einberechnen
 		lblEInzelpreis.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblEInzelpreis.setBounds(453, 40, 80, 20);
 		add(lblEInzelpreis);
@@ -75,7 +75,6 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		lblVerfügbarkeit.setBounds(116, 64, 213, 30);
 		add(lblVerfügbarkeit);
 		
-		Gesamtpreis = String.format("%.2f",Preis * (int) spinnerAnzahl.getValue() );
 		lblGesamtpreis = new JLabel(Gesamtpreis + "€");  //noch zu fixen
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblGesamtpreis.setBounds(515, 40, 80, 20);
@@ -103,7 +102,10 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		
 		spinnerAnzahl.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+				Warenkorb.AnzahlÄndern(Artikelnummer, (int) spinnerAnzahl.getValue());
+				Gesamtpreis = String.format("%.2f",Einzelpreis * Warenkorb.getWarenkorb().get(Artikelnummer).intValue() );
 				updatePreisLabel();
+				GUIWarenkorb.updateGesamtpreis();
 			}
 		});
 		
@@ -117,8 +119,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 			Warenkorb.ArtikelEntfernen(Artikelsammlung.getArtikel(ArtNr).getArtikelnummer());
 			GUIWarenkorb.getPanel().removeAll();
 			GUIWarenkorb.BuildPanel();
-			System.out.println("delete");
-			
+			GUIWarenkorb.updateGesamtpreis();
 		}
 		
 	}

@@ -14,6 +14,7 @@ import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -27,8 +28,14 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.Icon;
 
 public class GUIArtikelliste extends JPanel {
 	/**
@@ -144,7 +151,7 @@ public class GUIArtikelliste extends JPanel {
 	 */
 	public static void main(String[] args) {
 		try {
-			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -165,6 +172,7 @@ public class GUIArtikelliste extends JPanel {
 	 * Create the frame.
 	 */
 	public GUIArtikelliste() {
+		setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		ArtikelStrg.FülleArtikelsammlung();
 		
 		setBackground(Color.DARK_GRAY);
@@ -222,32 +230,41 @@ public class GUIArtikelliste extends JPanel {
 		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
-		JButton btnNeuerSchuhartikel = new JButton("Schuh");
+		JButton btnNeuerSchuhartikel = new JButton();
 		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new GUIArtikelFormular("Schuhe");
 			}
 		});
-		btnNeuerSchuhartikel.setIcon(new ImageIcon("src\\Icons 32x32\\shoe.png"));
+		Image schuhe = new ImageIcon("src\\Icons 64x64\\shoe.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		btnNeuerSchuhartikel.setIcon(new ImageIcon(schuhe));
 		btnNeuerSchuhartikel.setBounds(1105, 51, 86, 48);
+		btnNeuerSchuhartikel.setBorder(BorderFactory.createEmptyBorder());
+		btnNeuerSchuhartikel.setContentAreaFilled(false);
 		add(btnNeuerSchuhartikel);
 		
-		JButton btnNeuerKleidungsartikel = new JButton("Kleidung");
+		Image kleidung = new ImageIcon("src\\Icons 64x64\\t-shirt.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		JButton btnNeuerKleidungsartikel = new JButton(new ImageIcon(kleidung));
 		btnNeuerKleidungsartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIArtikelFormular("Kleidung");
 			}
 		});
 		btnNeuerKleidungsartikel.setBounds(1013, 51, 86, 48);
+		btnNeuerKleidungsartikel.setBorder(BorderFactory.createEmptyBorder());
+		btnNeuerKleidungsartikel.setContentAreaFilled(false);
 		add(btnNeuerKleidungsartikel);
 		
-		JButton btnNeuesAccessoir = new JButton("Accessoire");
+		Image accessoires = new ImageIcon("src\\Icons 64x64\\glasses.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		JButton btnNeuesAccessoir = new JButton(new ImageIcon(accessoires));
 		btnNeuesAccessoir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new GUIArtikelFormular("Accessoires");
 			}
 		});
 		btnNeuesAccessoir.setBounds(921, 51, 86, 48);
+		btnNeuesAccessoir.setBorder(BorderFactory.createEmptyBorder());
+		btnNeuesAccessoir.setContentAreaFilled(false);
 		add(btnNeuesAccessoir);
 		
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
@@ -258,7 +275,7 @@ public class GUIArtikelliste extends JPanel {
 				new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
 			}
 		});
-		btnEditiereArtikel.setBounds(921, 120, 270, 48);
+		btnEditiereArtikel.setBounds(976, 120, 215, 48);
 		add(btnEditiereArtikel);
 		
 		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
@@ -281,7 +298,7 @@ public class GUIArtikelliste extends JPanel {
 				}			
 			}
 		});
-		btnEntferneArtikel.setBounds(921, 179, 270, 48);
+		btnEntferneArtikel.setBounds(976, 179, 215, 48);
 		add(btnEntferneArtikel);
 		
 		JButton btnRabatt = new JButton("Rabatt ändern");
@@ -355,15 +372,25 @@ public class GUIArtikelliste extends JPanel {
 		add(btnArtikelbildHochladen);
 		
 		JLabel lblNeuerArtikel = new JLabel("Neuer Artikel");
-		lblNeuerArtikel.setOpaque(true);
+		lblNeuerArtikel.setForeground(Color.WHITE);
 		lblNeuerArtikel.setIgnoreRepaint(true);
 		lblNeuerArtikel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNeuerArtikel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNeuerArtikel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNeuerArtikel.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNeuerArtikel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNeuerArtikel.setBackground(Color.WHITE);
+		lblNeuerArtikel.setBackground(Color.LIGHT_GRAY);
 		lblNeuerArtikel.setBounds(920, 12, 270, 35);
 		add(lblNeuerArtikel);
+		
+		Image ArtikelEntfernen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblArtikelEntfernen = new JLabel(new ImageIcon(ArtikelEntfernen));
+		lblArtikelEntfernen.setBounds(922, 180, 40, 40);
+		add(lblArtikelEntfernen);
+		
+		Image ArtikelEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblArtikelEditieren = new JLabel(new ImageIcon(ArtikelEditieren));
+		lblArtikelEditieren.setBounds(922, 124, 40, 40);
+		add(lblArtikelEditieren);
 		
 		setVisible(true);
 		//Artikelsammlung.loadImages();

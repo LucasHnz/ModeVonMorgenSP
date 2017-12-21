@@ -1,46 +1,40 @@
 package Frontend;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
 import java.awt.event.ActionListener;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-
-import javax.swing.ScrollPaneConstants;
 import java.awt.SystemColor;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.border.LineBorder;
-import javax.swing.text.html.HTMLDocument.Iterator;
-
-import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import Warenkorbverwaltung.Warenkorb;
-
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-
 import java.awt.Font;
-import javax.swing.JSpinner;
 import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import javax.swing.BoxLayout;
+import javax.swing.SwingConstants;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.Component;
 
 public class GUIWarenkorb  {
 	
 	static JFrame frame = new JFrame();
 	static JPanel panel = new JPanel();
+	static String Gesamtpreis;
+	static JLabel lblGesamtpreis;
 	
 	public static void main(String[] args) {
 		ArtikelStrg.FülleArtikelsammlung();
@@ -67,25 +61,32 @@ public class GUIWarenkorb  {
 		frame.setBounds(0,0,1000,600);
 		BuildPanel();
 		JButton btnZurKasse = new JButton("Zur Kasse");
+		btnZurKasse.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnZurKasse.setIconTextGap(4);
 		btnZurKasse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//BestellStrg.neueBestellung(Warenkorb.getWarenkorb()); 
+				// sowas in der Richtung.. Keine Ahnung, wie ihr das letztendlich schreibt
+			
 			}
 		});
 		btnZurKasse.setBounds(648, 424, 227, 46);
-		frame.add(btnZurKasse);
+		btnZurKasse.setBorder(null);
+		frame.getContentPane().add(btnZurKasse);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(panel);
 		scrollPane.setBounds(10, 11, 865, 402);
 				
-		frame.add(scrollPane);
+		frame.getContentPane().add(scrollPane);
 		
-		String Gesamtpreis = String.format("%.2f",Warenkorb.getGesamtpreis());
-		JLabel lblGesamtpreis = new JLabel("Gesamtpreis: " +Gesamtpreis + "€");
+		Gesamtpreis = String.format("%.2f",Warenkorb.getGesamtpreis());
+		lblGesamtpreis = new JLabel("Gesamtpreis: " +Gesamtpreis + "€");
+		
 		lblGesamtpreis.setBackground(Color.WHITE);
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblGesamtpreis.setBounds(415, 423, 223, 46);
-		frame.add(lblGesamtpreis);
+		frame.getContentPane().add(lblGesamtpreis);
 		frame.setVisible(true);
 		
 		return frame;
@@ -110,5 +111,9 @@ public class GUIWarenkorb  {
 		 
 		}		
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
+	}
+	public static void updateGesamtpreis() {
+		Gesamtpreis = String.format("%.2f",Warenkorb.getGesamtpreis());
+		lblGesamtpreis.setText("Gesamtpreis: " +Gesamtpreis + "€");
 	}
 }
