@@ -231,19 +231,19 @@ import java.awt.SystemColor;
 		comboBoxDamen = new JComboBox(damenCbList);
 		comboBoxDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		comboBoxDamen.setBackground(SystemColor.control);
-		comboBoxDamen.setBounds(10, 0, 250, 50);
+		comboBoxDamen.setBounds(10, 2, 250, 48);
 		comboBoxDamen.addActionListener(this);
 		panelBar.add(comboBoxDamen);
 		
 		comboBoxHerren = new JComboBox(herrenCbList);
 		comboBoxHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		comboBoxHerren.setBackground(SystemColor.control);
-		comboBoxHerren.setBounds(270, 0, 250, 50);
+		comboBoxHerren.setBounds(270, 2, 250, 48);
 		comboBoxHerren.addActionListener(this);
 		panelBar.add(comboBoxHerren);
 		
 		comboBoxAnmelden = new JComboBox(anmeldenCbList);
-		comboBoxAnmelden.setBounds(1040, 0, 173, 50);
+		comboBoxAnmelden.setBounds(1040, 2, 173, 48);
 		comboBoxAnmelden.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
 		comboBoxAnmelden.addActionListener(this);

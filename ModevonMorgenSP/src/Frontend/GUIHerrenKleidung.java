@@ -53,6 +53,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 	}
 
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -211,6 +212,14 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 		frame.setVisible(true);
 	}
+	
+	
+public ImageIcon bildAnpassen(String imageRoot) {
+		
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(133, 135, Image.SCALE_DEFAULT));
+		return imageIcon;
+	}
+	
 
 public void hinzufügenArtikel() {
 		
@@ -231,7 +240,7 @@ public void hinzufügenArtikel() {
 		JLabel labelArtikelBild2 = new JLabel("");
 		labelArtikelBild2.setHorizontalAlignment(SwingConstants.CENTER);
 		labelArtikelBild2.setVerticalAlignment(SwingConstants.TOP);
-		labelArtikelBild2.setIcon(new ImageIcon(img2));
+		labelArtikelBild2.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
 		labelArtikelBild2.setBounds(33, 25, 133, 135);
 		panelArtikel2.add(labelArtikelBild2);
 		

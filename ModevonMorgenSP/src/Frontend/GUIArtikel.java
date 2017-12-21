@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,7 +64,7 @@ public class GUIArtikel implements ActionListener {
 		
 		JLabel labelLogo = new JLabel("New label");
 		labelLogo.setBounds(56, 0, 1226, 99);
-		labelLogo.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\SWP-Bilder\\modeLogo.jpg"));
+		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
 		panelLogo.add(labelLogo);
 		
 		JPanel panelBar = new JPanel();
@@ -118,7 +119,7 @@ public class GUIArtikel implements ActionListener {
 		labelArtikelBild.setBackground(Color.WHITE);
 		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
 		labelArtikelBild.setBounds(70, 32, 250, 250);
-		labelArtikelBild.setIcon(new ImageIcon("C:\\Users\\hinzl\\Desktop\\Softwareprojekt\\SWP-Bilder\\Herrenjacke_6.jpg"));
+		labelArtikelBild.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
 		panel.add(labelArtikelBild);
 		
 		JLabel lblArtikelTitel = new JLabel("Schwarze Jacke DENIM");
@@ -153,6 +154,14 @@ public class GUIArtikel implements ActionListener {
 		frame.setVisible(true);
 		
 	}
+	
+	
+	public ImageIcon bildAnpassen(String imageRoot) {
+		
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+		return imageIcon;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
