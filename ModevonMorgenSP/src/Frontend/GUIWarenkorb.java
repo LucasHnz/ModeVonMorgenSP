@@ -29,9 +29,9 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.Component;
 
-public class GUIWarenkorb  {
+public class GUIWarenkorb {
 	
-	static JFrame frame = new JFrame();
+	static JPanel mainPanel = new JPanel();
 	static JPanel panel = new JPanel();
 	static String Gesamtpreis;
 	static JLabel lblGesamtpreis;
@@ -54,11 +54,13 @@ public class GUIWarenkorb  {
 		getGUIWarenkorb();
 	}
 	
-	public static JFrame getGUIWarenkorb() {
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(0,0,1000,600);
+	public static JPanel getGUIWarenkorb() {
+		//frame.setResizable(false);
+		//frame.getContentPane().setLayout(null);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setBounds(0,0,1000,600);
+		mainPanel.setLayout(null);
+		mainPanel.setBounds(0, 148, 1234, 563);
 		BuildPanel();
 		JButton btnZurKasse = new JButton("Zur Kasse");
 		btnZurKasse.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -72,13 +74,13 @@ public class GUIWarenkorb  {
 		});
 		btnZurKasse.setBounds(648, 424, 227, 46);
 		btnZurKasse.setBorder(null);
-		frame.getContentPane().add(btnZurKasse);
+		mainPanel.add(btnZurKasse);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(panel);
 		scrollPane.setBounds(10, 11, 865, 402);
 				
-		frame.getContentPane().add(scrollPane);
+		mainPanel.add(scrollPane);
 		
 		Gesamtpreis = String.format("%.2f",Warenkorb.getGesamtpreis());
 		lblGesamtpreis = new JLabel("Gesamtpreis: " +Gesamtpreis + "€");
@@ -86,10 +88,10 @@ public class GUIWarenkorb  {
 		lblGesamtpreis.setBackground(Color.WHITE);
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblGesamtpreis.setBounds(415, 423, 223, 46);
-		frame.getContentPane().add(lblGesamtpreis);
-		frame.setVisible(true);
+		mainPanel.add(lblGesamtpreis);
+		mainPanel.setVisible(true);
 		
-		return frame;
+		return mainPanel;
 	}
 	
 	public static JPanel getPanel() {

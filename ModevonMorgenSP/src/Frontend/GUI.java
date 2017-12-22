@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 
 import java.awt.Color;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -37,13 +39,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-
-
-
-
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.JLayeredPane;
 
     public class GUI implements ActionListener {
 	
+    	/**
+    	 * Damit wir das Panel im frame ordentlich switchen können, müssen alle(!) Klassen wie z.B. GUIHerrenSchuhe ein JPanel returnen.
+    	 * Diese werden immer in dem varPanel gespeichert, damit sie gelöscht werden können, usw.
+    	 * Orientiert euch da am besten an meiner GUIWarenkorb. 
+    	 * Wenn man das Panel im mainframe dann öffnen möchte, dann muss man nur im ActionListener die Methode 
+    	 * changePanel(JPanel newPanel) ausführen. Also einfach als Attribut den Konstruktor der jeweiligen Klasse nutzen.
+    	 */
+    	
 	
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
@@ -57,6 +66,7 @@ import java.awt.SystemColor;
 	JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
 	static JPanel panelMain = new JPanel();
+	private static JPanel panelMain_1;
 	
 	public JButton btnProduktDamenLinks = new JButton();
 	public JButton btnProduktDamenRechts = new JButton();
@@ -64,6 +74,7 @@ import java.awt.SystemColor;
 	public JButton btnProduktHerrenRechts= new JButton();
 	public JButton btnProduktDamen;
 	public JButton btnProduktHerren;
+	public JButton btnWarenkorb;
 	public JLabel labelMainDamen = new JLabel();
 	public JLabel labelMainHerren = new JLabel();
 	public JComboBox comboBoxHerren = new JComboBox();
@@ -74,28 +85,39 @@ import java.awt.SystemColor;
 	private JPasswordField passwordField;
 	//public static JButton btnAnmelden = new JButton();
 	public JPanel panelAnmelden = new JPanel();
-	
+	public JPanel varPanel;
+	public JPanel WarenkorbPanel;
+	private JButton btnNewButton;
 	
 	
 	
 	public static void fensterSchließen() {
 		frame.dispose();
 	}
-	
+	public void changePanel(JPanel newPanel) {
+		frame.remove(varPanel);
+		varPanel = newPanel;
+		frame.getContentPane().add(varPanel);
+		frame.revalidate();
+		frame.repaint();
+	}
 	public void öffnenAnmeldefenster() {
 		
         System.out.println("ANMD");
         panelAnmelden = new JPanel();
 		panelAnmelden.setLayout(null);
-		panelAnmelden.setBounds(1040, 0, 194, 118);
-		panelMain.add(panelAnmelden);
+		panelAnmelden.setBounds(1040, 150, 194, 118);
+		
+		frame.remove(varPanel);							//
+		frame.getContentPane().add(panelAnmelden);		//muss gemacht werden, damit sich das AnmeldenPanel über 
+		frame.getContentPane().add(varPanel);			//das varPanel legt
+		
 		
 		btnAnmeldenEinloggen = new JButton("Einloggen");
 		btnAnmeldenEinloggen.setBounds(0, 95, 89, 23);
 		panelAnmelden.add(btnAnmeldenEinloggen);
 		btnAnmeldenEinloggen.addActionListener(this);
 		panelAnmelden.getRootPane().setDefaultButton(btnAnmeldenEinloggen);
-	
 		
 		btnAnmeldenAbbrechen = new JButton("Abbrechen");
 		btnAnmeldenAbbrechen.setBounds(105, 95, 89, 23);
@@ -113,14 +135,15 @@ import java.awt.SystemColor;
 		anmeldenPasswort.setBounds(10, 45, 174, 28);
 		panelAnmelden.add(anmeldenPasswort);
 		
-		frame.invalidate();
-		frame.validate();
+		panelAnmelden.setVisible(true);
+		
+		frame.revalidate();
 		frame.repaint();
 	}
 	
 	public ImageIcon bildAnpassen(String imageRoot) {
 		
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(380, 450, Image.SCALE_DEFAULT));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH));
 		return imageIcon;
 	}
 	
@@ -215,19 +238,18 @@ import java.awt.SystemColor;
 		
 		JPanel panelLogo = new JPanel();
 		panelLogo.setBackground(Color.WHITE);
-		panelLogo.setBounds(0, 0, 1234, 99);
+		panelLogo.setBounds(0, 0, 1248, 99);
 		frame.getContentPane().add(panelLogo);
 		panelLogo.setLayout(null);
 		
 		JLabel labelLogo = new JLabel("");
-		labelLogo.setBounds(56, 0, 1226, 99);
+		labelLogo.setBounds(59, 0, 1248, 99);
 		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
 		panelLogo.add(labelLogo);
 		
-
 		JPanel panelBar = new JPanel();
 		panelBar.setBackground(SystemColor.control);
-		panelBar.setBounds(0, 98, 1234, 50);
+		panelBar.setBounds(0, 98, 1248, 50);
 		frame.getContentPane().add(panelBar);
 		panelBar.setLayout(null);
 		
@@ -252,64 +274,17 @@ import java.awt.SystemColor;
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
 		
-		panelMain = new JPanel();
-		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 148, 1234, 563);
-		frame.getContentPane().add(panelMain);
-		panelMain.setLayout(null);
+		Image warenkorb = new ImageIcon("src\\Icons 64x64\\shopping-cart.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		btnWarenkorb = new JButton(new ImageIcon(warenkorb));
+		btnWarenkorb.setContentAreaFilled(false);
+		btnWarenkorb.setToolTipText("Warenkorb");
+		btnWarenkorb.addActionListener(this);
+		btnWarenkorb.setBounds(936, 2, 48, 48);
+		panelBar.add(btnWarenkorb);
 		
-		btnProduktDamen = new JButton("Zum Produkt");
-		btnProduktDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktDamen.setBackground(Color.WHITE);
-		btnProduktDamen.setForeground(Color.BLACK);
-		btnProduktDamen.setBounds(249, 458, 165, 35);
-		btnProduktDamen.addActionListener(this);
-		panelMain.add(btnProduktDamen);
+		varPanel = getPanelMain();
+		frame.getContentPane().add(varPanel);
 		
-		btnProduktHerren = new JButton("Zum Produkt");
-		btnProduktHerren.setBackground(Color.WHITE);
-		btnProduktHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktHerren.setBounds(774, 458, 165, 35);
-		btnProduktHerren.addActionListener(this);
-		panelMain.add(btnProduktHerren);
-		
-		btnProduktDamenRechts = new JButton(">");
-		btnProduktDamenRechts.setBackground(Color.WHITE);
-		btnProduktDamenRechts.setBounds(483, 191, 41, 70);
-		btnProduktDamenRechts.addActionListener(this);
-		panelMain.add(btnProduktDamenRechts);
-		
-		btnProduktDamenLinks = new JButton("<");
-		btnProduktDamenLinks.setBackground(Color.WHITE);
-		btnProduktDamenLinks.setBounds(144, 191, 41, 70);
-		btnProduktDamenLinks.addActionListener(this);
-		panelMain.add(btnProduktDamenLinks);
-		
-		btnProduktHerrenRechts = new JButton(">");
-		btnProduktHerrenRechts.setBackground(Color.WHITE);
-		btnProduktHerrenRechts.setBounds(995, 191, 41, 70);
-		btnProduktHerrenRechts.addActionListener(this);
-		panelMain.add(btnProduktHerrenRechts);
-		
-		btnProduktHerrenLinks = new JButton("<");
-		btnProduktHerrenLinks.setBackground(Color.WHITE);
-		btnProduktHerrenLinks.setBounds(656, 191, 41, 70);
-		btnProduktHerrenLinks.addActionListener(this);
-		panelMain.add(btnProduktHerrenLinks);
-		
-		
-		labelMainDamen = new JLabel();
-		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
-		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
-		panelMain.add(labelMainDamen);
-		
-		labelMainHerren = new JLabel("");
-		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		panelMain.add(labelMainHerren);
 		
 		/*
 		JLabel labelMainHintergrund = new JLabel();
@@ -319,6 +294,77 @@ import java.awt.SystemColor;
 	
 		frame.setVisible(true);
 	
+	}
+	
+	public JPanel getPanelMain() {
+		panelMain_1 = new JPanel();
+		panelMain_1.setBackground(Color.WHITE);
+		panelMain_1.setBounds(0, 148, 1248, 563);
+		panelMain_1.setLayout(null);
+		
+		btnProduktDamen = new JButton("Zum Produkt");
+		btnProduktDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnProduktDamen.setBackground(Color.WHITE);
+		btnProduktDamen.setForeground(Color.BLACK);
+		btnProduktDamen.setBounds(249, 458, 165, 35);
+		btnProduktDamen.addActionListener(this);
+		panelMain_1.add(btnProduktDamen);
+		
+		btnProduktHerren = new JButton("Zum Produkt");
+		btnProduktHerren.setBackground(Color.WHITE);
+		btnProduktHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnProduktHerren.setBounds(774, 458, 165, 35);
+		btnProduktHerren.addActionListener(this);
+		panelMain_1.add(btnProduktHerren);
+		
+		Image leftArrow = new ImageIcon("src\\Icons 32x32\\left-arrow.png").getImage();
+		Image rightArrow = new ImageIcon("src\\Icons 32x32\\right-chevron.png").getImage();
+
+		btnProduktDamenRechts = new JButton(new ImageIcon(rightArrow));
+		btnProduktDamenRechts.setContentAreaFilled(false);
+		btnProduktDamenRechts.setBackground(Color.WHITE);
+		btnProduktDamenRechts.setBounds(536, 260, 32, 32);
+		btnProduktDamenRechts.addActionListener(this);
+		panelMain_1.add(btnProduktDamenRechts);
+		
+		btnProduktDamenLinks = new JButton(new ImageIcon(leftArrow));
+		btnProduktDamenLinks.setContentAreaFilled(false);
+		btnProduktDamenLinks.setBackground(Color.WHITE);
+		btnProduktDamenLinks.setBounds(100, 260, 32, 32);
+		btnProduktDamenLinks.addActionListener(this);
+		panelMain_1.add(btnProduktDamenLinks);
+		
+		btnProduktHerrenRechts = new JButton(new ImageIcon(rightArrow));
+		btnProduktHerrenRechts.setContentAreaFilled(false);
+		btnProduktHerrenRechts.setBackground(Color.WHITE);
+		btnProduktHerrenRechts.setBounds(1048, 260, 32, 32);
+		btnProduktHerrenRechts.addActionListener(this);
+		panelMain_1.add(btnProduktHerrenRechts);
+		
+		btnProduktHerrenLinks = new JButton(new ImageIcon(leftArrow));
+		btnProduktHerrenLinks.setBackground(Color.WHITE);
+		btnProduktHerrenLinks.setContentAreaFilled(false);
+		btnProduktHerrenLinks.setBounds(612, 260, 32, 32);
+		btnProduktHerrenLinks.addActionListener(this);
+		panelMain_1.add(btnProduktHerrenLinks);
+		
+		
+		labelMainDamen = new JLabel();
+		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
+		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
+		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
+		labelMainDamen.setBounds(144, 76, 380, 450);
+		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
+		panelMain_1.add(labelMainDamen);
+		
+		labelMainHerren = new JLabel("");
+		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
+		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
+		labelMainHerren.setBounds(656, 76, 380, 450);
+		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
+		panelMain_1.add(labelMainHerren);
+		
+		return panelMain_1;
 	}
 	
 
@@ -379,19 +425,19 @@ import java.awt.SystemColor;
 			String auswahl = (String) comboBoxHerren.getSelectedItem();
 		    
 			if(auswahl == "Kleidung"){
-				panelMain.setVisible(false);
+				panelMain_1.setVisible(false);
 			    new GUIHerrenKleidung(frame);
 			 
 		    }
 		  
 			if(auswahl == "Schuhe"){
-				panelMain.setVisible(false);
+				panelMain_1.setVisible(false);
 				new GUIHerrenSchuhe(frame);
 			  
 			}
 			
 			if(auswahl == "Accessoires"){
-				panelMain.setVisible(false);
+				panelMain_1.setVisible(false);
 			    new GUIHerrenAccessoires(frame);
 			  
 			}
@@ -402,17 +448,17 @@ import java.awt.SystemColor;
 			String auswahl = (String) comboBoxDamen.getSelectedItem();
 			
 			if(auswahl == "Kleidung"){
-				panelMain.setVisible(false);
+				panelMain_1.setVisible(false);
 			    new GUIDamenKleidung(frame);
 			    }
 			  
 				if(auswahl == "Schuhe"){
-					panelMain.setVisible(false);
+					panelMain_1.setVisible(false);
 				    new GUIDamenSchuhe(frame);
 				}
 				
 				if(auswahl == "Accessoires"){
-					panelMain.setVisible(false);
+					panelMain_1.setVisible(false);
 				    new GUIDamenAccessoires(frame);
 				}
 				
@@ -445,6 +491,9 @@ import java.awt.SystemColor;
 		    	 LogStrg.abmelden(anmeldenCbList);
 		    	 angemeldet = false;
 		    }
+		}
+		if(e.getSource() == btnWarenkorb) {
+			changePanel(GUIWarenkorb.getGUIWarenkorb());
 		}
 	
 		
