@@ -16,6 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import AdministratorVerwaltung.Administrator;
+import AdministratorVerwaltung.AdministratorSammlung;
 import Datenbankverwaltung.VerbindungDB;
 
 import javax.swing.JButton;
@@ -222,8 +223,10 @@ public class GUIAdministratorBearbeiten extends JFrame {
 				String berechtigung = "4";
 				String passwort = textField_10.getText();
 				
-				Administrator admin = new Administrator(Integer.parseInt(nutzernr), nachname, vorname, email, straﬂe, ort,Integer.parseInt( plz), iban, Integer.parseInt(gehalt), Integer.parseInt(berechtigung), passwort);
 				
+				
+				Administrator admin = new Administrator(Integer.parseInt(nutzernr), nachname, vorname, email, straﬂe, ort,Integer.parseInt( plz), iban, Integer.parseInt(gehalt), Integer.parseInt(berechtigung), passwort);
+				//AdministratorSammlung.put(Integer.parseInt(nutzernr),admin);
 				dispose();
 				
 			}
