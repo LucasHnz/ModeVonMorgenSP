@@ -116,7 +116,7 @@ public class GUIMitarbeiter implements ActionListener{
 		panelMain.add(tabbedPane);
 		
 		tabbedPane.addTab("Artikelverwaltung", new GUIArtikelliste() );
-		tabbedPane.addTab("Bestellungs Liste", new GUIRechnungBestellungListe());
+		tabbedPane.addTab("Bestellungs Liste", new GUIBestellungListe());
 		
 		if(anmeldenCbList[0] == "Admin")
 			tabbedPane.addTab("Administrator Liste", new GUIAdministratorListe());

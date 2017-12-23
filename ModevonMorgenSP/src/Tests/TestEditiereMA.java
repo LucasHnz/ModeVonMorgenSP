@@ -9,7 +9,7 @@ public class TestEditiereMA {
 
 	public static void main(String[] args) throws SQLException {
 	
-		Datenbankverwaltung.bearbeiteAdministrator.aktualisiereEmail("hinz.lucas@apple.de", "400000002");
+		//Datenbankverwaltung.bearbeiteAdministrator.aktualisiereEmail("hinz.lucas@apple.de", "400000002");
 		
 		
 	}

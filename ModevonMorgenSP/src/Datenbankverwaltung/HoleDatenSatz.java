@@ -107,4 +107,9 @@ public static Bestandskunde holeKunde(int nutzernr) {
 		
 	}
 
+
+	
+	
+	
+
 }

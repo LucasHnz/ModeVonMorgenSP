@@ -11,7 +11,7 @@ import Artikelverwaltung.Artikel;
 
 public class AdministratorSammlung {
 	
-	static HashMap<Integer, Administrator> AdministratorSammlung = new HashMap<Integer, Administrator>();
+	static HashMap<Integer, Administrator> AdministratorListe = new HashMap<Integer, Administrator>();
 	
 	public static void fülleAdministratorListe()  {
 		
@@ -39,7 +39,7 @@ public class AdministratorSammlung {
 			
 				Administrator admin = new Administrator(nutzernr, nachname, vorname, email, straße, ort, plz, iban, gehalt, berechtigung, passwort);
 			
-				AdministratorSammlung.put(admin.getNutzernr(), admin);
+				AdministratorListe.put(admin.getNutzernr(), admin);
 			}
 		
 		}catch(SQLException e) {
@@ -48,17 +48,17 @@ public class AdministratorSammlung {
 	}
 	
 	public static HashMap<Integer,Administrator> getAdminSammlung(){
-		return AdministratorSammlung;
+		return AdministratorListe;
 	}
 	
 	public static Administrator[] getAdminArray(String Filter) {
-		Administrator[] AdminList = new Administrator[AdministratorSammlung.size()];
-		AdminList = (Administrator[]) AdministratorSammlung.values().toArray();
+		Administrator[] AdminList = new Administrator[AdministratorListe.size()];
+		AdminList = (Administrator[]) AdministratorListe.values().toArray();
 		return AdminList; 
 	}
 	
 	public static Administrator getAdmin(int Adminnr) {
-		return AdministratorSammlung.get(Adminnr);
+		return AdministratorListe.get(Adminnr);
 	}
 	
 	public static void hinzufügenAdmin(int nutzernr, String nachname , String vorname, String email, String straße, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort) {
@@ -66,7 +66,7 @@ public class AdministratorSammlung {
 		
 		
 		Administrator admin = new Administrator(nutzernr,nachname,  vorname,email, straße,  ort,plz,  iban, gehalt, berechtigung, passwort);
-		AdministratorSammlung.put(nutzernr, admin);
+		AdministratorListe.put(nutzernr, admin);
 		
 	}
 
