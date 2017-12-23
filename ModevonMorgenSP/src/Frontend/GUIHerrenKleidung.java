@@ -14,6 +14,7 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -42,10 +45,7 @@ public class GUIHerrenKleidung implements ActionListener{
 	public int abstandPlus = 230;
 	public int abstand = 270;
 	
-	public static String artikelName;
-	public static double artikelPreis;
-	public static String artikelStatus;
-	public static String artikelArt;
+	
 	
 
 	public JFrame frame = new JFrame();
@@ -61,26 +61,35 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 	}
 	
-	public static void artikelLden() {
+	public  void artikelLaden() {
 		
+
 		try {
+		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select name, art, preis, status from Artikel where geschlecht = männlich";
+		String sql = "select bezeichnung, art, preis, verfügbarkeit, bild from Kleidung where geschlecht = 'm'";
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		if(rs.next()) {
-			
-			artikelName = rs.getString("name");
-			artikelPreis = rs.getDouble("preis"); 
-			artikelStatus = rs.getString("status"); 
-			artikelArt = rs.getString("art"); 
-			neuerArtikel(artikelName, artikelPreis, artikelStatus);
+			System.out.println("2");
+			String artikelBezeichnung = rs.getString("bezeichnung");
+			Double artikelPreis = rs.getDouble("preis"); 
+			String artikelVerfügbarkeit = rs.getString("status"); 
+			String artikelArt = rs.getString("art");
+			Blob artikelBild = rs.getBlob("bild");
+			System.out.println("Artikel + "+ artikelBezeichnung);
+			neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
 		}
+		
+		rs.close();
+		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 		
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		
+	
 	}
 	
 	
@@ -89,11 +98,58 @@ public class GUIHerrenKleidung implements ActionListener{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public static void neuerArtikel(String artikelName, double artikelPreis, String artikelStatus) {
+	public void neuerArtikel(String artikelName, double artikelPreis, String artikelStatus, String artikelArt) {
+		
+		JPanel panelArtikel = new JPanel();
+		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelArtikel.setBackground(SystemColor.inactiveCaption);
+		panelArtikel.setBounds(66, 30, 680, 188);
+		panelHerrenKleidung.add(panelArtikel);
+		panelArtikel.setLayout(null);
+		
+		/*
+		ImageIcon icon = new ImageIcon(artikelBild);
+        int width = icon.getIconHeight() / 2;
+        int height = icon.getIconWidth() / 2;
+        Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
+		*/
+		
+		JLabel labelArtikelBild = new JLabel("");
+		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
+		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
+		//labelArtikelBild.setIcon(new ImageIcon(img));
+		labelArtikelBild.setBounds(33, 25, 133, 135);
+		panelArtikel.add(labelArtikelBild);
+		
+		JLabel lblSchwarzeJackeDenim = new JLabel(artikelBezeichnung);
+		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
+		lblSchwarzeJackeDenim.setBounds(203, 11, 213, 30);
+		panelArtikel.add(lblSchwarzeJackeDenim);
+		
+		JLabel lblNewLabel = new JLabel();
+		lblNewLabel.setText(String.valueOf(artikelPreis));
+		lblNewLabel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		lblNewLabel.setBounds(203, 71, 101, 47);
+		panelArtikel.add(lblNewLabel);
+		
+		JButton btnZumArtikel = new JButton("Zum Artikel");
+		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZumArtikel.setBackground(Color.WHITE);
+		btnZumArtikel.setBounds(198, 130, 139, 30);
+		btnZumArtikel.addActionListener(this);
+		panelArtikel.add(btnZumArtikel);
+		
+		JLabel lblStatus = new JLabel(artikelVerfügbarkeit);
+		lblStatus.setForeground(new Color(0, 204, 51));
+		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 14));
+		lblStatus.setBounds(203, 41, 147, 30);
+		panelArtikel.add(lblStatus);
+		
+		panelMain.add(panelArtikel);
 		
 	}
 	
-	
+
 	private void initialize(JFrame frame) {
 	
 		panelMain = new JPanel();
@@ -106,7 +162,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelScrollPaneBar.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneBar.setLayout(null);
 		
-		/*
+		
 		JScrollPane scrollPaneHerrenKleidungBar = new JScrollPane(panelScrollPaneBar);
 		scrollPaneHerrenKleidungBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneHerrenKleidungBar.setBounds(10, 97, 270, 455);
@@ -122,54 +178,6 @@ public class GUIHerrenKleidung implements ActionListener{
 		scrollPaneHerrenKleidung.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneHerrenKleidung.setBounds(323, 97, 901, 455);
 		panelMain.add(scrollPaneHerrenKleidung);
-		
-		*/
-		
-		//Artikelbeispiel
-		/*
-		JPanel panelArtikel = new JPanel();
-		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelArtikel.setBackground(SystemColor.inactiveCaption);
-		panelArtikel.setBounds(66, 30, 680, 188);
-		panelHerrenKleidung.add(panelArtikel);
-		panelArtikel.setLayout(null);
-		
-		
-		ImageIcon icon = new ImageIcon("src\\SWP-Bilder\\Logo.jpg");
-        int width = icon.getIconHeight() / 2;
-        int height = icon.getIconWidth() / 2;
-        Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
-		
-		JLabel labelArtikelBild = new JLabel("");
-		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
-		labelArtikelBild.setIcon(new ImageIcon(img));
-		labelArtikelBild.setBounds(33, 25, 133, 135);
-		panelArtikel.add(labelArtikelBild);
-		
-		JLabel lblSchwarzeJackeDenim = new JLabel("Schwarze Jacke DENIM");
-		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
-		lblSchwarzeJackeDenim.setBounds(203, 11, 213, 30);
-		panelArtikel.add(lblSchwarzeJackeDenim);
-		
-		JLabel lblNewLabel = new JLabel("Preis: 24\u20AC");
-		lblNewLabel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		lblNewLabel.setBounds(203, 71, 101, 47);
-		panelArtikel.add(lblNewLabel);
-		
-		btnZumArtikel = new JButton("Zum Artikel");
-		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZumArtikel.setBackground(Color.WHITE);
-		btnZumArtikel.setBounds(198, 130, 139, 30);
-		btnZumArtikel.addActionListener(this);
-		panelArtikel.add(btnZumArtikel);
-		
-		JLabel lblStatus = new JLabel("Auf Lager");
-		lblStatus.setForeground(new Color(0, 204, 51));
-		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblStatus.setBounds(203, 41, 147, 30);
-		panelArtikel.add(lblStatus);
-		
 		
 		btnZurück = new JButton("Zur\u00FCck");
 		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
@@ -195,11 +203,9 @@ public class GUIHerrenKleidung implements ActionListener{
 		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHosen.setBounds(10, 151, 248, 43);
 		panelScrollPaneBar.add(btnHosen);
-		*/
-		 /////
 		
-		/////
 		
+		artikelLaden();
 		frame.add(panelMain);
 		panelMain.setVisible(true);
 		frame.invalidate();
