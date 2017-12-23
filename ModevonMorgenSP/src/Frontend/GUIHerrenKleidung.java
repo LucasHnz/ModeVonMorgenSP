@@ -68,7 +68,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select bezeichnung, art, preis, verfügbarkeit, bild from Kleidung where geschlecht = 'm'";
+		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'm'";
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		if(rs.next()) {
@@ -77,7 +77,7 @@ public class GUIHerrenKleidung implements ActionListener{
 			Double artikelPreis = rs.getDouble("preis"); 
 			String artikelVerfügbarkeit = rs.getString("status"); 
 			String artikelArt = rs.getString("art");
-			Blob artikelBild = rs.getBlob("bild");
+			//Blob artikelBild = rs.getBlob("bild");
 			System.out.println("Artikel + "+ artikelBezeichnung);
 			neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
 		}
