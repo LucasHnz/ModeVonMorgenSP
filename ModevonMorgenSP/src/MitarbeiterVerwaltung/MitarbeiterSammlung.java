@@ -50,7 +50,12 @@ public class MitarbeiterSammlung {
 		Mitarbeiter ma = new Mitarbeiter(nutzernr, adminnr, nachname, vorname, email, Straﬂe, ort, plz, iban, gehalt, berechtigung, passwort);
 		MitarbeiterSammlung.put(nutzernr, ma);
 	}
-	
+	public static Mitarbeiter getMitarbeiter(int Nutzernummer) {
+		return MitarbeiterSammlung.get(Nutzernummer);
+	}
+	public static void removeMitarbeiter(int Nutzernummer) {
+		MitarbeiterSammlung.remove(Nutzernummer);
+	}
 }
 
 

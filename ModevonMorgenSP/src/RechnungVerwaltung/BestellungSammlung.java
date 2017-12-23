@@ -33,7 +33,7 @@ public class BestellungSammlung {
 				double gesamtpreis = rs.getDouble("Gesamtpreis");
 				int erabatt = rs.getInt("EingesetzterRabatt");
 				Date datum = rs.getDate("Datum");
-				String vstatus = rs.getString("Versandsstatus");
+				String vstatus = rs.getString("Versandstatus");
 				String rechnungsort = rs.getString("Rechnungsort");
 				String rechnungsstrasse = rs.getString("Rechnungsstrasse");
 				int rechnungsplz = rs.getInt("Rechnungsplz");
@@ -45,7 +45,7 @@ public class BestellungSammlung {
 			}
 			
 		}catch (SQLException e ) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 		}

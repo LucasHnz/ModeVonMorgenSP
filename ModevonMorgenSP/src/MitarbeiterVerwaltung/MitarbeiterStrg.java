@@ -20,15 +20,16 @@ public class MitarbeiterStrg {
 			String sqlbefehel ="delete from Mitarbeiter where nutzernr = '"+nutzernr+"'";
 			
 			stmt.executeQuery(sqlbefehel);
-			
+			MitarbeiterSammlung.removeMitarbeiter(nutzernr);
 			
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 	
 public static void aktualisiereName(String name, int nutzernr){
-		
+	Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
+	
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -38,8 +39,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+		
+		ma.setNachname(name);
+		
 		}catch(SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 	}
