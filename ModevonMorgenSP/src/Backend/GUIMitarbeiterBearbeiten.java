@@ -199,6 +199,7 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 				if(textField_2.getText() != ma.getNachname()) {
 				
 					MitarbeiterVerwaltung.MitarbeiterStrg.aktualisiereName(textField_2.getText(),ma.getNutzernr());
+					//MitarbeiterSammlung.get(ma.getNutzernr()).setNachname(textField_2.getText());
 				}
 				
 				if(textField_3.getText() != ma.getVorname()) {
