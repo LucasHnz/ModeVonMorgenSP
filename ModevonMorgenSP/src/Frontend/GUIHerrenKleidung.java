@@ -8,23 +8,23 @@ package Frontend;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -41,6 +41,12 @@ public class GUIHerrenKleidung implements ActionListener{
 	public JPanel panelHerrenKleidung = new JPanel();
 	public int abstandPlus = 230;
 	public int abstand = 270;
+	
+	public static String artikelName;
+	public static double artikelPreis;
+	public static String artikelStatus;
+	public static String artikelArt;
+	
 
 	public JFrame frame = new JFrame();
 	static JPanel panel = new JPanel();
@@ -55,12 +61,39 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 	}
 	
+	public static void artikelLden() {
+		
+		try {
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		String sql = "select name, art, preis, status from Artikel where geschlecht = männlich";
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		if(rs.next()) {
+			
+			artikelName = rs.getString("name");
+			artikelPreis = rs.getDouble("preis"); 
+			artikelStatus = rs.getString("status"); 
+			artikelArt = rs.getString("art"); 
+			neuerArtikel(artikelName, artikelPreis, artikelStatus);
+		}
+		
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	
 
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	public static void neuerArtikel(String artikelName, double artikelPreis, String artikelStatus) {
+		
+	}
+	
+	
 	private void initialize(JFrame frame) {
 	
 		panelMain = new JPanel();
