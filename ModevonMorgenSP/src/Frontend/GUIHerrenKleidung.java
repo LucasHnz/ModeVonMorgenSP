@@ -41,9 +41,10 @@ public class GUIHerrenKleidung implements ActionListener{
 	JPanel panelMain = new JPanel();
 	public JButton btnZumArtikel = new JButton();
 	public JButton btnZumArtikel2 = new JButton();
-	public JPanel panelHerrenKleidung = new JPanel();
+	public JPanel panelHerrenKleidung;
 	public int abstandPlus = 230;
 	public int abstand = 270;
+	public int anzahlArtikel = 0;
 	
 	
 	
@@ -68,25 +69,26 @@ public class GUIHerrenKleidung implements ActionListener{
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'M'";
+		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
-		if(rs.next()) {
+		while(rs.next()) {
 			System.out.println("2");
 			String artikelBezeichnung = rs.getString("Bezeichnung");
 			Double artikelPreis = rs.getDouble("Preis"); 
-			String artikelVerfügbarkeit = rs.getString("Status"); 
+			String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
 			String artikelArt = rs.getString("Art");
 			//Blob artikelBild = rs.getBlob("bild");
 			System.out.println("Artikel + "+ artikelBezeichnung);
 			neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
+			anzahlArtikel = anzahlArtikel +1;
 		}
-		
+		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 		
 		}catch(SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	
@@ -145,7 +147,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		lblStatus.setBounds(203, 41, 147, 30);
 		panelArtikel.add(lblStatus);
 		
-		panelMain.add(panelArtikel);
+		
 		
 	}
 	
@@ -156,7 +158,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 148, 1234, 563);
 		panelMain.setLayout(null);
-		BuildPanel();
+		
 		
 		JPanel panelScrollPaneBar = new JPanel();
 		panelScrollPaneBar.setBackground(SystemColor.inactiveCaptionBorder);
@@ -168,16 +170,24 @@ public class GUIHerrenKleidung implements ActionListener{
 		scrollPaneHerrenKleidungBar.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneHerrenKleidungBar);
 		
-	
+		
 		panelHerrenKleidung = new JPanel();
 		panelHerrenKleidung.setBackground(SystemColor.inactiveCaptionBorder);
-		JScrollPane scrollPaneHerrenKleidung = new JScrollPane(panelHerrenKleidung);
-		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		panelHerrenKleidung.setPreferredSize(new Dimension(549, 2000));
-		panelHerrenKleidung.setLayout(null);
-		scrollPaneHerrenKleidung.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panelHerrenKleidung.setAutoscrolls(true);
+			
+		JScrollPane scrollPaneHerrenKleidung = new JScrollPane();
 		scrollPaneHerrenKleidung.setBounds(323, 97, 901, 455);
+		scrollPaneHerrenKleidung.setViewportView(panelHerrenKleidung);
+		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneHerrenKleidung);
+		
+		artikelLaden();
+		
+		int length = anzahlArtikel/2 * 188;
+		if(anzahlArtikel%2 == 1)
+			length = length +188;
+		panelHerrenKleidung.setLayout(new GridLayout(0, 2, 0, 0));
+		panelHerrenKleidung.setPreferredSize(new Dimension(549, length));
 		
 		btnZurück = new JButton("Zur\u00FCck");
 		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
@@ -205,7 +215,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelScrollPaneBar.add(btnHosen);
 		
 		
-		artikelLaden();
+		
 		frame.add(panelMain);
 		panelMain.setVisible(true);
 		frame.invalidate();
@@ -218,26 +228,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(133, 135, Image.SCALE_DEFAULT));
 		return imageIcon;
-	}
-
-	
-	public static void BuildPanel() {
-	panel.setAutoscrolls(true);
-	panel.setOpaque(false);
-	panel.setBackground(SystemColor.inactiveCaptionBorder);
-	
-	int length = Warenkorb.getWarenkorb().size() * 100;
-	panel.setPreferredSize(new Dimension(270, length));
-	
-	for (Map.Entry<Integer, Integer> entry : Warenkorb.getWarenkorb().entrySet()) {
-	    Integer artikelnummer = entry.getKey();
-	    Integer anzahl = entry.getValue();
-	    panel.add(new GUIWarenkorbArtikel(artikelnummer, anzahl));
-	 
-	}		
-	panel.setLayout(new GridLayout(0, 2, 0, 0));
-	}
-	
+	}	
 
 	public void hinzufügenArtikel() {
 		
