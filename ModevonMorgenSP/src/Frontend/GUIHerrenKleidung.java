@@ -98,7 +98,7 @@ public class GUIHerrenKleidung implements ActionListener{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void neuerArtikel(String artikelName, double artikelPreis, String artikelStatus, String artikelArt) {
+	public void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
 		
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
