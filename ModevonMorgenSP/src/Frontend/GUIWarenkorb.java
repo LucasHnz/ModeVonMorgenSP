@@ -60,7 +60,7 @@ public class GUIWarenkorb {
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setBounds(0,0,1000,600);
 		mainPanel.setLayout(null);
-		mainPanel.setBounds(0, 148, 1234, 563);
+		mainPanel.setBounds(0, 0, 1234, 563);
 		BuildPanel();
 		JButton btnZurKasse = new JButton("Zur Kasse");
 		btnZurKasse.setAlignmentX(Component.CENTER_ALIGNMENT);

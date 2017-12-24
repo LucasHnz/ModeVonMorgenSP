@@ -6,37 +6,22 @@ package Frontend;
  *
  */
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import java.awt.Color;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-
-import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-
 import Logverwaltung.LogStrg;
-
 import javax.swing.JButton;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.SoftBevelBorder;
@@ -81,38 +66,37 @@ import javax.swing.JLayeredPane;
 	public JComboBox comboBoxDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
 	public JButton btnZurück = new JButton();
-	private JTextField textFieldEmail;
-	private JPasswordField passwordField;
-	//public static JButton btnAnmelden = new JButton();
 	public JPanel panelAnmelden = new JPanel();
 	public JPanel varPanel;
 	public JPanel WarenkorbPanel;
-	private JButton btnNewButton;
+	private JLayeredPane layeredPane = new JLayeredPane();
 	
 	
+	public void changePanel(JPanel newPanel) {
+		if(varPanel != null) {
+			layeredPane.remove(varPanel);
+			varPanel = null;
+		}
+		varPanel = newPanel;
+		layeredPane.add(varPanel, JLayeredPane.DEFAULT_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
 	
 	public static void fensterSchließen() {
 		frame.dispose();
 	}
-	public void changePanel(JPanel newPanel) {
-		frame.remove(varPanel);
-		varPanel = newPanel;
-		frame.getContentPane().add(varPanel);
-		frame.revalidate();
-		frame.repaint();
-	}
+	
 	public void öffnenAnmeldefenster() {
 		
         System.out.println("ANMD");
         panelAnmelden = new JPanel();
 		panelAnmelden.setLayout(null);
-		panelAnmelden.setBounds(1040, 150, 194, 118);
-		
-		frame.remove(varPanel);							//
-		frame.getContentPane().add(panelAnmelden);		//muss gemacht werden, damit sich das AnmeldenPanel über 
-		frame.getContentPane().add(varPanel);			//das varPanel legt
-		
-		
+		panelAnmelden.setBounds(1040, 0, 194, 118);
+		panelAnmelden.setOpaque(true);
+						
+		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);		
+	
 		btnAnmeldenEinloggen = new JButton("Einloggen");
 		btnAnmeldenEinloggen.setBounds(0, 95, 89, 23);
 		panelAnmelden.add(btnAnmeldenEinloggen);
@@ -136,9 +120,6 @@ import javax.swing.JLayeredPane;
 		panelAnmelden.add(anmeldenPasswort);
 		
 		panelAnmelden.setVisible(true);
-		
-		frame.revalidate();
-		frame.repaint();
 	}
 	
 	public ImageIcon bildAnpassen(String imageRoot) {
@@ -148,7 +129,7 @@ import javax.swing.JLayeredPane;
 	}
 	
 	
-		static void anmeldenFehlermeldung() {
+	static void anmeldenFehlermeldung() {
 		
 		System.out.println("OPT");
 		JOptionPane.showOptionDialog(null, "Dies ist ein Optionsdialog",
@@ -229,7 +210,9 @@ import javax.swing.JLayeredPane;
 	private void initializeMain() {
 		
 		frame = new JFrame();
-		
+		layeredPane.setSize(1248, 563);
+		layeredPane.setLocation(0, 148);
+		frame.getContentPane().add(layeredPane);
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -283,7 +266,7 @@ import javax.swing.JLayeredPane;
 		panelBar.add(btnWarenkorb);
 		
 		varPanel = getPanelMain();
-		frame.getContentPane().add(varPanel);
+		layeredPane.add(varPanel, JLayeredPane.DEFAULT_LAYER);
 		
 		
 		/*
@@ -299,7 +282,7 @@ import javax.swing.JLayeredPane;
 	public JPanel getPanelMain() {
 		panelMain_1 = new JPanel();
 		panelMain_1.setBackground(Color.WHITE);
-		panelMain_1.setBounds(0, 148, 1248, 563);
+		panelMain_1.setBounds(0, 0, 1248, 563);
 		panelMain_1.setLayout(null);
 		
 		btnProduktDamen = new JButton("Zum Produkt");
