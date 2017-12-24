@@ -65,6 +65,7 @@ public class LogStrg {
 				System.out.println("ADMIN");
 				
 				
+				
 			}
 	
 		
