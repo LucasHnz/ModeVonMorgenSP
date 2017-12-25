@@ -160,6 +160,7 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 	JButton btnAnnehmen = new JButton("Speichern");
 	btnAnnehmen.addActionListener(new ActionListener() {
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
@@ -191,7 +192,7 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 			}
 			
 			if(textField_9.getText() != kunde.getPasswort()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_9.getPasswort(),Integer.toString(kunde.getNutzernr()));
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_9.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			JOptionPane.showOptionDialog(null, "Datensatz wurde bearbeitet","Bestandskunden Bearbeitung",
