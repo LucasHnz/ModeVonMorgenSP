@@ -22,6 +22,11 @@ import BestandskundenVerwaltung.Bestandskunde;
 
 
 public class GUIBestandskundeBearbeiten  extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public GUIBestandskundeBearbeiten  (int nutzernr) {
 	Bestandskunde kunde = Datenbankverwaltung.HoleDatenSatz.holeKunde(nutzernr);
 	
@@ -159,34 +164,34 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			if(textField_2.getText() != kunde.getNachname()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereNachname(textField_2.getText(),kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereNachname(textField_2.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			if(textField_3.getText() != kunde.getVorname()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_2.getText(),kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_2.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			if(textField_4.getText() != kunde.getEmail()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereEmail(textField_4.getText(), kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereEmail(textField_4.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			if(textField_5.getText() != kunde.getStraﬂe()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereStraﬂe(textField_5.getText(), kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereStraﬂe(textField_5.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			if(textField_6.getText() != kunde.getOrt()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereOrt(textField_6.getText(), kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereOrt(textField_6.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			if(textField_7.getText() != String.valueOf(kunde.getPlz())) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePLZ(textField_7.getText(), kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePLZ(textField_7.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			if(textField_8.getText() != kunde.getIban()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereIBAN(textField_8.getText(), kunde.getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisiereIBAN(textField_8.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			if(textField_9.getText() != kunde.getPasswort()) {
-				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_9.getText(), .getNutzernr());
+				BestandskundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_9.getPasswort(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			JOptionPane.showOptionDialog(null, "Datensatz wurde bearbeitet","Bestandskunden Bearbeitung",
@@ -233,7 +238,7 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 }
 
 	public static void main(String[]args) {
-		int nutzernr = 400000001;
+		int nutzernr = 200000001;
 		new GUIBestandskundeBearbeiten(nutzernr);
 	}
 

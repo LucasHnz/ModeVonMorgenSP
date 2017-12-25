@@ -1,7 +1,6 @@
 package Bestellverwaltung;
 
-import Artikelverwaltung.Artikel;
-import Artikelverwaltung.Artikelsammlung;
+
 /**
  * 
  * @author annag

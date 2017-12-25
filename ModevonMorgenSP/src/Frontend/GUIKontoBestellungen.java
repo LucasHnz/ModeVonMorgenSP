@@ -6,13 +6,20 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+
+import Bestellverwaltung.BestellStrg;
+import RechnungVerwaltung.Bestellung;
+import RechnungVerwaltung.BestellungSammlung;
 
 public class GUIKontoBestellungen implements ActionListener{
 	
@@ -172,7 +179,32 @@ public class GUIKontoBestellungen implements ActionListener{
 			}
 		}
 		
+	//JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
+	//	btnStoniereBestellung.addActionListener(new ActionListener() {
+	//		public void actionPerformed(ActionEvent arg0) {
+	//			final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung()();
+	//			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				
+	//			final Object optionPane = JOptionPane.showConfirmDialog(null,
+	//					"Wollen Sie die Bestellung mir der BestellNr: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand() 
+	//					+ "\nwirklich stornieren?", "Abfrage",
+	//					JOptionPane.YES_NO_OPTION);
+					
+	//			if(optionPane.equals(0)) {
+	//				BestellStrg.storniereBestellung(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
+	//				JOptionPane.showMessageDialog(null,  "Bestellung wurde Storniert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+	//			}else if(optionPane.equals(1)) {
+	//				JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+	//			}			
+	//		}
+	//	});
+	//	btnStoniereBestellung.setBounds(976, 179, 215, 48);
+	//	add(btnStoniereBestellung);
+	}
+
+		
+		
+		
 		
 	}
 
-}

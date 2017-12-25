@@ -7,12 +7,18 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.*;
+
+import Artikelverwaltung.Artikel;
+import Artikelverwaltung.ArtikelStrg;
+import Artikelverwaltung.Artikelsammlung;
 
 public class GUIKontoVerwalten implements ActionListener{
 	
 	JButton btnZurück = new JButton();
+	JButton btnSpeichern=new JButton();
 	public JComboBox comboBoxHerren = new JComboBox();
 	public JComboBox comboBoxDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
@@ -108,6 +114,13 @@ public class GUIKontoVerwalten implements ActionListener{
 		btnZurück.setBounds(10, 11, 89, 35);
 		btnZurück.addActionListener(this);
 		panelMain.add(btnZurück);
+		
+		btnSpeichern= new JButton("Speichern");
+		btnSpeichern.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnSpeichern.setBackground(Color.WHITE);
+		btnSpeichern.setBounds(10, 11, 89, 35);
+		btnSpeichern.addActionListener(this);
+		panelMain.add(btnSpeichern);
 		
 		
 		JPanel panelKontoverwaltung = new JPanel();
@@ -294,5 +307,12 @@ public class GUIKontoVerwalten implements ActionListener{
 			}
 		}
 		
+		if (e.getSource()==btnSpeichern) {
+			
+			new GUIBestandskundeBearbeiten(Datenbankverwaltung.HoleDatenSatz.holeKunde(nutzernr));
+			
+		}
+		
+	
 	}
-}
+	}
