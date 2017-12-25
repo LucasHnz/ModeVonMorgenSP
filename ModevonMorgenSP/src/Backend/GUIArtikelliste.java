@@ -317,7 +317,7 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
-		btnRabatt.setBounds(921, 238, 270, 48);
+		btnRabatt.setBounds(976, 238, 215, 48);
 		add(btnRabatt);
 				
 		JButton btnNotiz = new JButton("Notiz ändern");
@@ -336,7 +336,7 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
-		btnNotiz.setBounds(921, 356, 270, 48);
+		btnNotiz.setBounds(976, 356, 215, 48);
 		add(btnNotiz);
 			
 		JButton btnBestand = new JButton("Bestand ändern");
@@ -355,7 +355,7 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
-		btnBestand.setBounds(921, 297, 270, 48);
+		btnBestand.setBounds(976, 297, 215, 48);
 		add(btnBestand);
 		
 		JButton btnArtikelbildHochladen = new JButton("Artikelbild hochladen");
@@ -368,7 +368,7 @@ public class GUIArtikelliste extends JPanel {
 				
 			}
 		});
-		btnArtikelbildHochladen.setBounds(921, 415, 270, 48);
+		btnArtikelbildHochladen.setBounds(976, 416, 216, 48);
 		add(btnArtikelbildHochladen);
 		
 		JLabel lblNeuerArtikel = new JLabel("Neuer Artikel");
@@ -391,6 +391,26 @@ public class GUIArtikelliste extends JPanel {
 		JLabel lblArtikelEditieren = new JLabel(new ImageIcon(ArtikelEditieren));
 		lblArtikelEditieren.setBounds(922, 124, 40, 40);
 		add(lblArtikelEditieren);
+		
+		Image Rabatt = new ImageIcon("src\\Icons 64x64\\division.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblRabatt = new JLabel(new ImageIcon(Rabatt));
+		lblRabatt.setBounds(922, 241, 40, 40);
+		add(lblRabatt);
+		
+		Image Bestand = new ImageIcon("src\\Icons 64x64\\maths.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblBestand = new JLabel(new ImageIcon(Bestand));
+		lblBestand.setBounds(922, 300, 40, 40);
+		add(lblBestand);
+		
+		Image Notiz = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblNotiz = new JLabel(new ImageIcon(Notiz));
+		lblNotiz.setBounds(922, 360, 40, 40);
+		add(lblNotiz);
+		
+		Image Picture = new ImageIcon("src\\Icons 64x64\\landscape.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblPicture = new JLabel(new ImageIcon(Picture));
+		lblPicture.setBounds(922, 420, 40, 40);
+		add(lblPicture);
 		
 		setVisible(true);
 		//Artikelsammlung.loadImages();
