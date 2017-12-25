@@ -69,7 +69,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' ";	
+		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'M' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {

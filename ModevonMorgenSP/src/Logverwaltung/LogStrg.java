@@ -38,6 +38,12 @@ public class LogStrg {
 			ResultSet rs2 = stmt2.executeQuery(sql2);
 			ResultSet rs3 = stmt3.executeQuery(sql3);
 			
+			
+			if(rs1.next() == false || rs2.next() == false || rs3.next()) {
+				GUI.anmeldenFehlermeldung();
+			}
+			
+			
 			if(rs1.next()) {
 				System.out.println("1");
 				String vorname = rs1.getString("vorname");
@@ -54,6 +60,7 @@ public class LogStrg {
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				System.out.println("MIT");
 				
+				
 			}
 			
 			if(rs3.next()) {
@@ -63,7 +70,6 @@ public class LogStrg {
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				
 				System.out.println("ADMIN");
-				
 				
 				
 			}

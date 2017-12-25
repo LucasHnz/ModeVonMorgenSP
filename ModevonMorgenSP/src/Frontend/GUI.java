@@ -129,15 +129,15 @@ import javax.swing.JLayeredPane;
 	}
 	
 	
-	static void anmeldenFehlermeldung() {
+	public static void anmeldenFehlermeldung() {
 		
 		System.out.println("OPT");
-		JOptionPane.showOptionDialog(null, "Dies ist ein Optionsdialog",
-				"Optionsdialog",
+		JOptionPane.showOptionDialog(null, "Email und Passwort stimmen nicht überein",
+				"Anmeldung",
 				JOptionPane.YES_NO_CANCEL_OPTION,
 				JOptionPane.WARNING_MESSAGE,
 				null,
-				new String[] {"A", "B", "C"},"B");
+				new String[] {"Erneut versuchen"}, "");
 		
 	}
 	
