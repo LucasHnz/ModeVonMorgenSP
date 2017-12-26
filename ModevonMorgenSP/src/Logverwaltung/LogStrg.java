@@ -39,9 +39,7 @@ public class LogStrg {
 			ResultSet rs3 = stmt3.executeQuery(sql3);
 			
 			
-			if(rs1.next() == false || rs2.next() == false || rs3.next()) {
-				GUI.anmeldenFehlermeldung();
-			}
+			
 			
 			
 			if(rs1.next()) {
@@ -61,6 +59,7 @@ public class LogStrg {
 				System.out.println("MIT");
 				
 				
+				
 			}
 			
 			if(rs3.next()) {
@@ -71,6 +70,7 @@ public class LogStrg {
 				
 				System.out.println("ADMIN");
 				
+		
 				
 			}
 	

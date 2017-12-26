@@ -79,7 +79,7 @@ public class GUIDamenAccessoires implements ActionListener {
 	
 	}
 	
-	public void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
+	public JPanel neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
 		
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -127,7 +127,6 @@ public class GUIDamenAccessoires implements ActionListener {
 		panelArtikel.add(lblStatus);
 		
 		
-		
 	}
 	
 	public GUIDamenAccessoires(JFrame frame) {
@@ -163,23 +162,35 @@ public class GUIDamenAccessoires implements ActionListener {
 		scrollPaneDamenAccessoiresLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneDamenAccessoiresLinks);
 		
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnNewButton);
+		JButton btnArmbänder = new JButton("Jacken");
+		btnArmbänder.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnArmbänder.setBackground(Color.WHITE);
+		btnArmbänder.setBounds(10, 23, 248, 43);
+		panelScrollPaneLinks.add(btnArmbänder);
 		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(Color.WHITE);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneLinks.add(btnShirts);
+		JButton btnKetten = new JButton("Shirts");
+		btnKetten.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnKetten.setBackground(Color.WHITE);
+		btnKetten.setBounds(10, 87, 248, 43);
+		panelScrollPaneLinks.add(btnKetten);
 		
-		JButton btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(Color.WHITE);
-		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneLinks.add(btnHosen);
+		JButton btnKopfschmuck = new JButton("Hosen");
+		btnKopfschmuck.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnKopfschmuck.setBackground(Color.WHITE);
+		btnKopfschmuck.setBounds(10, 151, 248, 43);
+		panelScrollPaneLinks.add(btnKopfschmuck);
+		
+		JButton btnOhrringe = new JButton("Hosen");
+		btnOhrringe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnOhrringe.setBackground(Color.WHITE);
+		btnOhrringe.setBounds(10, 151, 248, 43);
+		panelScrollPaneLinks.add(btnOhrringe);
+		
+		JButton btnRinge = new JButton("Hosen");
+		btnRinge.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnRinge.setBackground(Color.WHITE);
+		btnRinge.setBounds(10, 151, 248, 43);
+		panelScrollPaneLinks.add(btnRinge);
 		
 		panelDamenAccessoires = new JPanel();
 		panelDamenAccessoires.setBackground(SystemColor.inactiveCaptionBorder);

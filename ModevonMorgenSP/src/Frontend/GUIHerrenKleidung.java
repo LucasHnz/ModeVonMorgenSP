@@ -214,11 +214,11 @@ public class GUIHerrenKleidung implements ActionListener{
 		btnJacken.addActionListener(this);
 		panelScrollPaneLinks.add(btnJacken);
 		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(SystemColor.inactiveCaptionBorder);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneLinks.add(btnShirts);
+		JButton btnHandschuhe = new JButton("Shirts");
+		btnHandschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHandschuhe.setBackground(SystemColor.inactiveCaptionBorder);
+		btnHandschuhe.setBounds(10, 87, 248, 43);
+		panelScrollPaneLinks.add(btnHandschuhe);
 		
 		JButton btnHosen = new JButton("Hosen");
 		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));

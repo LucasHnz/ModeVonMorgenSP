@@ -166,24 +166,17 @@ public  void artikelLaden() {
 		panelMain.add(scrollPaneLinks);
 		
 
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnNewButton);
+		JButton btnHighHeels = new JButton("Jacken");
+		btnHighHeels.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHighHeels.setBackground(Color.WHITE);
+		btnHighHeels.setBounds(10, 23, 248, 43);
+		panelScrollPaneLinks.add(btnHighHeels);
 		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(Color.WHITE);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneLinks.add(btnShirts);
-		
-		JButton btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(Color.WHITE);
-		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneLinks.add(btnHosen);
-		
+		JButton btnStiefel = new JButton("Jacken");
+		btnStiefel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnStiefel.setBackground(Color.WHITE);
+		btnStiefel.setBounds(10, 23, 248, 43);
+		panelScrollPaneLinks.add(btnStiefel);
 		
 		panelDamenSchuhe = new JPanel();
 		panelDamenSchuhe.setBackground(SystemColor.inactiveCaptionBorder);

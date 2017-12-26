@@ -165,23 +165,12 @@ public class GUIHerrenAccessoires implements ActionListener {
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneLinks);
 		
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnNewButton);
+		JButton btnRinge = new JButton("Jacken");
+		btnRinge.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnRinge.setBackground(Color.WHITE);
+		btnRinge.setBounds(10, 23, 248, 43);
+		panelScrollPaneLinks.add(btnRinge);
 		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(Color.WHITE);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneLinks.add(btnShirts);
-		
-		JButton btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(Color.WHITE);
-		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneLinks.add(btnHosen);
 		
 		
 		
