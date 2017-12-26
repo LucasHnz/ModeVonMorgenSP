@@ -32,40 +32,28 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import Warenkorbverwaltung.Warenkorb;
-//HSG
-public class GUIHerrenKleidung implements ActionListener{
-	
-	JButton btnZurück = new JButton();
-	JButton btnAnmelden = new JButton();
-	JButton btnJacken = new JButton();
-	JButton btnHinz = new JButton();
-	JPanel panelMain = new JPanel();
-	public JButton btnZumArtikel = new JButton();
-	public JButton btnZumArtikel2 = new JButton();
-	public JPanel panelHerrenKleidung;
-	public int abstandPlus = 230;
-	public int abstand = 270;
-	public int anzahlArtikel = 0;
-	
-	
-	
 
-	public JFrame frame = new JFrame();
-	static JPanel panel = new JPanel();
+public class GUIHerrenKleidung {
+	
+	static JButton btnZurück = new JButton();
+	static JButton btnAnmelden = new JButton();
+	static JButton btnJacken = new JButton();
+	static JButton btnHinz = new JButton();
+	static JPanel panelMain = new JPanel();
+	static public JButton btnZumArtikel = new JButton();
+	static public JButton btnZumArtikel2 = new JButton();
+	static public JPanel panelHerrenKleidung;
+	static public int abstandPlus = 230;
+	static public int abstand = 270;
+	static public int anzahlArtikel = 0;
+	
 
 	/**
 	 * Create the application.
 	 */
-	public GUIHerrenKleidung(JFrame frame) {
-		System.out.println("Ausgeführt HK");
-		this.frame = frame;
-		initialize(frame);
-		
-	}
 	
-	public  void ladeArtikel() {
-		
-
+	public static void ladeArtikel() {
+	
 		try {
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -91,11 +79,9 @@ public class GUIHerrenKleidung implements ActionListener{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-	
 	}
 	
-	public void ladeArtikelJacken() {
+	public static void ladeArtikelJacken() {
 		
 		try {
 			System.out.println("1");
@@ -122,16 +108,12 @@ public class GUIHerrenKleidung implements ActionListener{
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-		
-		frame.invalidate();
-		frame.validate();
-		frame.repaint();
 	}
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
+	public static void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
 		
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -169,7 +151,11 @@ public class GUIHerrenKleidung implements ActionListener{
 		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnZumArtikel.setBackground(Color.WHITE);
 		btnZumArtikel.setBounds(198, 130, 139, 30);
-		btnZumArtikel.addActionListener(this);
+		btnZumArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}
+		});
 		panelArtikel.add(btnZumArtikel);
 		
 		JLabel lblStatus = new JLabel(artikelVerfügbarkeit);
@@ -178,23 +164,27 @@ public class GUIHerrenKleidung implements ActionListener{
 		lblStatus.setBounds(203, 41, 147, 30);
 		panelArtikel.add(lblStatus);
 		
-		
-		
 	}
 	
 
-	private void initialize(JFrame frame) {
+	public static JPanel getGUIHerrenKleidung() {
 	
-		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 148, 1234, 563);
+		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
 		
 		btnZurück = new JButton("Zur\u00FCck");
 		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnZurück.setBackground(Color.WHITE);
 		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(this);
+		btnZurück.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Da sollte man einfach immer auf den HomeScreen kommen - Logik dafür wäre sowas wie
+				// GUI.changePanel(GUI.getPanelMain()) (geht so nur noch nicht :D)
+				// Oder es kommt ein HomeButton in die Bar im MainFrame -> Ist am einfachsten
+			
+			}
+		});
 		panelMain.add(btnZurück);
 		
 		JPanel panelScrollPaneLinks = new JPanel();
@@ -211,7 +201,14 @@ public class GUIHerrenKleidung implements ActionListener{
 		btnJacken.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnJacken.setBackground(SystemColor.inactiveCaptionBorder);
 		btnJacken.setBounds(10, 23, 248, 43);
-		btnJacken.addActionListener(this);
+		btnJacken.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenKleidung.removeAll();
+				ladeArtikelJacken();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
 		panelScrollPaneLinks.add(btnJacken);
 		
 		JButton btnHandschuhe = new JButton("Shirts");
@@ -247,89 +244,14 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelHerrenKleidung.setPreferredSize(new Dimension(549, length));
 		
 		
-		
-		
-		frame.add(panelMain);
 		panelMain.setVisible(true);
-		frame.invalidate();
-		frame.validate();
-		frame.repaint();
+		return panelMain;
 	}
 	
 	
-	public ImageIcon bildAnpassen(String imageRoot) {
+	public static ImageIcon bildAnpassen(String imageRoot) {
 		
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(133, 135, Image.SCALE_DEFAULT));
 		return imageIcon;
 	}	
-
-	public void hinzufügenArtikel() {
-		
-		System.out.println("HINZ");
-		
-		JPanel panelArtikel2 = new JPanel();
-		panelArtikel2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelArtikel2.setBackground(SystemColor.inactiveCaption);
-		panelArtikel2.setBounds(66, abstand, 680, 188);
-		panelArtikel2.setLayout(null);
-		
-		
-		ImageIcon icon2 = new ImageIcon("src\\SWP-Bilder\\Herrenjacke_6.jpg");
-        int width2 = icon2.getIconHeight() / 2;
-        int height2 = icon2.getIconWidth() / 2;
-        Image img2 = icon2.getImage().getScaledInstance(width2, height2, Image.SCALE_FAST);
-		
-		JLabel labelArtikelBild2 = new JLabel("");
-		labelArtikelBild2.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild2.setVerticalAlignment(SwingConstants.TOP);
-		labelArtikelBild2.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		labelArtikelBild2.setBounds(33, 25, 133, 135);
-		panelArtikel2.add(labelArtikelBild2);
-		
-		JLabel lblSchwarzeJackeDenim2 = new JLabel("Schwarze Jacke DENIM");
-		lblSchwarzeJackeDenim2.setFont(new Font("Lucida Bright", Font.BOLD, 18));
-		lblSchwarzeJackeDenim2.setBounds(203, 11, 213, 30);
-		panelArtikel2.add(lblSchwarzeJackeDenim2);
-		
-		JLabel lblNewLabel2 = new JLabel("Preis: 24\u20AC");
-		lblNewLabel2.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		lblNewLabel2.setBounds(203, 71, 101, 47);
-		panelArtikel2.add(lblNewLabel2);
-		
-		btnZumArtikel2 = new JButton("Zum Artikel");
-		btnZumArtikel2.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZumArtikel2.setBackground(Color.WHITE);
-		btnZumArtikel2.setBounds(198, 130, 139, 30);
-		btnZumArtikel2.addActionListener(this);
-		panelArtikel2.add(btnZumArtikel2);
-		
-		JLabel lblStatus2 = new JLabel("Auf Lager");
-		lblStatus2.setForeground(new Color(0, 204, 51));
-		lblStatus2.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblStatus2.setBounds(203, 41, 147, 30);
-		panelArtikel2.add(lblStatus2);
-		
-		
-		panelHerrenKleidung.add(panelArtikel2);		
-		frame.invalidate();
-		frame.validate();
-		frame.repaint();
-		abstand = abstand + abstandPlus; 
-		
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == btnZurück) 
-		{
-			panelMain.setVisible(false);
-			GUI.panelMain.setVisible(true);
-		}
-		if(e.getSource() == btnJacken) {
-			panelHerrenKleidung.removeAll();
-			ladeArtikelJacken();
-		}
-       
-	}
 }

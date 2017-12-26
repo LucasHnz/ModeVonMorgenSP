@@ -408,8 +408,7 @@ import javax.swing.JLayeredPane;
 			String auswahl = (String) comboBoxHerren.getSelectedItem();
 		    
 			if(auswahl == "Kleidung"){
-				panelMain_1.setVisible(false);
-			    new GUIHerrenKleidung(frame);
+				changePanel(GUIHerrenKleidung.getGUIHerrenKleidung());
 			 
 		    }
 		  
