@@ -69,7 +69,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'M' ";	
+		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
@@ -159,16 +159,41 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelMain.setBounds(0, 148, 1234, 563);
 		panelMain.setLayout(null);
 		
+		btnZurück = new JButton("Zur\u00FCck");
+		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZurück.setBackground(Color.WHITE);
+		btnZurück.setBounds(10, 11, 89, 35);
+		btnZurück.addActionListener(this);
+		panelMain.add(btnZurück);
 		
-		JPanel panelScrollPaneBar = new JPanel();
-		panelScrollPaneBar.setBackground(SystemColor.inactiveCaptionBorder);
-		panelScrollPaneBar.setLayout(null);
+		JPanel panelScrollPaneLinks = new JPanel();
+		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
+		panelScrollPaneLinks.setLayout(null);
 		
 		
-		JScrollPane scrollPaneHerrenKleidungBar = new JScrollPane(panelScrollPaneBar);
-		scrollPaneHerrenKleidungBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneHerrenKleidungBar.setBounds(10, 97, 270, 455);
-		panelMain.add(scrollPaneHerrenKleidungBar);
+		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
+		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneLinks.setBounds(10, 97, 270, 455);
+		panelMain.add(scrollPaneLinks);
+		
+		JButton btnNewButton = new JButton("Jacken");
+		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnNewButton.setBackground(SystemColor.inactiveCaptionBorder);
+		btnNewButton.setBounds(10, 23, 248, 43);
+		panelScrollPaneLinks.add(btnNewButton);
+		
+		JButton btnShirts = new JButton("Shirts");
+		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnShirts.setBackground(SystemColor.inactiveCaptionBorder);
+		btnShirts.setBounds(10, 87, 248, 43);
+		panelScrollPaneLinks.add(btnShirts);
+		
+		JButton btnHosen = new JButton("Hosen");
+		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
+		btnHosen.setBounds(10, 151, 248, 43);
+		panelScrollPaneLinks.add(btnHosen);
+		
 		
 		
 		panelHerrenKleidung = new JPanel();
@@ -189,30 +214,6 @@ public class GUIHerrenKleidung implements ActionListener{
 		panelHerrenKleidung.setLayout(new GridLayout(0, 2, 0, 0));
 		panelHerrenKleidung.setPreferredSize(new Dimension(549, length));
 		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(this);
-		panelMain.add(btnZurück);
-		
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(SystemColor.inactiveCaptionBorder);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneBar.add(btnNewButton);
-		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(SystemColor.inactiveCaptionBorder);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneBar.add(btnShirts);
-		
-		JButton btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
-		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneBar.add(btnHosen);
 		
 		
 		
