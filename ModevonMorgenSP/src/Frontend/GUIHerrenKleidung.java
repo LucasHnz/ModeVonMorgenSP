@@ -37,6 +37,7 @@ public class GUIHerrenKleidung implements ActionListener{
 	
 	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
+	JButton btnJacken = new JButton();
 	JButton btnHinz = new JButton();
 	JPanel panelMain = new JPanel();
 	public JButton btnZumArtikel = new JButton();
@@ -62,7 +63,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		
 	}
 	
-	public  void artikelLaden() {
+	public  void ladeArtikel() {
 		
 
 		try {
@@ -94,9 +95,39 @@ public class GUIHerrenKleidung implements ActionListener{
 	
 	}
 	
+	public void ladeArtikelJacken() {
+		
+		try {
+			System.out.println("1");
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				System.out.println("2");
+				String artikelBezeichnung = rs.getString("Bezeichnung");
+				Double artikelPreis = rs.getDouble("Preis"); 
+				String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
+				String artikelArt = rs.getString("Art");
+				//Blob artikelBild = rs.getBlob("bild");
+				System.out.println("Artikel + "+ artikelBezeichnung);
+				neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
+				anzahlArtikel = anzahlArtikel +1;
+			}
+			System.out.println(anzahlArtikel);
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		
+		frame.invalidate();
+		frame.validate();
+		frame.repaint();
+	}
 	
-
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -176,11 +207,12 @@ public class GUIHerrenKleidung implements ActionListener{
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneLinks);
 		
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(SystemColor.inactiveCaptionBorder);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnNewButton);
+		btnJacken = new JButton("Jacken");
+		btnJacken.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnJacken.setBackground(SystemColor.inactiveCaptionBorder);
+		btnJacken.setBounds(10, 23, 248, 43);
+		btnJacken.addActionListener(this);
+		panelScrollPaneLinks.add(btnJacken);
 		
 		JButton btnShirts = new JButton("Shirts");
 		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
@@ -206,7 +238,7 @@ public class GUIHerrenKleidung implements ActionListener{
 		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneHerrenKleidung);
 		
-		artikelLaden();
+		ladeArtikel();
 		
 		int length = anzahlArtikel/2 * 188;
 		if(anzahlArtikel%2 == 1)
@@ -293,6 +325,10 @@ public class GUIHerrenKleidung implements ActionListener{
 		{
 			panelMain.setVisible(false);
 			GUI.panelMain.setVisible(true);
+		}
+		if(e.getSource() == btnJacken) {
+			panelHerrenKleidung.removeAll();
+			ladeArtikelJacken();
 		}
        
 	}
