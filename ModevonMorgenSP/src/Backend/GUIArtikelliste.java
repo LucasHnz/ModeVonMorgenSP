@@ -44,7 +44,7 @@ public class GUIArtikelliste extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};
+	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Art", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -91,6 +91,9 @@ public class GUIArtikelliste extends JPanel {
 			else if(columnIndex == 7) {
 				return getValueAt(0, columnIndex).getClass();
 			}
+			else if(columnIndex == 8) {
+				return getValueAt(0, columnIndex).getClass();
+			}
 			else 
 				return null;
 		}
@@ -113,20 +116,23 @@ public class GUIArtikelliste extends JPanel {
 				}
 				else if(columnIndex == 2) {
 					return data.get(keys[rowIndex]).getHersteller();
-				}	
+				}
 				else if(columnIndex == 3) {
-					return data.get(keys[rowIndex]).getBestand();
+					return data.get(keys[rowIndex]).getArt();
 				}	
 				else if(columnIndex == 4) {
-					return data.get(keys[rowIndex]).getPreis();
+					return data.get(keys[rowIndex]).getBestand();
 				}	
 				else if(columnIndex == 5) {
-					return data.get(keys[rowIndex]).getRabatt();
+					return data.get(keys[rowIndex]).getPreis();
 				}	
 				else if(columnIndex == 6) {
-					return data.get(keys[rowIndex]).getVerfügbarkeit();
+					return data.get(keys[rowIndex]).getRabatt();
 				}	
 				else if(columnIndex == 7) {
+					return data.get(keys[rowIndex]).getVerfügbarkeit();
+				}	
+				else if(columnIndex == 8) {
 					if(data.get(keys[rowIndex]).getNotiz() != null && data.get(keys[rowIndex]).getNotiz() != "")
 						return new ImageIcon("src\\Icons 16x16\\exclamation-mark.png");
 					else
@@ -209,11 +215,12 @@ public class GUIArtikelliste extends JPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(32);
 		table.getColumnModel().getColumn(1).setPreferredWidth(120);
 		table.getColumnModel().getColumn(2).setPreferredWidth(80);
-		table.getColumnModel().getColumn(3).setPreferredWidth(30);
+		table.getColumnModel().getColumn(3).setPreferredWidth(70);
 		table.getColumnModel().getColumn(4).setPreferredWidth(30);
 		table.getColumnModel().getColumn(5).setPreferredWidth(30);
-		table.getColumnModel().getColumn(6).setPreferredWidth(100);
-		table.getColumnModel().getColumn(7).setPreferredWidth(10);
+		table.getColumnModel().getColumn(6).setPreferredWidth(30);
+		table.getColumnModel().getColumn(7).setPreferredWidth(120);
+		table.getColumnModel().getColumn(8).setPreferredWidth(10);
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(sorter);
@@ -221,9 +228,9 @@ public class GUIArtikelliste extends JPanel {
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		sorter.setComparator(3, intcomp);
-		sorter.setComparator(4, doublecomp);
-		sorter.setComparator(5, intcomp);
+		sorter.setComparator(4, intcomp);
+		sorter.setComparator(5, doublecomp);
+		sorter.setComparator(6, intcomp);
 		
 		scrollpane = new JScrollPane();
 		scrollpane.setBounds(10, 11, 900, 490);
