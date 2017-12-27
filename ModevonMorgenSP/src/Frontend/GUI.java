@@ -25,6 +25,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.SoftBevelBorder;
+
+import Artikelverwaltung.ArtikelStrg;
+import Artikelverwaltung.Artikelsammlung;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
 
@@ -183,6 +187,10 @@ import javax.swing.JLayeredPane;
 			e.printStackTrace();
 		}
 		new GUI();
+		ArtikelStrg.FülleArtikelsammlung();
+		System.out.println("Artikel geladen");
+		Artikelsammlung.loadAllImages();
+		System.out.println("Images geladen");
 	}
 	
 	/**

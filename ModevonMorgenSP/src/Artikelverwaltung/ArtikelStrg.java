@@ -19,8 +19,22 @@ public class ArtikelStrg {
 		
 	}
 	/**
-	 * 
+	 * Ändert die Attribute eines Artikels in der Datenbank und in der Artikelsammlung.
 	 * @param Artikelnummer
+	 * @param Bestand
+	 * @param Bezeichnung
+	 * @param Art
+	 * @param Geschlecht
+	 * @param Hersteller
+	 * @param Verfügbarkeit
+	 * @param Notiz
+	 * @param Lieferanten
+	 * @param Preis
+	 * @param Rabatt
+	 * @param Schuhgröße
+	 * @param Farbe
+	 * @param Größe
+	 * @see Artikelverwaltung.Artikel
 	 */
 	public static void EditiereArtikel(int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht, 
 			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, Double Preis, int Rabatt, int Schuhgröße, String Farbe,
@@ -139,10 +153,12 @@ public class ArtikelStrg {
 		    	e.printStackTrace();
 		    }
 	}
-	public static void main(String[] args) {
-		FülleArtikelsammlung();
-		ArtikelDBSichern();
-	}
+	/**
+	 * Entfernt einen Artikel aus der Datenbank und der Artikelsammlung.
+	 * @param Artikelnr Die Artikelnummer des Artikels.
+	 * @see Artikelverwaltung.Artikel
+	 * @see Artikelverwaltung.Artikelsammlung
+	 */
 	public static void entferneArtikel(int Artikelnr) {
 		int pk = Artikelnr;
 		Artikel artikel = Artikelsammlung.getArtikel(Artikelnr);
@@ -172,7 +188,8 @@ public class ArtikelStrg {
 	/**
 	 * Fordert die Artikelsammlung auf, einen neuen Artikel mit den übergebenen Parametern hinzuzufügen.
 	 * @param kateg Eine der drei Artikelkategorien: Schuhe, Accessoires und Kleidung.
-	 * 
+	 * @see Artikelverwaltung.Artikel
+	 * @see Artikelverwaltung.Artikelsammlung
 	 */
 	public static void NeuerArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht,
 			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, double Preis,
@@ -246,6 +263,10 @@ public class ArtikelStrg {
 		}
 		
 	}
+	/**
+	 * Ruft alle Artikel aus der Datenbank auf und speichert sie in der Artikelsammlung.
+	 * @see Artikelverwaltung.Artikelsammlung
+	 */
 	public static void FülleArtikelsammlung() {
 		
 		try {
@@ -349,6 +370,13 @@ public class ArtikelStrg {
 			e.printStackTrace();
 		}
 	}
+	/** 
+	 * Ändert den Rabatt eines Artikels in der Datenbank und der Artikelsammlung.
+	 * @param Rabatt Der neue Rabatt
+	 * @param Artikelnummer Die Artikelnummer des Artikels
+	 * @see Artikelverwaltung.Artikel
+	 * @see Artikelverwaltung.Artikelsammlung
+	 */
 	public static void aktualisiereRabatt(int Rabatt, int Artikelnummer) {
 		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
 		Statement stmt = null;
@@ -373,6 +401,13 @@ public class ArtikelStrg {
 				e.printStackTrace();
 			}
 	}
+	/** 
+	 * Ändert den Bestand eines Artikels in der Datenbank und der Artikelsammlung.
+	 * @param Bestand Der neue Bestand
+	 * @param Artikelnummer Die Artikelnummer des Artikels
+	 * @see Artikelverwaltung.Artikel
+	 * @see Artikelverwaltung.Artikelsammlung
+	 */
 	public static void aktualisiereBestand(int Bestand, int Artikelnummer) {
 		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
 		Statement stmt = null;
@@ -397,6 +432,13 @@ public class ArtikelStrg {
 				e.printStackTrace();
 			}
 	}
+	/** 
+	 * Ändert die Notiz eines Artikels in der Datenbank und der Artikelsammlung.
+	 * @param Notiz Die neue Notiz
+	 * @param Artikelnummer Die Artikelnummer des Artikels
+	 * @see Artikelverwaltung.Artikel
+	 * @see Artikelverwaltung.Artikelsammlung
+	 */
 	public static void aktualisiereNotiz(String Notiz, int Artikelnummer) {
 		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
 		Statement stmt = null;

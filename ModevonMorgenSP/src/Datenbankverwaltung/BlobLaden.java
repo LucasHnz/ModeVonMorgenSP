@@ -54,7 +54,7 @@ public class BlobLaden {
 			PreparedStatement pstmt = con.prepareStatement(befehl);
 			ResultSet rs = pstmt.executeQuery(befehl);
 			
-			while(rs.next()) {
+			while(rs.next()) {																					// Methode nicht mehr verwendet 
 				//File file = new File (dateipfad);
 				//FileOutputStream fos = new FileOutputStream (file);
 				BufferedInputStream bis = new BufferedInputStream( rs.getBinaryStream(1) );

@@ -1,10 +1,17 @@
 package Artikelverwaltung;
 
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import javax.imageio.ImageIO;
 /**
  * 
  * @author maoro
@@ -16,7 +23,12 @@ import java.util.Iterator;
 public class Artikelsammlung {
 
 	static HashMap<Integer,Artikel> Artikelsammlung = new HashMap<Integer,Artikel>();	
-	
+	/**
+	 * Füllt die Artikelsammlung mit einem übergebenen ResultSet.
+	 * @param rs	Das ResultSet, das die zu vorhandenen Artikel enthält
+	 * @param kateg	Legt  fest, ob das ResultSet aus Schuhen, Accessoires oder Kleidung besteht.
+	 * @see Artikelverwaltung.Artikel
+	 */
 	public static void füllenSammlung(ResultSet rs, String kateg) {
 		try{
 			while(rs.next()){
@@ -80,8 +92,7 @@ public class Artikelsammlung {
 	 * @param Schuhgröße
 	 * @param Farbe
 	 * @param Größe
-	 * @see Model.Artikel Artikel 
-	 * @return 
+	 * @see Artikelverwaltung.Artikel   
 	 */
 	public static void hinzufügenArtikel(String kateg, int Artikelnummer, int Bestand, String Bezeichnung, String Art, String Geschlecht,
 			String Hersteller, String Verfügbarkeit, String Notiz, String[] Lieferanten, double Preis,
@@ -98,10 +109,79 @@ public class Artikelsammlung {
 	
 	 public static void loadImages() {
 		 for(Artikel a : Artikelsammlung.values()) {
-			 a.downloadImage();
+			 a.downloadImage();											// Nicht mehr verwendet 
 		 }
 			 
 		 
+	 }
+	 public static void loadAllImages()  {
+		 String befehl1 = "select Artikelnr, Bild from Kleidung";
+		 String befehl2 = "select Artikelnr, Bild from Schuhe";
+		 String befehl3 = "select Artikelnr, Bild from Accessoires";
+		 BufferedInputStream bis = null;
+		 BufferedImage bild = null;
+		 int artikelnummer = 0;
+		 Connection con = null;
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		 try {
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		
+			pstmt = con.prepareStatement(befehl1);
+			rs = pstmt.executeQuery(befehl1);
+		
+			while(rs.next()) {
+				artikelnummer = rs.getInt(1);
+				bis = new BufferedInputStream( rs.getBinaryStream(2) );
+				bild = ImageIO.read(bis);
+				Artikelsammlung.get(artikelnummer).setImage(bild);
+				System.out.println(artikelnummer);
+				System.out.println(bild);
+			}
+			pstmt.close();
+			
+			pstmt = con.prepareStatement(befehl2);
+			rs = pstmt.executeQuery(befehl2);
+		
+			while(rs.next()) {
+				artikelnummer = rs.getInt(1);
+				bis = new BufferedInputStream( rs.getBinaryStream(2) );
+				bild = ImageIO.read(bis);
+				Artikelsammlung.get(artikelnummer).setImage(bild);
+				System.out.println(artikelnummer);
+				System.out.println(bild);
+			}
+			pstmt.close();
+			
+			pstmt = con.prepareStatement(befehl3);
+			rs = pstmt.executeQuery(befehl3);
+		
+			while(rs.next()) {
+				artikelnummer = rs.getInt(1);
+				bis = new BufferedInputStream( rs.getBinaryStream(2) );
+				bild = ImageIO.read(bis);
+				Artikelsammlung.get(artikelnummer).setImage(bild);
+				System.out.println(artikelnummer);
+				System.out.println(bild);
+			}
+			
+		 }catch(SQLException e) {
+			 e.printStackTrace();
+		 } catch (IOException e) {
+			e.printStackTrace();
+		 }finally{
+			try{
+				if(bis != null)
+					bis.close();
+				if(pstmt != null)
+					pstmt.close();
+				if(con != null)
+					con.close();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		 }
 	 }
 }
 
