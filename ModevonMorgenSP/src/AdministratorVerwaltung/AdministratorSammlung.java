@@ -68,6 +68,7 @@ public class AdministratorSammlung {
 		Administrator admin = new Administrator(nutzernr,nachname,  vorname,email, straﬂe,  ort,plz,  iban, gehalt, berechtigung, passwort);
 		AdministratorListe.put(nutzernr, admin);
 		
+		
+	
 	}
-
 }

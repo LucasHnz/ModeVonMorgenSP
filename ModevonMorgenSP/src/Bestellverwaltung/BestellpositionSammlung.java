@@ -50,6 +50,36 @@ static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<
 		return BestellpositionsSammlung;
 	}
 	
+	public static void fülleMitSpeziellerNummer(int i) {
+	try {
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select * from BESTELLPOSITION where Bestellnr = '"+i+"'";
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				int posNr = rs.getInt("Bestellposnr");
+				int bestellNr = rs.getInt("Bestellnr");
+				int artikelnummer= rs.getInt("ArtikelNr");
+				int aMenge =rs.getInt("Menge");
+				double preis = rs.getDouble("Preis");
+				
+				
+				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis);
+				
+				BestellpositionsSammlung.put(b.getPosNr(), b);
+				
+			}
+			
+		}catch (SQLException e ) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
 
 	

@@ -18,6 +18,11 @@ import javax.swing.table.TableRowSorter;
 import AdministratorVerwaltung.Administrator;
 import AdministratorVerwaltung.AdministratorSammlung;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIAdministratorListe extends JPanel{
 	
 	private static final long serialVersionUID = 1L;

@@ -24,7 +24,7 @@ import RechnungVerwaltung.BestellungSammlung;
 public class GUIBestellungListe extends JPanel {
 	
 	/**
-	 * @author annag julian
+	 * @author julian
 	 * 
 	 */
 	
@@ -32,7 +32,7 @@ public class GUIBestellungListe extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Rechnungs Nummer", "Bestandskunden Nummer","Gastkunden Nummer", "IBAN", "Nachname", "Vorname", "Gesamtpreis", "Rabatt", "Datum","Versandstatus", "Ort","Straﬂe","PLZ"};
+	private String[] columnNames = {"Rechnungs Nummer","Bestell Nummer", "Gastkunden Nummer","Bestandskunden Nummer", "IBAN", "Nachname", "Vorname", "Gesamtpreis", "Rabatt", "Datum","Versandstatus", "Ort","Straﬂe","PLZ"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -72,11 +72,11 @@ public class GUIBestellungListe extends JPanel {
 				}
 				
 				else if (columnIndex ==2) {
-					return data.get(keys[rowIndex]).getNutzernrbk();
+					return data.get(keys[rowIndex]).getNutzernrgk();
 				}
 				
 				else if (columnIndex == 3) {
-					return data.get(keys[rowIndex]).getNutzernrgk();
+					return data.get(keys[rowIndex]).getNutzernrbk();
 				}
 				else if(columnIndex == 4) {
 					return data.get(keys[rowIndex]).getIban();
@@ -183,13 +183,17 @@ public class GUIBestellungListe extends JPanel {
 		
 		JButton btnBestellungAnzeigen = new JButton("Bestellung anzeigen");
 		btnBestellungAnzeigen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Hier muss halt irgendwas stehen");
+			public void actionPerformed(ActionEvent a) {
+				System.out.println("Hier");
 				
-				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung();
+				final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
-				new GUIBestellungAnzeigen(i);
+				try{
+					new GUIBestellpositionsliste(i);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnBestellungAnzeigen.setBounds(920, 11, 270, 48);

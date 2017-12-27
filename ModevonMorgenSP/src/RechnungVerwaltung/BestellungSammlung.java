@@ -1,6 +1,11 @@
 package RechnungVerwaltung;
 
 import java.sql.Connection;
+
+/**
+ * @author julian
+ * 
+ */
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;

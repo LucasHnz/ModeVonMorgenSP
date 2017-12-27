@@ -49,7 +49,7 @@ public static void aktualisiereName(String name, int nutzernr){
 	}
 
 	public static void aktualisiereAdminnr(String adminnr, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
@@ -59,13 +59,15 @@ public static void aktualisiereName(String name, int nutzernr){
 			stmt.execute(sqlbefehl)	;
 			
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			
+			ma.setAdminnr(Integer.parseInt(adminnr));
 			}catch(SQLException e) {
 				e.getMessage();
 			}
 	}
 	
 	public static void aktualisiereEmail(String email, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -75,14 +77,14 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setEmail(email);
 		}catch (SQLException e) {
 			e.getMessage();
 		}
 	}
 	
 	public static void aktualisiereStraﬂe(String straﬂe, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -92,7 +94,7 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setStraﬂe(straﬂe);
 		}catch (SQLException e) {
 			e.getMessage();
 		}
@@ -100,7 +102,7 @@ public static void aktualisiereName(String name, int nutzernr){
 	}
 	
 	public static void aktualisiereOrt(String ort, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -110,14 +112,14 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setOrt(ort);
 		}catch (SQLException e) {
 			e.getMessage();
 		}
 	}
 	
 	public static void aktualisierePLZ(String plz, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -127,7 +129,7 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setPlz(Integer.parseInt(plz));
 		}catch (SQLException e) {
 			e.getMessage();
 		}
@@ -135,7 +137,7 @@ public static void aktualisiereName(String name, int nutzernr){
 	}
 
 	public static void aktualisiereIBAN(String iban, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -145,14 +147,14 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setIban(iban);
 		}catch (SQLException e) {
 			e.getMessage();
 		}
 	}
 
 	public static void aktualisiereGehalt(String gehalt, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -162,14 +164,14 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setGehalt(Integer.parseInt(gehalt));
 		}catch (SQLException e) {
 			e.getMessage();
 		}
 	}
 
 	public static void aktualisierePasswort(String passwort, int nutzernr) {
-		
+		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -179,14 +181,14 @@ public static void aktualisiereName(String name, int nutzernr){
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setPasswort(passwort);
 		}catch (SQLException e) {
 			e.getMessage();
 		}
 	}
 	
 public static void aktualisiereVorname(String vorname, int nutzernr) {
-		
+	Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
@@ -196,7 +198,7 @@ public static void aktualisiereVorname(String vorname, int nutzernr) {
 		stmt.execute(sqlbefehl)	;
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
+		ma.setVorname(vorname);
 		}catch (SQLException e) {
 			e.getMessage();
 		}

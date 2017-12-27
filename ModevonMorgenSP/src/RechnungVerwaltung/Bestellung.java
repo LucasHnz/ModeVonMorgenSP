@@ -2,6 +2,12 @@ package RechnungVerwaltung;
 
 import java.sql.Date;
 
+
+/**
+ * 
+ * @author julian
+ *
+ */
 public class Bestellung {
 	
 	private int rechnungsnr;

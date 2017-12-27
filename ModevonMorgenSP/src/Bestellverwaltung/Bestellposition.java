@@ -43,6 +43,10 @@ public class Bestellposition {
 	public double getPreis() {
 		return this.preis;
 	}
+	
+	public int getAnummer() {
+		return artikelnummer;
+	}
 
 	public int getBestellNr() {
 		return bestellNr;
