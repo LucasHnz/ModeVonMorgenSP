@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,7 +24,7 @@ import MitarbeiterVerwaltung.Mitarbeiter;
 import MitarbeiterVerwaltung.MitarbeiterSammlung;
 import RechnungVerwaltung.Bestellung;
 
-public class GUIBestellpositionsliste extends JPanel{
+public class GUIBestellpositionsliste extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private JTable table;
