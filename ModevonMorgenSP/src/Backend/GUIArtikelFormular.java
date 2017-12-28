@@ -36,10 +36,7 @@ import javax.swing.JScrollPane;
  *
  */
 public class GUIArtikelFormular extends JFrame {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldArtikelnummer;
@@ -66,17 +63,10 @@ public class GUIArtikelFormular extends JFrame {
 	private JComboBox comboBoxVerfügbarkeit;
 	private JComboBox comboBoxGröße;
 	
-
-	public static void main(String[] args) {
-
-		ArtikelStrg.FülleArtikelsammlung();
-		System.out.println(Artikelsammlung.getArtikel(600000010).getClass().getName());
-		new GUIArtikelFormular(600000010);
-	
-	}
 	/**
 	 * Öfnnet das Formular zum erstellen eines neuen Artikels.
-	 * @param kateg
+	 * @param kateg Kategorie. Also Schuhe, Kleidung oder Accessoires.
+	 * @see Artikelverwaltung.Artikel
 	 */
 	public GUIArtikelFormular(String kateg) {
 		Kategorie = kateg;
@@ -332,7 +322,9 @@ public class GUIArtikelFormular extends JFrame {
 	
 	
 	/**
-	 * @wbp.parser.constructor
+	 * Öfnnet das Formular zum verändern eines bestehenden Artikels.
+	 * @param Artikelnummer Die Artikelnummer des zu verändernden Artikels.
+	 * @see Artikelverwaltung.Artikel
 	 */
 	public GUIArtikelFormular(int Artikelnummer) {
 		

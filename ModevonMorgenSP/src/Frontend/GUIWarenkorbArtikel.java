@@ -18,7 +18,11 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author maoro
+ *
+ */
 public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 	
 	JButton btnDelete;

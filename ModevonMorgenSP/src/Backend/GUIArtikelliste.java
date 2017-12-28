@@ -13,34 +13,29 @@ import javax.swing.table.TableRowSorter;
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.Icon;
 
+
+/**
+ * 
+ * @author maoro
+ *
+ */
 public class GUIArtikelliste extends JPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
@@ -48,22 +43,26 @@ public class GUIArtikelliste extends JPanel {
 
 	private class myTableModel extends AbstractTableModel{
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
 		private String[] columnNames;
 		private HashMap<Integer, Artikel> data;
-		
-		
+		/**
+		 * Füllt die Tabelle mit einer Artikel-HashMap.
+		 * @param artikelliste HashMap<Integer, Artikel>.
+		 * @param columnNames Die Spaltennamen der Tabelle.
+		 */
 		public myTableModel(HashMap<Integer, Artikel> artikelliste, String[] columnNames) {
 			this.columnNames = columnNames;
 			this.data = artikelliste;
 		}
-			
+		/** 
+		 * Gibt die Anzahl an Spalten aus.	
+		 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
+		/**
+		 * Gibt die Klasse des in der Spalte angezeigten Wertes zurück.
+		 */
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
 		public Class getColumnClass(int columnIndex){
@@ -97,14 +96,24 @@ public class GUIArtikelliste extends JPanel {
 			else 
 				return null;
 		}
+		/**
+		 * Gibt den Namen der Spalte zurück.
+		 * @param columnIndex Die Spaltennummer.
+		 */
 		public String getColumnName(int columnIndex) {
 			return columnNames[columnIndex].toString();
 		}
-		
+		/**
+		 * Gibt die Anzahl der Reihen zurück.
+		 */
 		public int getRowCount() {
 			return data.size();
 		}
-				
+		/** 
+		 * Gibt den Wert der ausgewählten Zelle zurück.
+		 * @param rowIndex Der Zeilenindex.
+		 * @param columnIndex Der Spaltenindex.
+		 */
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
@@ -146,41 +155,19 @@ public class GUIArtikelliste extends JPanel {
 				return a;
 			}
 		}
-		
+		/**
+		 * Gibt zurück, ob die Zelle bearbeitet werden darf. Ist für die gesamte Tabelle nicht erlaubt.
+		 */
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
 			return false;	
 		}				
 	}
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ArtikelStrg.FülleArtikelsammlung();
-					GUIArtikelliste frame = new GUIArtikelliste();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Öffnet die Artikelverwaltung, in der alle Artikel aufgelistet sind und bearbeitet werden können.
 	 */
 	public GUIArtikelliste() {
-		setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		ArtikelStrg.FülleArtikelsammlung();
-		
+		setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));		
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
@@ -420,6 +407,5 @@ public class GUIArtikelliste extends JPanel {
 		add(lblPicture);
 		
 		setVisible(true);
-		//Artikelsammlung.loadImages();
 	}
 }

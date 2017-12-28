@@ -9,12 +9,15 @@ public class Accessoires extends Artikel {
 
 	private String Farbe;
 	/**
-	 * Erstellt ein neues Accessoires Objekt
+	 * Konstruktor.
 	 * @param Farbe Farbe des Accessoires.
 	 * @see Artikelverwaltung.Artikel
 	 */
-	public Accessoires(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, int Rabatt, String Farbe) {
-		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt);
+	public Accessoires(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht,
+			String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten,
+			double Preis, int Rabatt, String Farbe) {
+		super(artnr, bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit,
+				Notiz, Lieferanten, Preis, Rabatt);
 		this.Farbe=Farbe;
 	}
 	/**

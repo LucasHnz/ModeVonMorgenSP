@@ -25,7 +25,7 @@ public class Artikelsammlung {
 	static HashMap<Integer,Artikel> Artikelsammlung = new HashMap<Integer,Artikel>();	
 	/**
 	 * Füllt die Artikelsammlung mit einem übergebenen ResultSet.
-	 * @param rs	Das ResultSet, das die zu vorhandenen Artikel enthält
+	 * @param rs Das ResultSet, das die zu vorhandenen Artikel enthält.
 	 * @param kateg	Legt  fest, ob das ResultSet aus Schuhen, Accessoires oder Kleidung besteht.
 	 * @see Artikelverwaltung.Artikel
 	 */
@@ -65,20 +65,33 @@ public class Artikelsammlung {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+	/**
+	 * Gibt die in einer HashMap gespeicherte Artikelsammlung zurück.
+	 * @return Artikelsammlung.
+	 */
 	public static HashMap<Integer, Artikel> getArtikelsammlung(){
 		return Artikelsammlung;
 	}
+	/**
+	 * Entfernt einen Artikel aus der Artikelsammlung.
+	 * @param Artikelnummer Die Artikelnummer des zu löschenden Artikels.
+	 * @see Artikelverwaltung.Artikel
+	 */
 	public static void removeArtikel(int Artikelnummer) {
 		Artikelsammlung.remove(Artikelnummer);
 	}
-		
+	/**
+	 * Gibt das Artkelobjekt zurück.
+	 * @param Artikelnummer Die Artikelnummer.
+	 * @return Das Artikelobjekt mit der übergebenen Artikelnummer.
+	 * @see @see Artikelverwaltung.Artikel
+	 */
 	public static Artikel getArtikel(int Artikelnummer) {
 		return Artikelsammlung.get(Artikelnummer);
 	}
 	/**
 	 * Fügt der Artikelsammlung einen neuen Artikel hinzu.
-	 * @param kateg Die Kategorie des Artikels. Also Schuhe, Accessoires oder Kleidung
+	 * @param kateg Die Kategorie des Artikels. Also Schuhe, Accessoires oder Kleidung.
 	 * @param Artikelnummer 
 	 * @param Bestand
 	 * @param Bezeichnung
@@ -114,6 +127,10 @@ public class Artikelsammlung {
 			 
 		 
 	 }
+	 /** 
+	  * Lädt die Artikelbilder zu allen in der Datenbank gespeicherten Artikeln und 
+	  * speichert sie in den entsprechenden Objekten.
+	  */
 	 public static void loadAllImages()  {
 		 String befehl1 = "select Artikelnr, Bild from Kleidung";
 		 String befehl2 = "select Artikelnr, Bild from Schuhe";

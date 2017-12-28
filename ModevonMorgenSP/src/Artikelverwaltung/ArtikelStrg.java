@@ -163,11 +163,12 @@ public class ArtikelStrg {
 		int pk = Artikelnr;
 		Artikel artikel = Artikelsammlung.getArtikel(Artikelnr);
 		String sqlbefehel = null;
-		
+		Connection con = null;
+		Statement stmt = null;
 		try {
 			
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			Statement stmt = con.createStatement();
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement();
 			
 			if(artikel.getClass().getName() == "Artikelverwaltung.Schuhe")
 				sqlbefehel ="delete from Schuhe where artikelnr = '"+pk+"'";
@@ -178,11 +179,18 @@ public class ArtikelStrg {
 			
 			stmt.executeQuery(sqlbefehel);
 			Artikelsammlung.removeArtikel(Artikelnr);
-			stmt.close();
-			con.close();
 			
 		}catch (SQLException e) {
 			e.getMessage();
+		}finally {
+			try {
+				if(stmt !=null) 
+					stmt.close();
+				if(con != null)
+					con.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	/**
@@ -197,10 +205,11 @@ public class ArtikelStrg {
 		
 		Artikelsammlung.hinzufügenArtikel(kateg, Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, 
 				Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe, Größe);
-		
+		Connection con = null;
+		Statement stmt = null;
 		try {
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			Statement stmt = con.createStatement(); 
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement(); 
 			String sqlInsert = null;
 			
 			if(kateg == "Accessoires") {
@@ -260,6 +269,15 @@ public class ArtikelStrg {
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(stmt !=null) 
+					stmt.close();
+				if(con != null)
+					con.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -268,35 +286,51 @@ public class ArtikelStrg {
 	 * @see Artikelverwaltung.Artikelsammlung
 	 */
 	public static void FülleArtikelsammlung() {
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+		ResultSet rs3 = null;
 		
 		try {
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			Statement stmt = con.createStatement();
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement();
 			String sqlbefehl1 = "select * from Accessoires";
-			ResultSet rs1 = stmt.executeQuery(sqlbefehl1);
+			rs1 = stmt.executeQuery(sqlbefehl1);
 			Artikelsammlung.füllenSammlung(rs1, "Accessoires");
 			
 			String sqlbefehl2 = "select * from Schuhe";
-			ResultSet rs2 = stmt.executeQuery(sqlbefehl2);
+			rs2 = stmt.executeQuery(sqlbefehl2);
 			Artikelsammlung.füllenSammlung(rs2, "Schuhe");
 			
 			String sqlbefehl3 = "select * from Kleidung";
-			ResultSet rs3 = stmt.executeQuery(sqlbefehl3);
+			rs3 = stmt.executeQuery(sqlbefehl3);
 			Artikelsammlung.füllenSammlung(rs3, "Kleidung");
 			
-			rs1.close();
-			rs2.close();
-			rs3.close();
-			stmt.close();
-			con.close();
+			
 			
 		}catch(SQLException e){
 			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(stmt !=null) 
+					stmt.close();
+				if(con != null)
+					con.close();
+				if(rs1 != null)
+					rs1.close();
+				if(rs2 != null)
+					rs2.close();
+				if(rs3 != null)
+					rs3.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
 	public static void ArtikelDBSichern() {
-		// Nur für die Sicherung nach Updates. Inserts müssen jeweils einzeln gemacht werden.
+		// Nur für die Sicherung nach Updates. Inserts müssen jeweils einzeln gemacht werden.					Fliegt wahrscheinlich raus.
 		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
 		Statement stmt = null;
 		String sqlUpdate = null;
@@ -379,11 +413,13 @@ public class ArtikelStrg {
 	 */
 	public static void aktualisiereRabatt(int Rabatt, int Artikelnummer) {
 		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
+		Connection con = null;
 		Statement stmt = null;
 		String sqlUpdate = null;
 		Artikel artikel = Sammlung.get(Artikelnummer);
+		
 		try{
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			stmt = con.createStatement();
 			
 			if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires")
@@ -394,11 +430,19 @@ public class ArtikelStrg {
 				sqlUpdate = "update Schuhe set rabatt ='"+Rabatt+"' where Artikelnr ="+Artikelnummer;
 	
 			stmt.execute(sqlUpdate)	;
-			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 			artikel.setRabatt(Rabatt);
 			
 			}catch (SQLException e) {
 				e.printStackTrace();
+			}finally {
+				try {
+					if(stmt !=null) 
+						stmt.close();
+					if(con != null)
+						con.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 	}
 	/** 
@@ -413,8 +457,9 @@ public class ArtikelStrg {
 		Statement stmt = null;
 		String sqlUpdate = null;
 		Artikel artikel = Sammlung.get(Artikelnummer);
+		Connection con = null;
 		try{
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			stmt = con.createStatement();
 			
 			if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires")
@@ -425,11 +470,19 @@ public class ArtikelStrg {
 				sqlUpdate = "update Schuhe set Bestand ='"+Bestand+"' where Artikelnr ="+Artikelnummer;
 			
 			stmt.execute(sqlUpdate)	;
-			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 			artikel.setBestand(Bestand);
 			
 			}catch (SQLException e) {
 				e.printStackTrace();
+			}finally {
+				try {
+					if(stmt !=null) 
+						stmt.close();
+					if(con != null)
+						con.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 	}
 	/** 
@@ -441,11 +494,12 @@ public class ArtikelStrg {
 	 */
 	public static void aktualisiereNotiz(String Notiz, int Artikelnummer) {
 		HashMap<Integer,Artikel> Sammlung = Artikelsammlung.getArtikelsammlung();
+		Connection con = null;
 		Statement stmt = null;
 		String sqlUpdate = null;
 		Artikel artikel = Sammlung.get(Artikelnummer);
 		try{
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			stmt = con.createStatement();
 			
 			if(artikel.getClass().getName() == "Artikelverwaltung.Accessoires")
@@ -456,11 +510,19 @@ public class ArtikelStrg {
 				sqlUpdate = "update Schuhe set Notiz ='"+Notiz+"' where Artikelnr ="+Artikelnummer;
 			
 			stmt.execute(sqlUpdate)	;
-			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 			artikel.setNotiz(Notiz);
 			
 			}catch (SQLException e) {
 				e.printStackTrace();
+			}finally {
+				try {
+					if(stmt !=null) 
+						stmt.close();
+					if(con != null)
+						con.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}
 	}
 }

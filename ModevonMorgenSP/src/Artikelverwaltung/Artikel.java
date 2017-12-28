@@ -16,7 +16,7 @@ public abstract class Artikel implements Comparable<Artikel> {
 	protected BufferedImage image;
 	
 	/**
-	 * 
+	 * Konstruktor.
 	 * @param artnr Die einzigartige Artikelnummer.
 	 * @param bestand Der aktuelle Lagerbestand.
 	 * @param Bezeichnung Name des Artikels.
@@ -28,7 +28,9 @@ public abstract class Artikel implements Comparable<Artikel> {
 	 * @param Preis Der Preis des Artikels.
 	 * @param Rabatt Temporäre Preisvergünstigung.
 	 */
-	public Artikel(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht, String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten, double Preis, int Rabatt) {
+	public Artikel(int artnr, int bestand, String Bezeichnung, String Art, String Geschlecht,
+			String Hersteller, String Verfügbarkeit, String Notiz, String[]  Lieferanten,
+			double Preis, int Rabatt) {
 
 		this.Artikelnummer=artnr;
 		this.Bestand=bestand;
@@ -204,7 +206,6 @@ public abstract class Artikel implements Comparable<Artikel> {
 			return -1;
 		else 
 			return 1;
-		
 	}
 	/**
 	 * Lädt das dem Artikel zugehörige Bild von der Datenbank runter und speichert es in der Variablen image.
@@ -216,6 +217,10 @@ public abstract class Artikel implements Comparable<Artikel> {
 		image = Datenbankverwaltung.BlobLaden.runterladenBlob(befehl);
 		
 	}
+	/**
+	 * Legt das Produktbild fest.
+	 * @param image Das Produktbild als BufferedImage.
+	 */
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
@@ -227,14 +232,15 @@ public abstract class Artikel implements Comparable<Artikel> {
 		return image;
 	}
 	/**
-	 * 
-	 * @param Dateipfad
+	 * Lädt ein neues Artikelbild in die Datenbank hoch und aktualisiert es in der Artikelsammlung.
+	 * @param Dateipfad Der lokale Pfad des Bildes.
 	 */
 	public void uploadImage(String Dateipfad) {
 		String klasse = this.getClass().getName();
 		klasse = klasse.substring(18);
 		String befehl = "update " +klasse+ " set Bild = ? where Artikelnr= " + this.Artikelnummer;
 		Datenbankverwaltung.BlobLaden.hochladenBlob(befehl, Dateipfad);
+		downloadImage();
 	}
 	
 }

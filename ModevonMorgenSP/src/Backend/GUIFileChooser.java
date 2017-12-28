@@ -1,26 +1,24 @@
 package Backend;
 
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Artikelverwaltung.Artikelsammlung;
 
 import javax.swing.JTextField;
-
+/**
+ * 
+ * @author maoro
+ *
+ */
 public class GUIFileChooser extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
@@ -35,23 +33,8 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 	private int Artikelnummer;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIFileChooser frame = new GUIFileChooser(500000001);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Öffnet das Auswahlfenster zum Hochladen eines neuen Artikelbilds.
+	 * @param Artikelnummer Die zugehörige Artikelnummer.
 	 */
 	public GUIFileChooser(int Artikelnummer) {
 		this.Artikelnummer=Artikelnummer;
