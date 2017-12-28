@@ -16,6 +16,11 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIRücksendeListe extends JPanel {
 	
 	//Hier muss dann eine Liste der Rücksendungen erstellt werden

@@ -3,7 +3,7 @@ package RechnungVerwaltung;
 import java.sql.Connection;
 
 /**
- * @author julian
+ * @author julian, annag
  * 
  */
 import java.sql.Date;
@@ -16,6 +16,9 @@ public class BestellungSammlung {
 
 	static HashMap<Integer, Bestellung> BestellungSammlung = new HashMap<Integer, Bestellung>();
 	
+	/**
+	 * füllt die HashMap BestellungSammlung mit Values aus der Datenbank
+	 */
 	public static void füllenBestellungSammlung(){
 		
 		try {
@@ -55,6 +58,10 @@ public class BestellungSammlung {
 		
 		}
 
+	/**
+	 * 
+	 * @return BestellungSammlung
+	 */
 	public static HashMap<Integer, Bestellung> getBestellungSammlung(){
 		return BestellungSammlung;
 	}

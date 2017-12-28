@@ -6,9 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class CheckBerechtigung {
 	
 
+	/**
+	 * Prüft, welche Berechtigung die angegebene EMail besitzt
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	public static int checkBerechtigung(String email) throws SQLException {
 		
 		String befehlMA = "select berechtigung from Mitarbeiter where email ='"+email+"'";

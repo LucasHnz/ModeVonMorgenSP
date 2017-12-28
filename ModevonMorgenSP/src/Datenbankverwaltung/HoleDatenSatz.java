@@ -9,10 +9,17 @@ import MitarbeiterVerwaltung.Mitarbeiter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * 
+ * @author julian
+ *
+ */
 public class HoleDatenSatz {
 	
-	
+	/**
+	 * Holt Daten für die Admnin Auswahl im MA erstellen Prozess
+	 * @return ResultSet
+	 */
 	public static ResultSet AdminNummern() {
 		
 		ResultSet rs = null;
@@ -34,6 +41,11 @@ public class HoleDatenSatz {
 		
 	}
 	
+	/**
+	 * Holt sich genau einen Administrator aus der Datenbank
+	 * @param nutzernr
+	 * @return Administrator
+	 */
 	public static Administrator holeAdmin(int nutzernr) {
 		
 		Administrator admin = null;
@@ -59,6 +71,11 @@ public class HoleDatenSatz {
 		
 	}
 	
+	/**
+	 * Holt sich genau einen Mitarbetier aus der Datenbank
+	 * @param nutzernr
+	 * @return Mitarbeiter
+	 */
 	public static Mitarbeiter holeMitarbeiter(int nutzernr) {
 		
 		Mitarbeiter ma = null;
@@ -83,6 +100,11 @@ public class HoleDatenSatz {
 		
 	}
 	
+	/**
+	 * Holt sich genau einen Bestandskunden aus der Datenbank
+	 * @param nutzernr
+	 * @return Bestandskunde
+	 */
 public static Bestandskunde holeKunde(int nutzernr) {
 		
 		Bestandskunde bk = null;

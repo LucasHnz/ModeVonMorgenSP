@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 /**
  * 
- * @author annag
+ * @author annag, Julian
  *
  */
 

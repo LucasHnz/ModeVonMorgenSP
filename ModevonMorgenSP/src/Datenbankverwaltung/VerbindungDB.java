@@ -13,6 +13,10 @@ import java.sql.Statement;
 
 public class VerbindungDB {
 	
+	/**
+	 * Erstellt die Verbindung zur Datenbank
+	 * @return Connection
+	 */
 public static Connection erstelleConnection() {
 		
 		Connection con = null;
@@ -29,6 +33,11 @@ public static Connection erstelleConnection() {
 		return con;
 	}
 
+/**
+ * Schlieﬂt die offenen Verbindungen
+ * @param con
+ * @param stmt
+ */
 public static void schlieﬂeVerbindung (Connection con, Statement stmt) {
 	
 	try {

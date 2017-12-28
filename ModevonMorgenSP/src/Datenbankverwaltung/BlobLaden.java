@@ -19,6 +19,11 @@ import javax.imageio.ImageIO;
 
 public class BlobLaden {
 	
+	/**
+	 * Läd ein Bild als Blob hoch
+	 * @param befehl
+	 * @param Dateipfad
+	 */
 	public static void hochladenBlob(String befehl, String Dateipfad) {
 		
 		try {
@@ -45,6 +50,11 @@ public class BlobLaden {
 		}
 	}
 	
+	/**
+	 * Läd ein Blob herunter
+	 * @param befehl
+	 * @return
+	 */
 	public static BufferedImage runterladenBlob(String befehl) {
 		
 		BufferedImage bild = null;
