@@ -209,6 +209,25 @@ public class GUIBestellungListe extends JPanel {
 		btnBestellungAnzeigen.setBounds(920, 11, 270, 48);
 		add(btnBestellungAnzeigen);
 		
+		/**
+		 * Button um VStatus zu ändern
+		 */
+		JButton btnÄndernVStatus = new JButton ("Versandstatus Ändern");
+			btnÄndernVStatus.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
+					
+					BestellungSammlung.getBestellungSammlung().get(i).setVersandstatus("Versandt");
+					
+				}
+			});
+		
+			btnÄndernVStatus.setBounds(920,70,270,48);
+			add(btnÄndernVStatus);
+		
 		setVisible(true);
 
 	}

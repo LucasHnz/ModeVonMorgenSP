@@ -229,6 +229,8 @@ public static void aktualisiereVorname(String vorname, int nutzernr) {
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
 			
+			MitarbeiterSammlung.MitarbeiterSammlung.put(nutzernr2, ma);
+			
 		}catch (SQLException e) {
 			e.getMessage();
 		}

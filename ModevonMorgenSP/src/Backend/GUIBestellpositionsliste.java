@@ -118,7 +118,7 @@ public class GUIBestellpositionsliste extends JFrame{
 		setBackground(Color.DARK_GRAY);
 		BestellpositionSammlung.fülleMitSpeziellerNummer(i);
 		setLayout(null);
-		setBounds(90, 100, 1200, 600);
+		setBounds(90, 100, 800, 600);
 		setBackground(Color.DARK_GRAY);
 		
 		table = new JTable(new myTableModel(Bestellverwaltung.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
@@ -183,8 +183,23 @@ public class GUIBestellpositionsliste extends JFrame{
 		});
 		btnRücksAblehnen.setBounds(920,70,270,48);
 		add(btnRücksAblehnen);
-		setVisible(true);
+		
+		
+		/**
+		 * Button um zum Hauptfenster zurück zu kommen
+		 */
+		JButton btnZurück = new JButton ("Beenden");
+			btnZurück.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+			btnZurück.setBounds(920,208,270,48);
+			add(btnZurück);
+			setVisible(true);
+		}
+	
+	
 
 	}
 
-}
