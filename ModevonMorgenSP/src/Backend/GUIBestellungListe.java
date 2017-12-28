@@ -36,19 +36,24 @@ public class GUIBestellungListe extends JPanel {
 
 	private class myTableModel extends AbstractTableModel{
 
-		/**
-		 * 
-		 * 
-		 */
+	
 		private static final long serialVersionUID = 1L;
 		private String[] columnNames;
 		private HashMap<Integer, Bestellung> data;
 		
+		/**
+		 * Füllt die Tabelle mit einer Bestellung-HashMap
+		 * @param Rechnungsliste
+		 * @param columnNames
+		 */
 		public myTableModel(HashMap<Integer, Bestellung> Rechnungsliste, String[] columnNames) {
 			this.columnNames = columnNames;
 			this.data = Rechnungsliste;
 		}
-			
+
+		/**
+		 * Holt sich die Anzahl der Spalten
+		 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
@@ -57,6 +62,9 @@ public class GUIBestellungListe extends JPanel {
 			return columnNames[columnIndex].toString();
 		}
 		
+		/**
+		 * Holt sich die Anzahl der Rows
+		 */
 		public int getRowCount() {
 			return data.size();
 		}
@@ -180,7 +188,9 @@ public class GUIBestellungListe extends JPanel {
 		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
-		
+		/**
+		 * Button, der die Bestellpositionsübersicht zu einer speziellen Bestellung anzeigt
+		 */
 		JButton btnBestellungAnzeigen = new JButton("Bestellung anzeigen");
 		btnBestellungAnzeigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {

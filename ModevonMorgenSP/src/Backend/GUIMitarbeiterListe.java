@@ -26,6 +26,11 @@ import Artikelverwaltung.Artikelsammlung;
 import MitarbeiterVerwaltung.Mitarbeiter;
 import MitarbeiterVerwaltung.MitarbeiterSammlung;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIMitarbeiterListe extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -41,11 +46,19 @@ public class GUIMitarbeiterListe extends JPanel{
 		private String[] columnNames;
 		private HashMap<Integer, Mitarbeiter> data;
 		
+		/**
+		 * Füllt die Tabelle mit einer Mitarbeiter HashMap
+		 * @param mitarbeiterliste
+		 * @param columnNames
+		 */
 		public myTableModel(HashMap<Integer, Mitarbeiter> mitarbeiterliste, String[] columnNames) {
 			this.columnNames = columnNames;
 			this.data = mitarbeiterliste;
 		}
-			
+		
+		/**
+		 * Holt sich die Anzahl der Spalten
+		 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
@@ -54,6 +67,9 @@ public class GUIMitarbeiterListe extends JPanel{
 			return columnNames[columnIndex].toString();
 		}
 		
+		/**
+		 * Holt sich die Anzahl der Rows
+		 */
 		public int getRowCount() {
 			return data.size();
 		}
@@ -119,25 +135,7 @@ public class GUIMitarbeiterListe extends JPanel{
 		}
 					
 	}
-
-	/**
-	 * Launch the application.
-	 * @throws SQLException 
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ArtikelStrg.FülleArtikelsammlung();
-					GUIArtikelliste frame = new GUIArtikelliste();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -206,6 +204,9 @@ public class GUIMitarbeiterListe extends JPanel{
 		
 		add(scrollpane);
 		
+		/**
+		 * erstell das Pop Up Fenster für eine Mitarbeiter Hinzufügen Operation
+		 */
 		JButton btnNeuerMitarbeiter = new JButton("Mitarbeiter hinzufügen");
 		btnNeuerMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -220,6 +221,9 @@ public class GUIMitarbeiterListe extends JPanel{
 		btnNeuerMitarbeiter.setBounds(920, 11, 270, 48);
 		add(btnNeuerMitarbeiter);
 		
+		/**
+		 * Erstellt ein Pop Up Fenster um einen ausgewählten Mitarbeiter zu editieren
+		 */
 		JButton btnEditiereMitarbeiter = new JButton("Mitarbeiter editieren");
 		btnEditiereMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -236,6 +240,9 @@ public class GUIMitarbeiterListe extends JPanel{
 		btnEditiereMitarbeiter.setBounds(920,70,270,48);
 		add(btnEditiereMitarbeiter);
 		
+		/**
+		 * löscht einen ausgewählten Mitarbeiter
+		 */
 		JButton btnLöscheMitarbeiter = new JButton("Mitarbeiter löschen");
 		btnLöscheMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

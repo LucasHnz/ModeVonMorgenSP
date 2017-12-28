@@ -17,13 +17,19 @@ import javax.swing.JTextField;
 
 import AdministratorVerwaltung.AdministratorSammlung;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIAdministratorErstellenFormular extends JFrame {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Erstell ein Pop Up Fenster um einen Administrator zu Erstellen
+	 * @throws SQLException
+	 */
 	public GUIAdministratorErstellenFormular() throws SQLException {
 		setBounds(200, 100, 366, 312);
 		setResizable(false);

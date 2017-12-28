@@ -19,10 +19,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIMitarbeiterErstellenFormular extends JFrame{
 
 	private int[] AdminNummern;
 	
+	/**
+	 * Erstell ein Pop Up Fenster um einen neuen Mitarbeiter zu erstellen
+	 * @throws SQLException
+	 */
 	public GUIMitarbeiterErstellenFormular() throws SQLException {
 		setBounds(200, 100, 365, 315);
 		setResizable(false);
@@ -170,7 +179,9 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		//Button Abbrechen
+		/**
+		 * Button Abbrechen bricht die Erstellung ab
+		 */
 		JButton btnNewButton = new JButton("Abbrechen");
 		btnNewButton.addActionListener(new ActionListener() {
 			
@@ -185,7 +196,9 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		btnNewButton.setBounds(185, 11, 110, 23);
 		panel_1.add(btnNewButton);
 		
-		//Button Hinzufügen
+		/**
+		 * Button hinzufügen aktzeptiert die Eingabe
+		 */
 		JButton btnHinzufgen = new JButton("Hinzuf\u00FCgen");
 		btnHinzufgen.addActionListener(new ActionListener() {
 			

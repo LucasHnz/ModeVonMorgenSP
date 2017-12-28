@@ -24,6 +24,11 @@ import MitarbeiterVerwaltung.Mitarbeiter;
 import MitarbeiterVerwaltung.MitarbeiterSammlung;
 import RechnungVerwaltung.Bestellung;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIBestellpositionsliste extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
@@ -31,6 +36,7 @@ public class GUIBestellpositionsliste extends JFrame{
 	private JScrollPane scrollpane;
 	private String[] columnNames = {"Bestellpositions Nr.", "Bestell Nr.","Artikel Nr.","Preis","Menge"};
 
+	
 	private class myTableModel extends AbstractTableModel{
 
 		/**
@@ -41,11 +47,19 @@ public class GUIBestellpositionsliste extends JFrame{
 		private String[] columnNames;
 		private HashMap<Integer, Bestellposition> data;
 		
+		/**
+		 * Füllt die Tabelle mit Bestellpositionen
+		 * @param Bposliste
+		 * @param columnNames
+		 */
 		public myTableModel(HashMap<Integer, Bestellposition> Bposliste, String[] columnNames) {
 			this.columnNames = columnNames;
 			this.data = Bposliste;
 		}
-			
+		
+		/**
+		 * Holt sich die Anzahl der Spalten
+		 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
@@ -54,6 +68,9 @@ public class GUIBestellpositionsliste extends JFrame{
 			return columnNames[columnIndex].toString();
 		}
 		
+		/**
+		 * Holt sich die Anzahl der Rows
+		 */
 		public int getRowCount() {
 			return data.size();
 		}
@@ -143,6 +160,9 @@ public class GUIBestellpositionsliste extends JFrame{
 		
 		add(scrollpane);
 		// Cut
+		/**
+		 * Button um eine Rücksendung anzunehmen
+		 */
 		JButton btnRücksAnnehmen = new JButton("R\u00FCcksendung Annehmen");
 		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -152,6 +172,9 @@ public class GUIBestellpositionsliste extends JFrame{
 		btnRücksAnnehmen.setBounds(920, 11, 270, 48);
 		add(btnRücksAnnehmen);
 		
+		/**
+		 * Button um eine Rücksendung abzulehnen
+		 */
 		JButton btnRücksAblehnen = new JButton("R\u00FCcksendung Ablehnen");
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
