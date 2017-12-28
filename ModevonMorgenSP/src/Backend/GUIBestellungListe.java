@@ -18,6 +18,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import RechnungVerwaltung.BestellStrg;
 import RechnungVerwaltung.Bestellung;
 import RechnungVerwaltung.BestellungSammlung;
 
@@ -220,7 +221,7 @@ public class GUIBestellungListe extends JPanel {
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 					
-					BestellungSammlung.getBestellungSammlung().get(i).setVersandstatus("Versandt");
+					BestellStrg.aktualisiereVStatus(i);
 					
 				}
 			});

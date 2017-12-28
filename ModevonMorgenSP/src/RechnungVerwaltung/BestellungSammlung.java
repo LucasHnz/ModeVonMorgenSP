@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import MitarbeiterVerwaltung.Mitarbeiter;
+
 public class BestellungSammlung {
 
 	static HashMap<Integer, Bestellung> BestellungSammlung = new HashMap<Integer, Bestellung>();
@@ -64,6 +66,10 @@ public class BestellungSammlung {
 	 */
 	public static HashMap<Integer, Bestellung> getBestellungSammlung(){
 		return BestellungSammlung;
+	}
+	
+	public static Bestellung getBestellung(int bestellnr) {
+		return BestellungSammlung.get(bestellnr);
 	}
 	
 }
