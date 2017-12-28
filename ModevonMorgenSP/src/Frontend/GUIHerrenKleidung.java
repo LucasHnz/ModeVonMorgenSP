@@ -14,6 +14,7 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,6 +32,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import Artikelverwaltung.Artikelsammlung;
 import Warenkorbverwaltung.Warenkorb;
 
 public class GUIHerrenKleidung {
@@ -58,18 +60,19 @@ public class GUIHerrenKleidung {
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' ";	
+		String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
 			System.out.println("2");
+			int artikelnr = rs.getInt("Artikelnr");
 			String artikelBezeichnung = rs.getString("Bezeichnung");
 			Double artikelPreis = rs.getDouble("Preis"); 
 			String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
 			String artikelArt = rs.getString("Art");
 			//Blob artikelBild = rs.getBlob("bild");
 			System.out.println("Artikel + "+ artikelBezeichnung);
-			neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
+			neuerArtikel(artikelnr, artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
 			anzahlArtikel = anzahlArtikel +1;
 		}
 		System.out.println(anzahlArtikel);
@@ -87,18 +90,19 @@ public class GUIHerrenKleidung {
 			System.out.println("1");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
+			String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
 				System.out.println("2");
+				int artikelnr = rs.getInt("Artikelnr");
 				String artikelBezeichnung = rs.getString("Bezeichnung");
 				Double artikelPreis = rs.getDouble("Preis"); 
 				String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
 				String artikelArt = rs.getString("Art");
 				//Blob artikelBild = rs.getBlob("bild");
 				System.out.println("Artikel + "+ artikelBezeichnung);
-				neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
+				neuerArtikel(artikelnr, artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
 				anzahlArtikel = anzahlArtikel +1;
 			}
 			System.out.println(anzahlArtikel);
@@ -112,8 +116,9 @@ public class GUIHerrenKleidung {
 	
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
-	public static void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
+	public static void neuerArtikel(int artikelnummer, String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
 		
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -122,35 +127,35 @@ public class GUIHerrenKleidung {
 		panelHerrenKleidung.add(panelArtikel);
 		panelArtikel.setLayout(null);
 		
-		/*
-		ImageIcon icon = new ImageIcon(artikelBild);
-        int width = icon.getIconHeight() / 2;
-        int height = icon.getIconWidth() / 2;
-        Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
-		*/
 		
 		JLabel labelArtikelBild = new JLabel("");
 		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
 		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
-		//labelArtikelBild.setIcon(new ImageIcon(img));
-		labelArtikelBild.setBounds(33, 25, 133, 135);
+		labelArtikelBild.setBounds(10, 11, 166, 166);
+		
+		ImageIcon icon;
+		if(Artikelsammlung.getArtikel(artikelnummer).getImage() != null) {
+			icon = new ImageIcon(Artikelsammlung.getArtikel(artikelnummer).getImage());
+        Image img = icon.getImage().getScaledInstance(166, 166, Image.SCALE_SMOOTH);
+        labelArtikelBild.setIcon(new ImageIcon(img));
+		}
 		panelArtikel.add(labelArtikelBild);
 		
 		JLabel lblSchwarzeJackeDenim = new JLabel(artikelBezeichnung);
 		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
-		lblSchwarzeJackeDenim.setBounds(203, 11, 213, 30);
+		lblSchwarzeJackeDenim.setBounds(186, 11, 213, 30);
 		panelArtikel.add(lblSchwarzeJackeDenim);
 		
 		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setText(String.valueOf(artikelPreis));
+		lblNewLabel.setText(String.valueOf(artikelPreis) + "€");
 		lblNewLabel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		lblNewLabel.setBounds(203, 71, 101, 47);
+		lblNewLabel.setBounds(186, 108, 101, 30);
 		panelArtikel.add(lblNewLabel);
 		
 		JButton btnZumArtikel = new JButton("Zum Artikel");
 		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnZumArtikel.setBackground(Color.WHITE);
-		btnZumArtikel.setBounds(198, 130, 139, 30);
+		btnZumArtikel.setBounds(186, 147, 139, 30);
 		btnZumArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -161,8 +166,13 @@ public class GUIHerrenKleidung {
 		JLabel lblStatus = new JLabel(artikelVerfügbarkeit);
 		lblStatus.setForeground(new Color(0, 204, 51));
 		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblStatus.setBounds(203, 41, 147, 30);
+		lblStatus.setBounds(186, 67, 213, 30);
 		panelArtikel.add(lblStatus);
+		
+		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelnummer).getHersteller());
+		lblHersteller.setFont(new Font("Lucida Bright", Font.BOLD, 14));
+		lblHersteller.setBounds(186, 40, 213, 30);
+		panelArtikel.add(lblHersteller);
 		
 	}
 	

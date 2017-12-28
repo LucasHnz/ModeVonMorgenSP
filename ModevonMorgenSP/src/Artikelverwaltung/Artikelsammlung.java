@@ -30,6 +30,8 @@ public class Artikelsammlung {
 	 * @see Artikelverwaltung.Artikel
 	 */
 	public static void füllenSammlung(ResultSet rs, String kateg) {
+		BufferedInputStream bis = null;
+		BufferedImage bild = null;
 		try{
 			while(rs.next()){
 		
@@ -49,21 +51,42 @@ public class Artikelsammlung {
 				int Schuhgröße;
 				String Farbe, Größe;
 				
+				
 				if(kateg == "Schuhe") {
 					Schuhgröße = rs.getInt("Schuhgröße");
 					Artikelsammlung.put(Artikelnummer, new Schuhe(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße));
+					bis = new BufferedInputStream( rs.getBinaryStream("Bild") );
+					bild = ImageIO.read(bis);
+					Artikelsammlung.get(Artikelnummer).setImage(bild);
+					
 				}else if(kateg == "Accessoires") {
 					Farbe = rs.getString("Farbe");
 					Artikelsammlung.put(Artikelnummer, new Accessoires(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Farbe));
+					bis = new BufferedInputStream( rs.getBinaryStream("Bild") );
+					bild = ImageIO.read(bis);
+					Artikelsammlung.get(Artikelnummer).setImage(bild);
+				
 				}else if(kateg == "Kleidung") {
 					Größe = rs.getString("Größe");
 					Artikelsammlung.put(Artikelnummer, new Kleidung(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Größe));
+					bis = new BufferedInputStream( rs.getBinaryStream("Bild") );
+					bild = ImageIO.read(bis);
+					Artikelsammlung.get(Artikelnummer).setImage(bild);
 				}	
 			
 			}
 		}catch(SQLException e) {
-			System.out.println(e.getMessage());
-		}
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			try{
+				if(bis != null)
+				bis.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}	
 	}
 	/**
 	 * Gibt die in einer HashMap gespeicherte Artikelsammlung zurück.
@@ -134,7 +157,7 @@ public class Artikelsammlung {
 	 public static void loadAllImages()  {
 		 String befehl1 = "select Artikelnr, Bild from Kleidung";
 		 String befehl2 = "select Artikelnr, Bild from Schuhe";
-		 String befehl3 = "select Artikelnr, Bild from Accessoires";
+		 String befehl3 = "select Artikelnr, Bild from Accessoires";					// Kann eigentlich auch raus.
 		 BufferedInputStream bis = null;
 		 BufferedImage bild = null;
 		 int artikelnummer = 0;
