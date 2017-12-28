@@ -42,7 +42,7 @@ public class BestellStrg {
 			}catch (SQLException e) {
 				e.getMessage();
 			}
-		return (sqlbefehl) ;
+		return sqlbefehl ;
 		}
 	public double errechnePreis(ArrayList<Bestellposition> test, int Punkte ) {
 		

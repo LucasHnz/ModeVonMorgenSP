@@ -17,13 +17,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
-import Bestellverwaltung.BestellStrg;
+import RechnungVerwaltung.BestellStrg;
 import RechnungVerwaltung.Bestellung;
 import RechnungVerwaltung.BestellungSammlung;
 
 public class GUIKontoBestellungen implements ActionListener{
 	
 	JButton btnZurück = new JButton();
+	JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
 	public JComboBox comboBoxHerren = new JComboBox();
 	public JComboBox comboBoxDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
@@ -105,14 +106,23 @@ public class GUIKontoBestellungen implements ActionListener{
 		btnZurück.addActionListener(this);
 		panelMain.add(btnZurück);
 		
+		JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
+		btnStoniereBestellung.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnStoniereBestellung.setBackground(Color.WHITE);
+		btnStoniereBestellung.setBounds(976, 179, 215, 48);
+		btnStoniereBestellung.addActionListener(this);
+		panelMain.add(btnStoniereBestellung);
+	
+
 		frame.setVisible(true);
+	
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource() == btnZurück) 
-		{
+		if(e.getSource() == btnZurück) {
 			frame.dispose();
 			new GUI();
 		}
@@ -173,38 +183,31 @@ public class GUIKontoBestellungen implements ActionListener{
 		    if(auswahl == "Meine Bestellungen") {
 			    new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
 			}
-		    
+		
 		    if(auswahl == "Konto verwalten") {
 			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
 			}
 		}
-		
-	//JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
-	//	btnStoniereBestellung.addActionListener(new ActionListener() {
-	//		public void actionPerformed(ActionEvent arg0) {
-	//			final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung()();
-	//			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				
-	//			final Object optionPane = JOptionPane.showConfirmDialog(null,
-	//					"Wollen Sie die Bestellung mir der BestellNr: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand() 
-	//					+ "\nwirklich stornieren?", "Abfrage",
-	//					JOptionPane.YES_NO_OPTION);
-					
-	//			if(optionPane.equals(0)) {
-	//				BestellStrg.storniereBestellung(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
-	//				JOptionPane.showMessageDialog(null,  "Bestellung wurde Storniert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-	//			}else if(optionPane.equals(1)) {
-	//				JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-	//			}			
-	//		}
-	//	});
-	//	btnStoniereBestellung.setBounds(976, 179, 215, 48);
-	//	add(btnStoniereBestellung);
-	}
-
-		
-		
-		
-		
-	}
-
+		    if (e.getSource()== btnStoniereBestellung) {
+		    	btnStoniereBestellung.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung();
+						Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+						
+						final Object optionPane = JOptionPane.showConfirmDialog(null,
+								"Wollen Sie die Bestellung mir der BestellNr: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr()
+								+ "\n wirklich stornieren?", "Abfrage",
+								JOptionPane.YES_NO_OPTION);
+							
+					if(optionPane.equals(0)) {
+							BestellStrg.storniereBestellung(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
+							JOptionPane.showMessageDialog(null,  "Bestellung wurde Storniert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane.equals(1)) {
+							JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+						}			
+					}
+				});
+		    }
+		}
+	
+}
