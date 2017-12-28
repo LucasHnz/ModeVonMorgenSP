@@ -10,6 +10,10 @@ import MitarbeiterVerwaltung.MitarbeiterSammlung;
 public class AdministratorStrg {
 	
 
+	/**
+	 * entfernt einen Admin aus der Datenbank
+	 * @param i
+	 */
 	public static void entferneAdmin(int i) {
 		
 	try {
@@ -29,6 +33,11 @@ public class AdministratorStrg {
 	}
 }
 	
+	/**
+	 * Aktualisiert den Namen in der Liste und in der Datenbank
+	 * @param name
+	 * @param nutzernr
+	 */
 public static void aktualisiereName(String name, int nutzernr){
 		
 	Administrator a = AdministratorSammlung.getAdmin(nutzernr);
@@ -47,7 +56,12 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 		
 	}
-	
+		
+	/**
+	 * Aktualisiert die Email in der Lsite und in der Datenbank
+	 * @param email
+	 * @param nutzernr
+	 */
 	public static void aktualisiereEmail(String email, int nutzernr) {
 		Administrator a = AdministratorSammlung.getAdmin(nutzernr);
 		try{
@@ -65,6 +79,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 	}
 	
+	/**
+	 * Aktualisiert die Straﬂe in der Liste und in der Datenbank
+	 * @param straﬂe
+	 * @param nutzernr
+	 */
 	public static void aktualisiereStraﬂe(String straﬂe, int nutzernr) {
 		Administrator a = AdministratorSammlung.getAdmin(nutzernr);
 		try{
@@ -83,6 +102,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		
 	}
 	
+	/**
+	 * Aktualisiert den Ort in der Liste und in der Datenbank
+	 * @param ort
+	 * @param nutzernr
+	 */
 	public static void aktualisiereOrt(String ort, int nutzernr) {
 		Administrator a = AdministratorSammlung.getAdmin(nutzernr);
 		try{
@@ -100,6 +124,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 	}
 	
+	/**
+	 * Aktualisiert die PLZ in der Liste und in der Datenbank
+	 * @param plz
+	 * @param nutzernr
+	 */
 	public static void aktualisierePLZ(String plz, int nutzernr) {
 		Administrator a = AdministratorSammlung.getAdmin(nutzernr);
 		try{
@@ -118,6 +147,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		
 	}
 
+	/**
+	 * Aktualisiert die IBAN in der Liste und in der Datenbank
+	 * @param iban
+	 * @param nutzernr
+	 */
 	public static void aktualisiereIBAN(String iban, int nutzernr) {
 		Administrator a = AdministratorSammlung.getAdmin(nutzernr);
 		try{
@@ -135,6 +169,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 	}
 
+	/**
+	 * Aktualisiert das Gehalt in der Liste und in der Datenbnak
+	 * @param gehalt
+	 * @param nutzernr
+	 */
 	public static void aktualisiereGehalt(String gehalt, int nutzernr) {
 		Administrator a = AdministratorSammlung.getAdmin(nutzernr);
 		try{
@@ -152,6 +191,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 	}
 
+	/**
+	 * Aktualisiert das Passwort in der Liste und in der Datenbank
+	 * @param passwort
+	 * @param nutzernr
+	 */
 	public static void aktualisierePasswort(String passwort, int nutzernr) {
 		Administrator a = AdministratorSammlung.getAdmin(nutzernr);
 		try{
@@ -169,6 +213,20 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 	}
 	
+	/**
+	 * F¸gt der Liste sowie der Datenbank einen neuen Admin hinzu
+	 * @param nutzernr
+	 * @param nachname
+	 * @param vorname
+	 * @param email
+	 * @param straﬂe
+	 * @param ort
+	 * @param plz
+	 * @param iban
+	 * @param gehalt
+	 * @param berechtigung
+	 * @param passwort
+	 */
 	public static void hinzuf¸genAdmin(String nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, String plz, String iban, String gehalt, String berechtigung, String passwort) {
 		
 		int  nutzernr2 = Integer.parseInt(nutzernr);
@@ -190,7 +248,7 @@ public static void aktualisiereName(String name, int nutzernr){
 			stmt.executeQuery(sqlbefehl);
 			
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-			
+			AdministratorSammlung.hinzuf¸genAdmin(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
 			
 		}catch (SQLException e) {
 			e.getMessage();

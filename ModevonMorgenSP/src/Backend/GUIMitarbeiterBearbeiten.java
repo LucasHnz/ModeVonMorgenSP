@@ -18,6 +18,11 @@ import javax.swing.JTextField;
 import MitarbeiterVerwaltung.Mitarbeiter;
 import MitarbeiterVerwaltung.MitarbeiterSammlung;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIMitarbeiterBearbeiten extends JFrame{
 	
 	private JTextField textField;
@@ -32,6 +37,11 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 	private JTextField textField_10;
 	private int[] AdminNummern;
 	
+	/**
+	 * Erstellt ein Pop Up Fenster um einen bestehenden Mitarbeiter zu bearbeiten
+	 * @param nutzernr
+	 * @throws SQLException
+	 */
 	public GUIMitarbeiterBearbeiten(int nutzernr) throws SQLException {
 		
 		Mitarbeiter ma = Datenbankverwaltung.HoleDatenSatz.holeMitarbeiter(nutzernr);
@@ -191,6 +201,9 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
+		/**
+		 * Aktzeptiert die Änderungen
+		 */
 		JButton btnNewButton = new JButton("Annehmen");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -248,6 +261,9 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 		btnNewButton.setBounds(31, 11, 126, 23);
 		panel_1.add(btnNewButton);
 		
+		/**
+		 * Bricht die Bearbeitung ab
+		 */
 		JButton button = new JButton("Abbrechen");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

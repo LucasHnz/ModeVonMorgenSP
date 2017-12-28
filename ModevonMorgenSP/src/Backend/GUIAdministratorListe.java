@@ -39,23 +39,41 @@ public class GUIAdministratorListe extends JPanel{
 		private String[] columnNames;
 		private HashMap<Integer, Administrator> data;
 		
+		/**
+		 * Füllt die Tabelle mit einer Administrator Liste
+		 * @param Administratorliste
+		 * @param columnNames
+		 */
 		public myTableModel(HashMap<Integer, Administrator> Administratorliste, String[] columnNames) {
 			this.columnNames = columnNames;
 			this.data = Administratorliste;
 		}
-			
+			/**
+			 * Holt sich die Anzahl der Spalten
+			 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
 		
+		/**
+		 * Holt sich den Spaltennamen
+		 */
 		public String getColumnName(int columnIndex) {
 			return columnNames[columnIndex].toString();
 		}
 		
+		/**
+		 * Holt sich die Anzahl der Reihen
+		 */
 		public int getRowCount() {
 			return data.size();
 		}
 		
+		/**
+		 *  Gibt den Wert der ausgewählten Zelle zurück.
+		 * @param rowIndex Der Zeilenindex.
+		 * @param columnIndex Der Spaltenindex.
+		 */
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
@@ -155,7 +173,9 @@ public class GUIAdministratorListe extends JPanel{
 		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
-		
+		/**
+		 * Button mit Action Listener um einen Admin hinzuzufügen
+		 */
 		JButton btnNeuerAdministrator = new JButton("Administrator hinzufügen");
 		btnNeuerAdministrator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -168,7 +188,9 @@ public class GUIAdministratorListe extends JPanel{
 		});
 		btnNeuerAdministrator.setBounds(920, 11, 270, 48);
 		add(btnNeuerAdministrator);
-		
+		/**
+		 * Button um einen Admin zu editieren
+		 */
 		JButton btnEditiereAdministrator = new JButton("Administrator editieren");
 		btnEditiereAdministrator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -180,6 +202,9 @@ public class GUIAdministratorListe extends JPanel{
 		btnEditiereAdministrator.setBounds(920,70,270,48);
 		add(btnEditiereAdministrator);
 		
+		/**
+		 * Button um einen Admin zu löschen
+		 */
 		JButton btnLöscheAdmin = new JButton("Administrator löschen");
 		btnLöscheAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

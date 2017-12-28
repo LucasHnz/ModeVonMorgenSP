@@ -12,7 +12,10 @@ import Artikelverwaltung.Artikel;
 public class AdministratorSammlung {
 	
 	static HashMap<Integer, Administrator> AdministratorListe = new HashMap<Integer, Administrator>();
-	
+	/**
+	 * Füllt die Static HashMap AdministratorListe mit den Values aus der Datenbank
+	 * 
+	 */
 	public static void fülleAdministratorListe()  {
 		
 		try {
@@ -47,20 +50,49 @@ public class AdministratorSammlung {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return AdministratorLsite
+	 */
 	public static HashMap<Integer,Administrator> getAdminSammlung(){
 		return AdministratorListe;
 	}
 	
+	/**
+	 * 
+	 * @param Filter
+	 * @return Administrator Liste
+	 */
 	public static Administrator[] getAdminArray(String Filter) {
 		Administrator[] AdminList = new Administrator[AdministratorListe.size()];
 		AdminList = (Administrator[]) AdministratorListe.values().toArray();
 		return AdminList; 
 	}
 	
+	/**
+	 * Holt genau einen Administrator aus der Liste
+	 * @param Adminnr
+	 * @return Administrator
+	 */
 	public static Administrator getAdmin(int Adminnr) {
 		return AdministratorListe.get(Adminnr);
 	}
 	
+	/**
+	 * Fügt der Datenbank einen neuen Administrator hinzu
+	 * 
+	 * @param nutzernr
+	 * @param nachname
+	 * @param vorname
+	 * @param email
+	 * @param straße
+	 * @param ort
+	 * @param plz
+	 * @param iban
+	 * @param gehalt
+	 * @param berechtigung
+	 * @param passwort
+	 */
 	public static void hinzufügenAdmin(int nutzernr, String nachname , String vorname, String email, String straße, String ort, int plz, String iban, int gehalt, int berechtigung, String passwort) {
 		
 		

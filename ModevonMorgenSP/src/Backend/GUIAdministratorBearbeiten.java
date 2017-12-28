@@ -20,9 +20,17 @@ import AdministratorVerwaltung.AdministratorSammlung;
 import Datenbankverwaltung.VerbindungDB;
 
 import javax.swing.JButton;
-
+/**
+ * 
+ * @author julian
+ *
+ */
 public class GUIAdministratorBearbeiten extends JFrame {
 	
+	/**
+	 * Erstell das GUI "Pop Up" Fenster um einen bestenhenden Admin zu bearbeiten
+	 * @param nutzernr
+	 */
 	public GUIAdministratorBearbeiten(int nutzernr) {
 		
 		Administrator admin = Datenbankverwaltung.HoleDatenSatz.holeAdmin(nutzernr);
@@ -253,6 +261,10 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 	}
 	
+	/**
+	 * Test
+	 * @param args
+	 */
 	public static void main(String[]args) {
 		int nutzernr = 400000001;
 		new GUIAdministratorBearbeiten(nutzernr);
