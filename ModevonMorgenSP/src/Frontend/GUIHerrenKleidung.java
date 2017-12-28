@@ -136,9 +136,12 @@ public class GUIHerrenKleidung {
 		ImageIcon icon;
 		if(Artikelsammlung.getArtikel(artikelnummer).getImage() != null) {
 			icon = new ImageIcon(Artikelsammlung.getArtikel(artikelnummer).getImage());
+		}
+		else 
+			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
         Image img = icon.getImage().getScaledInstance(166, 166, Image.SCALE_SMOOTH);
         labelArtikelBild.setIcon(new ImageIcon(img));
-		}
+		
 		panelArtikel.add(labelArtikelBild);
 		
 		JLabel lblSchwarzeJackeDenim = new JLabel(artikelBezeichnung);
