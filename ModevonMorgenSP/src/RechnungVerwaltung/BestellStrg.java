@@ -30,9 +30,8 @@ public class BestellStrg {
 			}
 		}
 	
-<<<<<<< HEAD
-=======
-	public static String ‰ndereVersandstatus(String versandStatus, int bestellNr) {
+
+	/*public static String ‰ndereVersandstatus(String versandStatus, int bestellNr) {
 		try{
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
@@ -47,8 +46,8 @@ public class BestellStrg {
 				e.getMessage();
 			}
 		return sqlbefehl ;
-		}
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
+		}*/
+
 	public double errechnePreis(ArrayList<Bestellposition> test, int Punkte ) {
 		
 		double gpreis = 0;
@@ -71,7 +70,7 @@ public class BestellStrg {
 	
 	public static void aktualisiereVStatus(int i){
 		
-		Bestellung b = BestellungSammlung.getBestellung(i);
+			Bestellung b = BestellungSammlung.BestellungSammlung.get(i);
 		
 			try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -79,11 +78,11 @@ public class BestellStrg {
 			
 			String sqlbefehl = "update RechnungBestellung set versandStatus ='Versand' where bestellnr ="+i;
 			
-			stmt.executeQuery(sqlbefehl)	;
+			stmt.executeQuery(sqlbefehl);
 			
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
-			b.setVersandstatus("Versand");
+			b.setVersandstatus("Zugestellt");
 			
 			}catch(SQLException e) {
 				e.printStackTrace();

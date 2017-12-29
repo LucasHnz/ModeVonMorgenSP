@@ -201,6 +201,7 @@ public class GUIBestellungListe extends JPanel {
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 				try{
+					System.out.println(i);
 					new GUIBestellpositionsliste(i);
 				}catch(Exception e) {
 					e.printStackTrace();

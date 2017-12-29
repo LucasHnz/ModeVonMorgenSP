@@ -7,6 +7,11 @@ import java.sql.Statement;
 import MitarbeiterVerwaltung.Mitarbeiter;
 import MitarbeiterVerwaltung.MitarbeiterSammlung;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class AdministratorStrg {
 	
 

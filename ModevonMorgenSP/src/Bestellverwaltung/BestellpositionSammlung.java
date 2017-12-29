@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import Artikelverwaltung.Artikelsammlung;
 /**
@@ -15,7 +16,7 @@ import Artikelverwaltung.Artikelsammlung;
 
 
 public class BestellpositionSammlung {
-static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
+public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
 	
 	public static void füllenBestellpositionsSammlung(){
 		
@@ -81,6 +82,18 @@ static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<
 		}
 		
 	}
+	
+	public static void entferneDatenAusListe() {
+		
+		for(Iterator<Integer> it = BestellpositionsSammlung.keySet().iterator(); it.hasNext();) {
+			Integer s = it.next();
+			
+			if(s!=null) {
+				BestellpositionsSammlung.remove(s);
+			}
+		}
+	}
+	
 	
 }
 

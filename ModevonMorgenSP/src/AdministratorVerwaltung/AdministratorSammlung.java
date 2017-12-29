@@ -9,6 +9,11 @@ import java.util.HashMap;
 import Artikelverwaltung.Artikel;
 
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class AdministratorSammlung {
 	
 	static HashMap<Integer, Administrator> AdministratorListe = new HashMap<Integer, Administrator>();

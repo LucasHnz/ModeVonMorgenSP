@@ -115,20 +115,21 @@ public class GUIBestellpositionsliste extends JFrame{
 	 */
 	public GUIBestellpositionsliste(int i){
 		
+		
 		setBackground(Color.DARK_GRAY);
 		BestellpositionSammlung.fülleMitSpeziellerNummer(i);
-		setLayout(null);
-		setBounds(90, 100, 800, 600);
+		getContentPane().setLayout(null);
+		setBounds(200, 200, 1110, 480);
 		setBackground(Color.DARK_GRAY);
 		
 		table = new JTable(new myTableModel(Bestellverwaltung.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-		table.getColumnModel().getColumn(2).setPreferredWidth(60);
-		table.getColumnModel().getColumn(3).setPreferredWidth(120);
-		table.getColumnModel().getColumn(4).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(20);
+		table.getColumnModel().getColumn(1).setPreferredWidth(20);
+		table.getColumnModel().getColumn(2).setPreferredWidth(20);
+		table.getColumnModel().getColumn(3).setPreferredWidth(20);
+		table.getColumnModel().getColumn(4).setPreferredWidth(20);
 
 		Comparator<Integer> intcomp = new Comparator<Integer>() {
 			@Override
@@ -149,16 +150,16 @@ public class GUIBestellpositionsliste extends JFrame{
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(30,42,800, 395);
+		table.setBounds(30,42,400, 295);
 		table.setVisible(true);
 		
 		scrollpane = new JScrollPane();
 		scrollpane.setBounds(10, 11, 900, 490);
 		scrollpane.setVisible(true);
 		scrollpane.setViewportView(table);
-		add(scrollpane);
+		getContentPane().add(scrollpane);
 		
-		add(scrollpane);
+		getContentPane().add(scrollpane);
 		// Cut
 		/**
 		 * Button um eine Rücksendung anzunehmen
@@ -169,8 +170,8 @@ public class GUIBestellpositionsliste extends JFrame{
 				// Methode zum Versenden einer EMail für Bestätigung und Rücksendung erstellen
 			}
 		});
-		btnRücksAnnehmen.setBounds(920, 11, 270, 48);
-		add(btnRücksAnnehmen);
+		btnRücksAnnehmen.setBounds(920, 11, 170, 48);
+		getContentPane().add(btnRücksAnnehmen);
 		
 		/**
 		 * Button um eine Rücksendung abzulehnen
@@ -181,8 +182,8 @@ public class GUIBestellpositionsliste extends JFrame{
 				//Methode zum Versenden einer Email für Ablehnung
 			}
 		});
-		btnRücksAblehnen.setBounds(920,70,270,48);
-		add(btnRücksAblehnen);
+		btnRücksAblehnen.setBounds(920,70,170,48);
+		getContentPane().add(btnRücksAblehnen);
 		
 		
 		/**
@@ -191,11 +192,12 @@ public class GUIBestellpositionsliste extends JFrame{
 		JButton btnZurück = new JButton ("Beenden");
 			btnZurück.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					Bestellverwaltung.BestellpositionSammlung.entferneDatenAusListe();
 					dispose();
 				}
 			});
-			btnZurück.setBounds(920,208,270,48);
-			add(btnZurück);
+			btnZurück.setBounds(920,208,170,48);
+			getContentPane().add(btnZurück);
 			setVisible(true);
 		}
 	
