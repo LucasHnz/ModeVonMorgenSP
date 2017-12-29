@@ -11,14 +11,16 @@ import java.util.HashMap;
 
 import javax.swing.*;
 
-import Artikelverwaltung.Artikel;
-import Artikelverwaltung.ArtikelStrg;
-import Artikelverwaltung.Artikelsammlung;
+
+import BestandskundenVerwaltung.Bestandskunde;
+import BestandskundenVerwaltung.BestandskundeSammlung;
+import BestandskundenVerwaltung.BestandskundeStrg;
 
 public class GUIKontoVerwalten implements ActionListener{
 	
 	JButton btnZurück = new JButton();
-	JButton btnSpeichern=new JButton();
+	JButton btnÄndern=new JButton();
+	JButton btnKontoLöschen= new JButton();
 	public JComboBox comboBoxHerren = new JComboBox();
 	public JComboBox comboBoxDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
@@ -115,12 +117,12 @@ public class GUIKontoVerwalten implements ActionListener{
 		btnZurück.addActionListener(this);
 		panelMain.add(btnZurück);
 		
-		btnSpeichern= new JButton("Speichern");
-		btnSpeichern.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnSpeichern.setBackground(Color.WHITE);
-		btnSpeichern.setBounds(10, 11, 89, 35);
-		btnSpeichern.addActionListener(this);
-		panelMain.add(btnSpeichern);
+		btnÄndern= new JButton("Daten Ändern");
+		btnÄndern.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnÄndern.setBackground(Color.WHITE);
+		btnÄndern.setBounds(10, 11, 89, 35);
+		btnÄndern.addActionListener(this);
+		panelMain.add(btnÄndern);
 		
 		
 		JPanel panelKontoverwaltung = new JPanel();
@@ -232,7 +234,13 @@ public class GUIKontoVerwalten implements ActionListener{
 		button_5.setBounds(379, 359, 33, 23);
 		panelKontoverwaltung.add(button_5);
 		
-
+		JButton btnKontoLöschen = new JButton("Konto Löschen");
+		btnKontoLöschen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnKontoLöschen.setBackground(Color.WHITE);
+		btnKontoLöschen.setBounds(976, 179, 215, 48);
+		btnKontoLöschen.addActionListener(this);
+		panelMain.add(btnKontoLöschen);
+		
 		frame.setVisible(true);
 	}
 
@@ -307,11 +315,31 @@ public class GUIKontoVerwalten implements ActionListener{
 			}
 		}
 		
-		if (e.getSource()==btnSpeichern) {
-			
-			new GUIBestandskundeBearbeiten(Datenbankverwaltung.HoleDatenSatz.holeKunde(nutzernr));
+		if (e.getSource()==btnÄndern) {
+		
+			new GUIBestandskundeBearbeiten(Datenbankverwaltung.HoleDatenSatz.holeKunde(nutzerNr));
 			
 		}
+		   if (e.getSource()== btnKontoLöschen) {
+		    	btnKontoLöschen.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					final HashMap<Integer, Bestandskunde> data = BestandskundeSammlung.getBestandskundenSammlung();
+						Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+						
+						final Object optionPane = JOptionPane.showConfirmDialog(null,
+								"Wollen Sie Ihr Konto mit der NutzerNr: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr()
+								+ "\n wirklich löschen?", "Abfrage",
+								JOptionPane.YES_NO_OPTION);
+							
+					if(optionPane.equals(0)) {
+							BestandskundeStrg.löschenAccount(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+							JOptionPane.showMessageDialog(null,  "Konto wurde gelöscht!", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane.equals(1)) {
+							JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+						}			
+					}
+				});
+		    }
 		
 	
 	}

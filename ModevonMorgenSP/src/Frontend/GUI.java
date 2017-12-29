@@ -186,11 +186,12 @@ import javax.swing.JLayeredPane;
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
-		new GUI();
 		ArtikelStrg.FülleArtikelsammlung();
 		System.out.println("Artikel geladen");
-		Artikelsammlung.loadAllImages();
-		System.out.println("Images geladen");
+		new GUI();
+		
+		//Artikelsammlung.loadAllImages();
+		//System.out.println("Images geladen");
 	}
 	
 	/**

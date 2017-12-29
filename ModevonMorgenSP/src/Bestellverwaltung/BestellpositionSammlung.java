@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+
+import Artikelverwaltung.Artikelsammlung;
 /**
  * 
  * @author annag, Julian
@@ -65,8 +67,8 @@ static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<
 				int bestellNr = rs.getInt("Bestellnr");
 				int artikelnummer= rs.getInt("ArtikelNr");
 				int aMenge =rs.getInt("Menge");
-				double preis = rs.getDouble("Preis");
-				
+				double preis =Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
+				preis= rs.getDouble("Preis");
 				
 				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis);
 				
