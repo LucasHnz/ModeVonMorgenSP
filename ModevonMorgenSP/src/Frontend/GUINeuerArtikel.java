@@ -10,11 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import Artikelverwaltung.Artikelsammlung;
+
 public class GUINeuerArtikel {
 	
-public void neuerArtikel(int artikelNummer) {
+public static void neuerArtikel(int artikelNummer) {
 		
-	//ABD
+	
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelArtikel.setBackground(SystemColor.inactiveCaption);
@@ -32,17 +34,16 @@ public void neuerArtikel(int artikelNummer) {
 		JLabel labelArtikelBild = new JLabel("");
 		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
 		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
-		//labelArtikelBild.setIcon(new ImageIcon(img));
 		labelArtikelBild.setBounds(33, 25, 133, 135);
 		panelArtikel.add(labelArtikelBild);
 		
-		JLabel lblSchwarzeJackeDenim = new JLabel(artikelBezeichnung);
+		JLabel lblSchwarzeJackeDenim = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
 		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
 		lblSchwarzeJackeDenim.setBounds(203, 11, 213, 30);
 		panelArtikel.add(lblSchwarzeJackeDenim);
 		
 		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setText(String.valueOf(artikelPreis));
+		lblNewLabel.setText(String.valueOf(Artikelsammlung.getArtikel(artikelNummer).getPreis()));
 		lblNewLabel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		lblNewLabel.setBounds(203, 71, 101, 47);
 		panelArtikel.add(lblNewLabel);
@@ -51,15 +52,13 @@ public void neuerArtikel(int artikelNummer) {
 		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnZumArtikel.setBackground(Color.WHITE);
 		btnZumArtikel.setBounds(198, 130, 139, 30);
-		btnZumArtikel.addActionListener(this);
 		panelArtikel.add(btnZumArtikel);
 		
-		JLabel lblStatus = new JLabel(artikelVerfügbarkeit);
+		JLabel lblStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
 		lblStatus.setForeground(new Color(0, 204, 51));
 		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 14));
 		lblStatus.setBounds(203, 41, 147, 30);
 		panelArtikel.add(lblStatus);
-		
 		
 		
 	}

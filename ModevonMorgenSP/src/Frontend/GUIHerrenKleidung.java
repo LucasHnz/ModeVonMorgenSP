@@ -74,6 +74,7 @@ public class GUIHerrenKleidung {
 			String artikelArt = rs.getString("Art");
 			//Blob artikelBild = rs.getBlob("bild");
 			System.out.println("Artikel + "+ artikelBezeichnung);
+			GUINeuerArtikel.neuerArtikel(artikelnr);
 			neuerArtikel(artikelnr, artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
 			anzahlArtikel = anzahlArtikel +1;
 		}
