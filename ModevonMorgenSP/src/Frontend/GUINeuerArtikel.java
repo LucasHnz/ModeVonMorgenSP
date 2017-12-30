@@ -27,7 +27,7 @@ public static Component neuerArtikel(int artikelNummer) {
 	
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelArtikel.setBackground(SystemColor.inactiveCaption);
+		panelArtikel.setBackground(SystemColor.inactiveCaptionBorder);
 		panelArtikel.setBounds(66, 30, 680, 188);
 		panelArtikel.setLayout(null);
 		

@@ -50,7 +50,6 @@ public class GUIHerrenKleidung {
 	static public int abstandPlus = 230;
 	static public int abstand = 270;
 	static public int anzahlArtikel = 0;
-	//ABD
 
 	/**
 	 * Create the application.
