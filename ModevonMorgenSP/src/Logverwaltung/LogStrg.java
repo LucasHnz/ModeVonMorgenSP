@@ -39,16 +39,12 @@ public class LogStrg {
 			ResultSet rs3 = stmt3.executeQuery(sql3);
 			
 			
-			
-			
-			
 			if(rs1.next()) {
 				System.out.println("1");
 				String vorname = rs1.getString("vorname");
 				anmeldenCbList[0] = vorname;
 				Frontend.GUI.fensterSchlieﬂen();
-				
-				
+		
 			}
 			
 			if(rs2.next()) {
@@ -57,8 +53,6 @@ public class LogStrg {
 				anmeldenCbList[0] = "Mitarbeiter";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				System.out.println("MIT");
-				
-				
 				
 			}
 			
@@ -69,8 +63,6 @@ public class LogStrg {
 				new Backend.GUIMitarbeiter(anmeldenCbList);
 				
 				System.out.println("ADMIN");
-				
-		
 				
 			}
 	

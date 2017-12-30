@@ -36,37 +36,40 @@ public class GUIHerrenSchuhe implements ActionListener {
 	
 	JButton btnZurück;
 	JButton btnAnmelden;
+	static JButton btnAlleArtikel;
+	static JButton btnOutdoor;
+	static JButton btnSport;
+	static JButton btnHausschuhe;
+	static JButton btnStiefel;
 	public String[] damenCbList;
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
 
 	public JFrame frame;
-	JPanel panelMain = new JPanel();
-	JPanel panelHerrenSchuhe = new JPanel();
-	public int anzahlArtikel = 0;
+	static JPanel panelMain;
+	static public JPanel panelHerrenSchuhe;
+	static public int anzahlArtikel = 0;
 
 	
 	
-	public  void artikelLaden() {
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	public static void ladeArtikel() {
 		
-
 		try {
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select bezeichnung, art, preis, verfügbarkeit from Schuhe where geschlecht = 'M' ";	
+		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
-			System.out.println("2");
-			String artikelBezeichnung = rs.getString("Bezeichnung");
-			Double artikelPreis = rs.getDouble("Preis"); 
-			String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
-			String artikelArt = rs.getString("Art");
-			//Blob artikelBild = rs.getBlob("bild");
-			System.out.println("Artikel + "+ artikelBezeichnung);
-			neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
+			int artikelnr = rs.getInt("Artikelnr");
+			panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
+			
+			System.out.println("Artikel ist " + artikelnr);
 		}
 		System.out.println(anzahlArtikel);
 		rs.close();
@@ -76,126 +79,218 @@ public class GUIHerrenSchuhe implements ActionListener {
 			e.printStackTrace();
 		}
 		
-	
 	}
 	
-	public void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
+	public static void ladeArtikelOutdoor() {
 		
-		JPanel panelArtikel = new JPanel();
-		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelArtikel.setBackground(SystemColor.inactiveCaption);
-		panelArtikel.setBounds(66, 30, 680, 188);
-		panelHerrenSchuhe.add(panelArtikel);
-		panelArtikel.setLayout(null);
+		try {
+		System.out.println("1");
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Outdoorschuh' ";	
+		ResultSet rs = stmt.executeQuery(sql);
 		
-		/*
-		ImageIcon icon = new ImageIcon(artikelBild);
-        int width = icon.getIconHeight() / 2;
-        int height = icon.getIconWidth() / 2;
-        Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
-		*/
+		while(rs.next()) {
+			int artikelnr = rs.getInt("Artikelnr");
+			panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+			anzahlArtikel = anzahlArtikel +1;
+			
+			System.out.println("Artikel ist " + artikelnr);
+		}
+		System.out.println(anzahlArtikel);
+		rs.close();
+		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 		
-		JLabel labelArtikelBild = new JLabel("");
-		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
-		//labelArtikelBild.setIcon(new ImageIcon(img));
-		labelArtikelBild.setBounds(33, 25, 133, 135);
-		panelArtikel.add(labelArtikelBild);
-		
-		JLabel lblSchwarzeJackeDenim = new JLabel(artikelBezeichnung);
-		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
-		lblSchwarzeJackeDenim.setBounds(203, 11, 213, 30);
-		panelArtikel.add(lblSchwarzeJackeDenim);
-		
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setText(String.valueOf(artikelPreis));
-		lblNewLabel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		lblNewLabel.setBounds(203, 71, 101, 47);
-		panelArtikel.add(lblNewLabel);
-		
-		JButton btnZumArtikel = new JButton("Zum Artikel");
-		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZumArtikel.setBackground(Color.WHITE);
-		btnZumArtikel.setBounds(198, 130, 139, 30);
-		btnZumArtikel.addActionListener(this);
-		panelArtikel.add(btnZumArtikel);
-		
-		JLabel lblStatus = new JLabel(artikelVerfügbarkeit);
-		lblStatus.setForeground(new Color(0, 204, 51));
-		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblStatus.setBounds(203, 41, 147, 30);
-		panelArtikel.add(lblStatus);
-		
-		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
+	public static void ladeArtikelSport() {
 	
-	public GUIHerrenSchuhe(JFrame frame) {
-		System.out.println("Ausgeführt HS");
-		this.frame = frame;
-		initialize(frame);
+		try {
+			System.out.println("1");
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Sportschuh' ";	
+			ResultSet rs = stmt.executeQuery(sql);
+	
+			while(rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel +1;
 		
+				System.out.println("Artikel ist " + artikelnr);
+			}
+			System.out.println(anzahlArtikel);
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	
 	}
+	
+	public static void ladeArtikelHausschuhe() {
+		
+		try {
+			System.out.println("1");
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Hausschuh' ";	
+			ResultSet rs = stmt.executeQuery(sql);
+	
+			while(rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel +1;
+		
+				System.out.println("Artikel ist " + artikelnr);
+			}
+			System.out.println(anzahlArtikel);
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public static void ladeArtikelStiefel() {
+		
+		try {
+			System.out.println("1");
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Stiefel'";	
+			ResultSet rs = stmt.executeQuery(sql);
+	
+			while(rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel +1;
+		
+				System.out.println("Artikel ist " + artikelnr);
+			}
+			System.out.println(anzahlArtikel);
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+	
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize(JFrame frame) {
+	
+	public static JPanel getGUIHerrenSchuhe() {
 		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 148, 1234, 563);
+		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
-		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(this);
-		panelMain.add(btnZurück);
-		
 		
 		
 		JPanel panelScrollPaneLinks = new JPanel();
-		panelScrollPaneLinks.setBackground(SystemColor.control);
+		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneLinks.setLayout(null);
+		
 		
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneLinks);
 		
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnNewButton);
 		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(Color.WHITE);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneLinks.add(btnShirts);
+		btnAlleArtikel = new JButton("Alle Artikel");
+		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		btnAlleArtikel.setBounds(10, 23, 248, 43);
+		btnAlleArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenSchuhe.removeAll();
+				ladeArtikel();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnAlleArtikel);
 		
-		JButton btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(Color.WHITE);
-		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneLinks.add(btnHosen);
+		
+		btnStiefel = new JButton("Stiefel");
+		btnStiefel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnStiefel.setBackground(SystemColor.inactiveCaptionBorder);
+		btnStiefel.setBounds(10, 87, 248, 43);
+		btnStiefel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenSchuhe.removeAll();
+				ladeArtikelStiefel();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnStiefel);
+		
+		
+		btnOutdoor = new JButton("Outdoor");
+		btnOutdoor.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnOutdoor.setBackground(SystemColor.inactiveCaptionBorder);
+		btnOutdoor.setBounds(10, 151, 248, 43);
+		btnOutdoor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenSchuhe.removeAll();
+				ladeArtikelOutdoor();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnOutdoor);
+		
+		
+		btnSport = new JButton("Sport");
+		btnSport.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnSport.setBackground(SystemColor.inactiveCaptionBorder);
+		btnSport.setBounds(10, 215, 248, 43);
+		btnSport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenSchuhe.removeAll();
+				ladeArtikelSport();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnSport);
+		
+		btnHausschuhe = new JButton("Hausschuh");
+		btnHausschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHausschuhe.setBackground(SystemColor.inactiveCaptionBorder);
+		btnHausschuhe.setBounds(10, 279, 248, 43);
+		btnHausschuhe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenSchuhe.removeAll();
+				ladeArtikelHausschuhe();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnHausschuhe);
 		
 		
 		panelHerrenSchuhe = new JPanel();
 		panelHerrenSchuhe.setBackground(SystemColor.inactiveCaptionBorder);
 		panelHerrenSchuhe.setAutoscrolls(true);
+			
+		JScrollPane scrollPaneHerrenKleidung = new JScrollPane();
+		scrollPaneHerrenKleidung.setBounds(323, 97, 901, 455);
+		scrollPaneHerrenKleidung.setViewportView(panelHerrenSchuhe);
+		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panelMain.add(scrollPaneHerrenKleidung);
 		
-		JScrollPane scrollPaneHerrenSchuhe = new JScrollPane();
-		scrollPaneHerrenSchuhe.setBounds(323, 97, 901, 455);
-		scrollPaneHerrenSchuhe.setViewportView(panelHerrenSchuhe);
-		scrollPaneHerrenSchuhe.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		panelMain.add(scrollPaneHerrenSchuhe);
-		
-		artikelLaden();
+		ladeArtikel();
 		
 		int length = anzahlArtikel/2 * 188;
 		if(anzahlArtikel%2 == 1)
@@ -204,12 +299,8 @@ public class GUIHerrenSchuhe implements ActionListener {
 		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 		
 		
-		
-		frame.add(panelMain);
 		panelMain.setVisible(true);
-		frame.invalidate();
-		frame.validate();
-		frame.repaint();
+		return panelMain;
 	}
 	
 	@Override

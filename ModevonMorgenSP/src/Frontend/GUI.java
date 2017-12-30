@@ -436,9 +436,8 @@ import javax.swing.JLayeredPane;
 		    }
 		  
 			if(auswahl == "Schuhe"){
-				panelMain.setVisible(false);
-				new GUIHerrenSchuhe(frame);
-			  
+				changePanel(GUIHerrenSchuhe.getGUIHerrenSchuhe());
+				new GUIHerrenSchuhe();			 			  
 			}
 			
 			if(auswahl == "Accessoires"){

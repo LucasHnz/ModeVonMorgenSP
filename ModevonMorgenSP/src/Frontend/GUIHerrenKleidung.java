@@ -40,6 +40,7 @@ public class GUIHerrenKleidung {
 	static JButton btnZurück = new JButton();
 	static JButton btnAnmelden = new JButton();
 	static JButton btnJacken = new JButton();
+	static JButton btnAlleArtikel = new JButton();
 	static JButton btnHandschuhe = new JButton();
 	static JButton btnHosen = new JButton();
 	static JButton btnHinz = new JButton();
@@ -90,20 +91,14 @@ public class GUIHerrenKleidung {
 			System.out.println("3");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
+			String sql = "select Artikelnr from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println("3");
+				System.out.println("2");
 				int artikelnr = rs.getInt("Artikelnr");
-				String artikelBezeichnung = rs.getString("Bezeichnung");
-				Double artikelPreis = rs.getDouble("Preis"); 
-				String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
-				String artikelArt = rs.getString("Art");
-				//Blob artikelBild = rs.getBlob("bild");
-				System.out.println("Artikel + "+ artikelBezeichnung);
-				neuerArtikel(artikelnr, artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
-				anzahlArtikel = anzahlArtikel +1;
+				panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				
 			}
 			System.out.println(anzahlArtikel);
 			rs.close();
@@ -121,19 +116,13 @@ public class GUIHerrenKleidung {
 			System.out.println("4");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Hose' ";	
+			String sql = "select Artikelnr from Kleidung where geschlecht = 'W' and art = 'Hose' ";	
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println("4");
+				
 				int artikelnr = rs.getInt("Artikelnr");
-				String artikelBezeichnung = rs.getString("Bezeichnung");
-				Double artikelPreis = rs.getDouble("Preis"); 
-				String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
-				String artikelArt = rs.getString("Art");
-				//Blob artikelBild = rs.getBlob("bild");
-				System.out.println("Artikel + "+ artikelBezeichnung);
-				neuerArtikel(artikelnr, artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
+				panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel +1;
 			}
 			System.out.println(anzahlArtikel);
@@ -149,67 +138,6 @@ public class GUIHerrenKleidung {
 	 * Initialize the contents of the frame.
 	 * @wbp.parser.entryPoint
 	 */
-	public static void neuerArtikel(int artikelnummer, String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
-		
-		JPanel panelArtikel = new JPanel();
-		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelArtikel.setBackground(SystemColor.inactiveCaption);
-		panelArtikel.setBounds(66, 30, 680, 188);
-		panelHerrenKleidung.add(panelArtikel);
-		panelArtikel.setLayout(null);
-		
-		
-		JLabel labelArtikelBild = new JLabel("");
-		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
-		labelArtikelBild.setBounds(10, 11, 166, 166);
-		
-		ImageIcon icon;
-		if(Artikelsammlung.getArtikel(artikelnummer).getImage() != null) {
-			icon = new ImageIcon(Artikelsammlung.getArtikel(artikelnummer).getImage());
-		}
-		else 
-			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
-        Image img = icon.getImage().getScaledInstance(166, 166, Image.SCALE_SMOOTH);
-        labelArtikelBild.setIcon(new ImageIcon(img));
-		
-		panelArtikel.add(labelArtikelBild);
-		
-		JLabel lblSchwarzeJackeDenim = new JLabel(artikelBezeichnung);
-		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
-		lblSchwarzeJackeDenim.setBounds(186, 11, 213, 30);
-		panelArtikel.add(lblSchwarzeJackeDenim);
-		
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setText(String.valueOf(artikelPreis) + "€");
-		lblNewLabel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		lblNewLabel.setBounds(186, 108, 101, 30);
-		panelArtikel.add(lblNewLabel);
-		
-		JButton btnZumArtikel = new JButton("Zum Artikel");
-		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZumArtikel.setBackground(Color.WHITE);
-		btnZumArtikel.setBounds(186, 147, 139, 30);
-		btnZumArtikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			
-			}
-		});
-		panelArtikel.add(btnZumArtikel);
-		
-		JLabel lblStatus = new JLabel(artikelVerfügbarkeit);
-		lblStatus.setForeground(new Color(0, 204, 51));
-		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblStatus.setBounds(186, 67, 213, 30);
-		panelArtikel.add(lblStatus);
-		
-		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelnummer).getHersteller());
-		lblHersteller.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblHersteller.setBounds(186, 40, 213, 30);
-		panelArtikel.add(lblHersteller);
-		
-	}
-	
 
 	public static JPanel getGUIHerrenKleidung() {
 	
@@ -219,17 +147,6 @@ public class GUIHerrenKleidung {
 		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
 		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//GUI.changePanel(GUI.getPanelMain());
-				
-						}
-		});
-		panelMain.add(btnZurück);
 		
 		JPanel panelScrollPaneLinks = new JPanel();
 		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
@@ -241,10 +158,25 @@ public class GUIHerrenKleidung {
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneLinks);
 		
+		btnAlleArtikel = new JButton("Alle Artikel");
+		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		btnAlleArtikel.setBounds(10, 23, 248, 43);
+		btnAlleArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenKleidung.removeAll();
+				ladeArtikel();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnAlleArtikel);
+		
+		
 		btnJacken = new JButton("Jacken");
 		btnJacken.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnJacken.setBackground(SystemColor.inactiveCaptionBorder);
-		btnJacken.setBounds(10, 23, 248, 43);
+		btnJacken.setBounds(10, 87, 248, 43);
 		btnJacken.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panelHerrenKleidung.removeAll();
@@ -273,7 +205,7 @@ public class GUIHerrenKleidung {
 		btnHandschuhe = new JButton("Handschuhe");
 		btnHandschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnHandschuhe.setBackground(SystemColor.inactiveCaptionBorder);
-		btnHandschuhe.setBounds(10, 87, 248, 43);
+		btnHandschuhe.setBounds(10, 215, 248, 43);
 		panelScrollPaneLinks.add(btnHandschuhe);
 		
 		panelHerrenKleidung = new JPanel();
