@@ -40,6 +40,8 @@ public class GUIHerrenKleidung {
 	static JButton btnZurück = new JButton();
 	static JButton btnAnmelden = new JButton();
 	static JButton btnJacken = new JButton();
+	static JButton btnHandschuhe = new JButton();
+	static JButton btnHosen = new JButton();
 	static JButton btnHinz = new JButton();
 	static JPanel panelMain = new JPanel();
 	static public JButton btnZumArtikel = new JButton();
@@ -91,6 +93,36 @@ public class GUIHerrenKleidung {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				System.out.println("2");
+				int artikelnr = rs.getInt("Artikelnr");
+				String artikelBezeichnung = rs.getString("Bezeichnung");
+				Double artikelPreis = rs.getDouble("Preis"); 
+				String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
+				String artikelArt = rs.getString("Art");
+				//Blob artikelBild = rs.getBlob("bild");
+				System.out.println("Artikel + "+ artikelBezeichnung);
+				neuerArtikel(artikelnr, artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
+				anzahlArtikel = anzahlArtikel +1;
+			}
+			System.out.println(anzahlArtikel);
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	public static void ladeArtikelHosen() {
+		
+		try {
+			System.out.println("1");
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Hose' ";	
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -182,6 +214,8 @@ public class GUIHerrenKleidung {
 
 	public static JPanel getGUIHerrenKleidung() {
 	
+		
+		System.out.println("Das hier wird ausgeführt");
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
@@ -192,11 +226,9 @@ public class GUIHerrenKleidung {
 		btnZurück.setBounds(10, 11, 89, 35);
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// Da sollte man einfach immer auf den HomeScreen kommen - Logik dafür wäre sowas wie
-				// GUI.changePanel(GUI.getPanelMain()) (geht so nur noch nicht :D)
-				// Oder es kommt ein HomeButton in die Bar im MainFrame -> Ist am einfachsten
-			
-			}
+				GUI.changePanel(GUI.getPanelMain());
+				
+						}
 		});
 		panelMain.add(btnZurück);
 		
@@ -224,19 +256,26 @@ public class GUIHerrenKleidung {
 		});
 		panelScrollPaneLinks.add(btnJacken);
 		
-		JButton btnHandschuhe = new JButton("Shirts");
+		btnHosen = new JButton("Hosen");
+		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
+		btnHosen.setBounds(10, 151, 248, 43);
+		btnHosen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelHerrenKleidung.removeAll();
+				ladeArtikelHosen();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+			
+		});
+		panelScrollPaneLinks.add(btnHosen);
+		
+		btnHandschuhe = new JButton("Handschuhe");
 		btnHandschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnHandschuhe.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHandschuhe.setBounds(10, 87, 248, 43);
 		panelScrollPaneLinks.add(btnHandschuhe);
-		
-		JButton btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
-		btnHosen.setBounds(10, 151, 248, 43);
-		panelScrollPaneLinks.add(btnHosen);
-		
-		
 		
 		panelHerrenKleidung = new JPanel();
 		panelHerrenKleidung.setBackground(SystemColor.inactiveCaptionBorder);

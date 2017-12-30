@@ -79,7 +79,7 @@ public class GUIDamenAccessoires implements ActionListener {
 	
 	}
 	
-	public JPanel neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
+	public void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
 		
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));

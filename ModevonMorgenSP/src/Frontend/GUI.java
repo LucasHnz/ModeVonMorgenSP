@@ -76,7 +76,7 @@ import javax.swing.JLayeredPane;
 	private JLayeredPane layeredPane = new JLayeredPane();
 	
 	
-	public void changePanel(JPanel newPanel) {
+	public  void changePanel(JPanel newPanel) {
 		if(varPanel != null) {
 			layeredPane.remove(varPanel);
 			varPanel = null;
