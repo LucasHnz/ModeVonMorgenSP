@@ -50,7 +50,7 @@ public class GUIHerrenSchuhe implements ActionListener {
 	static public JPanel panelHerrenSchuhe;
 	static public int anzahlArtikel = 0;
 
-	
+	//AGBS
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -249,7 +249,7 @@ public class GUIHerrenSchuhe implements ActionListener {
 			}
 		});
 		panelScrollPaneLinks.add(btnOutdoor);
-		
+	
 		
 		btnSport = new JButton("Sport");
 		btnSport.setFont(new Font("Lucida Bright", Font.BOLD, 15));
