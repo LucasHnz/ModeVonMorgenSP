@@ -1,6 +1,7 @@
 package Frontend;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
@@ -18,7 +19,7 @@ import Artikelverwaltung.Artikelsammlung;
 
 public class GUINeuerArtikel {	
 	
-public static void neuerArtikel(int artikelNummer) {
+public static Component neuerArtikel(int artikelNummer) {
 		
 	
 	System.out.println("Artikel wird erstellt");
@@ -28,7 +29,6 @@ public static void neuerArtikel(int artikelNummer) {
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelArtikel.setBackground(SystemColor.inactiveCaption);
 		panelArtikel.setBounds(66, 30, 680, 188);
-		GUIHerrenKleidung.panelHerrenKleidung.add(panelArtikel);
 		panelArtikel.setLayout(null);
 		
 		
@@ -80,6 +80,8 @@ public static void neuerArtikel(int artikelNummer) {
 		lblHersteller.setFont(new Font("Lucida Bright", Font.BOLD, 14));
 		lblHersteller.setBounds(186, 40, 213, 30);
 		panelArtikel.add(lblHersteller);
+		
+		return panelArtikel;
 		
 	}
 	

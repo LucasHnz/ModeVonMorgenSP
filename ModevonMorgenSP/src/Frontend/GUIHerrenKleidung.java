@@ -68,7 +68,7 @@ public class GUIHerrenKleidung {
 		while(rs.next()) {
 			System.out.println("2");
 			int artikelnr = rs.getInt("Artikelnr");
-			GUINeuerArtikel.neuerArtikel(artikelnr);
+			panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
 			
 			System.out.println("Artikel ist " + artikelnr);
