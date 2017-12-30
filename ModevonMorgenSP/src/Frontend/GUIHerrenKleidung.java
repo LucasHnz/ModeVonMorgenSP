@@ -226,7 +226,7 @@ public class GUIHerrenKleidung {
 		btnZurück.setBounds(10, 11, 89, 35);
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI.changePanel(GUI.getPanelMain());
+				//GUI.changePanel(GUI.getPanelMain());
 				
 						}
 		});
