@@ -60,8 +60,8 @@ public class GUIArtikelFormular extends JFrame {
 	private String titel, Kategorie;
 	private String[] verfügbarkeiten = {"Sofort lieferbar", "Lieferbar in 1-3 Tagen", "Lieferbar in 1-3 Wochen", "Nicht mehr Verfügbar"};
 	private String[] größen = {"XS", "S", "M", "L", "XL", "XXL"};
-	private JComboBox comboBoxVerfügbarkeit;
-	private JComboBox comboBoxGröße;
+	private JComboBox<String> comboBoxVerfügbarkeit;
+	private JComboBox<String> comboBoxGröße;
 	
 	/**
 	 * Öfnnet das Formular zum erstellen eines neuen Artikels.
@@ -227,7 +227,7 @@ public class GUIArtikelFormular extends JFrame {
 		label_1.setBounds(201, 405, 46, 14);
 		contentPane.add(label_1);
 				
-		comboBoxVerfügbarkeit = new JComboBox(verfügbarkeiten);
+		comboBoxVerfügbarkeit = new JComboBox<String>(verfügbarkeiten);
 		comboBoxVerfügbarkeit.setBounds(105, 280, 204, 25);
 	    contentPane.add(comboBoxVerfügbarkeit);
 	
@@ -256,7 +256,7 @@ public class GUIArtikelFormular extends JFrame {
 			lblGröße.setBounds(5, 245, 86, 22);
 			contentPane.add(lblGröße);
 					
-			comboBoxGröße = new JComboBox(größen);
+			comboBoxGröße = new JComboBox<String>(größen);
 			comboBoxGröße.setBounds(105, 242, 204, 25);
 			contentPane.add(comboBoxGröße);
 		}
@@ -297,7 +297,7 @@ public class GUIArtikelFormular extends JFrame {
 				String[] Lieferanten = taLieferanten.getText().split(",");
 				double Preis = Double.parseDouble(textFieldPreis.getText().replace(',', '.'));
 				System.out.println(Preis);
-				int Rabatt = 10;
+				int Rabatt = 0;
 				int Schuhgröße = 0;
 				String Farbe = null;
 				String Größe = null;
@@ -306,6 +306,7 @@ public class GUIArtikelFormular extends JFrame {
 				else if(Kategorie == "Accessoires")
 					Farbe = textField_5.getText();
 				else if(Kategorie == "Kleidung")
+					System.out.println((String) comboBoxGröße.getSelectedItem());
 					Größe = (String) comboBoxGröße.getSelectedItem();
 				ArtikelStrg.NeuerArtikel(Kategorie, Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, 
 						Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe,
@@ -454,7 +455,7 @@ public class GUIArtikelFormular extends JFrame {
 		rdbtnMnnlich.setBounds(105, 441, 90, 23);
 		contentPane.add(rdbtnMnnlich);
 		
-		if(Artikelsammlung.getArtikel(Artikelnummer).getGeschlecht() == "W")
+		if(Artikelsammlung.getArtikel(Artikelnummer).getGeschlecht().equals("W")) 
 			rdbtnWeiblich.setSelected(true);
 		else
 			rdbtnMnnlich.setSelected(true);
@@ -484,7 +485,7 @@ public class GUIArtikelFormular extends JFrame {
 		label_1.setBounds(201, 405, 46, 14);
 		contentPane.add(label_1);
 				
-		comboBoxVerfügbarkeit = new JComboBox(verfügbarkeiten);
+		comboBoxVerfügbarkeit = new JComboBox<String>(verfügbarkeiten);
 		comboBoxVerfügbarkeit.setBounds(105, 280, 204, 25);
 		comboBoxVerfügbarkeit.setSelectedItem(Artikelsammlung.getArtikel(Artikelnummer).getVerfügbarkeit());
 	    contentPane.add(comboBoxVerfügbarkeit);
@@ -521,7 +522,7 @@ public class GUIArtikelFormular extends JFrame {
 			lblGröße.setBounds(5, 245, 86, 22);
 			contentPane.add(lblGröße);
 					
-			comboBoxGröße = new JComboBox(größen);
+			comboBoxGröße = new JComboBox<String>(größen);
 			comboBoxGröße.setBounds(105, 242, 204, 25);
 			comboBoxGröße.setSelectedItem(a.getGröße());
 			contentPane.add(comboBoxGröße);
@@ -567,7 +568,7 @@ public class GUIArtikelFormular extends JFrame {
 				String Notiz = null;
 				String[] Lieferanten = taLieferanten.getText().split(",");
 				double Preis = Double.parseDouble(textFieldPreis.getText().replace(',', '.'));
-				int Rabatt = 10;
+				int Rabatt = 0;
 				int Schuhgröße = 0;
 				String Farbe = null;
 				String Größe = null;
@@ -576,7 +577,7 @@ public class GUIArtikelFormular extends JFrame {
 				else if(Artikelsammlung.getArtikel(Artikelnummer).getClass().getName() == "Artikelverwaltung.Accessoires")
 					Farbe = textField_5.getText();
 				else if(Artikelsammlung.getArtikel(Artikelnummer).getClass().getName() == "Artikelverwaltung.Kleidung")
-					Größe = (String) comboBoxGröße.getSelectedItem();
+					Größe = comboBoxGröße.getSelectedItem().toString();
 				ArtikelStrg.EditiereArtikel(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, 
 						Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe,
 						Größe);

@@ -126,7 +126,7 @@ public class ArtikelStrg {
 		    	artikel3.setRabatt(Rabatt);
 		    	artikel3.setVerfügbarkeit(Verfügbarkeit);
 		    	artikel3.setNotiz(Notiz);
-		    	artikel3.setGröße(Farbe);
+		    	artikel3.setGröße(Größe);
 		    	
 		    	String str = Arrays.toString(Artikelsammlung.getArtikel(Artikelnummer).getLieferanten());
 				str = str.replace("[", "");
