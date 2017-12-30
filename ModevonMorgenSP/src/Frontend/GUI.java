@@ -222,7 +222,6 @@ import javax.swing.JLayeredPane;
 		layeredPane.setLocation(0, 148);
 		frame = new JFrame();
 		frame.getContentPane().add(layeredPane);
-		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
