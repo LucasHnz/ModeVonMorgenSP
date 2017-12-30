@@ -68,15 +68,10 @@ public class GUIHerrenKleidung {
 		while(rs.next()) {
 			System.out.println("2");
 			int artikelnr = rs.getInt("Artikelnr");
-			String artikelBezeichnung = rs.getString("Bezeichnung");
-			Double artikelPreis = rs.getDouble("Preis"); 
-			String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
-			String artikelArt = rs.getString("Art");
-			//Blob artikelBild = rs.getBlob("bild");
-			System.out.println("Artikel + "+ artikelBezeichnung);
 			GUINeuerArtikel.neuerArtikel(artikelnr);
-			neuerArtikel(artikelnr, artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
 			anzahlArtikel = anzahlArtikel +1;
+			
+			System.out.println("Artikel ist " + artikelnr);
 		}
 		System.out.println(anzahlArtikel);
 		rs.close();
@@ -85,19 +80,22 @@ public class GUIHerrenKleidung {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
+		GUI.frame.revalidate();
+		GUI.frame.repaint();
 	}
 	
 	public static void ladeArtikelJacken() {
 		
 		try {
-			System.out.println("1");
+			System.out.println("3");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println("2");
+				System.out.println("3");
 				int artikelnr = rs.getInt("Artikelnr");
 				String artikelBezeichnung = rs.getString("Bezeichnung");
 				Double artikelPreis = rs.getDouble("Preis"); 
@@ -121,14 +119,14 @@ public class GUIHerrenKleidung {
 		
 		
 		try {
-			System.out.println("1");
+			System.out.println("4");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' and art = 'Hose' ";	
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println("2");
+				System.out.println("4");
 				int artikelnr = rs.getInt("Artikelnr");
 				String artikelBezeichnung = rs.getString("Bezeichnung");
 				Double artikelPreis = rs.getDouble("Preis"); 
@@ -146,7 +144,6 @@ public class GUIHerrenKleidung {
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-		
 	}
 	
 	/**
