@@ -14,6 +14,7 @@ public class GUINeuerArtikel {
 	
 public void neuerArtikel(int artikelNummer) {
 		
+	//ABD
 		JPanel panelArtikel = new JPanel();
 		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelArtikel.setBackground(SystemColor.inactiveCaption);
