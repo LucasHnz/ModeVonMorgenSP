@@ -31,6 +31,7 @@ public class AdministratorStrg {
 		
 		stmt.executeQuery(sqlbefehel);
 		
+		AdministratorSammlung.AdministratorListe.remove(i);
 
 		
 	}catch (SQLException e) {
