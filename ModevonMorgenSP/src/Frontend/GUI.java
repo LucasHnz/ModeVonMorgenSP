@@ -64,6 +64,7 @@ import javax.swing.JLayeredPane;
 	public JButton btnProduktDamen;
 	public JButton btnProduktHerren;
 	public JButton btnWarenkorb;
+	public JButton btnHome;
 	public JLabel labelMainDamen = new JLabel();
 	public JLabel labelMainHerren = new JLabel();
 	public JComboBox comboBoxHerren = new JComboBox();
@@ -222,7 +223,6 @@ import javax.swing.JLayeredPane;
 		layeredPane.setLocation(0, 148);
 		frame = new JFrame();
 		frame.getContentPane().add(layeredPane);
-		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -275,17 +275,26 @@ import javax.swing.JLayeredPane;
 		btnWarenkorb.setBounds(936, 2, 48, 48);
 		panelBar.add(btnWarenkorb);
 		
+		
+		Image homebutton = new ImageIcon("src\\Icons 64x64\\house.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		btnHome = new JButton(new ImageIcon(homebutton));
+		btnHome.setContentAreaFilled(false);
+		btnHome.setToolTipText("Home");
+		btnHome.addActionListener(this);
+		btnHome.setBounds(876, 2, 48, 48);
+		panelBar.add(btnHome);
+		
 	
 		
 		varPanel = getPanelMain();
 		layeredPane.add(varPanel, JLayeredPane.DEFAULT_LAYER);
 		
 		
-		/*
+		
 		JLabel labelMainHintergrund = new JLabel();
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
 		panelMain.add(labelMainHintergrund);
-		*/
+		
 	
 	
 		frame.setVisible(true);
@@ -490,6 +499,9 @@ import javax.swing.JLayeredPane;
 		}
 		if(e.getSource() == btnWarenkorb) {
 			changePanel(GUIWarenkorb.getGUIWarenkorb());
+		}
+		if(e.getSource() == btnHome) {
+			changePanel(getPanelMain());
 		}
 	
 		
