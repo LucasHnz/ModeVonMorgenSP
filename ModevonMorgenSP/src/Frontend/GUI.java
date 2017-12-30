@@ -55,7 +55,7 @@ import javax.swing.JLayeredPane;
 	JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
 	static JPanel panelMain = new JPanel();
-	//private static JPanel panelMain_1;
+	private static JPanel panelMain_1;
 	
 	public JButton btnProduktDamenLinks = new JButton();
 	public JButton btnProduktDamenRechts = new JButton();
@@ -71,11 +71,11 @@ import javax.swing.JLayeredPane;
 	public JComboBox comboBoxAnmelden = new JComboBox();
 	public JButton btnZurück = new JButton();
 	public JPanel panelAnmelden = new JPanel();
-	//public JPanel varPanel;
+    public JPanel varPanel;
 	public JPanel WarenkorbPanel;
-	//private JLayeredPane layeredPane = new JLayeredPane();
+    private JLayeredPane layeredPane = new JLayeredPane();
 	
-	/*
+	
 	public  void changePanel(JPanel newPanel) {
 		if(varPanel != null) {
 			layeredPane.remove(varPanel);
@@ -86,7 +86,7 @@ import javax.swing.JLayeredPane;
 		frame.revalidate();
 		frame.repaint();
 	}
-	*/
+	
 	public static void fensterSchließen() {
 		frame.dispose();
 	}
@@ -99,7 +99,7 @@ import javax.swing.JLayeredPane;
 		panelAnmelden.setBounds(1040, 0, 194, 118);
 		panelAnmelden.setOpaque(true);
 						
-		//layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);		
+		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);		
 	
 		btnAnmeldenEinloggen = new JButton("Einloggen");
 		btnAnmeldenEinloggen.setBounds(0, 95, 89, 23);
@@ -218,9 +218,10 @@ import javax.swing.JLayeredPane;
 	
 	private void initializeMain() {
 		
-		//layeredPane.setSize(1248, 563);
-		//layeredPane.setLocation(0, 148);
-		//frame.getContentPane().add(layeredPane);
+		layeredPane.setSize(1248, 563);
+		layeredPane.setLocation(0, 148);
+		frame = new JFrame();
+		frame.getContentPane().add(layeredPane);
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
@@ -274,78 +275,10 @@ import javax.swing.JLayeredPane;
 		btnWarenkorb.setBounds(936, 2, 48, 48);
 		panelBar.add(btnWarenkorb);
 		
+	
 		
-		
-		panelMain = new JPanel();
-		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 0, 1248, 563);
-		panelMain.setLayout(null);
-		
-		btnProduktDamen = new JButton("Zum Produkt");
-		btnProduktDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktDamen.setBackground(Color.WHITE);
-		btnProduktDamen.setForeground(Color.BLACK);
-		btnProduktDamen.setBounds(249, 458, 165, 35);
-		btnProduktDamen.addActionListener(this);
-		panelMain.add(btnProduktDamen);
-		
-		btnProduktHerren = new JButton("Zum Produkt");
-		btnProduktHerren.setBackground(Color.WHITE);
-		btnProduktHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktHerren.setBounds(774, 458, 165, 35);
-		btnProduktHerren.addActionListener(this);
-		panelMain.add(btnProduktHerren);
-		
-		Image leftArrow = new ImageIcon("src\\Icons 32x32\\left-arrow.png").getImage();
-		Image rightArrow = new ImageIcon("src\\Icons 32x32\\right-chevron.png").getImage();
-
-		btnProduktDamenRechts = new JButton(new ImageIcon(rightArrow));
-		btnProduktDamenRechts.setContentAreaFilled(false);
-		btnProduktDamenRechts.setBackground(Color.WHITE);
-		btnProduktDamenRechts.setBounds(536, 260, 32, 32);
-		btnProduktDamenRechts.addActionListener(this);
-		panelMain.add(btnProduktDamenRechts);
-		
-		btnProduktDamenLinks = new JButton(new ImageIcon(leftArrow));
-		btnProduktDamenLinks.setContentAreaFilled(false);
-		btnProduktDamenLinks.setBackground(Color.WHITE);
-		btnProduktDamenLinks.setBounds(100, 260, 32, 32);
-		btnProduktDamenLinks.addActionListener(this);
-		panelMain.add(btnProduktDamenLinks);
-		
-		btnProduktHerrenRechts = new JButton(new ImageIcon(rightArrow));
-		btnProduktHerrenRechts.setContentAreaFilled(false);
-		btnProduktHerrenRechts.setBackground(Color.WHITE);
-		btnProduktHerrenRechts.setBounds(1048, 260, 32, 32);
-		btnProduktHerrenRechts.addActionListener(this);
-		panelMain.add(btnProduktHerrenRechts);
-		
-		btnProduktHerrenLinks = new JButton(new ImageIcon(leftArrow));
-		btnProduktHerrenLinks.setBackground(Color.WHITE);
-		btnProduktHerrenLinks.setContentAreaFilled(false);
-		btnProduktHerrenLinks.setBounds(612, 260, 32, 32);
-		btnProduktHerrenLinks.addActionListener(this);
-		panelMain.add(btnProduktHerrenLinks);
-		
-		
-		labelMainDamen = new JLabel();
-		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
-		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
-		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
-		panelMain.add(labelMainDamen);
-		
-		labelMainHerren = new JLabel("");
-		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
-		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		panelMain.add(labelMainHerren);
-		
-		
-		//varPanel = getPanelMain();
-		//layeredPane.add(varPanel, JLayeredPane.DEFAULT_LAYER);
+		varPanel = getPanelMain();
+		layeredPane.add(varPanel, JLayeredPane.DEFAULT_LAYER);
 		
 		
 		/*
@@ -354,11 +287,11 @@ import javax.swing.JLayeredPane;
 		panelMain.add(labelMainHintergrund);
 		*/
 	
-		frame.add(panelMain);
+	
 		frame.setVisible(true);
 	
 	}
-	/*
+	
 	public JPanel getPanelMain() {
 		panelMain_1 = new JPanel();
 		panelMain_1.setBackground(Color.WHITE);
@@ -426,10 +359,11 @@ import javax.swing.JLayeredPane;
 		labelMainHerren.setBounds(656, 76, 380, 450);
 		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
 		panelMain_1.add(labelMainHerren);
+
 		
 		return panelMain_1;
 	}
-	*/
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -488,8 +422,7 @@ import javax.swing.JLayeredPane;
 			String auswahl = (String) comboBoxHerren.getSelectedItem();
 		    
 			if(auswahl == "Kleidung"){
-				//changePanel(GUIHerrenKleidung.getGUIHerrenKleidung());
-				panelMain.setVisible(false);
+				changePanel(GUIHerrenKleidung.getGUIHerrenKleidung());
 				new GUIHerrenKleidung();			 
 		    }
 		  
@@ -511,17 +444,17 @@ import javax.swing.JLayeredPane;
 			String auswahl = (String) comboBoxDamen.getSelectedItem();
 			
 			if(auswahl == "Kleidung"){
-				//panelMain_1.setVisible(false);
+				panelMain_1.setVisible(false);
 			    new GUIDamenKleidung(frame);
 			    }
 			  
 				if(auswahl == "Schuhe"){
-					//panelMain_1.setVisible(false);
+					panelMain_1.setVisible(false);
 				    new GUIDamenSchuhe(frame);
 				}
 				
 				if(auswahl == "Accessoires"){
-					//panelMain_1.setVisible(false);
+					panelMain_1.setVisible(false);
 				    new GUIDamenAccessoires(frame);
 				}
 				
@@ -537,7 +470,7 @@ import javax.swing.JLayeredPane;
 			}
 
 		    if(auswahl == "Meine Bestellungen" && angemeldet == true) {
-			  //  new GUIKontoBestellungen(frame);
+			   //new GUIKontoBestellungen(frame);
 			}
 		    if(auswahl == "Meine Bestellungen" && angemeldet == false) {
 		    	 öffnenAnmeldefenster();
@@ -556,7 +489,7 @@ import javax.swing.JLayeredPane;
 		    }
 		}
 		if(e.getSource() == btnWarenkorb) {
-			//changePanel(GUIWarenkorb.getGUIWarenkorb());
+			changePanel(GUIWarenkorb.getGUIWarenkorb());
 		}
 	
 		

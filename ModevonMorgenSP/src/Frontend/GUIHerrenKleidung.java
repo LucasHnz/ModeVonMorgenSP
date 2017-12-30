@@ -118,6 +118,7 @@ public class GUIHerrenKleidung {
 	
 	public static void ladeArtikelHosen() {
 		
+		
 		try {
 			System.out.println("1");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -144,6 +145,7 @@ public class GUIHerrenKleidung {
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
+		
 	}
 	
 	/**
