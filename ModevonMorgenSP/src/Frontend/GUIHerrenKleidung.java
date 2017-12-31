@@ -62,7 +62,7 @@ public class GUIHerrenKleidung {
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select Artikelnr, bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'W' ";	
+		String sql = "select Artikelnr from Kleidung where geschlecht = 'W' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {

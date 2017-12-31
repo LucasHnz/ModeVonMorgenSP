@@ -441,8 +441,8 @@ import javax.swing.JLayeredPane;
 			}
 			
 			if(auswahl == "Accessoires"){
-				panelMain.setVisible(false);
-			    new GUIHerrenAccessoires(frame);
+				changePanel(GUIHerrenAccessoires.getGUIHerrenAccessoires());
+				new GUIHerrenAccessoires();	
 			  
 			}
 		}
@@ -452,18 +452,18 @@ import javax.swing.JLayeredPane;
 			String auswahl = (String) comboBoxDamen.getSelectedItem();
 			
 			if(auswahl == "Kleidung"){
-				panelMain_1.setVisible(false);
-			    new GUIDamenKleidung(frame);
+				changePanel(GUIDamenKleidung.getGUIDamenKleidung());
+				new GUIDamenKleidung();	
 			    }
 			  
 				if(auswahl == "Schuhe"){
-					panelMain_1.setVisible(false);
-				    new GUIDamenSchuhe(frame);
+					changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
+					new GUIDamenSchuhe();	
 				}
 				
 				if(auswahl == "Accessoires"){
-					panelMain_1.setVisible(false);
-				    new GUIDamenAccessoires(frame);
+					changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());
+					new GUIDamenAccessoires();		
 				}
 				
 		}

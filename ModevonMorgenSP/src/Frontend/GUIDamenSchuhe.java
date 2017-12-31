@@ -32,36 +32,37 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class GUIDamenSchuhe implements ActionListener {
+public class GUIDamenSchuhe  {
 	
-	JButton btnZurück = new JButton();
+
 	JButton btnAnmelden = new JButton();
+	static JButton btnAlleArtikel;
+	static JButton btnHausschuhe;
+	static JButton btnHighHeels;
 
 	public JFrame frame;
-	JPanel panelMain = new JPanel();
+	static JPanel panelMain = new JPanel();
 	static JPanel panelDamenSchuhe = new JPanel();
 	private JTextField txtSchwarzeJacke;
 	private JTextField textField_1;
 	private JTextField txtGre;
-	public int anzahlArtikel = 0;
+	public static int anzahlArtikel = 0;
 	
 
-public  void artikelLaden() {
+public static void ladeArtikel() {
 		
-
 		try {
 		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select artikelnummer from Schuhe where geschlecht = 'W' ";	
+		String sql = "select Artikelnr from Schuhe where geschlecht = 'W' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
-			System.out.println("2");
-			int artikelNummer = rs.getInt("Artikelnummer");
-			System.out.println("Artikel + "+ artikelNummer);
-            //GUINeuerArtikel.neuerArtikel(artikelNummer);
+			int artikelnr = rs.getInt("Artikelnr");
+			panelDamenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
+	
 		}
 		System.out.println(anzahlArtikel);
 		rs.close();
@@ -71,34 +72,70 @@ public  void artikelLaden() {
 			e.printStackTrace();
 		}
 		
+	}
+
+public static void ladeArtikelHausschuhe() {
 	
+	try {
+	System.out.println("1");
+	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+	Statement stmt = con.createStatement();
+	String sql = "select Artikelnr from Schuhe where geschlecht = 'W' and art = 'Hausschuh' ";	
+	ResultSet rs = stmt.executeQuery(sql);
+	
+	while(rs.next()) {
+		int artikelnr = rs.getInt("Artikelnr");
+		panelDamenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+		anzahlArtikel = anzahlArtikel +1;
+		
+		System.out.println("Artikel ist " + artikelnr);
+	}
+	System.out.println(anzahlArtikel);
+	rs.close();
+	Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+	
+	}catch(SQLException e) {
+		e.printStackTrace();
 	}
 	
-	public GUIDamenSchuhe(JFrame frame) {
-		System.out.println("Ausgeführt DS");
-		this.frame = frame;
-		initialize(frame);
+}
+
+public static void ladeArtikelHighHeels() {
 	
+	try {
+	System.out.println("1");
+	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+	Statement stmt = con.createStatement();
+	String sql = "select Artikelnr from Schuhe where geschlecht = 'W' and art = 'High Heels' ";	
+	ResultSet rs = stmt.executeQuery(sql);
+	
+	while(rs.next()) {
+		int artikelnr = rs.getInt("Artikelnr");
+		panelDamenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+		anzahlArtikel = anzahlArtikel +1;
+		
+		System.out.println("Artikel ist " + artikelnr);
 	}
+	System.out.println(anzahlArtikel);
+	rs.close();
+	Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+	
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	
+}
+	
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(JFrame frame) {
+	static JPanel getGUIDamenSchuhe() {
 		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 148, 1234, 563);
+		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
-		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(this);
-		panelMain.add(btnZurück);
-		
-		
 		
 		JPanel panelScrollPaneLinks = new JPanel();
 		panelScrollPaneLinks.setBackground(SystemColor.control);
@@ -111,17 +148,50 @@ public  void artikelLaden() {
 		panelMain.add(scrollPaneLinks);
 		
 
-		JButton btnHighHeels = new JButton("Jacken");
+		btnAlleArtikel = new JButton("Alle Artikel");
+		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		btnAlleArtikel.setBounds(10, 23, 248, 43);
+		btnAlleArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelDamenSchuhe.removeAll();
+				ladeArtikel();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnAlleArtikel);
+		
+		
+		btnHausschuhe = new JButton("Hausschuhe");
+		btnHausschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHausschuhe.setBackground(SystemColor.inactiveCaptionBorder);
+		btnHausschuhe.setBounds(10, 87, 248, 43);
+		btnHausschuhe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelDamenSchuhe.removeAll();
+				ladeArtikelHausschuhe();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnHausschuhe);
+		
+		btnHighHeels = new JButton("High Heels");
 		btnHighHeels.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHighHeels.setBackground(Color.WHITE);
-		btnHighHeels.setBounds(10, 23, 248, 43);
+		btnHighHeels.setBackground(SystemColor.inactiveCaptionBorder);
+		btnHighHeels.setBounds(10, 151, 248, 43);
+		btnHighHeels.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelDamenSchuhe.removeAll();
+				ladeArtikelHighHeels();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
 		panelScrollPaneLinks.add(btnHighHeels);
 		
-		JButton btnStiefel = new JButton("Jacken");
-		btnStiefel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnStiefel.setBackground(Color.WHITE);
-		btnStiefel.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnStiefel);
+		
 		
 		panelDamenSchuhe = new JPanel();
 		panelDamenSchuhe.setBackground(SystemColor.inactiveCaptionBorder);
@@ -133,7 +203,7 @@ public  void artikelLaden() {
 		scrollPaneDamenSchuhe.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneDamenSchuhe);
 		
-		artikelLaden();
+		ladeArtikel();
 		
 		int length = anzahlArtikel/2 * 188;
 		if(anzahlArtikel%2 == 1)
@@ -141,22 +211,9 @@ public  void artikelLaden() {
 		panelDamenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
 		panelDamenSchuhe.setPreferredSize(new Dimension(549, length));
 	
-		frame.add(panelMain);
 		panelMain.setVisible(true);
-		frame.invalidate();
-		frame.validate();
-		frame.repaint();
+		return panelMain;
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == btnZurück) 
-		{
-			panelMain.setVisible(false);
-			GUI.panelMain.setVisible(true);
-		}
-		
-	}
-
+	
 }

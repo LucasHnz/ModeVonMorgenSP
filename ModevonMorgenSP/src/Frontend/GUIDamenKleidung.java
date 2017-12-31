@@ -35,119 +35,113 @@ import javax.swing.border.LineBorder;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
-public class GUIDamenKleidung implements ActionListener {
-	
-	JButton btnZurück = new JButton();
-	JButton btnAnmelden = new JButton();
+public class GUIDamenKleidung {
 	
 
+	JButton btnAnmelden = new JButton();
+	static JButton btnAlleArtikel;
+	static JButton btnSchaals;
+	static JButton btnHosen;
+	
+
+
 	public JFrame frame;
-	JPanel panelMain = new JPanel();
-	JPanel panelDamenKleidung = new JPanel();
+	static JPanel panelMain = new JPanel();
+	static JPanel panelDamenKleidung = new JPanel();
  	private JTextField txtSchwarzeJacke;
 	private JTextField textField_1;
 	private JTextField txtGre;
-	public int anzahlArtikel = 0;
+	static int anzahlArtikel = 0;
 
-	public void artikelLaden() {
+	public static void ladeArtikel() {
 		
 		try {
-			System.out.println("1");
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			Statement stmt = con.createStatement();
-			String sql = "select bezeichnung, art, preis, verfügbarkeit from Kleidung where geschlecht = 'M' ";	
-			ResultSet rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
-				System.out.println("2");
-				String artikelBezeichnung = rs.getString("Bezeichnung");
-				Double artikelPreis = rs.getDouble("Preis"); 
-				String artikelVerfügbarkeit = rs.getString("Verfügbarkeit"); 
-				String artikelArt = rs.getString("Art");
-				//Blob artikelBild = rs.getBlob("bild");
-				System.out.println("Artikel + "+ artikelBezeichnung);
-				neuerArtikel(artikelBezeichnung, artikelPreis, artikelVerfügbarkeit, artikelArt);
-				anzahlArtikel = anzahlArtikel +1;
-			}
-			System.out.println(anzahlArtikel);
-			rs.close();
-			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
-			
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
+		System.out.println("1");
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		String sql = "select Artikelnr from Kleidung where geschlecht = 'M'";	
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		while(rs.next()) {
+			int artikelnr = rs.getInt("Artikelnr");
+			panelDamenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+			anzahlArtikel = anzahlArtikel +1;
+		}
+		System.out.println(anzahlArtikel);
+		rs.close();
+		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		GUI.frame.revalidate();
+		GUI.frame.repaint();
 	}
 	
-	public void neuerArtikel(String artikelBezeichnung, double artikelPreis, String artikelVerfügbarkeit, String artikelArt) {
+public static void ladeArtikelSchaals() {
 		
-		JPanel panelArtikel = new JPanel();
-		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelArtikel.setBackground(SystemColor.inactiveCaption);
-		panelArtikel.setBounds(66, 30, 680, 188);
-		panelDamenKleidung.add(panelArtikel);
-		panelArtikel.setLayout(null);
+		try {
+		System.out.println("1");
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		String sql = "select Artikelnr from Kleidung where geschlecht = 'M' and art = 'Schaal'";	
+		ResultSet rs = stmt.executeQuery(sql);
 		
-		/*
-		ImageIcon icon = new ImageIcon(artikelBild);
-        int width = icon.getIconHeight() / 2;
-        int height = icon.getIconWidth() / 2;
-        Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_FAST);
-		*/
+		while(rs.next()) {
+			int artikelnr = rs.getInt("Artikelnr");
+			panelDamenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+			anzahlArtikel = anzahlArtikel +1;
+		}
+		System.out.println(anzahlArtikel);
+		rs.close();
+		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 		
-		JLabel labelArtikelBild = new JLabel("");
-		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setVerticalAlignment(SwingConstants.TOP);
-		//labelArtikelBild.setIcon(new ImageIcon(img));
-		labelArtikelBild.setBounds(33, 25, 133, 135);
-		panelArtikel.add(labelArtikelBild);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
-		JLabel lblSchwarzeJackeDenim = new JLabel(artikelBezeichnung);
-		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
-		lblSchwarzeJackeDenim.setBounds(203, 11, 213, 30);
-		panelArtikel.add(lblSchwarzeJackeDenim);
-		
-		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setText(String.valueOf(artikelPreis));
-		lblNewLabel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		lblNewLabel.setBounds(203, 71, 101, 47);
-		panelArtikel.add(lblNewLabel);
-		
-		JButton btnZumArtikel = new JButton("Zum Artikel");
-		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZumArtikel.setBackground(Color.WHITE);
-		btnZumArtikel.setBounds(198, 130, 139, 30);
-		btnZumArtikel.addActionListener(this);
-		panelArtikel.add(btnZumArtikel);
-		
-		JLabel lblStatus = new JLabel(artikelVerfügbarkeit);
-		lblStatus.setForeground(new Color(0, 204, 51));
-		lblStatus.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblStatus.setBounds(203, 41, 147, 30);
-		panelArtikel.add(lblStatus);
-		
-		
-		
-	}
-	
-	
-	public GUIDamenKleidung(JFrame frame) {
-		System.out.println("Ausgeführt DK");
-		this.frame = frame;
-		
-		initializeDamen(frame);
+		GUI.frame.revalidate();
+		GUI.frame.repaint();
 	}
 
+public static void ladeArtikelHosen() {
+	
+	try {
+	System.out.println("1");
+	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+	Statement stmt = con.createStatement();
+	String sql = "select Artikelnr from Kleidung where geschlecht = 'M' and art = 'Hose'";	
+	ResultSet rs = stmt.executeQuery(sql);
+	
+	while(rs.next()) {
+		int artikelnr = rs.getInt("Artikelnr");
+		panelDamenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+		anzahlArtikel = anzahlArtikel +1;
+	}
+	System.out.println(anzahlArtikel);
+	rs.close();
+	Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+	
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	
+	GUI.frame.revalidate();
+	GUI.frame.repaint();
+}
+
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initializeDamen(JFrame frame) {
+	static JPanel getGUIDamenKleidung() {
+		
 		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 148, 1234, 563);
+		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
-		
 		
 		
 		JPanel panelScrollPaneLinks = new JPanel();
@@ -159,30 +153,49 @@ public class GUIDamenKleidung implements ActionListener {
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneLinks);
 		
-		JButton btnNewButton = new JButton("Jacken");
-		btnNewButton.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(10, 23, 248, 43);
-		panelScrollPaneLinks.add(btnNewButton);
 		
-		JButton btnShirts = new JButton("Shirts");
-		btnShirts.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnShirts.setBackground(Color.WHITE);
-		btnShirts.setBounds(10, 87, 248, 43);
-		panelScrollPaneLinks.add(btnShirts);
+		btnAlleArtikel = new JButton("Alle Artikel");
+		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		btnAlleArtikel.setBounds(10, 23, 248, 43);
+		btnAlleArtikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelDamenKleidung.removeAll();
+				ladeArtikel();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnAlleArtikel);
 		
-		JButton btnHosen = new JButton("Hosen");
+		btnSchaals = new JButton("Schaals");
+		btnSchaals.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnSchaals.setBackground(SystemColor.inactiveCaptionBorder);
+		btnSchaals.setBounds(10, 87, 248, 43);
+		btnSchaals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelDamenKleidung.removeAll();
+				ladeArtikelSchaals();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnSchaals);
+		
+		btnHosen = new JButton("Hosen");
 		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnHosen.setBackground(Color.WHITE);
+		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHosen.setBounds(10, 151, 248, 43);
+		btnHosen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelDamenKleidung.removeAll();
+				ladeArtikelHosen();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
 		panelScrollPaneLinks.add(btnHosen);
 		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(this);
-		panelMain.add(btnZurück);
 		
 		
 		panelDamenKleidung = new JPanel();
@@ -195,42 +208,18 @@ public class GUIDamenKleidung implements ActionListener {
 		scrollPaneDamenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneDamenKleidung);
 		
-		artikelLaden();
+		ladeArtikel();
 		
 		int length = anzahlArtikel/2 * 188;
 		if(anzahlArtikel%2 == 1)
 			length = length +188;
 		panelDamenKleidung.setLayout(new GridLayout(0, 2, 0, 0));
 		panelDamenKleidung.setPreferredSize(new Dimension(549, length));
-		/*
-		JPanel panelScrollPaneRechts = new JPanel();
-		panelScrollPaneRechts.setLayout(new BoxLayout(panelScrollPaneRechts, BoxLayout.X_AXIS));
-		JScrollPane scrollPaneRechts = new JScrollPane(panelScrollPaneRechts);
-		scrollPaneRechts.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneRechts.setBounds(323, 97, 901, 455);
-		panelMain.add(scrollPaneRechts);
-		*/
-		
-		
-		
 	
-		frame.add(panelMain);
+		
 		panelMain.setVisible(true);
-		frame.invalidate();
-		frame.validate();
-		frame.repaint();
+		return panelMain;
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-			if(e.getSource() == btnZurück) 
-			{
-				panelMain.setVisible(false);
-				GUI.panelMain.setVisible(true);
-			}
-		
-			
-		
-	}
+	
 }

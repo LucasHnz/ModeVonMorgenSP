@@ -27,6 +27,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
+import Artikelverwaltung.Artikelsammlung;
+
 public class GUIArtikel implements ActionListener {
 	
 	JButton btnZurück = new JButton();
@@ -41,32 +43,19 @@ public class GUIArtikel implements ActionListener {
 	public String[] comboBoxGrößen = {"XS", "S","M", "L", "XL", "XXL"};
 
 	public JFrame frame;
-	JPanel panelMain = new JPanel();
+	static JPanel panelMain = new JPanel();
 
 	
 
 	
-	public GUIArtikel(JFrame frame) {
-		System.out.println("Ausgeführt Artikel");
-		this.frame = frame;
-		initialize(frame);
-	}
+	
 
-
-	private void initialize(JFrame frame) {
+	static JPanel getGUIArtikel(int artikelNummer) {
 		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 147, 1234, 563);
-		frame.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
-		
-		btnZurück = new JButton("Zur\u00FCck");
-		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnZurück.setBackground(Color.WHITE);
-		btnZurück.setBounds(10, 11, 89, 35);
-		btnZurück.addActionListener(this);
-		panelMain.add(btnZurück);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -80,15 +69,24 @@ public class GUIArtikel implements ActionListener {
 		labelArtikelBild.setBackground(Color.WHITE);
 		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
 		labelArtikelBild.setBounds(70, 32, 250, 250);
-		labelArtikelBild.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
+	
+		ImageIcon icon;
+		if(Artikelsammlung.getArtikel(artikelNummer).getImage() != null) {
+			icon = new ImageIcon(Artikelsammlung.getArtikel(artikelNummer).getImage());
+		}
+		else 
+			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
+        Image img = icon.getImage().getScaledInstance(166, 166, Image.SCALE_SMOOTH);
+        labelArtikelBild.setIcon(new ImageIcon(img));
+		
 		panel.add(labelArtikelBild);
 		
-		JLabel lblArtikelTitel = new JLabel("Schwarze Jacke DENIM");
+		JLabel lblArtikelTitel = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
 		lblArtikelTitel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblArtikelTitel.setBounds(362, 11, 319, 49);
 		panel.add(lblArtikelTitel);
 		
-		JLabel lblArtikelStatus = new JLabel("Auf Lager");
+		JLabel lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
 		lblArtikelStatus.setBounds(362, 57, 110, 43);
 		panel.add(lblArtikelStatus);
 		lblArtikelStatus.setForeground(new Color(0, 204, 51));
@@ -106,18 +104,14 @@ public class GUIArtikel implements ActionListener {
 		txtpnArtikelBeschreibung.setBounds(362, 272, 514, 132);
 		panel.add(txtpnArtikelBeschreibung);
 		
-		JComboBox comboBoxArtikelGröße = new JComboBox(comboBoxGrößen);
+		JComboBox comboBoxArtikelGröße = new JComboBox();
 		comboBoxArtikelGröße.setBounds(362, 111, 152, 35);
 		comboBoxArtikelGröße.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.add(comboBoxArtikelGröße);
 		
 		
-		frame.add(panelMain);
 		panelMain.setVisible(true);
-		frame.invalidate();
-		frame.validate();
-		frame.repaint();
-		
+		return panelMain;
 	}
 	
 	

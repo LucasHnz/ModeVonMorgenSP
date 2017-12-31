@@ -19,7 +19,7 @@ import Artikelverwaltung.Artikelsammlung;
 
 public class GUINeuerArtikel {	
 	
-public static Component neuerArtikel(int artikelNummer) {
+static  Component neuerArtikel(int artikelNummer) {
 		
 	
 	System.out.println("Artikel wird erstellt");
@@ -65,7 +65,7 @@ public static Component neuerArtikel(int artikelNummer) {
 		btnZumArtikel.setBounds(186, 147, 139, 30);
 		btnZumArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+			GUI.changePanel(GUIArtikel.getGUIArtikel(artikelNummer));
 			}
 		});
 		panelArtikel.add(btnZumArtikel);
