@@ -16,7 +16,7 @@ import MitarbeiterVerwaltung.Mitarbeiter;
 
 public class BestellungSammlung {
 
-	static HashMap<Integer, Bestellung> BestellungSammlung = new HashMap<Integer, Bestellung>();
+	public static HashMap<Integer, Bestellung> BestellungSammlung = new HashMap<Integer, Bestellung>();
 	
 	/**
 	 * füllt die HashMap BestellungSammlung mit Values aus der Datenbank

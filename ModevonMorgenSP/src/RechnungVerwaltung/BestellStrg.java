@@ -16,12 +16,20 @@ public class BestellStrg {
 	public static void storniereBestellung(int bestellnr) {
 		int bnr=bestellnr;
 		try{
+			//Dadruch, dass die Reihenfolge der querys wichtig ist, wurde auf einen Batch verzichtet, erst wenn die Erste Anfrage erfolg hatte, wird die zweite aufgeführt
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
+			Statement stmt2 = con.createStatement();
 			
-			String sqlbefehl = "delete from Rechungbestellung where bestellNr "+ bnr;
+			String Sql1 = "delete from bestellposition where bestellnr ="+bestellnr;
+			String Sql2 = "delete from RechnungBestellung where bestellnr ="+bnr;
 			
-			stmt.execute(sqlbefehl)	;
+			stmt.executeQuery(Sql1);
+			
+			stmt2.executeQuery(Sql2);
+			
+			
+			BestellungSammlung.BestellungSammlung.remove(bestellnr);
 			
 			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 			
@@ -70,7 +78,7 @@ public class BestellStrg {
 	
 	public static void aktualisiereVStatus(int i){
 		
-			Bestellung b = BestellungSammlung.BestellungSammlung.get(i);
+			Bestellung b = BestellungSammlung.getBestellung(i);
 		
 			try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();

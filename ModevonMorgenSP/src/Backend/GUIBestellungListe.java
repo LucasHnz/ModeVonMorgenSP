@@ -1,6 +1,7 @@
 package Backend;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -8,7 +9,9 @@ import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,7 +36,7 @@ public class GUIBestellungListe extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Rechnungs Nummer","Bestell Nummer", "Gastkunden Nummer","Bestandskunden Nummer", "IBAN", "Nachname", "Vorname", "Gesamtpreis", "Rabatt", "Datum","Versandstatus", "Ort","Straße","PLZ"};
+	private String[] columnNames = {"Rechnungs Nr","Bestell Nr", "Gastkunden Nr","Bestandskunden Nr", "IBAN", "Nachname", "Vorname", "Gesamtpreis", "Rabatt", "Datum","Versandstatus", "Ort","Straße","PLZ"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -148,18 +151,18 @@ public class GUIBestellungListe extends JPanel {
 		table = new JTable(new myTableModel(RechnungVerwaltung.BestellungSammlung.getBestellungSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-		table.getColumnModel().getColumn(2).setPreferredWidth(60);
-		table.getColumnModel().getColumn(3).setPreferredWidth(120);
-		table.getColumnModel().getColumn(4).setPreferredWidth(100);
-		table.getColumnModel().getColumn(5).setPreferredWidth(80);
-		table.getColumnModel().getColumn(6).setPreferredWidth(35);
-		table.getColumnModel().getColumn(7).setPreferredWidth(100);
-		table.getColumnModel().getColumn(8).setPreferredWidth(40);
-		table.getColumnModel().getColumn(9).setPreferredWidth(80);
-		table.getColumnModel().getColumn(10).setPreferredWidth(80);
-		table.getColumnModel().getColumn(10).setPreferredWidth(80);
+		table.getColumnModel().getColumn(0).setPreferredWidth(110);
+		table.getColumnModel().getColumn(1).setPreferredWidth(110);
+		table.getColumnModel().getColumn(2).setPreferredWidth(110);
+		table.getColumnModel().getColumn(3).setPreferredWidth(110);
+		table.getColumnModel().getColumn(4).setPreferredWidth(60);
+		table.getColumnModel().getColumn(5).setPreferredWidth(60);
+		table.getColumnModel().getColumn(6).setPreferredWidth(60);
+		table.getColumnModel().getColumn(7).setPreferredWidth(60);
+		table.getColumnModel().getColumn(8).setPreferredWidth(60);
+		table.getColumnModel().getColumn(9).setPreferredWidth(60);
+		table.getColumnModel().getColumn(10).setPreferredWidth(60);
+		table.getColumnModel().getColumn(10).setPreferredWidth(60);
 		
 		Comparator<Integer> intcomp = new Comparator<Integer>() {
 			@Override
@@ -208,7 +211,7 @@ public class GUIBestellungListe extends JPanel {
 				}
 			}
 		});
-		btnBestellungAnzeigen.setBounds(920, 11, 270, 48);
+		btnBestellungAnzeigen.setBounds(981, 11, 209, 48);
 		add(btnBestellungAnzeigen);
 		
 		/**
@@ -227,12 +230,39 @@ public class GUIBestellungListe extends JPanel {
 				}
 			});
 		
-			btnÄndernVStatus.setBounds(920,70,270,48);
+			btnÄndernVStatus.setBounds(981,70,209,48);
 			add(btnÄndernVStatus);
 		
 		setVisible(true);
+		
+		Image BEditieren = new ImageIcon("src\\Icons 64x64\\exchange.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblBEditieren = new JLabel(new ImageIcon(BEditieren));
+		lblBEditieren.setBounds(920, 70, 40, 40);
+		add(lblBEditieren);
+		
+		Image BAnzeigen = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblBAnzeigen = new JLabel(new ImageIcon(BAnzeigen));
+		lblBAnzeigen.setBounds(920, 12, 40, 40);
+		add(lblBAnzeigen);
+		
+		Image Blöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblBlöschen = new JLabel(new ImageIcon(Blöschen));
+		lblBlöschen.setBounds(920, 128, 40, 40);
+		add(lblBlöschen);
+		
+		JButton btnNewButton = new JButton("Bestellung löschen");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
+				BestellStrg.storniereBestellung(i);
+				
+			}
+		});
+		btnNewButton.setBounds(981, 129, 209, 48);
+		add(btnNewButton);
+		
 
 	}
-
-
 }

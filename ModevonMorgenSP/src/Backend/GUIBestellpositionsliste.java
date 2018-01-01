@@ -1,14 +1,17 @@
 package Backend;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -118,8 +121,7 @@ public class GUIBestellpositionsliste extends JFrame{
 		
 		setBackground(Color.DARK_GRAY);
 		BestellpositionSammlung.fülleMitSpeziellerNummer(i);
-		getContentPane().setLayout(null);
-		setBounds(200, 200, 1110, 480);
+		setBounds(200, 200, 979, 446);
 		setBackground(Color.DARK_GRAY);
 		
 		table = new JTable(new myTableModel(Bestellverwaltung.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
@@ -150,12 +152,13 @@ public class GUIBestellpositionsliste extends JFrame{
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(30,42,400, 295);
+		table.setBounds(30,42,250, 210);
 		table.setVisible(true);
 		
 		scrollpane = new JScrollPane();
-		scrollpane.setBounds(10, 11, 900, 490);
+		scrollpane.setBounds(10, 11, 700, 390);
 		scrollpane.setVisible(true);
+		getContentPane().setLayout(null);
 		scrollpane.setViewportView(table);
 		getContentPane().add(scrollpane);
 		
@@ -165,24 +168,24 @@ public class GUIBestellpositionsliste extends JFrame{
 		 * Button um eine Rücksendung anzunehmen
 		 */
 		JButton btnRücksAnnehmen = new JButton("R\u00FCcksendung Annehmen");
+		btnRücksAnnehmen.setBounds(776, 11, 177, 48);
 		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Methode zum Versenden einer EMail für Bestätigung und Rücksendung erstellen
 			}
 		});
-		btnRücksAnnehmen.setBounds(920, 11, 170, 48);
 		getContentPane().add(btnRücksAnnehmen);
 		
 		/**
 		 * Button um eine Rücksendung abzulehnen
 		 */
 		JButton btnRücksAblehnen = new JButton("R\u00FCcksendung Ablehnen");
+		btnRücksAblehnen.setBounds(776, 81, 177, 48);
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Methode zum Versenden einer Email für Ablehnung
 			}
 		});
-		btnRücksAblehnen.setBounds(920,70,170,48);
 		getContentPane().add(btnRücksAblehnen);
 		
 		
@@ -190,16 +193,33 @@ public class GUIBestellpositionsliste extends JFrame{
 		 * Button um zum Hauptfenster zurück zu kommen
 		 */
 		JButton btnZurück = new JButton ("Beenden");
+		btnZurück.setBounds(776, 149, 177, 48);
 			btnZurück.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Bestellverwaltung.BestellpositionSammlung.entferneDatenAusListe();
 					dispose();
 				}
 			});
-			btnZurück.setBounds(920,208,170,48);
 			getContentPane().add(btnZurück);
 			setVisible(true);
+			
+			Image Annehmen = new ImageIcon("src\\Icons 64x64\\checked.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+			JLabel lblAnnehmen = new JLabel(new ImageIcon(Annehmen));
+			lblAnnehmen.setBounds(720, 12, 40, 40);
+			getContentPane().add(lblAnnehmen);
+			
+			Image Ablehnen = new ImageIcon("src\\Icons 64x64\\warning.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+			JLabel lblAblehnen = new JLabel(new ImageIcon(Ablehnen));
+			lblAblehnen.setBounds(720, 82, 40, 40);
+			getContentPane().add(lblAblehnen);
+			
+			Image Zurück = new ImageIcon("src\\Icons 64x64\\down-arrow.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+			JLabel lblZurück = new JLabel(new ImageIcon(Zurück));
+			lblZurück.setBounds(720, 150, 40, 40);
+			getContentPane().add(lblZurück);
 		}
+	
+	
 	
 	
 

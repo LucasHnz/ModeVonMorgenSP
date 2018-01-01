@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import MitarbeiterVerwaltung.Mitarbeiter;
-import MitarbeiterVerwaltung.MitarbeiterSammlung;
+import AdministratorVerwaltung.AdministratorSammlung;
 
 /**
  * 
@@ -31,7 +30,7 @@ public class AdministratorStrg {
 		
 		stmt.executeQuery(sqlbefehel);
 		
-		AdministratorSammlung.AdministratorListe.remove(i);
+		AdministratorSammlung.removeAdmin(i);
 
 		
 	}catch (SQLException e) {

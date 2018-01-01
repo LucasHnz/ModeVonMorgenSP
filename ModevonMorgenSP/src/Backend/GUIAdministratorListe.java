@@ -1,12 +1,16 @@
 package Backend;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -28,7 +32,7 @@ public class GUIAdministratorListe extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Nutzernr", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Passwort"};
+	private String[] columnNames = {"Nutzer Nummer", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Passwort"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -134,15 +138,15 @@ public class GUIAdministratorListe extends JPanel{
 		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-		table.getColumnModel().getColumn(2).setPreferredWidth(60);
-		table.getColumnModel().getColumn(3).setPreferredWidth(120);
-		table.getColumnModel().getColumn(4).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(110);
+		table.getColumnModel().getColumn(1).setPreferredWidth(110);
+		table.getColumnModel().getColumn(2).setPreferredWidth(80);
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		table.getColumnModel().getColumn(4).setPreferredWidth(80);
 		table.getColumnModel().getColumn(5).setPreferredWidth(80);
-		table.getColumnModel().getColumn(6).setPreferredWidth(35);
-		table.getColumnModel().getColumn(7).setPreferredWidth(100);
-		table.getColumnModel().getColumn(8).setPreferredWidth(40);
+		table.getColumnModel().getColumn(6).setPreferredWidth(80);
+		table.getColumnModel().getColumn(7).setPreferredWidth(80);
+		table.getColumnModel().getColumn(8).setPreferredWidth(80);
 		table.getColumnModel().getColumn(9).setPreferredWidth(80);
 		
 		Comparator<Integer> intcomp = new Comparator<Integer>() {
@@ -186,7 +190,7 @@ public class GUIAdministratorListe extends JPanel{
 				}
 			}
 		});
-		btnNeuerAdministrator.setBounds(920, 11, 270, 48);
+		btnNeuerAdministrator.setBounds(981, 11, 209, 48);
 		add(btnNeuerAdministrator);
 		/**
 		 * Button um einen Admin zu editieren
@@ -199,7 +203,7 @@ public class GUIAdministratorListe extends JPanel{
 				new GUIAdministratorBearbeiten(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 			}
 		});
-		btnEditiereAdministrator.setBounds(920,70,270,48);
+		btnEditiereAdministrator.setBounds(981,70,209,48);
 		add(btnEditiereAdministrator);
 		
 		/**
@@ -222,8 +226,23 @@ public class GUIAdministratorListe extends JPanel{
 			
 			}
 		});
-		btnLöscheAdmin.setBounds(920,129,270,48);
+		btnLöscheAdmin.setBounds(981,129,209,48);
 		add(btnLöscheAdmin);
+		
+		Image AdminEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblAdminEditieren = new JLabel(new ImageIcon(AdminEditieren));
+		lblAdminEditieren.setBounds(920, 70, 40, 40);
+		add(lblAdminEditieren);
+		
+		Image AdminHinzufügen = new ImageIcon("src\\Icons 64x64\\plus.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblAdminHinzufügen = new JLabel(new ImageIcon(AdminHinzufügen));
+		lblAdminHinzufügen.setBounds(920, 12, 40, 40);
+		add(lblAdminHinzufügen);
+		
+		Image AdminLöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblAdminLöschen = new JLabel(new ImageIcon(AdminLöschen));
+		lblAdminLöschen.setBounds(920, 128, 40, 40);
+		add(lblAdminLöschen);
 		
 		setVisible(true);
 

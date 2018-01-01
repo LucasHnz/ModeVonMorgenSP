@@ -83,6 +83,10 @@ public class AdministratorSammlung {
 		return AdministratorListe.get(Adminnr);
 	}
 	
+	public static void removeAdmin(int nr) {
+		AdministratorListe.remove(nr);
+	}
+	
 	/**
 	 * Fügt der Datenbank einen neuen Administrator hinzu
 	 * 

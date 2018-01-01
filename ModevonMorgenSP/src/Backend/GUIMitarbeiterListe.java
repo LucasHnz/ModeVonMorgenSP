@@ -2,13 +2,16 @@ package Backend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -181,14 +184,14 @@ public class GUIMitarbeiterListe extends JPanel{
 		scrollpane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(38);
-		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(110);
+		table.getColumnModel().getColumn(1).setPreferredWidth(110);
 		table.getColumnModel().getColumn(2).setPreferredWidth(80);
-		table.getColumnModel().getColumn(3).setPreferredWidth(30);
-		table.getColumnModel().getColumn(4).setPreferredWidth(30);
-		table.getColumnModel().getColumn(5).setPreferredWidth(30);
-		table.getColumnModel().getColumn(6).setPreferredWidth(100);
-		table.getColumnModel().getColumn(7).setPreferredWidth(10);
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		table.getColumnModel().getColumn(4).setPreferredWidth(80);
+		table.getColumnModel().getColumn(5).setPreferredWidth(80);
+		table.getColumnModel().getColumn(6).setPreferredWidth(80);
+		table.getColumnModel().getColumn(7).setPreferredWidth(80);
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(sorter);
@@ -218,7 +221,7 @@ public class GUIMitarbeiterListe extends JPanel{
 				}
 			}
 		});
-		btnNeuerMitarbeiter.setBounds(920, 11, 270, 48);
+		btnNeuerMitarbeiter.setBounds(981, 11, 209, 48);
 		add(btnNeuerMitarbeiter);
 		
 		/**
@@ -237,7 +240,7 @@ public class GUIMitarbeiterListe extends JPanel{
 				}
 			}
 		});
-		btnEditiereMitarbeiter.setBounds(920,70,270,48);
+		btnEditiereMitarbeiter.setBounds(981,70,209,48);
 		add(btnEditiereMitarbeiter);
 		
 		/**
@@ -259,9 +262,24 @@ public class GUIMitarbeiterListe extends JPanel{
 			
 			}
 		});
-		btnLöscheMitarbeiter.setBounds(920,129,270,48);
+		btnLöscheMitarbeiter.setBounds(981,129,209,48);
 		add(btnLöscheMitarbeiter);
 		setVisible(true);
+		
+		Image MAEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblMAEditieren = new JLabel(new ImageIcon(MAEditieren));
+		lblMAEditieren.setBounds(920, 70, 40, 40);
+		add(lblMAEditieren);
+		
+		Image MAHinzufügen = new ImageIcon("src\\Icons 64x64\\plus.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblMAHinzufügen = new JLabel(new ImageIcon(MAHinzufügen));
+		lblMAHinzufügen.setBounds(920, 12, 40, 40);
+		add(lblMAHinzufügen);
+		
+		Image MALöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblMALöschen = new JLabel(new ImageIcon(MALöschen));
+		lblMALöschen.setBounds(920, 128, 40, 40);
+		add(lblMALöschen);
 
 	}
 }
