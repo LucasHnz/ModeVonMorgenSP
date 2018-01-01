@@ -327,6 +327,37 @@ public class holeNächsteNummer {
 		return (i+1);
 	}
 	
+	
+	/**
+	 * Holt sich die nächste RücksendeNr
+	 * @return
+	 */
+	public static int nächsteRüccksendeNr() {
+		int i = 0;
+		
+		Connection con = VerbindungDB.erstelleConnection();
+		
+		try {
+			
+			Statement stmt = con.createStatement();
+			String sqlbefehl = "select max(rücksendenr) from Rücksendung";
+			
+			ResultSet rs = stmt.executeQuery(sqlbefehl);
+			while (rs.next()) {
+				i = rs.getInt("Rücksendenr");
+			}
+			
+			stmt.close();
+			con.close();
+		
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return (i+1);
+	}
+	
 }
 
 	
