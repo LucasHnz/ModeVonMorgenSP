@@ -222,7 +222,7 @@ public class GUIAdministratorListe extends JPanel{
 		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
 				
 				data.remove(i);
-				AdministratorVerwaltung.AdministratorStrg.entferneAdmin(i);
+				AdministratorVerwaltung.AdministratorStrg.entferneAdmin(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 			
 			}
 		});
