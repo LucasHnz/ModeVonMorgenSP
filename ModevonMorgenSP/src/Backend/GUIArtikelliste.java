@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -40,7 +42,57 @@ public class GUIArtikelliste extends JPanel {
 	private JTable table;
 	private JScrollPane scrollpane;
 	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Art", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};
+	private myTableModel model;
 
+	Comparator<Double> doublecomp = new Comparator<Double>() {
+		@Override
+		public int compare(Double o1, Double o2) {
+			if(o1 > o2)
+				return 1;
+			else if(o1 < o2)
+				return -1;
+			else
+				return 0;
+		}
+	};
+	Comparator<Integer> intcomp = new Comparator<Integer>() {
+		@Override
+		public int compare(Integer o1, Integer o2) {
+			if(o1 > o2)
+				return 1;
+			else if(o1 < o2)
+				return -1;
+			else
+				return 0;
+		}		
+	};
+	WindowListener formularListener = new WindowListener() {
+
+		@Override
+		public void windowActivated(WindowEvent e) {}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			model.fireTableStructureChanged();
+			setStructure();
+			}
+
+		@Override
+		public void windowClosing(WindowEvent e) {}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {}
+
+		@Override
+		public void windowIconified(WindowEvent e) {}
+
+		@Override
+		public void windowOpened(WindowEvent e) {}
+	};
+	
 	private class myTableModel extends AbstractTableModel{
 
 		private String[] columnNames;
@@ -116,9 +168,12 @@ public class GUIArtikelliste extends JPanel {
 		 */
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+			
 			try {
 				if(columnIndex == 0) {
-					return String.valueOf(data.get(keys[rowIndex]).getArtikelnummer());
+					int i = keys[rowIndex];
+					int nr = data.get(i).getArtikelnummer();
+					return String.valueOf(nr);
 				}
 				else if(columnIndex == 1) {
 					return data.get(keys[rowIndex]).getBezeichnung();
@@ -153,6 +208,9 @@ public class GUIArtikelliste extends JPanel {
 			}catch(NullPointerException e) {
 				String a = null;
 				return a;
+			}catch(ArrayIndexOutOfBoundsException e) {
+				e.printStackTrace();
+				return null;
 			}
 		}
 		/**
@@ -172,76 +230,48 @@ public class GUIArtikelliste extends JPanel {
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
 			
-		Comparator<Double> doublecomp = new Comparator<Double>() {
-			@Override
-			public int compare(Double o1, Double o2) {
-				if(o1 > o2)
-					return 1;
-				else if(o1 < o2)
-					return -1;
-				else
-					return 0;
-			}
-		};
-		
-		Comparator<Integer> intcomp = new Comparator<Integer>() {
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				if(o1 > o2)
-					return 1;
-				else if(o1 < o2)
-					return -1;
-				else
-					return 0;
-			}		
-		};
-		
-		table = new JTable(new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames));
+		model = new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames);
+		table = new JTable(model);
 		table.setFillsViewportHeight(true);
-		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(32);
-		table.getColumnModel().getColumn(1).setPreferredWidth(120);
-		table.getColumnModel().getColumn(2).setPreferredWidth(80);
-		table.getColumnModel().getColumn(3).setPreferredWidth(70);
-		table.getColumnModel().getColumn(4).setPreferredWidth(30);
-		table.getColumnModel().getColumn(5).setPreferredWidth(30);
-		table.getColumnModel().getColumn(6).setPreferredWidth(30);
-		table.getColumnModel().getColumn(7).setPreferredWidth(120);
-		table.getColumnModel().getColumn(8).setPreferredWidth(10);
-		
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
-		table.setRowSorter(sorter);
-		table.getRowSorter().toggleSortOrder(0);
-		table.setRowSelectionAllowed(true);
-		table.setColumnSelectionAllowed(false);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		sorter.setComparator(4, intcomp);
-		sorter.setComparator(5, doublecomp);
-		sorter.setComparator(6, intcomp);
+		setStructure();
 		
 		scrollpane = new JScrollPane();
 		scrollpane.setBounds(10, 11, 900, 490);
 		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
-		JButton btnNeuerSchuhartikel = new JButton();
-		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new GUIArtikelFormular("Schuhe");
+		JLabel lblNeuerArtikel = new JLabel("Neuer Artikel");
+		lblNeuerArtikel.setForeground(Color.WHITE);
+		lblNeuerArtikel.setIgnoreRepaint(true);
+		lblNeuerArtikel.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNeuerArtikel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNeuerArtikel.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNeuerArtikel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblNeuerArtikel.setBackground(Color.LIGHT_GRAY);
+		lblNeuerArtikel.setBounds(920, 12, 270, 35);
+		add(lblNeuerArtikel);
+		
+		
+		Image accessoires = new ImageIcon("src\\Icons 64x64\\glasses.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		JButton btnNeuesAccessoir = new JButton(new ImageIcon(accessoires));
+		btnNeuesAccessoir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIArtikelFormular accFormular = new GUIArtikelFormular("Accessoires");		
+				accFormular.addWindowListener(formularListener);					
 			}
 		});
-		Image schuhe = new ImageIcon("src\\Icons 64x64\\shoe.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
-		btnNeuerSchuhartikel.setIcon(new ImageIcon(schuhe));
-		btnNeuerSchuhartikel.setBounds(1105, 51, 86, 48);
-		btnNeuerSchuhartikel.setBorder(BorderFactory.createEmptyBorder());
-		btnNeuerSchuhartikel.setContentAreaFilled(false);
-		add(btnNeuerSchuhartikel);
+		btnNeuesAccessoir.setBounds(921, 51, 86, 48);
+		btnNeuesAccessoir.setBorder(BorderFactory.createEmptyBorder());
+		btnNeuesAccessoir.setContentAreaFilled(false);
+		add(btnNeuesAccessoir);
+		
 		
 		Image kleidung = new ImageIcon("src\\Icons 64x64\\t-shirt.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
 		JButton btnNeuerKleidungsartikel = new JButton(new ImageIcon(kleidung));
 		btnNeuerKleidungsartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new GUIArtikelFormular("Kleidung");
+				GUIArtikelFormular kleidungFormular = new GUIArtikelFormular("Kleidung");
+				kleidungFormular.addWindowListener(formularListener);
 			}
 		});
 		btnNeuerKleidungsartikel.setBounds(1013, 51, 86, 48);
@@ -249,17 +279,20 @@ public class GUIArtikelliste extends JPanel {
 		btnNeuerKleidungsartikel.setContentAreaFilled(false);
 		add(btnNeuerKleidungsartikel);
 		
-		Image accessoires = new ImageIcon("src\\Icons 64x64\\glasses.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
-		JButton btnNeuesAccessoir = new JButton(new ImageIcon(accessoires));
-		btnNeuesAccessoir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new GUIArtikelFormular("Accessoires");
+		Image schuhe = new ImageIcon("src\\Icons 64x64\\shoe.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		JButton btnNeuerSchuhartikel = new JButton();
+		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUIArtikelFormular schuhFormular = new GUIArtikelFormular("Schuhe");
+				schuhFormular.addWindowListener(formularListener);
 			}
 		});
-		btnNeuesAccessoir.setBounds(921, 51, 86, 48);
-		btnNeuesAccessoir.setBorder(BorderFactory.createEmptyBorder());
-		btnNeuesAccessoir.setContentAreaFilled(false);
-		add(btnNeuesAccessoir);
+		btnNeuerSchuhartikel.setIcon(new ImageIcon(schuhe));
+		btnNeuerSchuhartikel.setBounds(1105, 51, 86, 48);
+		btnNeuerSchuhartikel.setBorder(BorderFactory.createEmptyBorder());
+		btnNeuerSchuhartikel.setContentAreaFilled(false);
+		add(btnNeuerSchuhartikel);
+		
 		
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
 		btnEditiereArtikel.addActionListener(new ActionListener() {
@@ -269,6 +302,12 @@ public class GUIArtikelliste extends JPanel {
 				new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
 			}
 		});
+		
+	
+		Image ArtikelEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblArtikelEditieren = new JLabel(new ImageIcon(ArtikelEditieren));
+		lblArtikelEditieren.setBounds(922, 124, 40, 40);
+		add(lblArtikelEditieren);
 		btnEditiereArtikel.setBounds(976, 120, 215, 48);
 		add(btnEditiereArtikel);
 		
@@ -286,12 +325,19 @@ public class GUIArtikelliste extends JPanel {
 					
 				if(optionPane.equals(0)) {
 					ArtikelStrg.entferneArtikel(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+					model.fireTableStructureChanged();
+					setStructure();
 					JOptionPane.showMessageDialog(null,  "Artikel wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
 				}else if(optionPane.equals(1)) {
 					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
 				}			
 			}
 		});
+		
+		Image ArtikelEntfernen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblArtikelEntfernen = new JLabel(new ImageIcon(ArtikelEntfernen));
+		lblArtikelEntfernen.setBounds(922, 180, 40, 40);
+		add(lblArtikelEntfernen);
 		btnEntferneArtikel.setBounds(976, 179, 215, 48);
 		add(btnEntferneArtikel);
 		
@@ -311,6 +357,11 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
+		
+		Image Rabatt = new ImageIcon("src\\Icons 64x64\\division.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblRabatt = new JLabel(new ImageIcon(Rabatt));
+		lblRabatt.setBounds(922, 241, 40, 40);
+		add(lblRabatt);
 		btnRabatt.setBounds(976, 238, 215, 48);
 		add(btnRabatt);
 				
@@ -330,6 +381,10 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
+		Image Notiz = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblNotiz = new JLabel(new ImageIcon(Notiz));
+		lblNotiz.setBounds(922, 360, 40, 40);
+		add(lblNotiz);
 		btnNotiz.setBounds(976, 356, 215, 48);
 		add(btnNotiz);
 			
@@ -349,6 +404,11 @@ public class GUIArtikelliste extends JPanel {
 				}		
 			}
 		});
+		
+		Image Bestand = new ImageIcon("src\\Icons 64x64\\maths.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblBestand = new JLabel(new ImageIcon(Bestand));
+		lblBestand.setBounds(922, 300, 40, 40);
+		add(lblBestand);
 		btnBestand.setBounds(976, 297, 215, 48);
 		add(btnBestand);
 		
@@ -362,50 +422,36 @@ public class GUIArtikelliste extends JPanel {
 				
 			}
 		});
-		btnArtikelbildHochladen.setBounds(976, 416, 216, 48);
-		add(btnArtikelbildHochladen);
-		
-		JLabel lblNeuerArtikel = new JLabel("Neuer Artikel");
-		lblNeuerArtikel.setForeground(Color.WHITE);
-		lblNeuerArtikel.setIgnoreRepaint(true);
-		lblNeuerArtikel.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNeuerArtikel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNeuerArtikel.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblNeuerArtikel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNeuerArtikel.setBackground(Color.LIGHT_GRAY);
-		lblNeuerArtikel.setBounds(920, 12, 270, 35);
-		add(lblNeuerArtikel);
-		
-		Image ArtikelEntfernen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblArtikelEntfernen = new JLabel(new ImageIcon(ArtikelEntfernen));
-		lblArtikelEntfernen.setBounds(922, 180, 40, 40);
-		add(lblArtikelEntfernen);
-		
-		Image ArtikelEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblArtikelEditieren = new JLabel(new ImageIcon(ArtikelEditieren));
-		lblArtikelEditieren.setBounds(922, 124, 40, 40);
-		add(lblArtikelEditieren);
-		
-		Image Rabatt = new ImageIcon("src\\Icons 64x64\\division.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblRabatt = new JLabel(new ImageIcon(Rabatt));
-		lblRabatt.setBounds(922, 241, 40, 40);
-		add(lblRabatt);
-		
-		Image Bestand = new ImageIcon("src\\Icons 64x64\\maths.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblBestand = new JLabel(new ImageIcon(Bestand));
-		lblBestand.setBounds(922, 300, 40, 40);
-		add(lblBestand);
-		
-		Image Notiz = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblNotiz = new JLabel(new ImageIcon(Notiz));
-		lblNotiz.setBounds(922, 360, 40, 40);
-		add(lblNotiz);
 		
 		Image Picture = new ImageIcon("src\\Icons 64x64\\landscape.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblPicture = new JLabel(new ImageIcon(Picture));
 		lblPicture.setBounds(922, 420, 40, 40);
 		add(lblPicture);
-		
+		btnArtikelbildHochladen.setBounds(976, 416, 216, 48);
+		add(btnArtikelbildHochladen);
+	
 		setVisible(true);
+	}
+	public void setStructure() {
+		table.setDragEnabled(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(40);
+		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+		table.getColumnModel().getColumn(2).setPreferredWidth(80);
+		table.getColumnModel().getColumn(3).setPreferredWidth(70);
+		table.getColumnModel().getColumn(4).setPreferredWidth(30);
+		table.getColumnModel().getColumn(5).setPreferredWidth(30);
+		table.getColumnModel().getColumn(6).setPreferredWidth(30);
+		table.getColumnModel().getColumn(7).setPreferredWidth(120);
+		table.getColumnModel().getColumn(8).setPreferredWidth(10);
+		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		table.setRowSorter(sorter);
+		table.getRowSorter().toggleSortOrder(0);
+		table.setRowSelectionAllowed(true);
+		table.setColumnSelectionAllowed(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		sorter.setComparator(4, intcomp);
+		sorter.setComparator(5, doublecomp);
+		sorter.setComparator(6, intcomp);
 	}
 }

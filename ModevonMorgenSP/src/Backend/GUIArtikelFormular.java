@@ -296,7 +296,6 @@ public class GUIArtikelFormular extends JFrame {
 				String Notiz = null;
 				String[] Lieferanten = taLieferanten.getText().split(",");
 				double Preis = Double.parseDouble(textFieldPreis.getText().replace(',', '.'));
-				System.out.println(Preis);
 				int Rabatt = 0;
 				int Schuhgröße = 0;
 				String Farbe = null;
@@ -306,7 +305,6 @@ public class GUIArtikelFormular extends JFrame {
 				else if(Kategorie == "Accessoires")
 					Farbe = textField_5.getText();
 				else if(Kategorie == "Kleidung")
-					System.out.println((String) comboBoxGröße.getSelectedItem());
 					Größe = (String) comboBoxGröße.getSelectedItem();
 				ArtikelStrg.NeuerArtikel(Kategorie, Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, 
 						Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe,
