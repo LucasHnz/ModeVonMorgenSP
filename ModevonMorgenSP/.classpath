@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="ojdbc6.jar"/>
 	<classpathentry kind="lib" path="LookAndFeel/JTattoo-1.6.11.jar"/>
 	<classpathentry kind="lib" path="LookAndFeel/seaglasslookandfeel-0.2.1.jar"/>
+	<classpathentry kind="lib" path="mail-1.5.0-b01.jar"/>
+	<classpathentry kind="lib" path="jcommon-1.0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
