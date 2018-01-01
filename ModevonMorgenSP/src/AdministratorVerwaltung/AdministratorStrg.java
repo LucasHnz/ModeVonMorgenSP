@@ -34,7 +34,7 @@ public class AdministratorStrg {
 
 		
 	}catch (SQLException e) {
-		e.getMessage();
+		e.printStackTrace();
 	}
 }
 	
@@ -239,7 +239,7 @@ public static void aktualisiereName(String name, int nutzernr){
 		int gehalt2 = Integer.parseInt(gehalt);
 		int berechtigung2 = Integer.parseInt(berechtigung);
 		
-		Administrator admin = new Administrator(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
+		//Administrator admin = new Administrator(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
 		
 		
 		try {
@@ -256,7 +256,7 @@ public static void aktualisiereName(String name, int nutzernr){
 			AdministratorSammlung.hinzuf¸genAdmin(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2, iban, gehalt2, berechtigung2, passwort);
 			
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 		

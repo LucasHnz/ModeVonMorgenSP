@@ -21,6 +21,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import AdministratorVerwaltung.Administrator;
 import AdministratorVerwaltung.AdministratorSammlung;
+import AdministratorVerwaltung.AdministratorStrg;
 
 /**
  * 
@@ -70,6 +71,7 @@ public class GUIAdministratorListe extends JPanel{
 		 * Holt sich die Anzahl der Reihen
 		 */
 		public int getRowCount() {
+			System.out.println(data.size());
 			return data.size();
 		}
 		
@@ -82,7 +84,7 @@ public class GUIAdministratorListe extends JPanel{
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
 				if(columnIndex == 0) {
-					return data.get(keys[rowIndex]).getNutzernr();
+					return String.valueOf(data.get(keys[rowIndex]).getNutzernr());
 				}
 				else if(columnIndex == 1) {
 					return data.get(keys[rowIndex]).getNachname();
@@ -108,13 +110,14 @@ public class GUIAdministratorListe extends JPanel{
 				else if (columnIndex == 8) {
 					return data.get(keys[rowIndex]).getGehalt();
 				}
-				else if ( columnIndex == 9 ) {
+				else if (columnIndex == 9 ) {
 					return data.get(keys[rowIndex]).getPasswort();
 				}		
 				else
 					return null;
 			
 			}catch(NullPointerException e) {
+				e.printStackTrace();
 				String a = null;
 				return a;
 			}	
@@ -221,8 +224,8 @@ public class GUIAdministratorListe extends JPanel{
 		                JOptionPane.WARNING_MESSAGE, null, 
 		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
 				
-				data.remove(i);
-				AdministratorVerwaltung.AdministratorStrg.entferneAdmin(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+				//data.remove(i);
+				AdministratorStrg.entferneAdmin(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 			
 			}
 		});

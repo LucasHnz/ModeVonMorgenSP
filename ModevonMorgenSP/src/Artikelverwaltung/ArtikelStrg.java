@@ -181,7 +181,7 @@ public class ArtikelStrg {
 			Artikelsammlung.removeArtikel(Artikelnr);
 			
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}finally {
 			try {
 				if(stmt !=null) 
