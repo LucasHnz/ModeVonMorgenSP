@@ -21,11 +21,13 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+
 import Bestellverwaltung.Bestellposition;
 import Bestellverwaltung.BestellpositionSammlung;
-import MitarbeiterVerwaltung.Mitarbeiter;
-import MitarbeiterVerwaltung.MitarbeiterSammlung;
+
 import RechnungVerwaltung.Bestellung;
+import RücksendungVerwaltung.Rücksendung;
+import RücksendungVerwaltung.RücksendungSammlung;
 
 /**
  * 
@@ -171,7 +173,20 @@ public class GUIBestellpositionsliste extends JFrame{
 		btnRücksAnnehmen.setBounds(776, 11, 177, 48);
 		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// Methode zum Versenden einer EMail für Bestätigung und Rücksendung erstellen
+				
+				JOptionPane.showOptionDialog(null, "Sie sind dabei eine Rücksendung anzunehmen! \nFortfahren ?","Rücksendung Annehmen",
+		                JOptionPane.YES_NO_CANCEL_OPTION,
+		                JOptionPane.WARNING_MESSAGE, null, 
+		                new String[]{"Ok", "Abbrechen"}, "Ok");
+				
+				final HashMap<Integer, Bestellposition> data = BestellpositionSammlung.getBestellpositionsSammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				
+				int i =data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getPosNr();
+				
+				System.out.println(i);
+				
+				RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
 			}
 		});
 		getContentPane().add(btnRücksAnnehmen);

@@ -330,7 +330,7 @@ public class holeNächsteNummer {
 	
 	/**
 	 * Holt sich die nächste RücksendeNr
-	 * @return
+	 * @return rücksendenr
 	 */
 	public static int nächsteRüccksendeNr() {
 		int i = 0;
@@ -340,11 +340,12 @@ public class holeNächsteNummer {
 		try {
 			
 			Statement stmt = con.createStatement();
-			String sqlbefehl = "select max(rücksendenr) from Rücksendung";
+			String s = "select max(rücksendenr) from Rücksendung";
 			
-			ResultSet rs = stmt.executeQuery(sqlbefehl);
-			while (rs.next()) {
-				i = rs.getInt("Rücksendenr");
+			ResultSet rs = stmt.executeQuery(s);
+			
+			while(rs.next()) {
+				i = rs.getInt(1);
 			}
 			
 			stmt.close();
@@ -352,6 +353,7 @@ public class holeNächsteNummer {
 		
 		
 		} catch (SQLException e) {
+			System.out.println("HIER");
 			e.printStackTrace();
 		}
 		
