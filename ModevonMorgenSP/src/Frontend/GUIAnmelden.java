@@ -44,7 +44,7 @@ public class GUIAnmelden {
 					  String pwd = new String(anmeldenPasswort.getPassword());
 					  String email = anmeldenEmail.getText();
 					  
-					  LogStrg.anmelden(pwd, email, anmeldenCbList);
+					  LogStrg.anmelden(pwd, email);
 					  panelAnmelden.setVisible(false);
 					
 				}

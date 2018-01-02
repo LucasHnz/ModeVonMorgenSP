@@ -50,25 +50,28 @@ public class GUIArtikel implements ActionListener {
 	
 	
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	static JPanel getGUIArtikel(int artikelNummer) {
 		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 147, 1234, 563);
+		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setLayout(null);
 		panel.setBackground(SystemColor.inactiveCaption);
-		panel.setBounds(105, 60, 1051, 434);
+		panel.setBounds(42, 44, 1150, 491);
 		panelMain.add(panel);
 		
 		
 		JLabel labelArtikelBild = new JLabel("");
 		labelArtikelBild.setBackground(Color.WHITE);
 		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setBounds(70, 32, 250, 250);
+		labelArtikelBild.setBounds(54, 32, 250, 250);
 	
 		ImageIcon icon;
 		if(Artikelsammlung.getArtikel(artikelNummer).getImage() != null) {
@@ -76,7 +79,7 @@ public class GUIArtikel implements ActionListener {
 		}
 		else 
 			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
-        Image img = icon.getImage().getScaledInstance(166, 166, Image.SCALE_SMOOTH);
+        Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         labelArtikelBild.setIcon(new ImageIcon(img));
 		
 		panel.add(labelArtikelBild);
@@ -87,13 +90,18 @@ public class GUIArtikel implements ActionListener {
 		panel.add(lblArtikelTitel);
 		
 		JLabel lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
-		lblArtikelStatus.setBounds(362, 57, 110, 43);
+		lblArtikelStatus.setBounds(362, 57, 319, 43);
 		panel.add(lblArtikelStatus);
 		lblArtikelStatus.setForeground(new Color(0, 204, 51));
 		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		lblArtikelStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JButton btnWarenkorbHinz = new JButton("In den Warenkorb");
+		btnWarenkorbHinz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Hinzufügen
+			}
+		});
 		btnWarenkorbHinz.setBounds(361, 185, 153, 35);
 		panel.add(btnWarenkorbHinz);
 		btnWarenkorbHinz.setBackground(SystemColor.inactiveCaptionBorder);
@@ -115,11 +123,6 @@ public class GUIArtikel implements ActionListener {
 	}
 	
 	
-	public ImageIcon bildAnpassen(String imageRoot) {
-		
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-		return imageIcon;
-	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
