@@ -38,7 +38,7 @@ public class GUIMitarbeiter implements ActionListener{
 	public JComboBox comboBoxArtikelHerren = new JComboBox();
 	public JComboBox comboBoxArtikelDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
-	public String[] anmeldenCbList;
+	public String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public int abstandsZahl = 170;
@@ -52,9 +52,7 @@ public class GUIMitarbeiter implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public GUIMitarbeiter(String[]anmeldenCbList) {
-		System.out.println("Ausgef�hrt HK");
-		this.anmeldenCbList = anmeldenCbList;
+	public GUIMitarbeiter() {
 		initialize(damenCbList, herrenCbList, anmeldenCbList);
 		for(int i = 0; i>= mitarbeiterListe.length; i++) {
 			
@@ -205,15 +203,15 @@ public class GUIMitarbeiter implements ActionListener{
 			}
 
 		    if(auswahl == "Meine Bestellungen") {
-			    new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
+			    //new GUIKontoBestellungen(damenCbList, herrenCbList);
 			}
 		    
 		    if(auswahl == "Konto verwalten") {
-			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
+			    //new GUIKontoVerwalten(damenCbList, herrenCbList);
 			}
 		    if(auswahl == "Abmelden") {
 		    	System.out.println("DADA");
-		    	LogStrg.abmelden(anmeldenCbList);
+		    	LogStrg.abmelden();
 		    	frame.dispose();
 		    }
 		}

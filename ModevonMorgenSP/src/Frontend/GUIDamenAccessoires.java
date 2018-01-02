@@ -55,7 +55,6 @@ public class GUIDamenAccessoires {
 public static void ladeArtikel() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Accessoires where geschlecht = 'W' ";	
@@ -67,7 +66,6 @@ public static void ladeArtikel() {
 			anzahlArtikel = anzahlArtikel +1;
 			
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -80,7 +78,6 @@ public static void ladeArtikel() {
 public static void ladeArtikelKopfschmuck() {
 	
 	try {
-	System.out.println("1");
 	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 	Statement stmt = con.createStatement();
 	String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kopfschmuck'";	
@@ -106,7 +103,6 @@ public static void ladeArtikelKopfschmuck() {
 public static void ladeArtikelKetten() {
 
 try {
-System.out.println("1");
 Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 Statement stmt = con.createStatement();
 String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kette'";	
@@ -129,31 +125,30 @@ GUI.frame.revalidate();
 GUI.frame.repaint();
 }
 
-public static void ladeArtikelOhrringe() {
+	public static void ladeArtikelOhrringe() {
 
-try {
-System.out.println("1");
-Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-Statement stmt = con.createStatement();
-String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ohrring'";	
-ResultSet rs = stmt.executeQuery(sql);
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ohrring'";	
+			ResultSet rs = stmt.executeQuery(sql);
 
-while(rs.next()) {
-	int artikelnr = rs.getInt("Artikelnr");
-	panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-	anzahlArtikel = anzahlArtikel +1;
-}
-System.out.println(anzahlArtikel);
-rs.close();
-Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			while(rs.next()) {
+			int artikelnr = rs.getInt("Artikelnr");
+			panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+			anzahlArtikel = anzahlArtikel +1;
+			}
+			
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
-}catch(SQLException e) {
-	e.printStackTrace();
-}
+			}catch(SQLException e) {
+			e.printStackTrace();
+			}
 
-GUI.frame.revalidate();
-GUI.frame.repaint();
-}
+			GUI.frame.revalidate();
+			GUI.frame.repaint();
+			}
 
 public static void ladeArtikelArmb‰nder() {
 
@@ -221,7 +216,7 @@ GUI.frame.repaint();
 		panelMain.setLayout(null);
 		
 		JPanel panelScrollPaneLinks = new JPanel();
-		panelScrollPaneLinks.setBackground(SystemColor.control);
+		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneLinks.setLayout(null);
 		
 		JScrollPane scrollPaneDamenAccessoiresLinks = new JScrollPane(panelScrollPaneLinks);
@@ -315,7 +310,7 @@ GUI.frame.repaint();
 		panelScrollPaneLinks.add(btnRinge);
 		
 		panelDamenAccessoires = new JPanel();
-		panelDamenAccessoires.setBackground(SystemColor.inactiveCaptionBorder);
+		panelDamenAccessoires.setBackground(Color.WHITE);
 		panelDamenAccessoires.setAutoscrolls(true);
 		
 		JScrollPane scrollPaneDamenAccessoires = new JScrollPane();

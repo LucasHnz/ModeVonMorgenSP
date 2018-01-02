@@ -113,7 +113,7 @@ public static void ladeArtikel() {
 		panelMain.setLayout(null);
 		
 		JPanel panelScrollPaneLinks = new JPanel();
-		panelScrollPaneLinks.setBackground(SystemColor.control);
+		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneLinks.setLayout(null);
 		
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
@@ -155,7 +155,7 @@ public static void ladeArtikel() {
 		
 		
 		panelHerrenAccessoires = new JPanel();
-		panelHerrenAccessoires.setBackground(SystemColor.inactiveCaptionBorder);
+		panelHerrenAccessoires.setBackground(Color.WHITE);
 		panelHerrenAccessoires.setAutoscrolls(true);
 		
 		JScrollPane scrollPaneHerrenSchuhe = new JScrollPane();

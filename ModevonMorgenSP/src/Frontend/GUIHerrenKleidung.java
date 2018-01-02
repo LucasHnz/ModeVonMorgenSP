@@ -142,7 +142,6 @@ public class GUIHerrenKleidung {
 	public static JPanel getGUIHerrenKleidung() {
 	
 		
-		System.out.println("Das hier wird ausgeführt");
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
@@ -209,7 +208,7 @@ public class GUIHerrenKleidung {
 		panelScrollPaneLinks.add(btnHandschuhe);
 		
 		panelHerrenKleidung = new JPanel();
-		panelHerrenKleidung.setBackground(SystemColor.inactiveCaptionBorder);
+		panelHerrenKleidung.setBackground(Color.WHITE);
 		panelHerrenKleidung.setAutoscrolls(true);
 			
 		JScrollPane scrollPaneHerrenKleidung = new JScrollPane();

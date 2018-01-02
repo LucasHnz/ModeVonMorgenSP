@@ -13,18 +13,14 @@ import Frontend.GUI;
 import Frontend.GUIAnmelden;
 
 public class LogStrg {
-	//ABC
 	
-	static String testEmail = "jochen.kuester@fh-bielefeld.de";
-	static String testPasswort = "12345678";
-	static String testPwMitarbeiter = "123";
-	static String testMailMitarbeiter = "test";
 	static int angemeldet = 0;
+	static String recht = " ";
 	
-	public static  void anmelden(String passwort, String email, String[]anmeldenCbList) {
+	
+	public static  void anmelden(String passwort, String email) {
 		try 
 		{
-			System.out.println("Hier");
 			
 			Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Connection con2 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -44,22 +40,41 @@ public class LogStrg {
 			if(rs1.next()) {
 				System.out.println("1");
 				Frontend.GUI.fensterSchlieﬂen();
-				angemeldet = 2;
+				new GUI();
+				setAnmeldeStatus(2);
+				setRecht("Angemeldet");
+				GUI.setRechteAnzeigen(recht);
 		
 			}
 			
 			if(rs2.next()) {
 				System.out.println("2");
 				Frontend.GUI.fensterSchlieﬂen();
-				new Backend.GUIMitarbeiter(anmeldenCbList);
-				angemeldet = 3;
+				new Backend.GUIMitarbeiter();
+				setAnmeldeStatus(3);
+				setRecht("Mitarbeiter");
+				GUI.setRechteAnzeigen(recht);
 			}
 			
 			if(rs3.next()) {
 				System.out.println("3");
 				Frontend.GUI.fensterSchlieﬂen();
-				new Backend.GUIMitarbeiter(anmeldenCbList);
-				angemeldet = 4;
+				new Backend.GUIMitarbeiter();
+				setAnmeldeStatus(4);
+				setRecht("Admin");
+				GUI.setRechteAnzeigen(recht);	
+			}
+			
+			else if( rs1.next() == false ) {
+				GUI.anmeldenFehlermeldung();
+			}
+			
+			else if(rs2.next() == false) {
+				GUI.anmeldenFehlermeldung();
+			}
+			
+			else if(rs3.next() == false) {
+				GUI.anmeldenFehlermeldung();
 			}
 	
 		
@@ -76,16 +91,34 @@ public class LogStrg {
 		}
 
 	
-	}
 	
-	public static void abmelden(String[] anmeldenCbList) {
+	
+}
+	
+	public static void abmelden() {
 		Frontend.GUI.fensterSchlieﬂen();
-		anmeldenCbList[0] = "Anmelden";
 		new Frontend.GUI();
+		setRecht(" ");
+		setAnmeldeStatus(0);
+		GUI.updateRechteAnzeigen(recht);
 	}
 	
 	
-	public static int getAngemeldetStaus() {
+	public static int getAngemeldetStatus() {
 		return angemeldet;
 	}
+	
+	public static String getRechte() {
+		return recht;
+	}
+	
+	public static void setRecht(String neueRechte) {
+		recht = neueRechte;
+	}
+	
+	public static void setAnmeldeStatus(int neuerStatus){
+		angemeldet = neuerStatus;
+	}
+
+
 }
