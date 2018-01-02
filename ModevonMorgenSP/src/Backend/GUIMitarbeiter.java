@@ -209,11 +209,19 @@ public class GUIMitarbeiter implements ActionListener{
 			}
 
 		    if(auswahl == "Meine Bestellungen") {
+<<<<<<< HEAD
 			    //new GUIKontoBestellungen(damenCbList, herrenCbList);
+=======
+			   // new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
+>>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
 			}
 		    
 		    if(auswahl == "Konto verwalten") {
+<<<<<<< HEAD
 			    //new GUIKontoVerwalten(damenCbList, herrenCbList);
+=======
+			  //  new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
+>>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
 			}
 		    if(auswahl == "Abmelden") {
 		    	System.out.println("DADA");
