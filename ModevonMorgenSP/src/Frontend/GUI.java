@@ -91,9 +91,6 @@ import javax.swing.JLayeredPane;
 		frame.repaint();
 	}
 	
-	public static void updateRechteAnzeigen(String recht) {
-		setRechteAnzeigen(recht);
-	}
 	
 	
 	public static void öffnenAnmeldefenster() {
@@ -249,12 +246,12 @@ import javax.swing.JLayeredPane;
 		panelLogo.setLayout(null);
 		
 		lblRechte = new JLabel("");
-		lblRechte.setBounds(1077, 68, 92, 20);
+		lblRechte.setBounds(1040, 68, 172, 20);
 		panelLogo.add(lblRechte);
 		lblRechte.setText(LogStrg.getRechte());
 		lblRechte.setForeground(Color.BLUE);
 		lblRechte.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRechte.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblRechte.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JLabel labelLogo = new JLabel("");
 		labelLogo.setBounds(59, 0, 1248, 99);

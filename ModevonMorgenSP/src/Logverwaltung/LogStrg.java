@@ -52,7 +52,7 @@ public class LogStrg {
 				Frontend.GUI.fensterSchlieﬂen();
 				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(3);
-				setRecht("Mitarbeiter");
+				setRecht("Angemeldet als Mitarbeiter");
 				GUI.setRechteAnzeigen(recht);
 			}
 			
@@ -61,7 +61,7 @@ public class LogStrg {
 				Frontend.GUI.fensterSchlieﬂen();
 				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(4);
-				setRecht("Admin");
+				setRecht("Angemeldet als Admin");
 				GUI.setRechteAnzeigen(recht);	
 			}
 			
@@ -100,7 +100,7 @@ public class LogStrg {
 		new Frontend.GUI();
 		setRecht(" ");
 		setAnmeldeStatus(0);
-		GUI.updateRechteAnzeigen(recht);
+		GUI.setRechteAnzeigen(recht);
 	}
 	
 	

@@ -42,16 +42,14 @@ public class GUIMitarbeiter implements ActionListener{
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public int abstandsZahl = 170;
-	public String[] mitarbeiterListe = {"Anna Gross", "Falk Maoro", "Bastian Walter", "Lucas Hinz"};
+	public static JLabel lblRechte;
+	
 	
 
 
-	private JFrame frame;
+	private static JFrame frame;
 
 
-	/**
-	 * Create the application.
-	 */
 	public GUIMitarbeiter() {
 		initialize(damenCbList, herrenCbList, anmeldenCbList);
 		for(int i = 0; i>= mitarbeiterListe.length; i++) {
@@ -94,6 +92,14 @@ public class GUIMitarbeiter implements ActionListener{
 		comboBoxAnmelden.setBackground(SystemColor.control);
 		comboBoxAnmelden.addActionListener(this);
 		panelBar.add(comboBoxAnmelden);
+		
+		lblRechte = new JLabel("");
+		lblRechte.setBounds(1040, 68, 172, 20);
+		panelLogo.add(lblRechte);
+		lblRechte.setText(LogStrg.getRechte());
+		lblRechte.setForeground(Color.BLUE);
+		lblRechte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRechte.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		btnZurück = new JButton("Zur\u00FCck");
 		btnZurück.setBounds(10, 8, 89, 35);
