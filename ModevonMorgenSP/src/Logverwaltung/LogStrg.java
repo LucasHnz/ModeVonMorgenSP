@@ -13,6 +13,7 @@ import Frontend.GUI;
 import Frontend.GUIAnmelden;
 
 public class LogStrg {
+	//ABC
 	
 	static String testEmail = "jochen.kuester@fh-bielefeld.de";
 	static String testPasswort = "12345678";
