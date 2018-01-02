@@ -18,6 +18,7 @@ public class LogStrg {
 	static String testPasswort = "12345678";
 	static String testPwMitarbeiter = "123";
 	static String testMailMitarbeiter = "test";
+	static int angemeldet = 0;
 	
 	public static  void anmelden(String passwort, String email, String[]anmeldenCbList) {
 		try 
@@ -41,29 +42,23 @@ public class LogStrg {
 			
 			if(rs1.next()) {
 				System.out.println("1");
-				String vorname = rs1.getString("vorname");
-				anmeldenCbList[0] = vorname;
 				Frontend.GUI.fensterSchlieﬂen();
+				angemeldet = 2;
 		
 			}
 			
 			if(rs2.next()) {
 				System.out.println("2");
 				Frontend.GUI.fensterSchlieﬂen();
-				anmeldenCbList[0] = "Mitarbeiter";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
-				System.out.println("MIT");
-				
+				angemeldet = 3;
 			}
 			
 			if(rs3.next()) {
 				System.out.println("3");
 				Frontend.GUI.fensterSchlieﬂen();
-				anmeldenCbList[0] = "Admin";
 				new Backend.GUIMitarbeiter(anmeldenCbList);
-				
-				System.out.println("ADMIN");
-				
+				angemeldet = 4;
 			}
 	
 		
@@ -86,5 +81,10 @@ public class LogStrg {
 		Frontend.GUI.fensterSchlieﬂen();
 		anmeldenCbList[0] = "Anmelden";
 		new Frontend.GUI();
+	}
+	
+	
+	public static int getAngemeldetStaus() {
+		return angemeldet;
 	}
 }
