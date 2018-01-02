@@ -208,6 +208,5 @@ public class GUIKontoBestellungen implements ActionListener{
 					}
 				});
 		    }
-		}
-	
+		}	
 }

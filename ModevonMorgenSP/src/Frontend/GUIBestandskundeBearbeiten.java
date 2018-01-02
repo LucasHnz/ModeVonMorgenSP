@@ -26,6 +26,9 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public String berechtigung;
+	public String pss;
+	
 
 	public GUIBestandskundeBearbeiten  (int nutzernr) {
 	Bestandskunde kunde = Datenbankverwaltung.HoleDatenSatz.holeKunde(nutzernr);
@@ -210,6 +213,7 @@ public class GUIBestandskundeBearbeiten  extends JFrame{
 			String iban = textField_8.getText();
 			String passwort = textField_9.getText();
 			
+		
 			Bestandskunde kunde = new Bestandskunde(Integer.parseInt(nutzernr), nachname, vorname, email, straﬂe, ort,Integer.parseInt( plz), iban,  Integer.parseInt(berechtigung), passwort, Integer.parseInt(pss));
 			
 			dispose();
