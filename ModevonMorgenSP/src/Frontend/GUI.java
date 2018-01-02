@@ -337,8 +337,7 @@ import javax.swing.JLayeredPane;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == comboBoxAnmelden) {
-					
+
 					String auswahl = (String) comboBoxAnmelden.getSelectedItem();
 					
 					if(auswahl == "Anmelden") {
@@ -365,7 +364,7 @@ import javax.swing.JLayeredPane;
 				    }
 				}
 				
-			}
+			
 			
 		});
 		panelBar.add(comboBoxAnmelden);

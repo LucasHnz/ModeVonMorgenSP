@@ -31,7 +31,7 @@ import java.awt.Dimension;
 import javax.swing.JList;
 import javax.swing.JTabbedPane;
 
-public class GUIMitarbeiter implements ActionListener{
+public class GUIMitarbeiter{
 	
 	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
@@ -51,17 +51,17 @@ public class GUIMitarbeiter implements ActionListener{
 
 
 	public GUIMitarbeiter() {
-		initialize(damenCbList, herrenCbList, anmeldenCbList);
-		for(int i = 0; i>= mitarbeiterListe.length; i++) {
-			
-		}
+		initialize();
+		//for(int i = 0; i>= mitarbeiterListe.length; i++) {
+		//
+		//}
 		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
+	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
@@ -90,7 +90,43 @@ public class GUIMitarbeiter implements ActionListener{
 		comboBoxAnmelden.setBounds(1040, 0, 173, 50);
 		comboBoxAnmelden.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
-		comboBoxAnmelden.addActionListener(this);
+		comboBoxAnmelden.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+		
+					String auswahl = (String) comboBoxAnmelden.getSelectedItem();
+					
+					if(auswahl == "Anmelden") {
+						
+						
+					}
+
+				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 2) {
+					   //new GUIKontoBestellungen(frame);
+					}
+				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 0) {
+				    	
+				    }
+				    
+				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 2) {
+					    //new GUIKontoVerwalten(frame);
+					}
+				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 0) {
+				    
+				    }
+				    if(auswahl == "Abmelden") {
+				    	System.out.println("DADA");
+				    	frame.dispose();
+				    	new GUI();
+				    	LogStrg.abmelden();
+				    }
+				}
+				
+			
+				
+			
+		});
 		panelBar.add(comboBoxAnmelden);
 		
 		lblRechte = new JLabel("");
@@ -106,7 +142,16 @@ public class GUIMitarbeiter implements ActionListener{
 		panelBar.add(btnZurück);
 		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnZurück.setBackground(Color.WHITE);
-		btnZurück.addActionListener(this);
+		btnZurück.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new GUI();
+				
+			}
+			
+		});
 		
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
@@ -172,62 +217,4 @@ public class GUIMitarbeiter implements ActionListener{
 		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == btnZurück) 
-		{
-			frame.dispose();
-			new GUI();
-		}
-		if(e.getSource() == comboBoxArtikelDamen){
-			
-			String auswahl = (String) comboBoxArtikelDamen.getSelectedItem();
-		    
-			if(auswahl == "Kleidung"){
-			
-			 
-		    }
-		  
-			if(auswahl == "Schuhe"){
-			 
-			  
-			}
-			
-			if(auswahl == "Accessoires"){
-				
-			  
-			}
-		}
-		
-		if (e.getSource() == comboBoxAnmelden) {
-			
-			String auswahl = (String) comboBoxAnmelden.getSelectedItem();
-			
-			if(auswahl == "Anmelden") {
-				new GUIAnmelden();
-			}
-
-		    if(auswahl == "Meine Bestellungen") {
-<<<<<<< HEAD
-			    //new GUIKontoBestellungen(damenCbList, herrenCbList);
-=======
-			   // new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
-			}
-		    
-		    if(auswahl == "Konto verwalten") {
-<<<<<<< HEAD
-			    //new GUIKontoVerwalten(damenCbList, herrenCbList);
-=======
-			  //  new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
-			}
-		    if(auswahl == "Abmelden") {
-		    	System.out.println("DADA");
-		    	LogStrg.abmelden();
-		    	frame.dispose();
-		    }
-		}
-	}
 }
