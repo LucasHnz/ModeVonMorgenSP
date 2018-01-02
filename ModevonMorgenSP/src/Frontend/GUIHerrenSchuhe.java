@@ -81,6 +81,9 @@ public class GUIHerrenSchuhe implements ActionListener {
 		
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void ladeArtikelOutdoor() {
 		
 		try {
@@ -107,6 +110,9 @@ public class GUIHerrenSchuhe implements ActionListener {
 		
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void ladeArtikelSport() {
 	
 		try {
@@ -133,6 +139,9 @@ public class GUIHerrenSchuhe implements ActionListener {
 	
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void ladeArtikelHausschuhe() {
 		
 		try {
@@ -187,6 +196,9 @@ public class GUIHerrenSchuhe implements ActionListener {
 	
 
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static JPanel getGUIHerrenSchuhe() {
 		
 		panelMain = new JPanel();
@@ -208,7 +220,7 @@ public class GUIHerrenSchuhe implements ActionListener {
 		
 		btnAlleArtikel = new JButton("Alle Artikel");
 		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		btnAlleArtikel.setBackground(Color.WHITE);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

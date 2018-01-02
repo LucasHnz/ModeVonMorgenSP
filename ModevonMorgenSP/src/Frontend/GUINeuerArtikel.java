@@ -19,6 +19,9 @@ import Artikelverwaltung.Artikelsammlung;
 
 public class GUINeuerArtikel {	
 	
+/**
+ * @wbp.parser.entryPoint
+ */
 static  Component neuerArtikel(int artikelNummer) {
 		
 	
@@ -26,8 +29,8 @@ static  Component neuerArtikel(int artikelNummer) {
 	
 	
 		JPanel panelArtikel = new JPanel();
-		panelArtikel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		panelArtikel.setBorder(null);
+		panelArtikel.setBackground(Color.WHITE);
 		panelArtikel.setBounds(66, 30, 680, 188);
 		panelArtikel.setLayout(null);
 		
