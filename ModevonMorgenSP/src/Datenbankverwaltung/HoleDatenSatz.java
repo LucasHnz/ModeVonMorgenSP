@@ -3,7 +3,7 @@ package Datenbankverwaltung;
 import java.sql.Statement;
 
 import AdministratorVerwaltung.Administrator;
-import BestandskundenVerwaltung.Bestandskunde;
+import KundenVerwaltung.Bestandskunde;
 import MitarbeiterVerwaltung.Mitarbeiter;
 
 import java.sql.Connection;
