@@ -166,9 +166,9 @@ public class GUIMitarbeiter{
 		tabbedPane.addTab("Artikelverwaltung", new GUIArtikelliste() );
 		tabbedPane.addTab("Bestellungs Liste", new GUIBestellungListe());
 		
-		if(anmeldenCbList[0] == "Admin")
+		if(LogStrg.getAngemeldetStatus() == 4)
 			tabbedPane.addTab("Administrator Liste", new GUIAdministratorListe());
-		if(anmeldenCbList[0] == "Admin")
+		if(LogStrg.getAngemeldetStatus() == 3)
 			try {
 				tabbedPane.addTab("Mitarbeiter Liste", new GUIMitarbeiterListe());
 			} catch (SQLException e) {
