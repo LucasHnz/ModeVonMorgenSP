@@ -116,7 +116,6 @@ public class GUIMitarbeiter{
 				    
 				    }
 				    if(auswahl == "Abmelden") {
-				    	System.out.println("DADA");
 				    	frame.dispose();
 				    	new GUI();
 				    	LogStrg.abmelden();
