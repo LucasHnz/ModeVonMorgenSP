@@ -4,6 +4,7 @@ import java.sql.Statement;
 
 import AdministratorVerwaltung.Administrator;
 import KundenVerwaltung.Bestandskunde;
+import KundenVerwaltung.Gastkunde;
 import MitarbeiterVerwaltung.Mitarbeiter;
 
 import java.sql.Connection;
@@ -129,6 +130,29 @@ public static Bestandskunde holeKunde(int nutzernr) {
 		
 	}
 
+public static Gastkunde holeGKunde(int nutzernr) {
+	
+	Gastkunde gk = null;
+	
+	try {
+		Connection con = VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		String sql = "select * from Gastkunde where nutzernr = '"+nutzernr+"'";
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		rs.next();
+		
+		gk= new Gastkunde(rs.getInt("nutzernr"), rs.getString("nachname"),rs.getString("vorname") ,rs.getString("email"),rs.getString("straﬂe"), rs.getString("ort"),rs.getInt("plz"), rs.getInt("berechtigung"));
+	
+		rs.close();
+	}
+	catch (SQLException e) {
+		e.getMessage();
+	}
+	
+	return gk;
+	
+}
 
 	
 	
