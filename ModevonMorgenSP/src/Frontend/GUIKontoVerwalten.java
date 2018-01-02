@@ -35,7 +35,7 @@ public class GUIKontoVerwalten {
 		tabbedPane.setBounds(10, 11, 1228, 541);
 		panel.add(tabbedPane);
 		
-		nutzernummer = 200000001;
+		nutzernummer = 200000002;
 		tabbedPane.addTab("Nutzerdaten ändern", GUIBestandskundeBearbeiten.getGUIBestandskundeBearbeiten(nutzernummer));
 		tabbedPane.addTab("Bestellungen", new GUIKontoBestellungen(nutzernummer));
 	

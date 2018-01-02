@@ -182,10 +182,12 @@ public class GUIBestandskundeBearbeiten  {
 			JOptionPane.showOptionDialog(null, "Änderungen wurden gespeichert","Bestandskunden Bearbeitung",
 	                JOptionPane.YES_NO_CANCEL_OPTION,
 	                JOptionPane.WARNING_MESSAGE, null, 
-	                new String[]{"Ok"}, "Ok"); 		
+	                new String[]{"Ok"}, "Ok"); 	
+			
+			GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 			}
 	
-		//GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten);
+		
 		});
 	
 		btnAnnehmen.setBounds(641, 432, 161, 40);
@@ -195,7 +197,7 @@ public class GUIBestandskundeBearbeiten  {
 		btnAbbrechen.setBounds(451, 432, 145, 40);
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten);
+				GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 			}
 		});
 		panel.add(btnAbbrechen);

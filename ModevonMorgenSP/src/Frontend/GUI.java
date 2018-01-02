@@ -353,7 +353,7 @@ import javax.swing.JLayeredPane;
 				    }
 				    
 				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 2) {
-					    //new GUIKontoVerwalten(frame);
+				    	changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 					}
 				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 0) {
 				    	öffnenAnmeldefenster();
