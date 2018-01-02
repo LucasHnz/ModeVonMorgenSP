@@ -58,7 +58,6 @@ public class GUIHerrenSchuhe implements ActionListener {
 	public static void ladeArtikel() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' ";	
@@ -81,10 +80,12 @@ public class GUIHerrenSchuhe implements ActionListener {
 		
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void ladeArtikelOutdoor() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Outdoorschuh' ";	
@@ -107,6 +108,9 @@ public class GUIHerrenSchuhe implements ActionListener {
 		
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void ladeArtikelSport() {
 	
 		try {
@@ -133,10 +137,12 @@ public class GUIHerrenSchuhe implements ActionListener {
 	
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void ladeArtikelHausschuhe() {
 		
 		try {
-			System.out.println("1");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Hausschuh' ";	
@@ -147,9 +153,7 @@ public class GUIHerrenSchuhe implements ActionListener {
 				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel +1;
 		
-				System.out.println("Artikel ist " + artikelnr);
 			}
-			System.out.println(anzahlArtikel);
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -162,7 +166,6 @@ public class GUIHerrenSchuhe implements ActionListener {
 	public static void ladeArtikelStiefel() {
 		
 		try {
-			System.out.println("1");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Stiefel'";	
@@ -173,9 +176,7 @@ public class GUIHerrenSchuhe implements ActionListener {
 				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel +1;
 		
-				System.out.println("Artikel ist " + artikelnr);
 			}
-			System.out.println(anzahlArtikel);
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -187,6 +188,9 @@ public class GUIHerrenSchuhe implements ActionListener {
 	
 
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static JPanel getGUIHerrenSchuhe() {
 		
 		panelMain = new JPanel();
@@ -208,7 +212,7 @@ public class GUIHerrenSchuhe implements ActionListener {
 		
 		btnAlleArtikel = new JButton("Alle Artikel");
 		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
+		btnAlleArtikel.setBackground(Color.WHITE);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -291,17 +295,23 @@ public class GUIHerrenSchuhe implements ActionListener {
 		panelMain.add(scrollPaneHerrenKleidung);
 		
 		ladeArtikel();
-		
-		int length = anzahlArtikel/2 * 188;
-		if(anzahlArtikel%2 == 1)
-			length = length +188;
-		panelHerrenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
-		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
+		erstelleListe();
 		
 		
 		panelMain.setVisible(true);
 		return panelMain;
 	}
+	
+	
+	
+	public static void erstelleListe() {
+		int length = anzahlArtikel/2 * 188;
+		if(anzahlArtikel%2 == 1)
+			length = length +188;
+		panelHerrenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
+		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
+	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e)

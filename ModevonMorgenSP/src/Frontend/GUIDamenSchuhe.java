@@ -138,7 +138,7 @@ public static void ladeArtikelHighHeels() {
 		panelMain.setLayout(null);
 		
 		JPanel panelScrollPaneLinks = new JPanel();
-		panelScrollPaneLinks.setBackground(SystemColor.control);
+		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneLinks.setLayout(null);
 		
 		
@@ -194,7 +194,7 @@ public static void ladeArtikelHighHeels() {
 		
 		
 		panelDamenSchuhe = new JPanel();
-		panelDamenSchuhe.setBackground(SystemColor.inactiveCaptionBorder);
+		panelDamenSchuhe.setBackground(Color.WHITE);
 		panelDamenSchuhe.setAutoscrolls(true);
 		
 		JScrollPane scrollPaneDamenSchuhe = new JScrollPane();

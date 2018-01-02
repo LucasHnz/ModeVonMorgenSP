@@ -31,41 +31,37 @@ import java.awt.Dimension;
 import javax.swing.JList;
 import javax.swing.JTabbedPane;
 
-public class GUIMitarbeiter implements ActionListener{
+public class GUIMitarbeiter{
 	
 	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
 	public JComboBox comboBoxArtikelHerren = new JComboBox();
 	public JComboBox comboBoxArtikelDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
-	public String[] anmeldenCbList;
+	public String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
 	public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public int abstandsZahl = 170;
-	public String[] mitarbeiterListe = {"Anna Gross", "Falk Maoro", "Bastian Walter", "Lucas Hinz"};
+	public static JLabel lblRechte;
+	
 	
 
 
-	private JFrame frame;
+	private static JFrame frame;
 
 
-	/**
-	 * Create the application.
-	 */
-	public GUIMitarbeiter(String[]anmeldenCbList) {
-		System.out.println("Ausgefï¿½hrt HK");
-		this.anmeldenCbList = anmeldenCbList;
-		initialize(damenCbList, herrenCbList, anmeldenCbList);
-		for(int i = 0; i>= mitarbeiterListe.length; i++) {
-			
-		}
+	public GUIMitarbeiter() {
+		initialize();
+		//for(int i = 0; i>= mitarbeiterListe.length; i++) {
+		//
+		//}
 		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(String[]damenCbList, String[]herrenCbList, String[]anmeldenCbList) {
+	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(20, 20, 1250, 750);
 		frame.setResizable(false);
@@ -94,15 +90,67 @@ public class GUIMitarbeiter implements ActionListener{
 		comboBoxAnmelden.setBounds(1040, 0, 173, 50);
 		comboBoxAnmelden.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
-		comboBoxAnmelden.addActionListener(this);
+		comboBoxAnmelden.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+		
+					String auswahl = (String) comboBoxAnmelden.getSelectedItem();
+					
+					if(auswahl == "Anmelden") {
+						
+						
+					}
+
+				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 2) {
+					   //new GUIKontoBestellungen(frame);
+					}
+				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 0) {
+				    	
+				    }
+				    
+				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 2) {
+					    //new GUIKontoVerwalten(frame);
+					}
+				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 0) {
+				    
+				    }
+				    if(auswahl == "Abmelden") {
+				    	frame.dispose();
+				    	new GUI();
+				    	LogStrg.abmelden();
+				    }
+				}
+				
+			
+				
+			
+		});
 		panelBar.add(comboBoxAnmelden);
+		
+		lblRechte = new JLabel("");
+		lblRechte.setBounds(1040, 68, 172, 20);
+		panelLogo.add(lblRechte);
+		lblRechte.setText(LogStrg.getRechte());
+		lblRechte.setForeground(Color.BLUE);
+		lblRechte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRechte.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		btnZurück = new JButton("Zur\u00FCck");
 		btnZurück.setBounds(10, 8, 89, 35);
 		panelBar.add(btnZurück);
 		btnZurück.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnZurück.setBackground(Color.WHITE);
-		btnZurück.addActionListener(this);
+		btnZurück.addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new GUI();
+				
+			}
+			
+		});
 		
 		//Hauptfenster
 		JPanel panelMain = new JPanel();
@@ -118,9 +166,9 @@ public class GUIMitarbeiter implements ActionListener{
 		tabbedPane.addTab("Artikelverwaltung", new GUIArtikelliste() );
 		tabbedPane.addTab("Bestellungs Liste", new GUIBestellungListe());
 		
-		if(anmeldenCbList[0] == "Admin")
+		if(LogStrg.getAngemeldetStatus() == 4)
 			tabbedPane.addTab("Administrator Liste", new GUIAdministratorListe());
-		if(anmeldenCbList[0] == "Admin")
+		if(LogStrg.getAngemeldetStatus() == 3)
 			try {
 				tabbedPane.addTab("Mitarbeiter Liste", new GUIMitarbeiterListe());
 			} catch (SQLException e) {
@@ -168,54 +216,4 @@ public class GUIMitarbeiter implements ActionListener{
 		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == btnZurück) 
-		{
-			frame.dispose();
-			new GUI();
-		}
-		if(e.getSource() == comboBoxArtikelDamen){
-			
-			String auswahl = (String) comboBoxArtikelDamen.getSelectedItem();
-		    
-			if(auswahl == "Kleidung"){
-			
-			 
-		    }
-		  
-			if(auswahl == "Schuhe"){
-			 
-			  
-			}
-			
-			if(auswahl == "Accessoires"){
-				
-			  
-			}
-		}
-		
-		if (e.getSource() == comboBoxAnmelden) {
-			
-			String auswahl = (String) comboBoxAnmelden.getSelectedItem();
-			
-			if(auswahl == "Anmelden") {
-				new GUIAnmelden();
-			}
-
-		    if(auswahl == "Meine Bestellungen") {
-			    new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
-			}
-		    
-		    if(auswahl == "Konto verwalten") {
-			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
-			}
-		    if(auswahl == "Abmelden") {
-		    	System.out.println("DADA");
-		    	LogStrg.abmelden(anmeldenCbList);
-		    	frame.dispose();
-		    }
-		}
-	}
 }
