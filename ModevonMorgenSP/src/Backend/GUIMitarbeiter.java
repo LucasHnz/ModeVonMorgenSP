@@ -205,11 +205,11 @@ public class GUIMitarbeiter implements ActionListener{
 			}
 
 		    if(auswahl == "Meine Bestellungen") {
-			    new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
+			   // new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
 			}
 		    
 		    if(auswahl == "Konto verwalten") {
-			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
+			  //  new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
 			}
 		    if(auswahl == "Abmelden") {
 		    	System.out.println("DADA");

@@ -298,11 +298,6 @@ public class GUIArtikelliste extends JPanel {
 		btnEditiereArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				JOptionPane.showOptionDialog(null, "Sie sind dabei eine Rücksendung anzunehmen \nFortfahren ?","Rücksendung Annehmen",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
-				
 				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
