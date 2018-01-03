@@ -190,7 +190,7 @@ public class GUIBestellpositionsliste extends JFrame{
 				
 				RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
 				
-				MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde,/n Hoffentlich finden Sie eine alternative");
+				MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
 			}});
 		getContentPane().add(btnRücksAnnehmen);
 		
@@ -201,6 +201,9 @@ public class GUIBestellpositionsliste extends JFrame{
 		btnRücksAblehnen.setBounds(776, 81, 177, 48);
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+					MailController.MailSenden.sendMail("julian-hermann@outlook.de","Ablehnung ihrer Rücksendung","Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
+			
 				
 			}
 		});
