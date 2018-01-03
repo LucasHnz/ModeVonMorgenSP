@@ -29,9 +29,10 @@ public class GastkundenSammlung {
 			String ort = rs.getString("Ort");
 			int plz = rs.getInt("Plz");
 			int berechtigung = rs.getInt("Berechtigung");
+			String iban =rs.getString("iban");
 			
 			
-			Gastkunde gk = new Gastkunde (nutzernr, nachname, vorname, email, straße, ort, plz,berechtigung);
+			Gastkunde gk = new Gastkunde (nutzernr, nachname, vorname, email, straße, ort, plz,berechtigung,iban);
 			
 			GastkundenSammlung.put(gk.getNutzernr(), gk);
 		
@@ -43,8 +44,8 @@ public class GastkundenSammlung {
 		return GastkundenSammlung;
 	}
 	
-	public static void hinzufügenGastkunde(int nutzernr, String nachname, String vorname, String email, String Straße, String ort, int plz, int berechtigung) {
-		Gastkunde gk = new Gastkunde(nutzernr, nachname, vorname, email, Straße, ort, plz, berechtigung);
+	public static void hinzufügenGastkunde(int nutzernr, String nachname, String vorname, String email, String Straße, String ort, int plz, int berechtigung,String iban) {
+		Gastkunde gk = new Gastkunde(nutzernr, nachname, vorname, email, Straße, ort, plz, berechtigung,iban);
 		GastkundenSammlung.put(nutzernr, gk);
 	}
 	public static Gastkunde getGastkunde(int Nutzernummer) {

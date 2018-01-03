@@ -13,6 +13,7 @@ import java.awt.SystemColor;
 import java.awt.Dimension;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
+import Logverwaltung.LogStrg;
 import Warenkorbverwaltung.Warenkorb;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -66,7 +67,9 @@ public class GUIWarenkorb {
 		btnZurKasse.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnZurKasse.setIconTextGap(4);
 		btnZurKasse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			
+			public void actionPerformed(ActionEvent agr0){
+				GUIKaufvorgang.angemedeltÜberprüfung();
 				//BestellStrg.neueBestellung(Warenkorb.getWarenkorb()); 
 				// sowas in der Richtung.. Keine Ahnung, wie ihr das letztendlich schreibt
 			

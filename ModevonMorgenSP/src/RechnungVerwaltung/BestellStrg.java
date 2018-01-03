@@ -1,13 +1,14 @@
 package RechnungVerwaltung;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import Bestellverwaltung.Bestellposition;
-import MitarbeiterVerwaltung.Mitarbeiter;
-import MitarbeiterVerwaltung.MitarbeiterSammlung;
+
 
 public class BestellStrg {
 	
@@ -73,8 +74,77 @@ public class BestellStrg {
 		}
 	
 	public static void erstelleRechnung () {
-		//mit email versenden 
-	}
+		
+		int nutzernrb=; //noch irgendwie die nutzernr aus der Bestellungholen
+		
+		try {
+			
+			Connection con= Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			
+			String sqlbefehl = "select* from RECHNUNGBESTELLUNG where NUTZERNRBESTANDSK="+nutzernrb;
+			ResultSet rs= stmt.executeQuery(sqlbefehl);
+			
+			while(rs.next()) {
+				int rechnungsnr= rs.getInt("Rechnungsnr");
+				int bestellnr=rs.getInt("Bestellnr");
+				int nutzernrbk=rs.getInt("NutzernrBestandsK");
+				int nutzernrgk=rs.getInt("NutzernrGastk");
+				String iban =rs.getString("iban");
+				String nachname = rs.getString("Nachname");
+				String vorname = rs.getString("Vorname");
+				double gesamtpreis=rs.getDouble("GesamtPreis");
+				int erabatt=rs.getInt("EingesetzeRabatt");
+				Date datum=rs.getDate("Datum");
+				String vStatus=rs.getString("VersandStatus");
+				String ort = rs.getString("RechnungsOrt");
+				String straße = rs.getString("RechnungsStraße");
+				int plz = rs.getInt("RechnungsPlz");
+			
+				
+				if (nutzernrbk !=null) {
+					Connection con2= Datenbankverwaltung.VerbindungDB.erstelleConnection();
+					Statement stmt2= con.createStatement();
+					String sqlbefehl2 = "select EMAIL from BESTANSKUNDE where NUTZERNR="+nutzernrb;
+					ResultSet rs2= stmt2.executeQuery(sqlbefehl2);
+					
+					while(rs2.next()) {
+						String email=rs2.getString("Email");
+					}
+					rs2.close();
+					Datenbankverwaltung.VerbindungDB.schließeVerbindung(con2, stmt2);
+					}
+				else if (nutzernrgk==null){
+					Connection con3= Datenbankverwaltung.VerbindungDB.erstelleConnection();
+					Statement stmt3= con.createStatement();
+					String sqlbefehl3 = "select EMAIL from GASTKUNDE where NUTZERNR="+nutzernrb;
+					ResultSet rs3= stmt3.executeQuery(sqlbefehl3);
+					
+					while(rs3.next()) {
+						String email=rs3.getString("Email");
+					}
+					rs3.close();
+					Datenbankverwaltung.VerbindungDB.schließeVerbindung(con3, stmt3);	
+					} 
+				String recipientsAddress = email;
+				String subject = "Vielen Dank für Ihre Bestellung!";
+				String text = "\r\n" + 
+						"Bestellung abgeschlossen!\r\n" + 
+						"Hallo" + vorname +nachname+ "vielen Dank für Ihre Bestellung (Bestellnr: )"+bestellnr+". Wir hoffen, das Shoppen bei uns hat Ihnen gefallen.\r\n "+ 
+								"Ihr Bestellung wird innerhalb der nächsten 3-5 Werktagen an folgende Adresse "+straße +ort +plz+ "gesendet"+
+								"\r\n" + 
+								"Sie können Artikel, die Sie nicht behalten möchten, auch innerhalb von 2 Wochen nach Erhalt der Bestellung an uns zurücksenden.";
+				
+
+				MailController.MailSenden.sendMail(recipientsAddress, subject, text); 
+				rs.close();
+				
+				Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+			}
+			}catch(SQLException e) {
+				e.printStackTrace();
+				}
+		}
 	
 	public static void aktualisiereVStatus(int i){
 		
@@ -96,7 +166,9 @@ public class BestellStrg {
 				e.printStackTrace();
 			}
 			
+			
 		}
+	
 }
 
 

@@ -10,9 +10,10 @@ public class Gastkunde {
 	private String ort;
 	private int plz;
 	private int berechtigung;
+	private String iban;
 
 
-	public Gastkunde(int nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, int berechtigung) {
+	public Gastkunde(int nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, int berechtigung, String iban) {
 		this.nutzernr = nutzernr;
 		this.nachname = nachname;
 		this.vorname = vorname;
@@ -21,17 +22,26 @@ public class Gastkunde {
 		this.ort = ort;
 		this.plz = plz;
 		this.berechtigung = berechtigung;
+		this.iban= iban;
 	}
 
 	@Override
 	public String toString() {
 		return "Gastkunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
 				+ email + ", straﬂe=" + straﬂe + ", ort=" + ort + ", plz=" + plz + ", berechtigung=" + berechtigung
-				+ "]";
+				+ ", iban=" + iban + "]";
 	}
 
 	public int getNutzernr() {
 		return nutzernr;
+	}
+
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
 	}
 
 	public void setNutzernr(int nutzernr) {
@@ -62,12 +72,12 @@ public class Gastkunde {
 		this.email = email;
 	}
 
-	public String getStra√üe() {
+	public String getStraﬂe() {
 		return straﬂe;
 	}
 
-	public void setStra√üe(String stra√üe) {
-		this.straﬂe =stra√üe;
+	public void setStraﬂee(String straﬂe) {
+		this.straﬂe =straﬂe;
 	}
 
 	public String getOrt() {
