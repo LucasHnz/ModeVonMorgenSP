@@ -15,19 +15,10 @@ import KundenVerwaltung.Bestandskunde;
 public class GUIBestandskundeBearbeiten  {
 	
 	public static JPanel panel;
-	
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-<<<<<<< HEAD
-	private static final long serialVersionUID = 1L;
-	public String berechtigung;
-	public String pss;
-	
-
-	public GUIBestandskundeBearbeiten  (int nutzernr) {
-	Bestandskunde kunde = Datenbankverwaltung.HoleDatenSatz.holeKunde(nutzernr);
-=======
 	public static JPanel getGUIBestandskundeBearbeiten(int nutzernummer) {
 		Bestandskunde kunde = Datenbankverwaltung.HoleDatenSatz.holeKunde(nutzernummer);
 		
@@ -37,7 +28,7 @@ public class GUIBestandskundeBearbeiten  {
 		panel.setLayout(null);
 		panel.setLayout(null);
 		panel.setVisible(true);
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
+
 	
 		JLabel lblBestandskundenNummer = new JLabel("Kunden Nummer:");
 		lblBestandskundenNummer.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -150,7 +141,6 @@ public class GUIBestandskundeBearbeiten  {
 		panel.add(textField_Passwort);
 		
 	
-		
 		JButton btnAnnehmen = new JButton("Speichern");
 		btnAnnehmen.addActionListener(new ActionListener() {
 			
@@ -194,28 +184,9 @@ public class GUIBestandskundeBearbeiten  {
 	                JOptionPane.WARNING_MESSAGE, null, 
 	                new String[]{"Ok"}, "Ok"); 	
 			
-<<<<<<< HEAD
-			String nutzernr =textField.getText();
-			String nachname = textField_2.getText();
-			String vorname = textField_3.getText();
-			String email = textField_4.getText();
-			String straße = textField_5.getText();
-			String ort = textField_6.getText();
-			String plz = textField_7.getText();
-			String iban = textField_8.getText();
-			String passwort = textField_9.getText();
-			
-		
-			Bestandskunde kunde = new Bestandskunde(Integer.parseInt(nutzernr), nachname, vorname, email, straße, ort,Integer.parseInt( plz), iban,  Integer.parseInt(berechtigung), passwort, Integer.parseInt(pss));
-			
-			dispose();
-			
-		}
-=======
 			GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
+			
 			}
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
-	
 		
 		});
 	
