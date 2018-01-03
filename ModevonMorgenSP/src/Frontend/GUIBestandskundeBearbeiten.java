@@ -77,7 +77,7 @@ public class GUIBestandskundeBearbeiten  {
 		
 		JTextField textField = new JTextField();
 		textField.setToolTipText("Die Kunden Nummer wurde autogeneriert");
-		//textField.setText(String.valueOf(kunde.getNutzernr()));
+		textField.setText(String.valueOf(kunde.getNutzernr()));
 		textField.setEditable(false);
 		textField.setBounds(641, 11, 161, 33);
 		panel.add(textField);
@@ -85,49 +85,49 @@ public class GUIBestandskundeBearbeiten  {
 		
 		JTextField textField_Nachname = new JTextField();
 		textField_Nachname.setToolTipText("Hier Bitte den Nach-Namen eintragen");
-		//textField_2.setText(kunde.getNachname());
+		textField_Nachname.setText(kunde.getNachname());
 		textField_Nachname.setColumns(10);
 		textField_Nachname.setBounds(641, 55, 161, 33);
 		panel.add(textField_Nachname);
 		
 		JTextField textField_Vorname = new JTextField();
 		textField_Vorname.setToolTipText("Hier Bitte den Vor-Namen eintragen");
-		//textField_3.setText(kunde.getVorname());
+		textField_Vorname.setText(kunde.getVorname());
 		textField_Vorname.setColumns(10);
 		textField_Vorname.setBounds(641, 99, 161, 33);
 		panel.add(textField_Vorname);
 		
 		JTextField textField_Mail = new JTextField();
 		textField_Mail.setToolTipText("Hier Bitte die EMail eintragen");
-		//textField_4.setText(kunde.getEmail());
+		textField_Mail.setText(kunde.getEmail());
 		textField_Mail.setColumns(10);
 		textField_Mail.setBounds(641, 143, 161, 33);
 		panel.add(textField_Mail);
 		
 		JTextField textField_Straﬂe = new JTextField();
 		textField_Straﬂe.setToolTipText("Hier Bitte die Straﬂe eintragen");
-		//textField_5.setText(kunde.getStraﬂe());
+		textField_Straﬂe.setText(kunde.getStraﬂe());
 		textField_Straﬂe.setColumns(10);
 		textField_Straﬂe.setBounds(641, 187, 161, 33);
 		panel.add(textField_Straﬂe);
 		
 		JTextField textField_Ort = new JTextField();
 		textField_Ort.setToolTipText("Hier Bitte den Wohnort eintragen");
-		//textField_6.setText(kunde.getOrt());
+		textField_Ort.setText(kunde.getOrt());
 		textField_Ort.setColumns(10);
 		textField_Ort.setBounds(641, 231, 161, 33);
 		panel.add(textField_Ort);
 		
 		JTextField textField_PLZ = new JTextField();
 		textField_PLZ.setToolTipText("Hier Bitte die PLZ des Wohnorts eintragen");
-		//textField_7.setText(String.valueOf(kunde.getPlz()));
+		textField_PLZ.setText(String.valueOf(kunde.getPlz()));
 		textField_PLZ.setColumns(10);
 		textField_PLZ.setBounds(641, 275, 161, 33);
 		panel.add(textField_PLZ);
 		
 		JTextField textField_IBAN = new JTextField();
 		textField_IBAN.setToolTipText("Hier Bitte die IBAN Adresse  eintragen");
-		//textField_8.setText(kunde.getIban());
+		textField_IBAN.setText(kunde.getIban());
 		textField_IBAN.setColumns(10);
 		textField_IBAN.setBounds(641, 319, 161, 33);
 		panel.add(textField_IBAN);
@@ -135,7 +135,7 @@ public class GUIBestandskundeBearbeiten  {
 		
 		JPasswordField textField_Passwort = new JPasswordField();
 		textField_Passwort.setToolTipText("Hier Bitte das Passwort eingeben");
-		//textField_9.setText(kunde.getPasswort());
+		textField_Passwort.setText(kunde.getPasswort());
 		textField_Passwort.setColumns(10);
 		textField_Passwort.setBounds(641, 363, 161, 33);
 		panel.add(textField_Passwort);
@@ -152,7 +152,7 @@ public class GUIBestandskundeBearbeiten  {
 				KundenVerwaltung.BestandskundeStrg.aktualisiereNachname(textField_Nachname.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			if(textField_Vorname.getText() != kunde.getVorname()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_Nachname.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_Vorname.getText(),Integer.toString(kunde.getNutzernr()));
 			}
 			
 			if(textField_Mail.getText() != kunde.getEmail()) {

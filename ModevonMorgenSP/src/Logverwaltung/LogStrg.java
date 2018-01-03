@@ -18,6 +18,7 @@ public class LogStrg {
 	
 	static int angemeldet = 0;
 	static String recht = " ";
+	static int nutzerNr = 0;
 	
 	
 	public static  void anmelden(String passwort, String email) {
@@ -43,6 +44,7 @@ public class LogStrg {
 				System.out.println("Gastkunde");
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
+				setNutzerNr(rs1.getInt("nutzernr"));
 				GUI.getFenster().setRechteAnzeigen(recht);
 				GUI.getFenster().removeLogPanel();
 			}
@@ -51,6 +53,7 @@ public class LogStrg {
 				System.out.println("MA");
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
+				setNutzerNr(rs2.getInt("nutzernr"));
 				GUI.getFenster().setRechteAnzeigen(recht);
 				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
 				GUI.getFenster().removeLogPanel();
@@ -60,6 +63,7 @@ public class LogStrg {
 				System.out.println("Admin");
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
+				setNutzerNr(rs3.getInt("nutzernr"));
 				GUI.getFenster().setRechteAnzeigen(recht);	
 				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
 				GUI.getFenster().removeLogPanel();
@@ -91,6 +95,7 @@ public class LogStrg {
 		GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 		setRecht(" ");
 		setAnmeldeStatus(0);
+		setNutzerNr(0);
 		GUI.getFenster().setRechteAnzeigen(recht);
 	}
 	
@@ -109,6 +114,12 @@ public class LogStrg {
 	
 	public static void setAnmeldeStatus(int neuerStatus){
 		angemeldet = neuerStatus;
+	}
+	public static int getNutzerNr() {
+		return nutzerNr;
+	}
+	public static void setNutzerNr(int nr) {
+		nutzerNr = nr;
 	}
 
 
