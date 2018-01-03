@@ -194,70 +194,7 @@ public class GUIKontoBestellungen extends JPanel{
 		table.getColumnModel().getColumn(3).setPreferredWidth(70);
 		table.getColumnModel().getColumn(4).setPreferredWidth(30);
 		table.getColumnModel().getColumn(5).setPreferredWidth(30);
-		
-		
-<<<<<<< HEAD
-		if(e.getSource() == comboBoxDamen){
-			
-			String auswahl = (String) comboBoxDamen.getSelectedItem();
-			
-			if(auswahl == "Kleidung"){
-				 frame.dispose();
-				 new GUIDamenKleidung(damenCbList, herrenCbList, anmeldenCbList);
-			    }
-			  
-				if(auswahl == "Schuhe"){
-					frame.dispose();
-				  new GUIDamenSchuhe(damenCbList, herrenCbList, anmeldenCbList);
-				 
-				}
-				
-				if(auswahl == "Accessoires"){
-					frame.dispose();
-				  new GUIDamenAccessoires(damenCbList, herrenCbList, anmeldenCbList);
-				  
-				}
-				
-		}
-		
-		if (e.getSource() == comboBoxAnmelden) {
-			
-			String auswahl = (String) comboBoxAnmelden.getSelectedItem();
-			
-			if(auswahl == "Anmelden") {
-				new GUIAnmelden();
-			}
 
-		    if(auswahl == "Meine Bestellungen") {
-			    new GUIKontoBestellungen(damenCbList, herrenCbList, anmeldenCbList);
-			}
-		
-		    if(auswahl == "Konto verwalten") {
-			    new GUIKontoVerwalten(damenCbList, herrenCbList, anmeldenCbList);
-			}
-		}
-		    if (e.getSource()== btnStoniereBestellung) {
-		    	btnStoniereBestellung.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-					final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung();
-						Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-						
-						final Object optionPane = JOptionPane.showConfirmDialog(null,
-								"Wollen Sie die Bestellung mir der BestellNr: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr()
-								+ "\n wirklich stornieren?", "Abfrage",
-								JOptionPane.YES_NO_OPTION);
-							
-					if(optionPane.equals(0)) {
-							BestellStrg.storniereBestellung(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
-							JOptionPane.showMessageDialog(null,  "Bestellung wurde Storniert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-					}else if(optionPane.equals(1)) {
-							JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-						}			
-					}
-				});
-		    }
-		}	
-=======
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(sorter);
 		table.getRowSorter().toggleSortOrder(0);
@@ -268,5 +205,5 @@ public class GUIKontoBestellungen extends JPanel{
 		sorter.setComparator(2, doublecomp);
 		sorter.setComparator(3, intcomp);
 	}
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
+
 }
