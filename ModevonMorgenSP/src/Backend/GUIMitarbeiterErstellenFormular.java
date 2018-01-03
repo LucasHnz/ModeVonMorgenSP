@@ -134,7 +134,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		textField.setToolTipText("Die Mitarbeiter Nummer wurde autogeneriert");
 		textField.setText(String.valueOf(Datenbankverwaltung.holeN‰chsteNummer.n‰chsteMaNr()));
 		textField.setEditable(false);
-		textField.setBounds(169, 10, 161, 16);
+		textField.setBounds(169, 10, 161, 23);
 		panel.add(textField);
 		textField.setColumns(10);
 		
@@ -142,67 +142,67 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		textField_2.setToolTipText("Hier Bitte den Nach-Namen eintragen");
 		textField_2.setDocument(new TextDoc(26));
 		textField_2.setColumns(10);
-		textField_2.setBounds(169, 50, 161, 16);
+		textField_2.setBounds(169, 50, 161, 23);
 		panel.add(textField_2);
 		
 		JTextField textField_3 = new JTextField();
 		textField_3.setToolTipText("Hier Bitte den Vor-Namen eintragen");
 		textField_3.setDocument(new TextDoc(26));
 		textField_3.setColumns(10);
-		textField_3.setBounds(169, 70, 161, 16);
+		textField_3.setBounds(169, 70, 161, 23);
 		panel.add(textField_3);
 		
 		JTextField textField_4 = new JTextField();
 		textField_4.setToolTipText("Hier Bitte die EMail eintragen");
 		textField_4.setDocument(new TextDoc(51));
 		textField_4.setColumns(10);
-		textField_4.setBounds(169, 90, 161, 16);
+		textField_4.setBounds(169, 90, 161, 23);
 		panel.add(textField_4);
 		
 		JTextField textField_5 = new JTextField();
 		textField_5.setToolTipText("Hier Bitte die Straﬂe eintragen");
 		textField_5.setDocument(new TextDoc(36));
 		textField_5.setColumns(10);
-		textField_5.setBounds(169, 110, 161, 16);
+		textField_5.setBounds(169, 110, 161, 23);
 		panel.add(textField_5);
 		
 		JTextField textField_6 = new JTextField();
 		textField_6.setToolTipText("Hier Bitte den Wohnort eintragen");
 		textField_6.setDocument(new TextDoc(26));
 		textField_6.setColumns(10);
-		textField_6.setBounds(169, 130, 161, 16);
+		textField_6.setBounds(169, 130, 161, 23);
 		panel.add(textField_6);
 		
 		plzformatter.setAllowsInvalid(false);
 		JFormattedTextField textField_7 = new JFormattedTextField(plzformatter);
 		textField_7.setToolTipText("Hier Bitte die PLZ des Wohnorts eintragen");
 		textField_7.setColumns(10);
-		textField_7.setBounds(169, 150, 161, 16);
+		textField_7.setBounds(169, 150, 161, 23);
 		panel.add(textField_7);
 		
 		JTextField textField_8 = new JTextField();
 		textField_8.setToolTipText("Hier Bitte die IBAN Adresse des Mitarbeiters eintragen");
 		textField_8.setDocument(new TextDoc(26));
 		textField_8.setColumns(10);
-		textField_8.setBounds(169, 170, 161, 16);
+		textField_8.setBounds(169, 170, 161, 23);
 		panel.add(textField_8);
 		
 		gehaltformatter.setAllowsInvalid(false);
 		JFormattedTextField textField_9 = new JFormattedTextField(gehaltformatter);
 		textField_9.setToolTipText("Hier bitte das Gehalt eintragen");
 		textField_9.setColumns(10);
-		textField_9.setBounds(169, 190, 161, 16);
+		textField_9.setBounds(169, 190, 161, 23);
 		panel.add(textField_9);
 		
 		JPasswordField textField_10 = new JPasswordField();
 		textField_10.setToolTipText("Hier Bitte das Passwort eingeben");
 		textField_10.setDocument(new TextDoc(16));
 		textField_10.setColumns(10);
-		textField_10.setBounds(169, 210, 161, 16);
+		textField_10.setBounds(169, 210, 161, 23);
 		panel.add(textField_10);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(169, 30, 161, 16);
+		comboBox.setBounds(169, 30, 161, 23);
 		
 		ResultSet rs = Datenbankverwaltung.HoleDatenSatz.AdminNummern();
 		while(rs.next()) {

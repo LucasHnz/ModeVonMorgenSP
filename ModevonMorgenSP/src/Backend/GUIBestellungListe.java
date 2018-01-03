@@ -198,16 +198,17 @@ public class GUIBestellungListe extends JPanel {
 		JButton btnBestellungAnzeigen = new JButton("Bestellung anzeigen");
 		btnBestellungAnzeigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
-				System.out.println("Hier");
-				
+				try {
 				final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
-				try{
 					System.out.println(i);
 					new GUIBestellpositionsliste(i);
-				}catch(Exception e) {
-					e.printStackTrace();
+				}catch(ArrayIndexOutOfBoundsException q) {
+						JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+								"Bestellung Anzeigen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+								null, new String[] { "Ok"}, "Ok");
+						System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
 			}
 		});
@@ -220,15 +221,20 @@ public class GUIBestellungListe extends JPanel {
 		JButton btnÄndernVStatus = new JButton ("Versandstatus Ändern");
 			btnÄndernVStatus.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					
+					try {
 					final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung();
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 					
 					BestellStrg.aktualisiereVStatus(i);
 					
+				}catch(ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+							"Bestellung VersandStatus ändern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+					System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
-			});
+			}});
 		
 			btnÄndernVStatus.setBounds(981,70,209,48);
 			add(btnÄndernVStatus);
@@ -253,12 +259,18 @@ public class GUIBestellungListe extends JPanel {
 		JButton btnNewButton = new JButton("Bestellung löschen");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 				BestellStrg.storniereBestellung(i);
 				
-			}
+			}catch(ArrayIndexOutOfBoundsException g) {
+				JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+						"Bestellung Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, new String[] { "Ok" }, "Ok");
+				System.out.println("Index Fehler, keine Zeile ausgewählt");
+			}}
 		});
 		btnNewButton.setBounds(981, 129, 209, 48);
 		add(btnNewButton);

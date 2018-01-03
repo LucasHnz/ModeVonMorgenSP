@@ -40,14 +40,14 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 	
 		
-		setBounds(200, 100, 354, 298);
+		setBounds(200, 100, 354, 304);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Administrator Bearbeiten Formular");
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 340, 218);
+		panel.setBounds(10, 11, 340, 223);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.setVisible(true);
@@ -108,19 +108,19 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 		JLabel lblGehalt = new JLabel("Gehalt:");
 		lblGehalt.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblGehalt.setBounds(10, 171, 126, 16);
+		lblGehalt.setBounds(10, 174, 126, 16);
 		panel.add(lblGehalt);
 		
 		JLabel lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPasswort.setBounds(10, 191, 126, 16);
+		lblPasswort.setBounds(10, 194, 126, 16);
 		panel.add(lblPasswort);
 		
 		JTextField textField = new JTextField();
 		textField.setToolTipText("Die Admin Nummer wurde autogeneriert");
 		textField.setText(String.valueOf(admin.getNutzernr()));
 		textField.setEditable(false);
-		textField.setBounds(158, 11, 161, 16);
+		textField.setBounds(158, 11, 161, 23);
 		panel.add(textField);
 		textField.setColumns(10);
 		
@@ -129,7 +129,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_2.setDocument(new TextDoc(26));
 		textField_2.setText(admin.getNachname());
 		textField_2.setColumns(10);
-		textField_2.setBounds(158, 31, 161, 16);
+		textField_2.setBounds(158, 31, 161, 23);
 		panel.add(textField_2);
 		
 		JTextField textField_3 = new JTextField();
@@ -137,7 +137,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_2.setDocument(new TextDoc(26));
 		textField_3.setText(admin.getVorname());
 		textField_3.setColumns(10);
-		textField_3.setBounds(158, 51, 161, 16);
+		textField_3.setBounds(158, 51, 161, 23);
 		panel.add(textField_3);
 		
 		JTextField textField_4 = new JTextField();
@@ -145,7 +145,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_4.setDocument(new TextDoc(51));
 		textField_4.setText(admin.getEmail());
 		textField_4.setColumns(10);
-		textField_4.setBounds(158, 71, 161, 16);
+		textField_4.setBounds(158, 71, 161, 23);
 		panel.add(textField_4);
 		
 		JTextField textField_5 = new JTextField();
@@ -153,7 +153,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_5.setDocument(new TextDoc(36));
 		textField_5.setText(admin.getStraﬂe());
 		textField_5.setColumns(10);
-		textField_5.setBounds(158, 91, 161, 16);
+		textField_5.setBounds(158, 91, 161, 23);
 		panel.add(textField_5);
 		
 		JTextField textField_6 = new JTextField();
@@ -161,7 +161,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_6.setDocument(new TextDoc(26));
 		textField_6.setText(admin.getOrt());
 		textField_6.setColumns(10);
-		textField_6.setBounds(158, 111, 161, 16);
+		textField_6.setBounds(158, 111, 161,23);
 		panel.add(textField_6);
 		
 		JFormattedTextField textField_7 = new JFormattedTextField(plzformatter);
@@ -169,7 +169,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_7.setToolTipText("Hier Bitte die PLZ des Wohnorts eintragen");
 		textField_7.setText(String.valueOf(admin.getPlz()));
 		textField_7.setColumns(10);
-		textField_7.setBounds(158, 131, 161, 16);
+		textField_7.setBounds(158, 131, 161, 23);
 		panel.add(textField_7);
 		
 		JTextField textField_8 = new JTextField();
@@ -177,7 +177,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_8.setDocument(new TextDoc(26));
 		textField_8.setText(admin.getIban());
 		textField_8.setColumns(10);
-		textField_8.setBounds(158, 151, 161, 16);
+		textField_8.setBounds(158, 151, 161, 23);
 		panel.add(textField_8);
 		
 		JFormattedTextField textField_9 = new JFormattedTextField(gehaltformatter);
@@ -185,7 +185,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_9.setToolTipText("Hier bitte das Gehalt eintragen");
 		textField_9.setText(String.valueOf(admin.getGehalt()));
 		textField_9.setColumns(10);
-		textField_9.setBounds(158, 171, 161, 16);
+		textField_9.setBounds(158, 171, 161, 23);
 		panel.add(textField_9);
 		
 		JPasswordField textField_10 = new JPasswordField();
@@ -193,13 +193,13 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField_10.setDocument(new TextDoc(16));
 		textField_10.setText(admin.getPasswort());
 		textField_10.setColumns(10);
-		textField_10.setBounds(158, 191, 161, 16);
+		textField_10.setBounds(158, 191, 161, 23);
 		panel.add(textField_10);
 		
 	
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 228, 340, 43);
+		panel_1.setBounds(10, 231, 340, 44);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
