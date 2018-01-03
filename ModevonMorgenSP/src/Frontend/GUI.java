@@ -95,56 +95,12 @@ public class GUI {
 		frame.repaint();
 	}
 
-	public static void öffnenAnmeldefenster() {
-		
-        panelAnmelden = new JPanel();
-		panelAnmelden.setLayout(null);
-		panelAnmelden.setBounds(1040, 0, 194, 118);
-		panelAnmelden.setOpaque(true);
-						
+	public static void öffnenAnmeldefenster() {	
+		panelAnmelden = GUIAnmelden.getGUIAnmelden();
 		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);		
-	
-		btnAnmeldenEinloggen = new JButton("Einloggen");
-		btnAnmeldenEinloggen.setBounds(0, 95, 89, 23);
-		panelAnmelden.add(btnAnmeldenEinloggen);
-		btnAnmeldenEinloggen.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				  String pwd = new String(anmeldenPasswort.getPassword());
-				  String email = anmeldenEmail.getText();
-				  
-				  LogStrg.anmelden(pwd, email);
-				  layeredPane.remove(panelAnmelden);				
-			}
-			
-		});
-		panelAnmelden.getRootPane().setDefaultButton(btnAnmeldenEinloggen);
-		
-		btnAnmeldenAbbrechen = new JButton("Abbrechen");
-		btnAnmeldenAbbrechen.setBounds(105, 95, 89, 23);
-		btnAnmeldenAbbrechen.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				layeredPane.remove(panelAnmelden);
-			}
-			
-		});
-		panelAnmelden.add(btnAnmeldenAbbrechen);
-		
-		anmeldenEmail = new JTextField();
-		anmeldenEmail.setToolTipText("Email Adresse");
-		anmeldenEmail.setBounds(10, 11, 174, 28);
-		panelAnmelden.add(anmeldenEmail);
-		anmeldenEmail.setColumns(10);
-		
-		anmeldenPasswort = new JPasswordField();
-		anmeldenPasswort.setToolTipText("Passwort");
-		anmeldenPasswort.setBounds(10, 45, 174, 28);
-		panelAnmelden.add(anmeldenPasswort);
-		
-		panelAnmelden.setVisible(true);
+	}
+	public static void removeLogPanel() {
+		layeredPane.remove(panelAnmelden);
 	}
 	
 	public static void anmeldenFehlermeldung() {

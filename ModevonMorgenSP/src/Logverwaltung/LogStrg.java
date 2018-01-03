@@ -39,8 +39,7 @@ public class LogStrg {
 			
 			if(rs1.next()) {
 				System.out.println("Gastkunde");
-				Frontend.GUI.fensterSchlieﬂen();
-				new GUI();
+				Frontend.GUI.fensterRestart();
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
 				GUI.setRechteAnzeigen(recht);
