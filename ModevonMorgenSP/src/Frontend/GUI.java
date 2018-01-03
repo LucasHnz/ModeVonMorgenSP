@@ -113,8 +113,7 @@ import javax.swing.JLayeredPane;
 				  String email = anmeldenEmail.getText();
 				  
 				  LogStrg.anmelden(pwd, email);
-				  panelAnmelden.setVisible(false);
-				
+				  layeredPane.remove(panelAnmelden);				
 			}
 			
 		});
@@ -126,7 +125,7 @@ import javax.swing.JLayeredPane;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelAnmelden.setVisible(false);
+				layeredPane.remove(panelAnmelden);
 			}
 			
 		});
@@ -275,19 +274,15 @@ import javax.swing.JLayeredPane;
 					  String auswahl = (String) comboBoxDamen.getSelectedItem();
 						
 						if(auswahl == "Kleidung"){
-							
-							changePanel(GUIDamenKleidung.getGUIDamenKleidung());
-							new GUIDamenKleidung();	
+							changePanel(GUIDamenKleidung.getGUIDamenKleidung());	
 						    }
 						  
-							if(auswahl == "Schuhe"){
-								changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
-								new GUIDamenSchuhe();	
+						if(auswahl == "Schuhe"){
+							changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
 							}
 							
-							if(auswahl == "Accessoires"){
-								changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());
-								new GUIDamenAccessoires();		
+						if(auswahl == "Accessoires"){
+							changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());		
 							}
 					
 				}
@@ -308,19 +303,15 @@ import javax.swing.JLayeredPane;
 					String auswahl = (String) comboBoxHerren.getSelectedItem();
 				    
 					if(auswahl == "Kleidung"){
-						changePanel(GUIHerrenKleidung.getGUIHerrenKleidung());
-						new GUIHerrenKleidung();			 
+						changePanel(GUIHerrenKleidung.getGUIHerrenKleidung()); 
 				    }
 				  
 					if(auswahl == "Schuhe"){
-						changePanel(GUIHerrenSchuhe.getGUIHerrenSchuhe());
-						new GUIHerrenSchuhe();			 			  
+						changePanel(GUIHerrenSchuhe.getGUIHerrenSchuhe());			 			  
 					}
 					
 					if(auswahl == "Accessoires"){
 						changePanel(GUIHerrenAccessoires.getGUIHerrenAccessoires());
-						new GUIHerrenAccessoires();	
-					  
 					}
 				}
 				

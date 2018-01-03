@@ -38,7 +38,7 @@ public class LogStrg {
 			
 			
 			if(rs1.next()) {
-				System.out.println("1");
+				System.out.println("Gastkunde");
 				Frontend.GUI.fensterSchlieﬂen();
 				new GUI();
 				setAnmeldeStatus(2);
@@ -47,8 +47,8 @@ public class LogStrg {
 		
 			}
 			
-			if(rs2.next()) {
-				System.out.println("2");
+			else if(rs2.next()) {
+				System.out.println("MA");
 				Frontend.GUI.fensterSchlieﬂen();
 				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(3);
@@ -56,8 +56,8 @@ public class LogStrg {
 				GUI.setRechteAnzeigen(recht);
 			}
 			
-			if(rs3.next()) {
-				System.out.println("3");
+			else if(rs3.next()) {
+				System.out.println("Admin");
 				Frontend.GUI.fensterSchlieﬂen();
 				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(4);
@@ -65,17 +65,9 @@ public class LogStrg {
 				GUI.setRechteAnzeigen(recht);	
 			}
 			
-			else if( rs1.next() == false ) {
+			else 
 				GUI.anmeldenFehlermeldung();
-			}
 			
-			else if(rs2.next() == false) {
-				GUI.anmeldenFehlermeldung();
-			}
-			
-			else if(rs3.next() == false) {
-				GUI.anmeldenFehlermeldung();
-			}
 	
 		
 			rs1.close();
