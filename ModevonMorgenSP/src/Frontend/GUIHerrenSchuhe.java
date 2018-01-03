@@ -32,9 +32,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class GUIHerrenSchuhe implements ActionListener {
+public class GUIHerrenSchuhe {
 	
-	JButton btnZurück;
 	JButton btnAnmelden;
 	static JButton btnAlleArtikel;
 	static JButton btnOutdoor;
@@ -311,19 +310,4 @@ public class GUIHerrenSchuhe implements ActionListener {
 		panelHerrenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
 		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 	}
-	
-	
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if(e.getSource() == btnZurück) 
-		{
-			panelMain.setVisible(false);
-			GUI.panelMain.setVisible(true);
-		}
-		
-				
-	
-	}
-
 }

@@ -59,7 +59,7 @@ public class HoleDatenSatz {
 			
 			rs.next();
 			
-			admin = new Administrator(rs.getInt("Nutzernr"),rs.getString("Nachname"), rs.getString("Vorname"),rs.getString("Email"), rs.getString("Straﬂe"), rs.getString("Ort"), rs.getInt("PLZ"),rs.getString("IBAN"),rs.getInt("Gehalt"),rs.getInt("Berechtigung"),rs.getString("Passwort"));
+			admin = new Administrator(rs.getInt("Nutzernr"),rs.getString(2), rs.getString("Vorname"),rs.getString("Email"), rs.getString("Straﬂe"), rs.getString("Ort"), rs.getInt("PLZ"),rs.getString("IBAN"),rs.getInt("Gehalt"),rs.getInt("Berechtigung"),rs.getString("Passwort"));
 		
 			rs.close();
 		}

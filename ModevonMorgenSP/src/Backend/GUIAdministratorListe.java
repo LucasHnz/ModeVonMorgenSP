@@ -28,14 +28,15 @@ import AdministratorVerwaltung.AdministratorStrg;
  * @author julian
  *
  */
-public class GUIAdministratorListe extends JPanel{
-	
+public class GUIAdministratorListe extends JPanel {
+
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Nutzer Nummer", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN","Gehalt", "Passwort"};
+	private String[] columnNames = { "Nutzer Nummer", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN",
+			"Gehalt", "Passwort" };
 
-	private class myTableModel extends AbstractTableModel{
+	private class myTableModel extends AbstractTableModel {
 
 		/**
 		 * 
@@ -43,9 +44,10 @@ public class GUIAdministratorListe extends JPanel{
 		private static final long serialVersionUID = 1L;
 		private String[] columnNames;
 		private HashMap<Integer, Administrator> data;
-		
+
 		/**
 		 * Füllt die Tabelle mit einer Administrator Liste
+		 * 
 		 * @param Administratorliste
 		 * @param columnNames
 		 */
@@ -53,20 +55,21 @@ public class GUIAdministratorListe extends JPanel{
 			this.columnNames = columnNames;
 			this.data = Administratorliste;
 		}
-			/**
-			 * Holt sich die Anzahl der Spalten
-			 */
+
+		/**
+		 * Holt sich die Anzahl der Spalten
+		 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
-		
+
 		/**
 		 * Holt sich den Spaltennamen
 		 */
 		public String getColumnName(int columnIndex) {
 			return columnNames[columnIndex].toString();
 		}
-		
+
 		/**
 		 * Holt sich die Anzahl der Reihen
 		 */
@@ -74,59 +77,52 @@ public class GUIAdministratorListe extends JPanel{
 			System.out.println(data.size());
 			return data.size();
 		}
-		
+
 		/**
-		 *  Gibt den Wert der ausgewählten Zelle zurück.
-		 * @param rowIndex Der Zeilenindex.
-		 * @param columnIndex Der Spaltenindex.
+		 * Gibt den Wert der ausgewählten Zelle zurück.
+		 * 
+		 * @param rowIndex
+		 *            Der Zeilenindex.
+		 * @param columnIndex
+		 *            Der Spaltenindex.
 		 */
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
-				if(columnIndex == 0) {
+				if (columnIndex == 0) {
 					return String.valueOf(data.get(keys[rowIndex]).getNutzernr());
-				}
-				else if(columnIndex == 1) {
+				} else if (columnIndex == 1) {
 					return data.get(keys[rowIndex]).getNachname();
-				}
-				else if(columnIndex == 2) {
+				} else if (columnIndex == 2) {
 					return data.get(keys[rowIndex]).getVorname();
-				}		
-				else if(columnIndex == 3) {
+				} else if (columnIndex == 3) {
 					return data.get(keys[rowIndex]).getEmail();
-				}	
-				else if(columnIndex == 4) {
+				} else if (columnIndex == 4) {
 					return data.get(keys[rowIndex]).getStraße();
-				}	
-				else if(columnIndex == 5) {
+				} else if (columnIndex == 5) {
 					return data.get(keys[rowIndex]).getOrt();
-				}	
-				else if(columnIndex == 6) {
+				} else if (columnIndex == 6) {
 					return data.get(keys[rowIndex]).getPlz();
-				}	
-				else if(columnIndex == 7) {
+				} else if (columnIndex == 7) {
 					return data.get(keys[rowIndex]).getIban();
-				}
-				else if (columnIndex == 8) {
+				} else if (columnIndex == 8) {
 					return data.get(keys[rowIndex]).getGehalt();
-				}
-				else if (columnIndex == 9 ) {
+				} else if (columnIndex == 9) {
 					return data.get(keys[rowIndex]).getPasswort();
-				}		
-				else
+				} else
 					return null;
-			
-			}catch(NullPointerException e) {
+
+			} catch (NullPointerException e) {
 				e.printStackTrace();
 				String a = null;
 				return a;
-			}	
+			}
 		}
-		
+
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			return false;	
+			return false;
 		}
-					
+
 	}
 
 	/**
@@ -137,7 +133,7 @@ public class GUIAdministratorListe extends JPanel{
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
 		setBackground(Color.DARK_GRAY);
-		
+
 		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
@@ -151,19 +147,19 @@ public class GUIAdministratorListe extends JPanel{
 		table.getColumnModel().getColumn(7).setPreferredWidth(80);
 		table.getColumnModel().getColumn(8).setPreferredWidth(80);
 		table.getColumnModel().getColumn(9).setPreferredWidth(80);
-		
+
 		Comparator<Integer> intcomp = new Comparator<Integer>() {
 			@Override
 			public int compare(Integer o1, Integer o2) {
-				if(o1 > o2)
+				if (o1 > o2)
 					return 1;
-				else if(o1 < o2)
+				else if (o1 < o2)
 					return -1;
 				else
 					return 0;
-			}		
+			}
 		};
-		
+
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
 		sorter.setComparator(8, intcomp);
 		table.setRowSorter(sorter);
@@ -171,15 +167,15 @@ public class GUIAdministratorListe extends JPanel{
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(30,42,800, 395);
+		table.setBounds(30, 42, 800, 395);
 		table.setVisible(true);
-		
+
 		scrollpane = new JScrollPane();
 		scrollpane.setBounds(10, 11, 900, 490);
 		scrollpane.setVisible(true);
 		scrollpane.setViewportView(table);
 		add(scrollpane);
-		
+
 		/**
 		 * Button mit Action Listener um einen Admin hinzuzufügen
 		 */
@@ -201,52 +197,75 @@ public class GUIAdministratorListe extends JPanel{
 		JButton btnEditiereAdministrator = new JButton("Administrator editieren");
 		btnEditiereAdministrator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Administrator> data = AdministratorSammlung.getAdminSammlung();
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				new GUIAdministratorBearbeiten(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+				try {
+					final HashMap<Integer, Administrator> data = AdministratorSammlung.getAdminSammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+					new GUIAdministratorBearbeiten(
+							data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+				} catch (ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Administrator Bearbeitung", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+					System.out.println("Index Fehler, keine Zeile ausgewählt");
+				}
 			}
 		});
-		btnEditiereAdministrator.setBounds(981,70,209,48);
+		btnEditiereAdministrator.setBounds(981, 70, 209, 48);
 		add(btnEditiereAdministrator);
-		
+
 		/**
 		 * Button um einen Admin zu löschen
 		 */
 		JButton btnLöscheAdmin = new JButton("Administrator löschen");
 		btnLöscheAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Administrator> data = AdministratorSammlung.getAdminSammlung();
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
-				
-				JOptionPane.showOptionDialog(null, "Sie sind dabei einen Admin zu löschen! \nFortfahren ?","Administrator Bearbeitung",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok", "Abbrechen"}, "Ok"); 
-				
-				//data.remove(i);
-				AdministratorStrg.entferneAdmin(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
-			
+
+				try {
+					final HashMap<Integer, Administrator> data = AdministratorSammlung.getAdminSammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+
+					
+					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Administrator zu löschen! Fortfahren ?",
+							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+							new String[] { "Ok", "Abbrechen" }, "Ok");
+					if(optionPane.equals(0)) {
+						AdministratorStrg.entferneAdmin(
+								data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+						JOptionPane.showMessageDialog(null,  "Administrator wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane.equals(1)) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}	
+
+				} catch (ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+					System.out.println("Index Fehler, keine Zeile ausgewählt");
+				}
 			}
 		});
-		btnLöscheAdmin.setBounds(981,129,209,48);
+		btnLöscheAdmin.setBounds(981, 129, 209, 48);
 		add(btnLöscheAdmin);
-		
-		Image AdminEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
+		Image AdminEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40,
+				Image.SCALE_SMOOTH);
 		JLabel lblAdminEditieren = new JLabel(new ImageIcon(AdminEditieren));
 		lblAdminEditieren.setBounds(920, 70, 40, 40);
 		add(lblAdminEditieren);
-		
-		Image AdminHinzufügen = new ImageIcon("src\\Icons 64x64\\plus.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
+		Image AdminHinzufügen = new ImageIcon("src\\Icons 64x64\\plus.png").getImage().getScaledInstance(40, 40,
+				Image.SCALE_SMOOTH);
 		JLabel lblAdminHinzufügen = new JLabel(new ImageIcon(AdminHinzufügen));
 		lblAdminHinzufügen.setBounds(920, 12, 40, 40);
 		add(lblAdminHinzufügen);
-		
-		Image AdminLöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
+		Image AdminLöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40,
+				Image.SCALE_SMOOTH);
 		JLabel lblAdminLöschen = new JLabel(new ImageIcon(AdminLöschen));
 		lblAdminLöschen.setBounds(920, 128, 40, 40);
 		add(lblAdminLöschen);
-		
+
 		setVisible(true);
 
 	}

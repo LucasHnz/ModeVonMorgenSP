@@ -22,54 +22,59 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.SoftBevelBorder;
 
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
+import Backend.GUIMitarbeiter;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
 
-    public class GUI {
+public class GUI extends JFrame {
 	
+	static JFrame fenster;
+	static GUI gui;
 	
-	public static String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	public static String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
-    static JFrame frame;
-	public int rotierung = 1;
-	public static String[] outfitsDamenListe = {"C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau1.jpg","C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau2.jpg"};
-	static JTextField anmeldenEmail = new JTextField();
-	static JPasswordField anmeldenPasswort = new JPasswordField();
-	static JButton btnAnmeldenEinloggen = new JButton("Einloggen");
-	static JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
-	static JPanel panelMain = new JPanel();
-	private static JPanel panelMain_1;
-	public static JPanel panelAnmelden;
+	public JFrame frame;	
+	public JPanel varPanel;
+    public JLayeredPane layeredPane = new JLayeredPane();
+	public JPanel panelAnmelden;
 	
-	public static JButton btnProduktDamenLinks = new JButton();
-	public static JButton btnProduktDamenRechts = new JButton();
-	public static JButton btnProduktHerrenLinks = new JButton();
-	public static JButton btnProduktHerrenRechts= new JButton();
-	public static JButton btnProduktDamen;
-	public static JButton btnProduktHerren;
-	public static JButton btnWarenkorb;
-	public static JButton btnHome;
-	public static JLabel labelMainDamen = new JLabel();
-	public static JLabel labelMainHerren = new JLabel();
-	public static JLabel lblRechte;
-	public static JComboBox comboBoxHerren = new JComboBox();
-	public static JComboBox comboBoxDamen = new JComboBox();
+	public JButton btnWarenkorb;
+	public JButton btnHome;
+	public JLabel lblRechte;
+	public JComboBox comboBoxHerren = new JComboBox();
+	public JComboBox comboBoxDamen = new JComboBox();
 	public static JComboBox comboBoxAnmelden = new JComboBox();
-	public static JButton btnZurück = new JButton();
-    public static JPanel varPanel;
-	public static JPanel WarenkorbPanel;
-    private static JLayeredPane layeredPane = new JLayeredPane();
+    
+    public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
+	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
+	static String[] array = {"Anmelden"};
 	
+		
 	
-	public static void changePanel(JPanel newPanel) {
+	public static void main(String[] args) 
+	{
+		try {
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		ArtikelStrg.FülleArtikelsammlung();
+		gui = new GUI();
+		fenster = gui;
+		
+	}
+	
+	public static GUI getFenster() {
+		return (GUI) fenster;
+	}
+    
+	public void changePanel(JPanel newPanel) {
 		if(varPanel != null) {
 			layeredPane.remove(varPanel);
 			varPanel = null;
@@ -80,81 +85,76 @@ import javax.swing.JLayeredPane;
 		frame.repaint();
 	}
 	
-	public static void fensterSchließen() {
-		frame.dispose();
+	public static void comboBoxAbfrage() {
+		int status = LogStrg.getAngemeldetStatus();
+		String[] arrayNeu;
+		
+		if(status == 0) {
+			//Abgemeldet
+			String item1 = "Anmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+		}
+		
+		if(status == 2) {
+			//Bestandskunde
+			String item1 = "Meine Bestellungen";
+			String item2 = "Konto verwalten";
+			String item3 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+			comboBoxAnmelden.addItem(item3);
+		}
+		
+		if(status == 3) {
+			//Mitarbeiter
+			String item1 = "Verwaltung";
+			String item2 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+		}
+		
+		if(status == 4) {
+			//Admin
+			String item1 = "Verwaltung";
+			String item2 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+		}
+		
 	}
 	
 	
-	public static void setRechteAnzeigen(String recht) {
+	
+	public static void fensterSchließen() {
+		gui.dispose();
+	}
+	public static void fensterRestart() {
+		gui.dispose();
+		fenster = new GUI();
+	}
+	
+	public void setRechteAnzeigen(String recht) {
 		lblRechte.setText(recht);
 		frame.revalidate();
 		frame.repaint();
 	}
-	
-	
-	
-	public static void öffnenAnmeldefenster() {
-		
-        panelAnmelden = new JPanel();
-		panelAnmelden.setLayout(null);
-		panelAnmelden.setBounds(1040, 0, 194, 118);
-		panelAnmelden.setOpaque(true);
-						
-		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);		
-	
-		btnAnmeldenEinloggen = new JButton("Einloggen");
-		btnAnmeldenEinloggen.setBounds(0, 95, 89, 23);
-		panelAnmelden.add(btnAnmeldenEinloggen);
-		btnAnmeldenEinloggen.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				  String pwd = new String(anmeldenPasswort.getPassword());
-				  String email = anmeldenEmail.getText();
-				  
-				  LogStrg.anmelden(pwd, email);
-				  panelAnmelden.setVisible(false);
-				
-			}
-			
-		});
-		panelAnmelden.getRootPane().setDefaultButton(btnAnmeldenEinloggen);
-		
-		btnAnmeldenAbbrechen = new JButton("Abbrechen");
-		btnAnmeldenAbbrechen.setBounds(105, 95, 89, 23);
-		btnAnmeldenAbbrechen.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panelAnmelden.setVisible(false);
-			}
-			
-		});
-		panelAnmelden.add(btnAnmeldenAbbrechen);
-		
-		anmeldenEmail = new JTextField();
-		anmeldenEmail.setToolTipText("Email Adresse");
-		anmeldenEmail.setBounds(10, 11, 174, 28);
-		panelAnmelden.add(anmeldenEmail);
-		anmeldenEmail.setColumns(10);
-		
-		anmeldenPasswort = new JPasswordField();
-		anmeldenPasswort.setToolTipText("Passwort");
-		anmeldenPasswort.setBounds(10, 45, 174, 28);
-		panelAnmelden.add(anmeldenPasswort);
-		
-		panelAnmelden.setVisible(true);
+	public void öffnenAnmeldefenster() {	
+		panelAnmelden = GUIAnmelden.getGUIAnmelden();
+		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);
+		frame.getRootPane().setDefaultButton(GUIAnmelden.btnAnmeldenEinloggen);
+	}
+	public void removeLogPanel() {
+		layeredPane.remove(panelAnmelden);
+		frame.revalidate();
+		frame.repaint();
 	}
 	
-	
-	public static ImageIcon bildAnpassen(String imageRoot) {
-		
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH));
-		return imageIcon;
-	}
-	
-	
-	public static void anmeldenFehlermeldung() {
+	public void anmeldenFehlermeldung() {
 		
 		System.out.println("OPT");
 		JOptionPane.showOptionDialog(null, "Email und Passwort stimmen nicht überein",
@@ -166,69 +166,8 @@ import javax.swing.JLayeredPane;
 		
 	}
 	
-	public static void wechselOutfitDamenRechts() 
-	{
-		
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_6.jpg"));
-		 
-	}
-	
-	public static void wechselOutfitDamenLinks() 
-	{
-		
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
-		
-	}
-	
-	public static void wechselOutfitHerrenRechts() 
-	{
-		
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenkleidung_1.jpg"));
-
-	}
-	
-	public static void wechselOutfitHerrenLinks() 
-	{
-		
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		 	
-	}
-
-	
-	public static void main(String[] args) 
-	{
-		try {
-			//UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-
-			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			//UIManager.setLookAndFeel( "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel" );
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		ArtikelStrg.FülleArtikelsammlung();
-		setzeArtikelStartseite();
-		new GUI();
-		
-		//Artikelsammlung.loadAllImages();
-		//System.out.println("Images geladen");
-	}
-	
-	public static void setzeArtikelStartseite(){
-		//for (int n : ArtikelStrg.Artikelsammlung)
-	}
-	
-	
-	
 	public GUI() {
-		initializeMain();
-	}
-	
-	
-	
-	private static void initializeMain() {
-		
+				
 		layeredPane.setSize(1248, 563);
 		layeredPane.setLocation(0, 148);
 		frame = new JFrame();
@@ -270,26 +209,21 @@ import javax.swing.JLayeredPane;
 		comboBoxDamen.setBounds(10, 2, 250, 48);
 		comboBoxDamen.addActionListener(new ActionListener(){
 			
-				public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 					
-					  String auswahl = (String) comboBoxDamen.getSelectedItem();
+				String auswahl = (String) comboBoxDamen.getSelectedItem();
 						
-						if(auswahl == "Kleidung"){
-							
-							changePanel(GUIDamenKleidung.getGUIDamenKleidung());
-							new GUIDamenKleidung();	
-						    }
+					if(auswahl == "Kleidung"){
+						changePanel(GUIDamenKleidung.getGUIDamenKleidung());	
+					}
 						  
-							if(auswahl == "Schuhe"){
-								changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
-								new GUIDamenSchuhe();	
-							}
+					if(auswahl == "Schuhe"){
+						changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
+					}
 							
-							if(auswahl == "Accessoires"){
-								changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());
-								new GUIDamenAccessoires();		
-							}
-					
+					if(auswahl == "Accessoires"){
+						changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());		
+					}
 				}
 		
 		});
@@ -308,19 +242,15 @@ import javax.swing.JLayeredPane;
 					String auswahl = (String) comboBoxHerren.getSelectedItem();
 				    
 					if(auswahl == "Kleidung"){
-						changePanel(GUIHerrenKleidung.getGUIHerrenKleidung());
-						new GUIHerrenKleidung();			 
+						changePanel(GUIHerrenKleidung.getGUIHerrenKleidung()); 
 				    }
 				  
 					if(auswahl == "Schuhe"){
-						changePanel(GUIHerrenSchuhe.getGUIHerrenSchuhe());
-						new GUIHerrenSchuhe();			 			  
+						changePanel(GUIHerrenSchuhe.getGUIHerrenSchuhe());			 			  
 					}
 					
 					if(auswahl == "Accessoires"){
 						changePanel(GUIHerrenAccessoires.getGUIHerrenAccessoires());
-						new GUIHerrenAccessoires();	
-					  
 					}
 				}
 				
@@ -329,7 +259,7 @@ import javax.swing.JLayeredPane;
 		});
 		panelBar.add(comboBoxHerren);
 		
-		comboBoxAnmelden = new JComboBox(anmeldenCbList);
+		comboBoxAnmelden = new JComboBox(array);
 		comboBoxAnmelden.setBounds(1040, 2, 173, 48);
 		comboBoxAnmelden.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
@@ -342,30 +272,24 @@ import javax.swing.JLayeredPane;
 					
 					if(auswahl == "Anmelden") {
 						öffnenAnmeldefenster();
-						
 					}
 
-				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 2) {
+				    if(auswahl == "Meine Bestellungen") {
 					   //new GUIKontoBestellungen(frame);
 					}
-				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 0) {
-				    	öffnenAnmeldefenster();
-				    }
-				    
-				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 2) {
+				 
+				    if(auswahl == "Konto verwalten") {
 				    	changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 					}
-				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 0) {
-				    	öffnenAnmeldefenster();
-				    }
+				   
 				    if(auswahl == "Abmelden") {
-				    	System.out.println("DADA");
 				    	LogStrg.abmelden();
 				    }
+				    
+				    if(auswahl == "Verwaltung") {
+				    	changePanel(GUIMitarbeiter.getGUIMitarbeiter());
+				    }
 				}
-				
-			
-			
 		});
 		panelBar.add(comboBoxAnmelden);
 		
@@ -393,7 +317,7 @@ import javax.swing.JLayeredPane;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				changePanel(getPanelMain());
+				changePanel(GUIHomepage.getHomepage());
 				
 			}
 			
@@ -401,141 +325,17 @@ import javax.swing.JLayeredPane;
 		btnHome.setBounds(876, 2, 48, 48);
 		panelBar.add(btnHome);
 		
-	
-		
-		varPanel = getPanelMain();
+		varPanel = GUIHomepage.getHomepage();
 		layeredPane.add(varPanel, JLayeredPane.DEFAULT_LAYER);
-		
-		
 		
 		JLabel labelMainHintergrund = new JLabel();
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
-		panelMain.add(labelMainHintergrund);
-		
-	
+		frame.getContentPane().add(labelMainHintergrund);
 	
 		frame.setVisible(true);
 	
 	}
 	
-	public static JPanel getPanelMain() {
-		panelMain_1 = new JPanel();
-		panelMain_1.setBackground(Color.WHITE);
-		panelMain_1.setBounds(0, 0, 1248, 563);
-		panelMain_1.setLayout(null);
-		
-		btnProduktDamen = new JButton("Zum Produkt");
-		btnProduktDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktDamen.setBackground(Color.WHITE);
-		btnProduktDamen.setForeground(Color.BLACK);
-		btnProduktDamen.setBounds(249, 458, 165, 35);
-		btnProduktDamen.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktDamen);
-		
-		btnProduktHerren = new JButton("Zum Produkt");
-		btnProduktHerren.setBackground(Color.WHITE);
-		btnProduktHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktHerren.setBounds(774, 458, 165, 35);
-		btnProduktHerren.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktHerren);
-		
-		Image leftArrow = new ImageIcon("src\\Icons 32x32\\left-arrow.png").getImage();
-		Image rightArrow = new ImageIcon("src\\Icons 32x32\\right-chevron.png").getImage();
-
-		btnProduktDamenRechts = new JButton(new ImageIcon(rightArrow));
-		btnProduktDamenRechts.setContentAreaFilled(false);
-		btnProduktDamenRechts.setBackground(Color.WHITE);
-		btnProduktDamenRechts.setBounds(536, 260, 32, 32);
-		btnProduktDamenRechts.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				wechselOutfitDamenRechts();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktDamenRechts);
-		
-		btnProduktDamenLinks = new JButton(new ImageIcon(leftArrow));
-		btnProduktDamenLinks.setContentAreaFilled(false);
-		btnProduktDamenLinks.setBackground(Color.WHITE);
-		btnProduktDamenLinks.setBounds(100, 260, 32, 32);
-		btnProduktDamenLinks.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				wechselOutfitDamenLinks();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktDamenLinks);
-		
-		btnProduktHerrenRechts = new JButton(new ImageIcon(rightArrow));
-		btnProduktHerrenRechts.setContentAreaFilled(false);
-		btnProduktHerrenRechts.setBackground(Color.WHITE);
-		btnProduktHerrenRechts.setBounds(1048, 260, 32, 32);
-		btnProduktHerrenRechts.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				wechselOutfitHerrenRechts();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktHerrenRechts);
-		
-		btnProduktHerrenLinks = new JButton(new ImageIcon(leftArrow));
-		btnProduktHerrenLinks.setBackground(Color.WHITE);
-		btnProduktHerrenLinks.setContentAreaFilled(false);
-		btnProduktHerrenLinks.setBounds(612, 260, 32, 32);
-		btnProduktHerrenLinks.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			wechselOutfitHerrenRechts();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktHerrenLinks);
-		
-		
-		labelMainDamen = new JLabel();
-		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
-		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
-		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
-		panelMain_1.add(labelMainDamen);
-		
-		labelMainHerren = new JLabel("");
-		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
-		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		panelMain_1.add(labelMainHerren);
-
-		
-		return panelMain_1;
-	}
+	
 	
 }

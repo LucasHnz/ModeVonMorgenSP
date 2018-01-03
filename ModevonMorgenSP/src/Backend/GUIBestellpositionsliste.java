@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -174,6 +175,7 @@ public class GUIBestellpositionsliste extends JFrame{
 		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
 				JOptionPane.showOptionDialog(null, "Sie sind dabei eine Rücksendung anzunehmen! \nFortfahren ?","Rücksendung Annehmen",
 		                JOptionPane.YES_NO_CANCEL_OPTION,
 		                JOptionPane.WARNING_MESSAGE, null, 
@@ -187,8 +189,9 @@ public class GUIBestellpositionsliste extends JFrame{
 				System.out.println(i);
 				
 				RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
-			}
-		});
+				
+				MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
+			}});
 		getContentPane().add(btnRücksAnnehmen);
 		
 		/**
@@ -198,7 +201,10 @@ public class GUIBestellpositionsliste extends JFrame{
 		btnRücksAblehnen.setBounds(776, 81, 177, 48);
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//Methode zum Versenden einer Email für Ablehnung
+				
+					MailController.MailSenden.sendMail("julian-hermann@outlook.de","Ablehnung ihrer Rücksendung","Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
+			
+				
 			}
 		});
 		getContentPane().add(btnRücksAblehnen);
@@ -211,10 +217,15 @@ public class GUIBestellpositionsliste extends JFrame{
 		btnZurück.setBounds(776, 149, 177, 48);
 			btnZurück.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					try {
 					Bestellverwaltung.BestellpositionSammlung.entferneDatenAusListe();
 					dispose();
-				}
-			});
+				}catch(ConcurrentModificationException e) {
+					System.out.println(e.getLocalizedMessage());
+					System.out.println(e.getMessage());
+					}}
+			}
+			);
 			getContentPane().add(btnZurück);
 			setVisible(true);
 			

@@ -1,6 +1,7 @@
 package Logverwaltung;
 
 import java.awt.event.ActionEvent;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,13 +10,19 @@ import java.sql.Statement;
 
 import javax.swing.*;
 
+import Backend.GUIMitarbeiter;
 import Frontend.GUI;
 import Frontend.GUIAnmelden;
+import Frontend.GUIHomepage;
 
 public class LogStrg {
 	
 	static int angemeldet = 0;
 	static String recht = " ";
+	static int nutzerNr = 0;
+	static String[] anmeldenCbListAbgemeldet = {"Anmelden"};
+	static String[] anmeldenCbListAngemeldet = {"Meine Bestellungen", "Konto verwalten", "Abmelden"};
+	static String[] anmeldenCbListMitarbeiter = {"Verwaltung", "Abmelden"};
 	
 	
 	public static  void anmelden(String passwort, String email) {
@@ -38,44 +45,40 @@ public class LogStrg {
 			
 			
 			if(rs1.next()) {
-				System.out.println("1");
-				Frontend.GUI.fensterSchlieﬂen();
-				new GUI();
+				System.out.println("Bestandskunde");
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
-				GUI.setRechteAnzeigen(recht);
-		
+				setNutzerNr(rs1.getInt("nutzernr"));
+				GUI.comboBoxAbfrage();
+				GUI.getFenster().setRechteAnzeigen(recht);
+				GUI.getFenster().removeLogPanel();
 			}
 			
-			if(rs2.next()) {
-				System.out.println("2");
-				Frontend.GUI.fensterSchlieﬂen();
-				new Backend.GUIMitarbeiter();
+			else if(rs2.next()) {
+				System.out.println("MA");
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
-				GUI.setRechteAnzeigen(recht);
+				setNutzerNr(rs2.getInt("nutzernr"));
+				GUI.comboBoxAbfrage();
+				GUI.getFenster().setRechteAnzeigen(recht);
+				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
+				GUI.getFenster().removeLogPanel();
 			}
 			
-			if(rs3.next()) {
-				System.out.println("3");
-				Frontend.GUI.fensterSchlieﬂen();
-				new Backend.GUIMitarbeiter();
+			else if(rs3.next()) {
+				System.out.println("Admin");
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
-				GUI.setRechteAnzeigen(recht);	
+				setNutzerNr(rs3.getInt("nutzernr"));
+				GUI.comboBoxAbfrage();
+				GUI.getFenster().setRechteAnzeigen(recht);	
+				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
+				GUI.getFenster().removeLogPanel();
 			}
 			
-			else if( rs1.next() == false ) {
-				GUI.anmeldenFehlermeldung();
-			}
+			else 
+				GUI.getFenster().anmeldenFehlermeldung();
 			
-			else if(rs2.next() == false) {
-				GUI.anmeldenFehlermeldung();
-			}
-			
-			else if(rs3.next() == false) {
-				GUI.anmeldenFehlermeldung();
-			}
 	
 		
 			rs1.close();
@@ -96,11 +99,12 @@ public class LogStrg {
 }
 	
 	public static void abmelden() {
-		Frontend.GUI.fensterSchlieﬂen();
-		new Frontend.GUI();
+		GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 		setRecht(" ");
 		setAnmeldeStatus(0);
-		GUI.setRechteAnzeigen(recht);
+		setNutzerNr(0);
+		GUI.comboBoxAbfrage();
+		GUI.getFenster().setRechteAnzeigen(recht);
 	}
 	
 	
@@ -119,6 +123,12 @@ public class LogStrg {
 	public static void setAnmeldeStatus(int neuerStatus){
 		angemeldet = neuerStatus;
 	}
-
+	public static int getNutzerNr() {
+		return nutzerNr;
+	}
+	public static void setNutzerNr(int nr) {
+		nutzerNr = nr;
+	}
+	
 
 }

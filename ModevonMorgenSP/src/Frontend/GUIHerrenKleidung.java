@@ -81,8 +81,8 @@ public class GUIHerrenKleidung {
 			e.printStackTrace();
 		}
 		
-		GUI.frame.revalidate();
-		GUI.frame.repaint();
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
 	}
 	
 	public static void ladeArtikelJacken() {

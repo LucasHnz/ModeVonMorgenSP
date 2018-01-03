@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,12 +15,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.NumberFormatter;
 
 import AdministratorVerwaltung.Administrator;
 import AdministratorVerwaltung.AdministratorSammlung;
 import Datenbankverwaltung.VerbindungDB;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 /**
  * 
  * @author julian
@@ -37,17 +40,31 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 	
 		
-		setBounds(200, 100, 354, 298);
+		setBounds(200, 100, 354, 304);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Administrator Bearbeiten Formular");
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 340, 218);
+		panel.setBounds(10, 11, 340, 223);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.setVisible(true);
+		
+		NumberFormat gehaltformat = NumberFormat.getNumberInstance(); 
+		gehaltformat.setGroupingUsed(false); 
+		gehaltformat.setMaximumIntegerDigits(8);
+		gehaltformat.setMinimumIntegerDigits(1);
+		gehaltformat.setMaximumFractionDigits(2);
+		gehaltformat.setMinimumFractionDigits(2);
+        NumberFormatter gehaltformatter = new NumberFormatter(gehaltformat);
+        
+        NumberFormat plzformat = NumberFormat.getNumberInstance(); 
+        plzformat.setGroupingUsed(false); 
+        plzformat.setMaximumIntegerDigits(5);
+        plzformat.setMinimumIntegerDigits(1);
+        NumberFormatter plzformatter = new NumberFormatter(plzformat);
 		
 		JLabel lblMitarbeiterNummer = new JLabel("Administrator Nummer:");
 		lblMitarbeiterNummer.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -91,88 +108,98 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 		JLabel lblGehalt = new JLabel("Gehalt:");
 		lblGehalt.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblGehalt.setBounds(10, 171, 126, 16);
+		lblGehalt.setBounds(10, 174, 126, 16);
 		panel.add(lblGehalt);
 		
 		JLabel lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPasswort.setBounds(10, 191, 126, 16);
+		lblPasswort.setBounds(10, 194, 126, 16);
 		panel.add(lblPasswort);
 		
 		JTextField textField = new JTextField();
 		textField.setToolTipText("Die Admin Nummer wurde autogeneriert");
 		textField.setText(String.valueOf(admin.getNutzernr()));
 		textField.setEditable(false);
-		textField.setBounds(158, 11, 161, 16);
+		textField.setBounds(158, 11, 161, 23);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JTextField textField_2 = new JTextField();
 		textField_2.setToolTipText("Hier Bitte den Nach-Namen eintragen");
+		textField_2.setDocument(new TextDoc(26));
 		textField_2.setText(admin.getNachname());
 		textField_2.setColumns(10);
-		textField_2.setBounds(158, 31, 161, 16);
+		textField_2.setBounds(158, 31, 161, 23);
 		panel.add(textField_2);
 		
 		JTextField textField_3 = new JTextField();
 		textField_3.setToolTipText("Hier Bitte den Vor-Namen eintragen");
+		textField_2.setDocument(new TextDoc(26));
 		textField_3.setText(admin.getVorname());
 		textField_3.setColumns(10);
-		textField_3.setBounds(158, 51, 161, 16);
+		textField_3.setBounds(158, 51, 161, 23);
 		panel.add(textField_3);
 		
 		JTextField textField_4 = new JTextField();
 		textField_4.setToolTipText("Hier Bitte die EMail eintragen");
+		textField_4.setDocument(new TextDoc(51));
 		textField_4.setText(admin.getEmail());
 		textField_4.setColumns(10);
-		textField_4.setBounds(158, 71, 161, 16);
+		textField_4.setBounds(158, 71, 161, 23);
 		panel.add(textField_4);
 		
 		JTextField textField_5 = new JTextField();
 		textField_5.setToolTipText("Hier Bitte die Straﬂe eintragen");
+		textField_5.setDocument(new TextDoc(36));
 		textField_5.setText(admin.getStraﬂe());
 		textField_5.setColumns(10);
-		textField_5.setBounds(158, 91, 161, 16);
+		textField_5.setBounds(158, 91, 161, 23);
 		panel.add(textField_5);
 		
 		JTextField textField_6 = new JTextField();
 		textField_6.setToolTipText("Hier Bitte den Wohnort eintragen");
+		textField_6.setDocument(new TextDoc(26));
 		textField_6.setText(admin.getOrt());
 		textField_6.setColumns(10);
-		textField_6.setBounds(158, 111, 161, 16);
+		textField_6.setBounds(158, 111, 161,23);
 		panel.add(textField_6);
 		
-		JTextField textField_7 = new JTextField();
+		JFormattedTextField textField_7 = new JFormattedTextField(plzformatter);
+		plzformatter.setAllowsInvalid(false);
 		textField_7.setToolTipText("Hier Bitte die PLZ des Wohnorts eintragen");
 		textField_7.setText(String.valueOf(admin.getPlz()));
 		textField_7.setColumns(10);
-		textField_7.setBounds(158, 131, 161, 16);
+		textField_7.setBounds(158, 131, 161, 23);
 		panel.add(textField_7);
 		
 		JTextField textField_8 = new JTextField();
 		textField_8.setToolTipText("Hier Bitte die IBAN Adresse des Mitarbeiters eintragen");
+		textField_8.setDocument(new TextDoc(26));
 		textField_8.setText(admin.getIban());
 		textField_8.setColumns(10);
-		textField_8.setBounds(158, 151, 161, 16);
+		textField_8.setBounds(158, 151, 161, 23);
 		panel.add(textField_8);
 		
-		JTextField textField_9 = new JTextField();
+		JFormattedTextField textField_9 = new JFormattedTextField(gehaltformatter);
+		gehaltformatter.setAllowsInvalid(false);
 		textField_9.setToolTipText("Hier bitte das Gehalt eintragen");
 		textField_9.setText(String.valueOf(admin.getGehalt()));
 		textField_9.setColumns(10);
-		textField_9.setBounds(158, 171, 161, 16);
+		textField_9.setBounds(158, 171, 161, 23);
 		panel.add(textField_9);
 		
 		JPasswordField textField_10 = new JPasswordField();
 		textField_10.setToolTipText("Hier Bitte das Passwort eingeben");
+		textField_10.setDocument(new TextDoc(16));
 		textField_10.setText(admin.getPasswort());
 		textField_10.setColumns(10);
-		textField_10.setBounds(158, 191, 161, 16);
+		textField_10.setBounds(158, 191, 161, 23);
 		panel.add(textField_10);
 		
-
+	
+		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 228, 340, 43);
+		panel_1.setBounds(10, 231, 340, 44);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -266,7 +293,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[]args) {
-		int nutzernr = 400000001;
+		int nutzernr = 400000003;
 		new GUIAdministratorBearbeiten(nutzernr);
 	}
 }

@@ -15,6 +15,7 @@ import javax.swing.table.AbstractTableModel;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
 import KundenVerwaltung.BestandskundeStrg;
+import Logverwaltung.LogStrg;
 import RechnungVerwaltung.Bestellung;
 
 public class GUIKontoVerwalten {
@@ -35,7 +36,7 @@ public class GUIKontoVerwalten {
 		tabbedPane.setBounds(10, 11, 1228, 541);
 		panel.add(tabbedPane);
 		
-		nutzernummer = 200000002;
+		nutzernummer = LogStrg.getNutzerNr();
 		tabbedPane.addTab("Nutzerdaten ändern", GUIBestandskundeBearbeiten.getGUIBestandskundeBearbeiten(nutzernummer));
 		tabbedPane.addTab("Bestellungen", new GUIKontoBestellungen(nutzernummer));
 	

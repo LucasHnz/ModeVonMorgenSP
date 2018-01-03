@@ -96,8 +96,8 @@ public static void ladeArtikelKopfschmuck() {
 		e.printStackTrace();
 	}
 	
-	GUI.frame.revalidate();
-	GUI.frame.repaint();
+	GUI.getFenster().revalidate();
+	GUI.getFenster().repaint();
 }
 
 public static void ladeArtikelKetten() {
@@ -121,8 +121,8 @@ Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	e.printStackTrace();
 }
 
-GUI.frame.revalidate();
-GUI.frame.repaint();
+GUI.getFenster().revalidate();
+GUI.getFenster().repaint();
 }
 
 	public static void ladeArtikelOhrringe() {
@@ -146,8 +146,8 @@ GUI.frame.repaint();
 			e.printStackTrace();
 			}
 
-			GUI.frame.revalidate();
-			GUI.frame.repaint();
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
 			}
 
 public static void ladeArtikelArmb‰nder() {
@@ -172,8 +172,8 @@ Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	e.printStackTrace();
 }
 
-GUI.frame.revalidate();
-GUI.frame.repaint();
+GUI.getFenster().revalidate();
+GUI.getFenster().repaint();
 }
 
 public static void ladeArtikelRinge() {
@@ -198,8 +198,8 @@ Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	e.printStackTrace();
 }
 
-GUI.frame.revalidate();
-GUI.frame.repaint();
+GUI.getFenster().revalidate();
+GUI.getFenster().repaint();
 }
 
 
