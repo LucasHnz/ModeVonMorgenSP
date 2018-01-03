@@ -22,12 +22,14 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.SoftBevelBorder;
 
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
+import Backend.GUIMitarbeiter;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
@@ -47,12 +49,13 @@ public class GUI extends JFrame {
 	public JLabel lblRechte;
 	public JComboBox comboBoxHerren = new JComboBox();
 	public JComboBox comboBoxDamen = new JComboBox();
-	public JComboBox comboBoxAnmelden = new JComboBox();
+	public static JComboBox comboBoxAnmelden = new JComboBox();
     
     public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	public String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
+	static String[] array = {"Anmelden"};
 	
+		
 	
 	public static void main(String[] args) 
 	{
@@ -81,6 +84,50 @@ public class GUI extends JFrame {
 		frame.revalidate();
 		frame.repaint();
 	}
+	
+	public static void comboBoxAbfrage() {
+		int status = LogStrg.getAngemeldetStatus();
+		String[] arrayNeu;
+		
+		if(status == 0) {
+			//Abgemeldet
+			String item1 = "Anmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+		}
+		
+		if(status == 2) {
+			//Bestandskunde
+			String item1 = "Meine Bestellungen";
+			String item2 = "Konto verwalten";
+			String item3 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+			comboBoxAnmelden.addItem(item3);
+		}
+		
+		if(status == 3) {
+			//Mitarbeiter
+			String item1 = "Verwaltung";
+			String item2 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+		}
+		
+		if(status == 4) {
+			//Admin
+			String item1 = "Verwaltung";
+			String item2 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+		}
+		
+	}
+	
+	
 	
 	public static void fensterSchließen() {
 		gui.dispose();
@@ -212,7 +259,7 @@ public class GUI extends JFrame {
 		});
 		panelBar.add(comboBoxHerren);
 		
-		comboBoxAnmelden = new JComboBox(anmeldenCbList);
+		comboBoxAnmelden = new JComboBox(array);
 		comboBoxAnmelden.setBounds(1040, 2, 173, 48);
 		comboBoxAnmelden.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
@@ -227,22 +274,20 @@ public class GUI extends JFrame {
 						öffnenAnmeldefenster();
 					}
 
-				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 2) {
+				    if(auswahl == "Meine Bestellungen") {
 					   //new GUIKontoBestellungen(frame);
 					}
-				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 0) {
-				    	öffnenAnmeldefenster();
-				    }
-				    
-				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 2) {
+				 
+				    if(auswahl == "Konto verwalten") {
 				    	changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 					}
-				    if(auswahl == "Konto verwalten" && LogStrg.getAngemeldetStatus() == 0) {
-				    	öffnenAnmeldefenster();
-				    }
+				   
 				    if(auswahl == "Abmelden") {
-				    	System.out.println("DADA");
 				    	LogStrg.abmelden();
+				    }
+				    
+				    if(auswahl == "Verwaltung") {
+				    	changePanel(GUIMitarbeiter.getGUIMitarbeiter());
 				    }
 				}
 		});

@@ -108,7 +108,7 @@ public class GUIArtikel implements ActionListener {
 		
 		JTextPane txtpnArtikelBeschreibung = new JTextPane();
 		txtpnArtikelBeschreibung.setBackground(SystemColor.inactiveCaptionBorder);
-		txtpnArtikelBeschreibung.setText("Test dishfinsmva s");
+		txtpnArtikelBeschreibung.setText("S");
 		txtpnArtikelBeschreibung.setBounds(362, 272, 514, 132);
 		panel.add(txtpnArtikelBeschreibung);
 		

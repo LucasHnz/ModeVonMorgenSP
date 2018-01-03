@@ -1,6 +1,7 @@
 package Logverwaltung;
 
 import java.awt.event.ActionEvent;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,6 +20,9 @@ public class LogStrg {
 	static int angemeldet = 0;
 	static String recht = " ";
 	static int nutzerNr = 0;
+	static String[] anmeldenCbListAbgemeldet = {"Anmelden"};
+	static String[] anmeldenCbListAngemeldet = {"Meine Bestellungen", "Konto verwalten", "Abmelden"};
+	static String[] anmeldenCbListMitarbeiter = {"Verwaltung", "Abmelden"};
 	
 	
 	public static  void anmelden(String passwort, String email) {
@@ -41,10 +45,11 @@ public class LogStrg {
 			
 			
 			if(rs1.next()) {
-				System.out.println("Gastkunde");
+				System.out.println("Bestandskunde");
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
 				setNutzerNr(rs1.getInt("nutzernr"));
+				GUI.comboBoxAbfrage();
 				GUI.getFenster().setRechteAnzeigen(recht);
 				GUI.getFenster().removeLogPanel();
 			}
@@ -54,6 +59,7 @@ public class LogStrg {
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
 				setNutzerNr(rs2.getInt("nutzernr"));
+				GUI.comboBoxAbfrage();
 				GUI.getFenster().setRechteAnzeigen(recht);
 				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
 				GUI.getFenster().removeLogPanel();
@@ -64,6 +70,7 @@ public class LogStrg {
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
 				setNutzerNr(rs3.getInt("nutzernr"));
+				GUI.comboBoxAbfrage();
 				GUI.getFenster().setRechteAnzeigen(recht);	
 				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
 				GUI.getFenster().removeLogPanel();
@@ -96,6 +103,7 @@ public class LogStrg {
 		setRecht(" ");
 		setAnmeldeStatus(0);
 		setNutzerNr(0);
+		GUI.comboBoxAbfrage();
 		GUI.getFenster().setRechteAnzeigen(recht);
 	}
 	
@@ -121,6 +129,6 @@ public class LogStrg {
 	public static void setNutzerNr(int nr) {
 		nutzerNr = nr;
 	}
-
+	
 
 }
