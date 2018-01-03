@@ -203,7 +203,7 @@ public class GUIAdministratorListe extends JPanel {
 					new GUIAdministratorBearbeiten(
 							data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 				} catch (ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Administrator Bearbeitung", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
 					System.out.println("Index Fehler, keine Zeile ausgewählt");
@@ -229,12 +229,19 @@ public class GUIAdministratorListe extends JPanel {
 							"Administrator Bearbeitung", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok", "Abbrechen" }, "Ok");
 
-					// data.remove(i);
-					AdministratorStrg.entferneAdmin(
-							data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Administrator zu löschen!/n Fortfahren ?",
+							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+							new String[] { "Ok", "Abbrechen" }, "Ok");
+					if(optionPane.equals(0)) {
+						AdministratorStrg.entferneAdmin(
+								data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+						JOptionPane.showMessageDialog(null,  "Administrator wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane.equals(1)) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}	
 
 				} catch (ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
 					System.out.println("Index Fehler, keine Zeile ausgewählt");

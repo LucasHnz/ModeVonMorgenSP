@@ -205,7 +205,7 @@ public class GUIBestellungListe extends JPanel {
 					System.out.println(i);
 					new GUIBestellpositionsliste(i);
 				}catch(ArrayIndexOutOfBoundsException q) {
-						JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+						JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 								"Bestellung Anzeigen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 								null, new String[] { "Ok"}, "Ok");
 						System.out.println("Index Fehler, keine Zeile ausgewählt");
@@ -229,7 +229,7 @@ public class GUIBestellungListe extends JPanel {
 					BestellStrg.aktualisiereVStatus(i);
 					
 				}catch(ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Bestellung VersandStatus ändern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
 					System.out.println("Index Fehler, keine Zeile ausgewählt");
@@ -263,10 +263,21 @@ public class GUIBestellungListe extends JPanel {
 				final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
-				BestellStrg.storniereBestellung(i);
+	
+				final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei eine Bestellung zu löschen!/n Fortfahren ?",
+						"Bestellung Stornieren", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						new String[] { "Ok", "Abbrechen" }, "Ok");
+				
+				if(optionPane.equals(0)) {
+					BestellStrg.storniereBestellung(i);
+					JOptionPane.showMessageDialog(null,  "Bestellung wurde storniert", "Information", JOptionPane.INFORMATION_MESSAGE);
+				}else if(optionPane.equals(1)) {
+					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+				}			
+
 				
 			}catch(ArrayIndexOutOfBoundsException g) {
-				JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+				JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 						"Bestellung Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 						null, new String[] { "Ok" }, "Ok");
 				System.out.println("Index Fehler, keine Zeile ausgewählt");

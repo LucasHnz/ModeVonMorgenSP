@@ -230,7 +230,7 @@ public class GUIMitarbeiterListe extends JPanel {
 						e.printStackTrace();
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Mitarbeiter Bearbeiten", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
 					System.out.println("Index Fehler, keine Zeile ausgewählt");
@@ -251,14 +251,21 @@ public class GUIMitarbeiterListe extends JPanel {
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 
-					JOptionPane.showOptionDialog(null, "Sie sind dabei einen Mitarbeiter zu löschen! \nFortfahren ?",
-							"Mitarbeiter Leschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Mitarbeiter zu löschen!/n Fortfahren ?",
+							"Mitarbeiter Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok", "Abbrechen" }, "Ok");
 
-					MitarbeiterVerwaltung.MitarbeiterStrg.entferneMitarbeiter(i);
+					
+					
+					if(optionPane.equals(0)) {
+						MitarbeiterVerwaltung.MitarbeiterStrg.entferneMitarbeiter(i);
+						JOptionPane.showMessageDialog(null,  "Mitarbeiter wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane.equals(1)) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}			
 
 				} catch (ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus! \nFortfahren ?",
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Mitarbeiter Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok"}, "Ok");
 					System.out.println("Index Fehler, keine Zeile ausgewählt");
