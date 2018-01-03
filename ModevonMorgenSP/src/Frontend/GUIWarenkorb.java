@@ -45,8 +45,6 @@ public class GUIWarenkorb {
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000006), 10);
 		try{
 			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-			//UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}catch(Throwable e) {
 			e.printStackTrace();
 		}

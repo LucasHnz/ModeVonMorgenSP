@@ -32,43 +32,44 @@ import Artikelverwaltung.Artikelsammlung;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
 
-    public class GUI {
+public class GUI {
 	
+	private static JFrame Fenster;
 	
 	public static String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public static String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
-    static JFrame frame;
-	public int rotierung = 1;
-	public static String[] outfitsDamenListe = {"C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau1.jpg","C:\\\\Users\\\\hinzl\\\\Desktop\\\\SWP-Bilder\\\\frau2.jpg"};
+    static JFrame frame;	
 	static JTextField anmeldenEmail = new JTextField();
 	static JPasswordField anmeldenPasswort = new JPasswordField();
 	static JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	static JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
 	static JPanel panelMain = new JPanel();
-	private static JPanel panelMain_1;
 	public static JPanel panelAnmelden;
-	
-	public static JButton btnProduktDamenLinks = new JButton();
-	public static JButton btnProduktDamenRechts = new JButton();
-	public static JButton btnProduktHerrenLinks = new JButton();
-	public static JButton btnProduktHerrenRechts= new JButton();
-	public static JButton btnProduktDamen;
-	public static JButton btnProduktHerren;
 	public static JButton btnWarenkorb;
 	public static JButton btnHome;
-	public static JLabel labelMainDamen = new JLabel();
-	public static JLabel labelMainHerren = new JLabel();
 	public static JLabel lblRechte;
 	public static JComboBox comboBoxHerren = new JComboBox();
 	public static JComboBox comboBoxDamen = new JComboBox();
 	public static JComboBox comboBoxAnmelden = new JComboBox();
 	public static JButton btnZurück = new JButton();
     public static JPanel varPanel;
-	public static JPanel WarenkorbPanel;
     private static JLayeredPane layeredPane = new JLayeredPane();
 	
 	
+	public static void main(String[] args) 
+	{
+		try {
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		ArtikelStrg.FülleArtikelsammlung();
+		setzeArtikelStartseite();
+		getGUI();
+		
+	}
+    
 	public static void changePanel(JPanel newPanel) {
 		if(varPanel != null) {
 			layeredPane.remove(varPanel);
@@ -83,16 +84,17 @@ import javax.swing.JLayeredPane;
 	public static void fensterSchließen() {
 		frame.dispose();
 	}
-	
+	public static void fensterRestart() {
+		frame.dispose();
+		getGUI();
+	}
 	
 	public static void setRechteAnzeigen(String recht) {
 		lblRechte.setText(recht);
 		frame.revalidate();
 		frame.repaint();
 	}
-	
-	
-	
+
 	public static void öffnenAnmeldefenster() {
 		
         panelAnmelden = new JPanel();
@@ -145,14 +147,6 @@ import javax.swing.JLayeredPane;
 		panelAnmelden.setVisible(true);
 	}
 	
-	
-	public static ImageIcon bildAnpassen(String imageRoot) {
-		
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH));
-		return imageIcon;
-	}
-	
-	
 	public static void anmeldenFehlermeldung() {
 		
 		System.out.println("OPT");
@@ -165,69 +159,12 @@ import javax.swing.JLayeredPane;
 		
 	}
 	
-	public static void wechselOutfitDamenRechts() 
-	{
-		
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_6.jpg"));
-		 
-	}
-	
-	public static void wechselOutfitDamenLinks() 
-	{
-		
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
-		
-	}
-	
-	public static void wechselOutfitHerrenRechts() 
-	{
-		
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenkleidung_1.jpg"));
-
-	}
-	
-	public static void wechselOutfitHerrenLinks() 
-	{
-		
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		 	
-	}
-
-	
-	public static void main(String[] args) 
-	{
-		try {
-			//UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-
-			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			//UIManager.setLookAndFeel( "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel" );
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		ArtikelStrg.FülleArtikelsammlung();
-		setzeArtikelStartseite();
-		new GUI();
-		
-		//Artikelsammlung.loadAllImages();
-		//System.out.println("Images geladen");
-	}
-	
 	public static void setzeArtikelStartseite(){
 		//for (int n : ArtikelStrg.Artikelsammlung)
 	}
 	
-	
-	
-	public GUI() {
-		initializeMain();
-	}
-	
-	
-	
-	private static void initializeMain() {
-		
+	public static JFrame getGUI() {
+				
 		layeredPane.setSize(1248, 563);
 		layeredPane.setLocation(0, 148);
 		frame = new JFrame();
@@ -284,7 +221,6 @@ import javax.swing.JLayeredPane;
 						if(auswahl == "Accessoires"){
 							changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());		
 							}
-					
 				}
 		
 		});
@@ -333,7 +269,6 @@ import javax.swing.JLayeredPane;
 					
 					if(auswahl == "Anmelden") {
 						öffnenAnmeldefenster();
-						
 					}
 
 				    if(auswahl == "Meine Bestellungen" && LogStrg.getAngemeldetStatus() == 2) {
@@ -354,9 +289,6 @@ import javax.swing.JLayeredPane;
 				    	LogStrg.abmelden();
 				    }
 				}
-				
-			
-			
 		});
 		panelBar.add(comboBoxAnmelden);
 		
@@ -384,7 +316,7 @@ import javax.swing.JLayeredPane;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				changePanel(getPanelMain());
+				changePanel(GUIHomepage.getHomepage());
 				
 			}
 			
@@ -392,141 +324,18 @@ import javax.swing.JLayeredPane;
 		btnHome.setBounds(876, 2, 48, 48);
 		panelBar.add(btnHome);
 		
-	
-		
-		varPanel = getPanelMain();
+		varPanel = GUIHomepage.getHomepage();
 		layeredPane.add(varPanel, JLayeredPane.DEFAULT_LAYER);
-		
-		
 		
 		JLabel labelMainHintergrund = new JLabel();
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
 		panelMain.add(labelMainHintergrund);
-		
-	
 	
 		frame.setVisible(true);
 	
+		return frame;
 	}
 	
-	public static JPanel getPanelMain() {
-		panelMain_1 = new JPanel();
-		panelMain_1.setBackground(Color.WHITE);
-		panelMain_1.setBounds(0, 0, 1248, 563);
-		panelMain_1.setLayout(null);
-		
-		btnProduktDamen = new JButton("Zum Produkt");
-		btnProduktDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktDamen.setBackground(Color.WHITE);
-		btnProduktDamen.setForeground(Color.BLACK);
-		btnProduktDamen.setBounds(249, 458, 165, 35);
-		btnProduktDamen.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktDamen);
-		
-		btnProduktHerren = new JButton("Zum Produkt");
-		btnProduktHerren.setBackground(Color.WHITE);
-		btnProduktHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnProduktHerren.setBounds(774, 458, 165, 35);
-		btnProduktHerren.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktHerren);
-		
-		Image leftArrow = new ImageIcon("src\\Icons 32x32\\left-arrow.png").getImage();
-		Image rightArrow = new ImageIcon("src\\Icons 32x32\\right-chevron.png").getImage();
-
-		btnProduktDamenRechts = new JButton(new ImageIcon(rightArrow));
-		btnProduktDamenRechts.setContentAreaFilled(false);
-		btnProduktDamenRechts.setBackground(Color.WHITE);
-		btnProduktDamenRechts.setBounds(536, 260, 32, 32);
-		btnProduktDamenRechts.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				wechselOutfitDamenRechts();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktDamenRechts);
-		
-		btnProduktDamenLinks = new JButton(new ImageIcon(leftArrow));
-		btnProduktDamenLinks.setContentAreaFilled(false);
-		btnProduktDamenLinks.setBackground(Color.WHITE);
-		btnProduktDamenLinks.setBounds(100, 260, 32, 32);
-		btnProduktDamenLinks.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				wechselOutfitDamenLinks();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktDamenLinks);
-		
-		btnProduktHerrenRechts = new JButton(new ImageIcon(rightArrow));
-		btnProduktHerrenRechts.setContentAreaFilled(false);
-		btnProduktHerrenRechts.setBackground(Color.WHITE);
-		btnProduktHerrenRechts.setBounds(1048, 260, 32, 32);
-		btnProduktHerrenRechts.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				wechselOutfitHerrenRechts();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktHerrenRechts);
-		
-		btnProduktHerrenLinks = new JButton(new ImageIcon(leftArrow));
-		btnProduktHerrenLinks.setBackground(Color.WHITE);
-		btnProduktHerrenLinks.setContentAreaFilled(false);
-		btnProduktHerrenLinks.setBounds(612, 260, 32, 32);
-		btnProduktHerrenLinks.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			wechselOutfitHerrenRechts();
-				
-			}
-			
-		});
-		panelMain_1.add(btnProduktHerrenLinks);
-		
-		
-		labelMainDamen = new JLabel();
-		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
-		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
-		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
-		panelMain_1.add(labelMainDamen);
-		
-		labelMainHerren = new JLabel("");
-		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
-		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
-		panelMain_1.add(labelMainHerren);
-
-		
-		return panelMain_1;
-	}
+	
 	
 }

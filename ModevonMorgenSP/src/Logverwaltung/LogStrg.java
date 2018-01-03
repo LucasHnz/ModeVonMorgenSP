@@ -88,8 +88,7 @@ public class LogStrg {
 }
 	
 	public static void abmelden() {
-		Frontend.GUI.fensterSchlieﬂen();
-		new Frontend.GUI();
+		Frontend.GUI.fensterRestart();
 		setRecht(" ");
 		setAnmeldeStatus(0);
 		GUI.setRechteAnzeigen(recht);
