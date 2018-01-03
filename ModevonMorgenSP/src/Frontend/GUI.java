@@ -32,29 +32,25 @@ import Artikelverwaltung.Artikelsammlung;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
 
-public class GUI {
+public class GUI extends JFrame {
 	
-	private static JFrame Fenster;
+	static JFrame fenster;
 	
-	public static String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	public static String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	public static String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
-    static JFrame frame;	
-	static JTextField anmeldenEmail = new JTextField();
-	static JPasswordField anmeldenPasswort = new JPasswordField();
-	static JButton btnAnmeldenEinloggen = new JButton("Einloggen");
-	static JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
-	static JPanel panelMain = new JPanel();
-	public static JPanel panelAnmelden;
-	public static JButton btnWarenkorb;
-	public static JButton btnHome;
-	public static JLabel lblRechte;
-	public static JComboBox comboBoxHerren = new JComboBox();
-	public static JComboBox comboBoxDamen = new JComboBox();
-	public static JComboBox comboBoxAnmelden = new JComboBox();
-	public static JButton btnZurück = new JButton();
-    public static JPanel varPanel;
-    private static JLayeredPane layeredPane = new JLayeredPane();
+	public JFrame frame;	
+	public JPanel varPanel;
+    public JLayeredPane layeredPane = new JLayeredPane();
+	public JPanel panelAnmelden;
+	
+	public JButton btnWarenkorb;
+	public JButton btnHome;
+	public JLabel lblRechte;
+	public JComboBox comboBoxHerren = new JComboBox();
+	public JComboBox comboBoxDamen = new JComboBox();
+	public JComboBox comboBoxAnmelden = new JComboBox();
+    
+    public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
+	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
+	public String[] anmeldenCbList = {"Anmelden", "Meine Bestellungen", "Konto verwalten", "Abmelden"};
 	
 	
 	public static void main(String[] args) 
@@ -65,12 +61,15 @@ public class GUI {
 			e.printStackTrace();
 		}
 		ArtikelStrg.FülleArtikelsammlung();
-		setzeArtikelStartseite();
-		getGUI();
+		fenster = new GUI();
 		
 	}
+	
+	public static GUI getFenster() {
+		return (GUI) fenster;
+	}
     
-	public static void changePanel(JPanel newPanel) {
+	public void changePanel(JPanel newPanel) {
 		if(varPanel != null) {
 			layeredPane.remove(varPanel);
 			varPanel = null;
@@ -82,28 +81,29 @@ public class GUI {
 	}
 	
 	public static void fensterSchließen() {
-		frame.dispose();
+		fenster.dispose();
 	}
 	public static void fensterRestart() {
-		frame.dispose();
-		getGUI();
+		fenster.dispose();
+		fenster = new GUI();
 	}
 	
-	public static void setRechteAnzeigen(String recht) {
+	public void setRechteAnzeigen(String recht) {
 		lblRechte.setText(recht);
 		frame.revalidate();
 		frame.repaint();
 	}
 
-	public static void öffnenAnmeldefenster() {	
+	public void öffnenAnmeldefenster() {	
 		panelAnmelden = GUIAnmelden.getGUIAnmelden();
-		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);		
+		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);
+		frame.getRootPane().setDefaultButton(GUIAnmelden.btnAnmeldenEinloggen);
 	}
-	public static void removeLogPanel() {
+	public  void removeLogPanel() {
 		layeredPane.remove(panelAnmelden);
 	}
 	
-	public static void anmeldenFehlermeldung() {
+	public void anmeldenFehlermeldung() {
 		
 		System.out.println("OPT");
 		JOptionPane.showOptionDialog(null, "Email und Passwort stimmen nicht überein",
@@ -115,11 +115,7 @@ public class GUI {
 		
 	}
 	
-	public static void setzeArtikelStartseite(){
-		//for (int n : ArtikelStrg.Artikelsammlung)
-	}
-	
-	public static JFrame getGUI() {
+	public GUI() {
 				
 		layeredPane.setSize(1248, 563);
 		layeredPane.setLocation(0, 148);
@@ -162,21 +158,21 @@ public class GUI {
 		comboBoxDamen.setBounds(10, 2, 250, 48);
 		comboBoxDamen.addActionListener(new ActionListener(){
 			
-				public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
 					
-					  String auswahl = (String) comboBoxDamen.getSelectedItem();
+				String auswahl = (String) comboBoxDamen.getSelectedItem();
 						
-						if(auswahl == "Kleidung"){
-							changePanel(GUIDamenKleidung.getGUIDamenKleidung());	
-						    }
+					if(auswahl == "Kleidung"){
+						changePanel(GUIDamenKleidung.getGUIDamenKleidung());	
+					}
 						  
-						if(auswahl == "Schuhe"){
-							changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
-							}
+					if(auswahl == "Schuhe"){
+						changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
+					}
 							
-						if(auswahl == "Accessoires"){
-							changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());		
-							}
+					if(auswahl == "Accessoires"){
+						changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());		
+					}
 				}
 		
 		});
@@ -285,11 +281,11 @@ public class GUI {
 		
 		JLabel labelMainHintergrund = new JLabel();
 		labelMainHintergrund.setBounds(0, 0, 1234, 711);
-		panelMain.add(labelMainHintergrund);
+		frame.getContentPane().add(labelMainHintergrund);
 	
 		frame.setVisible(true);
 	
-		return frame;
+		//return frame;
 	}
 	
 	

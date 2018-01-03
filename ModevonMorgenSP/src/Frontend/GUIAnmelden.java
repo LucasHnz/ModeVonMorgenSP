@@ -18,7 +18,7 @@ public class GUIAnmelden {
 	
 	static JTextField anmeldenEmail = new JTextField();
 	static JPasswordField anmeldenPasswort = new JPasswordField();
-	static JButton btnAnmeldenEinloggen = new JButton("Einloggen");
+	public static JButton btnAnmeldenEinloggen = new JButton("Einloggen");
 	static JButton btnAnmeldenAbbrechen = new JButton("Abbrechen");
 	static String[] anmeldenCbList;
 	public static JPanel panelAnmelden;
@@ -40,7 +40,7 @@ public class GUIAnmelden {
 				  String pwd = new String(anmeldenPasswort.getPassword());
 				  String email = anmeldenEmail.getText();					  
 				  LogStrg.anmelden(pwd, email);
-				  GUI.removeLogPanel();
+				  //GUI.getFenster().removeLogPanel();
 					
 			}
 				
@@ -53,8 +53,8 @@ public class GUIAnmelden {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelAnmelden.setVisible(false);
-				GUI.removeLogPanel();
+				//panelAnmelden.setVisible(false);
+				GUI.getFenster().removeLogPanel();
 			}
 				
 		});

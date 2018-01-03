@@ -75,8 +75,8 @@ public class GUIDamenKleidung {
 			e.printStackTrace();
 		}
 		
-		GUI.frame.revalidate();
-		GUI.frame.repaint();
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
 	}
 	
 public static void ladeArtikelSchaals() {
@@ -101,8 +101,8 @@ public static void ladeArtikelSchaals() {
 			e.printStackTrace();
 		}
 		
-		GUI.frame.revalidate();
-		GUI.frame.repaint();
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
 	}
 
 public static void ladeArtikelHosen() {
@@ -127,8 +127,8 @@ public static void ladeArtikelHosen() {
 		e.printStackTrace();
 	}
 	
-	GUI.frame.revalidate();
-	GUI.frame.repaint();
+	GUI.getFenster().revalidate();
+	GUI.getFenster().repaint();
 }
 
 	

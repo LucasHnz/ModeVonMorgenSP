@@ -42,7 +42,7 @@ public class LogStrg {
 				Frontend.GUI.fensterRestart();
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
-				GUI.setRechteAnzeigen(recht);
+				GUI.getFenster().setRechteAnzeigen(recht);
 		
 			}
 			
@@ -52,7 +52,7 @@ public class LogStrg {
 				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
-				GUI.setRechteAnzeigen(recht);
+				GUI.getFenster().setRechteAnzeigen(recht);
 			}
 			
 			else if(rs3.next()) {
@@ -61,11 +61,11 @@ public class LogStrg {
 				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
-				GUI.setRechteAnzeigen(recht);	
+				GUI.getFenster().setRechteAnzeigen(recht);	
 			}
 			
 			else 
-				GUI.anmeldenFehlermeldung();
+				GUI.getFenster().anmeldenFehlermeldung();
 			
 	
 		
@@ -90,7 +90,7 @@ public class LogStrg {
 		Frontend.GUI.fensterRestart();
 		setRecht(" ");
 		setAnmeldeStatus(0);
-		GUI.setRechteAnzeigen(recht);
+		GUI.getFenster().setRechteAnzeigen(recht);
 	}
 	
 	

@@ -184,7 +184,7 @@ public class GUIBestandskundeBearbeiten  {
 	                JOptionPane.WARNING_MESSAGE, null, 
 	                new String[]{"Ok"}, "Ok"); 	
 			
-			GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
+			GUI.getFenster().changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 			
 			}
 		
@@ -197,7 +197,7 @@ public class GUIBestandskundeBearbeiten  {
 		btnAbbrechen.setBounds(451, 432, 145, 40);
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
+				GUI.getFenster().changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 			}
 		});
 		panel.add(btnAbbrechen);

@@ -68,7 +68,7 @@ static  Component neuerArtikel(int artikelNummer) {
 		btnZumArtikel.setBounds(186, 147, 139, 30);
 		btnZumArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			GUI.changePanel(GUIArtikel.getGUIArtikel(artikelNummer));
+			GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artikelNummer));
 			}
 		});
 		panelArtikel.add(btnZumArtikel);
