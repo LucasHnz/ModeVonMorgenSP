@@ -225,11 +225,8 @@ public class GUIAdministratorListe extends JPanel {
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 
-					JOptionPane.showOptionDialog(null, "Sie sind dabei einen Admin zu löschen! \nFortfahren ?",
-							"Administrator Bearbeitung", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
-							null, new String[] { "Ok", "Abbrechen" }, "Ok");
-
-					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Administrator zu löschen!/n Fortfahren ?",
+					
+					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Administrator zu löschen! Fortfahren ?",
 							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok", "Abbrechen" }, "Ok");
 					if(optionPane.equals(0)) {

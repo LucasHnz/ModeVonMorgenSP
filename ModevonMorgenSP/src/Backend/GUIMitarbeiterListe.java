@@ -251,7 +251,7 @@ public class GUIMitarbeiterListe extends JPanel {
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 
-					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Mitarbeiter zu löschen!/n Fortfahren ?",
+					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Mitarbeiter zu löschen! Fortfahren ?",
 							"Mitarbeiter Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok", "Abbrechen" }, "Ok");
 
