@@ -48,20 +48,18 @@ public class LogStrg {
 			
 			else if(rs2.next()) {
 				System.out.println("MA");
-				Frontend.GUI.fensterSchlieﬂen();
-				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
 				GUI.getFenster().setRechteAnzeigen(recht);
+				Frontend.GUI.getFenster().changePanel(Backend.GUIMitarbeiter.getGUIMitarbeiter());
 			}
 			
 			else if(rs3.next()) {
 				System.out.println("Admin");
-				Frontend.GUI.fensterSchlieﬂen();
-				new Backend.GUIMitarbeiter();
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
 				GUI.getFenster().setRechteAnzeigen(recht);	
+				Frontend.GUI.getFenster().changePanel(Backend.GUIMitarbeiter.getGUIMitarbeiter());
 			}
 			
 			else 

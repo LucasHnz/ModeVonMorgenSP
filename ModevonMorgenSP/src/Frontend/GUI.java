@@ -35,6 +35,7 @@ import javax.swing.JLayeredPane;
 public class GUI extends JFrame {
 	
 	static JFrame fenster;
+	static GUI gui;
 	
 	public JFrame frame;	
 	public JPanel varPanel;
@@ -61,7 +62,8 @@ public class GUI extends JFrame {
 			e.printStackTrace();
 		}
 		ArtikelStrg.FülleArtikelsammlung();
-		fenster = new GUI();
+		gui = new GUI();
+		fenster = gui;
 		
 	}
 	
@@ -81,10 +83,10 @@ public class GUI extends JFrame {
 	}
 	
 	public static void fensterSchließen() {
-		fenster.dispose();
+		gui.dispose();
 	}
 	public static void fensterRestart() {
-		fenster.dispose();
+		gui.dispose();
 		fenster = new GUI();
 	}
 	
@@ -99,8 +101,10 @@ public class GUI extends JFrame {
 		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);
 		frame.getRootPane().setDefaultButton(GUIAnmelden.btnAnmeldenEinloggen);
 	}
-	public  void removeLogPanel() {
+	public void removeLogPanel() {
 		layeredPane.remove(panelAnmelden);
+		frame.revalidate();
+		frame.repaint();
 	}
 	
 	public void anmeldenFehlermeldung() {
@@ -285,7 +289,6 @@ public class GUI extends JFrame {
 	
 		frame.setVisible(true);
 	
-		//return frame;
 	}
 	
 	
