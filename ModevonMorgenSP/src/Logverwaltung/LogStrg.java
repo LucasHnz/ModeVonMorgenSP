@@ -9,8 +9,10 @@ import java.sql.Statement;
 
 import javax.swing.*;
 
+import Backend.GUIMitarbeiter;
 import Frontend.GUI;
 import Frontend.GUIAnmelden;
+import Frontend.GUIHomepage;
 
 public class LogStrg {
 	
@@ -39,11 +41,10 @@ public class LogStrg {
 			
 			if(rs1.next()) {
 				System.out.println("Gastkunde");
-				Frontend.GUI.fensterRestart();
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
 				GUI.getFenster().setRechteAnzeigen(recht);
-		
+				GUI.getFenster().removeLogPanel();
 			}
 			
 			else if(rs2.next()) {
@@ -51,7 +52,8 @@ public class LogStrg {
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
 				GUI.getFenster().setRechteAnzeigen(recht);
-				Frontend.GUI.getFenster().changePanel(Backend.GUIMitarbeiter.getGUIMitarbeiter());
+				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
+				GUI.getFenster().removeLogPanel();
 			}
 			
 			else if(rs3.next()) {
@@ -59,7 +61,8 @@ public class LogStrg {
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
 				GUI.getFenster().setRechteAnzeigen(recht);	
-				Frontend.GUI.getFenster().changePanel(Backend.GUIMitarbeiter.getGUIMitarbeiter());
+				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
+				GUI.getFenster().removeLogPanel();
 			}
 			
 			else 
@@ -85,7 +88,7 @@ public class LogStrg {
 }
 	
 	public static void abmelden() {
-		Frontend.GUI.fensterRestart();
+		GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 		setRecht(" ");
 		setAnmeldeStatus(0);
 		GUI.getFenster().setRechteAnzeigen(recht);
