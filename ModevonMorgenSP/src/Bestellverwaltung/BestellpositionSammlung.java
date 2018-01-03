@@ -87,15 +87,12 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 		
 		for(Iterator<Integer> it = BestellpositionsSammlung.keySet().iterator(); it.hasNext();) {
 			Integer s = it.next();
-			
-			if(s!=null) {
-				BestellpositionsSammlung.remove(s);
+			BestellpositionsSammlung.remove(s);
 			}
 		}
 	}
 	
 	
-}
 
 	
 
