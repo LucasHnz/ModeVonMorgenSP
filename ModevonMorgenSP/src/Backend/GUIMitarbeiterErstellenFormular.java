@@ -6,10 +6,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.NumberFormatter;
 
 import MitarbeiterVerwaltung.Mitarbeiter;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,6 +22,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 
 /**
@@ -27,6 +33,7 @@ import java.awt.event.ActionEvent;
 public class GUIMitarbeiterErstellenFormular extends JFrame{
 
 	private int[] AdminNummern;
+	private JPanel contentPane;
 	
 	/**
 	 * Erstell ein Pop Up Fenster um einen neuen Mitarbeiter zu erstellen
@@ -39,11 +46,34 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		setTitle("Mitarbeiter Erstellen Formular");
 		getContentPane().setLayout(null);
 		
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 11, 340, 231);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.setVisible(true);
+		
+		NumberFormat gehaltformat = NumberFormat.getNumberInstance(); 
+		gehaltformat.setGroupingUsed(false); 
+		gehaltformat.setMaximumIntegerDigits(8);
+		gehaltformat.setMinimumIntegerDigits(1);
+		gehaltformat.setMaximumFractionDigits(2);
+		gehaltformat.setMinimumFractionDigits(2);
+        NumberFormatter gehaltformatter = new NumberFormatter(gehaltformat);
+        
+        NumberFormat plzformat = NumberFormat.getNumberInstance(); 
+        plzformat.setGroupingUsed(false); 
+        plzformat.setMaximumIntegerDigits(5);
+        plzformat.setMinimumIntegerDigits(1);
+        NumberFormatter plzformatter = new NumberFormatter(plzformat);
+        
+ 
+        
+        
 		
 		JLabel lblMitarbeiterNummer = new JLabel("Mitarbeiter Nummer:");
 		lblMitarbeiterNummer.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -100,7 +130,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		lblPasswort.setBounds(21, 210, 126, 16);
 		panel.add(lblPasswort);
 		
-		JTextField textField = new JTextField();
+		JFormattedTextField textField = new JFormattedTextField();
 		textField.setToolTipText("Die Mitarbeiter Nummer wurde autogeneriert");
 		textField.setText(String.valueOf(Datenbankverwaltung.holeN‰chsteNummer.n‰chsteMaNr()));
 		textField.setEditable(false);
@@ -110,47 +140,55 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		
 		JTextField textField_2 = new JTextField();
 		textField_2.setToolTipText("Hier Bitte den Nach-Namen eintragen");
+		textField_2.setDocument(new TextDoc(26));
 		textField_2.setColumns(10);
 		textField_2.setBounds(169, 50, 161, 16);
 		panel.add(textField_2);
 		
 		JTextField textField_3 = new JTextField();
 		textField_3.setToolTipText("Hier Bitte den Vor-Namen eintragen");
+		textField_3.setDocument(new TextDoc(26));
 		textField_3.setColumns(10);
 		textField_3.setBounds(169, 70, 161, 16);
 		panel.add(textField_3);
 		
 		JTextField textField_4 = new JTextField();
 		textField_4.setToolTipText("Hier Bitte die EMail eintragen");
+		textField_4.setDocument(new TextDoc(51));
 		textField_4.setColumns(10);
 		textField_4.setBounds(169, 90, 161, 16);
 		panel.add(textField_4);
 		
 		JTextField textField_5 = new JTextField();
 		textField_5.setToolTipText("Hier Bitte die Straﬂe eintragen");
+		textField_5.setDocument(new TextDoc(36));
 		textField_5.setColumns(10);
 		textField_5.setBounds(169, 110, 161, 16);
 		panel.add(textField_5);
 		
 		JTextField textField_6 = new JTextField();
 		textField_6.setToolTipText("Hier Bitte den Wohnort eintragen");
+		textField_6.setDocument(new TextDoc(26));
 		textField_6.setColumns(10);
 		textField_6.setBounds(169, 130, 161, 16);
 		panel.add(textField_6);
 		
-		JTextField textField_7 = new JTextField();
+		plzformatter.setAllowsInvalid(false);
+		JFormattedTextField textField_7 = new JFormattedTextField(plzformatter);
 		textField_7.setToolTipText("Hier Bitte die PLZ des Wohnorts eintragen");
 		textField_7.setColumns(10);
 		textField_7.setBounds(169, 150, 161, 16);
 		panel.add(textField_7);
 		
 		JTextField textField_8 = new JTextField();
-		textField.setToolTipText("Hier Bitte die IBAN Adresse des Mitarbeiters eintragen");
+		textField_8.setToolTipText("Hier Bitte die IBAN Adresse des Mitarbeiters eintragen");
+		textField_8.setDocument(new TextDoc(26));
 		textField_8.setColumns(10);
 		textField_8.setBounds(169, 170, 161, 16);
 		panel.add(textField_8);
 		
-		JTextField textField_9 = new JTextField();
+		gehaltformatter.setAllowsInvalid(false);
+		JFormattedTextField textField_9 = new JFormattedTextField(gehaltformatter);
 		textField_9.setToolTipText("Hier bitte das Gehalt eintragen");
 		textField_9.setColumns(10);
 		textField_9.setBounds(169, 190, 161, 16);
@@ -158,6 +196,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		
 		JPasswordField textField_10 = new JPasswordField();
 		textField_10.setToolTipText("Hier Bitte das Passwort eingeben");
+		textField_10.setDocument(new TextDoc(16));
 		textField_10.setColumns(10);
 		textField_10.setBounds(169, 210, 161, 16);
 		panel.add(textField_10);
@@ -202,39 +241,42 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		JButton btnHinzufgen = new JButton("Hinzuf\u00FCgen");
 		btnHinzufgen.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
+			
+			public void actionPerformed(ActionEvent e) 
+			
+			{
 				
-				String nutzernr =textField.getText();
-				String admin = String.valueOf(comboBox.getSelectedItem());
-				String nachname = textField_2.getText();
-				String vorname = textField_3.getText();
-				String email = textField_4.getText();
-				String straﬂe = textField_5.getText();
-				String ort = textField_6.getText();
-				String plz = textField_7.getText();
-				String iban = textField_8.getText();
-				String gehalt = textField_9.getText();
-				String berechtigung = "3";
-				String passwort = textField_10.getText();
 				
-				MitarbeiterVerwaltung.MitarbeiterStrg.hinzuf¸genMA(nutzernr, admin, nachname, vorname, email, straﬂe, ort, plz, iban, gehalt, berechtigung, passwort);
-				System.out.println(nutzernr);
-				textField.setText(String.valueOf(Datenbankverwaltung.holeN‰chsteNummer.n‰chsteAdminNr()));
-				textField_2.setText("");
-				textField_3.setText("");
-				textField_4.setText("");
-				textField_5.setText("");
-				textField_6.setText("");
-				textField_7.setText("");
-				textField_8.setText("");
-				textField_9.setText("");
-				textField_10.setText("");
+					String nutzernr =textField.getText();
+					String admin = String.valueOf(comboBox.getSelectedItem());
+					String nachname = textField_2.getText();
+					String vorname = textField_3.getText();
+					String email = textField_4.getText();
+					String straﬂe = textField_5.getText();
+					String ort = textField_6.getText();
+					String plz = textField_7.getText();
+					String iban = textField_8.getText();
+					String gehalt = textField_9.getText();
+					String berechtigung = "3";
+					String passwort = textField_10.getText();
+					MitarbeiterVerwaltung.MitarbeiterStrg.hinzuf¸genMA(nutzernr, admin, nachname, vorname, email, straﬂe, ort, plz, iban, gehalt, berechtigung, passwort);
+					System.out.println(nutzernr);
+					textField.setText(String.valueOf(Datenbankverwaltung.holeN‰chsteNummer.n‰chsteAdminNr()));
+					textField_2.setText("");
+					textField_3.setText("");
+					textField_4.setText("");
+					textField_5.setText("");
+					textField_6.setText("");
+					textField_7.setText("");
+					textField_8.setText("");
+					textField_9.setText("");
+					textField_10.setText("");
 				
-				JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Mitarbeiter Erstellung",
+					JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Mitarbeiter Erstellung",
 		                JOptionPane.YES_NO_CANCEL_OPTION,
 		                JOptionPane.WARNING_MESSAGE, null, 
 		                new String[]{"Ok"}, "Ok");
-				dispose();
+					dispose();
 			}
 			
 		});
