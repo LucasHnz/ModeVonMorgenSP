@@ -134,7 +134,7 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 		
 		JTextField textField_4 = new JTextField();
 		textField_4.setToolTipText("Hier Bitte die EMail eintragen");
-		textField_4.setDocument(new TextDoc(26));
+		textField_4.setDocument(new TextDoc(51));
 		textField_4.setColumns(10);
 		textField_4.setBounds(169, 72, 161, 16);
 		panel.add(textField_4);
