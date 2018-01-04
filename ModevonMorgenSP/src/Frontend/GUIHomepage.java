@@ -22,7 +22,7 @@ import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
 
 public class GUIHomepage {
-	
+	//ABC
 	private static JPanel panelMain;
 	public static JButton btnProduktDamenLinks = new JButton();
 	public static JButton btnProduktDamenRechts = new JButton();
