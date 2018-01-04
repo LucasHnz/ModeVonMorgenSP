@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 	
 	JButton btnDelete;
+	JButton btnZumArtikel;
 	int ArtNr;
 	double Einzelpreis;
 	JLabel lblGesamtpreis;
@@ -47,20 +48,24 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		
 		setLayout(null);
 		setBorder(null);
-		setBackground(new Color(204, 255, 255));
-		setSize(new Dimension(680, 100));
+		setBackground(Color.WHITE);
+		setSize(new Dimension(1124, 100));
 		
 		JSpinner spinnerAnzahl = new JSpinner();
 		spinnerAnzahl.setFont(new Font("Calibri", Font.PLAIN, 13));
-		spinnerAnzahl.setBounds(372, 33, 71, 35);
+		spinnerAnzahl.setBounds(606, 33, 71, 35);
 		spinnerAnzahl.setValue(Anzahl);
 		add(spinnerAnzahl);
 		
-		ImageIcon icon = new ImageIcon("src\\SWP-Bilder\\Damenkleidung_4.jpg");
-        Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_SMOOTH);
+		ImageIcon icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");		
+		if(a.getImage() != null)
+			icon = new ImageIcon(a.getImage());	
+		else
+			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
+		Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_SMOOTH);
 		
-		JLabel lblImage = new JLabel("image");		//new ImageIcon(a.getImage())
-		lblImage.setIcon(new ImageIcon(a.getImage()));
+		JLabel lblImage = new JLabel();
+		lblImage.setIcon(new ImageIcon(img));
 		lblImage.setVerticalAlignment(SwingConstants.TOP);
 		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImage.setBounds(3, 3, 93, 93);
@@ -68,33 +73,44 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		
 		JLabel lblBezeichnung = new JLabel(a.getBezeichnung());
 		lblBezeichnung.setFont(new Font("Calibri", Font.BOLD, 15));
-		lblBezeichnung.setBounds(116, 9, 213, 19);
+		lblBezeichnung.setBounds(165, 11, 213, 19);
 		add(lblBezeichnung);
 		
 		JLabel lblEInzelpreis = new JLabel(EinzelpreisString + "€");	
 		lblEInzelpreis.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblEInzelpreis.setBounds(453, 40, 80, 20);
+		lblEInzelpreis.setBounds(687, 40, 80, 20);
 		add(lblEInzelpreis);
 		
 		JLabel lblVerfügbarkeit = new JLabel(a.getVerfügbarkeit());
-		lblVerfügbarkeit.setForeground(new Color(0, 204, 51));
+		String verfügbarkeit = a.getVerfügbarkeit();
+		switch(verfügbarkeit) {
+			case "Sofort lieferbar": 		lblVerfügbarkeit.setForeground(Color.GREEN);		
+											break;
+			case "Lieferbar in 1-3 Tagen":	lblVerfügbarkeit.setForeground(Color.BLUE);		
+											break;
+			case "Lieferbar in 1-3 Wochen": lblVerfügbarkeit.setForeground(Color.BLUE);		
+											break;
+			case "Nicht mehr Verfügbar":	lblVerfügbarkeit.setForeground(Color.RED);
+											break;
+		}
 		lblVerfügbarkeit.setFont(new Font("Calibri", Font.PLAIN, 14));
-		lblVerfügbarkeit.setBounds(116, 64, 213, 30);
+		lblVerfügbarkeit.setBounds(165, 66, 213, 30);
 		add(lblVerfügbarkeit);
 		
 		lblGesamtpreis = new JLabel(Gesamtpreis + "€");  
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblGesamtpreis.setBounds(515, 40, 80, 20);
+		lblGesamtpreis.setBounds(749, 40, 80, 20);
 		add(lblGesamtpreis);
 		
 		JLabel lblHersteller = new JLabel(a.getHersteller());
-		lblHersteller.setBounds(116, 39, 213, 14);
+		lblHersteller.setBounds(165, 41, 213, 14);
 		add(lblHersteller);
 		
-		JButton btnZumArtikel = new JButton("Zum Artikel");
+		btnZumArtikel = new JButton("Zum Artikel");
 		btnZumArtikel.setFont(new Font("Calibri", Font.PLAIN, 14));
 		btnZumArtikel.setBackground(Color.WHITE);
-		btnZumArtikel.setBounds(339, 67, 103, 29);
+		btnZumArtikel.setBounds(573, 67, 103, 29);
+		btnZumArtikel.addActionListener(this);
 		add(btnZumArtikel);
 		
 		btnDelete = new JButton();		
@@ -104,7 +120,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		btnDelete.setIcon(new ImageIcon("src\\Icons 32x32\\trash.png"));
 		btnDelete.setBorder(BorderFactory.createEmptyBorder());
 		btnDelete.setContentAreaFilled(false);
-		btnDelete.setBounds(605, 28, 44, 44);
+		btnDelete.setBounds(949, 26, 44, 44);
 		add(btnDelete);
 		
 		spinnerAnzahl.addChangeListener(new ChangeListener() {
@@ -128,6 +144,8 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 			GUIWarenkorb.BuildPanel();
 			GUIWarenkorb.updateGesamtpreis();
 		}
+		if(e.getSource() == btnZumArtikel)
+			GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(ArtNr));
 		
 	}
 	/**

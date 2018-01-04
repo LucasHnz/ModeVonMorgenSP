@@ -1,33 +1,20 @@
 package Frontend;
 
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import java.awt.event.ActionListener;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
-import java.awt.SystemColor;
 import java.awt.Dimension;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
-import Logverwaltung.LogStrg;
 import Warenkorbverwaltung.Warenkorb;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.SwingConstants;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.Component;
 /**
  * 
@@ -36,8 +23,8 @@ import java.awt.Component;
  */
 public class GUIWarenkorb {
 	
-	static JPanel mainPanel = new JPanel();
-	static JPanel panel = new JPanel();
+	static JPanel mainPanel;
+	static JPanel panel;
 	static String Gesamtpreis;
 	static JLabel lblGesamtpreis;
 	
@@ -61,6 +48,8 @@ public class GUIWarenkorb {
 	 * @return
 	 */
 	public static JPanel getGUIWarenkorb() {
+		mainPanel = new JPanel();
+		panel = new JPanel();
 		mainPanel.setLayout(null);
 		mainPanel.setBounds(0, 0, 1234, 563);
 		BuildPanel();
@@ -76,13 +65,13 @@ public class GUIWarenkorb {
 			
 			}
 		});
-		btnZurKasse.setBounds(648, 424, 227, 46);
+		btnZurKasse.setBounds(1001, 478, 227, 46);
 		btnZurKasse.setBorder(null);
 		mainPanel.add(btnZurKasse);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(panel);
-		scrollPane.setBounds(10, 11, 865, 402);
+		scrollPane.setBounds(10, 11, 1218, 455);
 				
 		mainPanel.add(scrollPane);
 		
@@ -91,7 +80,7 @@ public class GUIWarenkorb {
 		
 		lblGesamtpreis.setBackground(Color.WHITE);
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblGesamtpreis.setBounds(415, 423, 223, 46);
+		lblGesamtpreis.setBounds(766, 478, 223, 46);
 		mainPanel.add(lblGesamtpreis);
 		mainPanel.setVisible(true);
 		
@@ -109,7 +98,7 @@ public class GUIWarenkorb {
 	public static void BuildPanel() {
 		panel.setAutoscrolls(true);
 		panel.setOpaque(false);
-		panel.setBackground(SystemColor.inactiveCaptionBorder);
+		panel.setBackground(Color.WHITE);
 		
 		int length = Warenkorb.getWarenkorb().size() * 100;
 		panel.setPreferredSize(new Dimension(549, length));
