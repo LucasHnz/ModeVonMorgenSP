@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import Artikelverwaltung.Artikel;
+import Artikelverwaltung.Artikelsammlung;
 
 public class GUIHomepage {
 	
@@ -58,6 +64,26 @@ public class GUIHomepage {
 		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
 		 	
 	}
+	
+	public static Image fülleArtikelStartseite() {
+		HashMap<Integer, Artikel> liste = Artikelsammlung.getArtikelsammlung();
+		
+		Integer[] nummern = liste.keySet().toArray(new Integer[liste.keySet().size()]);
+		Random generator = new Random();
+		int rndmNummer = (int) nummern[generator.nextInt(nummern.length)];
+			 
+			 ImageIcon icon;
+				if(Artikelsammlung.getArtikel(rndmNummer).getImage() != null) {
+					icon = new ImageIcon(Artikelsammlung.getArtikel(rndmNummer).getImage());
+				}
+				else 
+					icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
+					Image img = icon.getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH);
+					
+					//System.out.println(artikel1+" "+artikel2+" "+artikel3+" "+artikel4);
+					//System.out.println(intArray);
+					return img;
+		}  
 	
 	
 	public static JPanel getHomepage() {
@@ -166,14 +192,14 @@ public class GUIHomepage {
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
 		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(new ImageIcon(GUI.fülleArtikelStartseite()));
+		labelMainDamen.setIcon(new ImageIcon(fülleArtikelStartseite()));
 		panelMain.add(labelMainDamen);
 		
 		labelMainHerren = new JLabel("");
 		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(new ImageIcon(GUI.fülleArtikelStartseite()));
+		labelMainHerren.setIcon(new ImageIcon(fülleArtikelStartseite()));
 		panelMain.add(labelMainHerren);
 
 		
