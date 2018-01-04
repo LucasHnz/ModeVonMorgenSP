@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import Logverwaltung.LogStrg;
+import Warenkorbverwaltung.Warenkorb;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
@@ -65,6 +67,11 @@ public class GUI extends JFrame {
 			e.printStackTrace();
 		}
 		ArtikelStrg.FülleArtikelsammlung();
+		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000001), 3);
+		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000002), 3);
+		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000003), 10);
+		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000005), 10);
+		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000006), 10);
 		gui = new GUI();
 		fenster = gui;
 		
