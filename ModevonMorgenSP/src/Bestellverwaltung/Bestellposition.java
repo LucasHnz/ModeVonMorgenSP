@@ -13,7 +13,7 @@ public class Bestellposition {
 	protected int posNr;
 	protected int bestellNr;
 	protected int artikelnummer;
-	protected boolean Rücksendung;
+	protected String Rücksendung;
 	
 	
 
@@ -23,7 +23,7 @@ public class Bestellposition {
 	 * @param preis der Preis der ganzen Bestellposition.
 	 *  
 	 */
-	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, boolean rücksendung) {
+	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, String rücksendung) {
 		this.aMenge=aMenge;
 		this.posNr = posNr;
 		this.artikelnummer = artikelnummer;
@@ -53,12 +53,12 @@ public class Bestellposition {
 	public int getBestellNr() {
 		return bestellNr;
 	}
-	public boolean getRücksendung(){
+	public String getRücksendung(){
 		return Rücksendung;
 	}
 	
-	public void setRücksendung(){
-		this.Rücksendung = true;
+	public void setRücksendung(String Status){
+		this.Rücksendung = Status;
 	}
 
 	public void setBestellNr(int bestellNr) {
