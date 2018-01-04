@@ -65,8 +65,6 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 		gehaltformat.setGroupingUsed(false); 
 		gehaltformat.setMaximumIntegerDigits(8);
 		gehaltformat.setMinimumIntegerDigits(1);
-		gehaltformat.setMaximumFractionDigits(2);
-		gehaltformat.setMinimumFractionDigits(2);
         NumberFormatter gehaltformatter = new NumberFormatter(gehaltformat);
         
         NumberFormat plzformat = NumberFormat.getNumberInstance(); 

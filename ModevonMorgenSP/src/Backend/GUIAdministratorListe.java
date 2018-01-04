@@ -245,11 +245,18 @@ public class GUIAdministratorListe extends JPanel {
 							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok", "Abbrechen" }, "Ok");
 					if(optionPane.equals(0)) {
-						AdministratorStrg.entferneAdmin(
+						
+						int prüfsumme = AdministratorStrg.entferneAdmin(
 								data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 						model.fireTableStructureChanged();																							//
 						setStructure();
+						if (prüfsumme == 0) {
 						JOptionPane.showMessageDialog(null,  "Administrator wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
+						
+						}else if (prüfsumme == 1) {
+							JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen! "+
+						"Der Administrator ist noch Vorgesetzter eines Mitarbeiters!", "SQL Fehler", JOptionPane.ERROR_MESSAGE);
+						}
 					}else if(optionPane.equals(1)) {
 						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
 					}	
@@ -259,9 +266,8 @@ public class GUIAdministratorListe extends JPanel {
 							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
 					System.out.println("Index Fehler, keine Zeile ausgewählt");
-				}
 			}
-		});
+			}});
 		btnLöscheAdmin.setBounds(981, 129, 209, 48);
 		add(btnLöscheAdmin);
 
@@ -308,7 +314,7 @@ public class GUIAdministratorListe extends JPanel {
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(30, 42, 800, 395);
+		table.setBounds(30, 42, 800, 500);
 		table.setVisible(true);
 	}
 }

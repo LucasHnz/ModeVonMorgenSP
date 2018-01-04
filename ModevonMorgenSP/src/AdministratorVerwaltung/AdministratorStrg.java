@@ -2,7 +2,10 @@ package AdministratorVerwaltung;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+
+import javax.swing.JOptionPane;
 
 import AdministratorVerwaltung.AdministratorSammlung;
 
@@ -17,8 +20,9 @@ public class AdministratorStrg {
 	/**
 	 * entfernt einen Admin aus der Datenbank
 	 * @param i
+	 * @throws SQLException 
 	 */
-	public static void entferneAdmin(int i) {
+	public static int entferneAdmin(int i){
 		
 	try {
 		
@@ -31,10 +35,13 @@ public class AdministratorStrg {
 		stmt.executeQuery(sqlbefehel);
 		
 		AdministratorSammlung.removeAdmin(i);
+		
+		return 0;
 
 		
 	}catch (SQLException e) {
-		e.printStackTrace();
+		System.out.println("Fehler");
+		return 1;
 	}
 }
 	
