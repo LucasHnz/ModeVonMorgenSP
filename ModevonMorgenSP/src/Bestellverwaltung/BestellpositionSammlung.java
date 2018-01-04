@@ -10,7 +10,7 @@ import java.util.Iterator;
 import Artikelverwaltung.Artikelsammlung;
 /**
  * 
- * @author annag, Julian
+ * @author Julian
  *
  */
 
@@ -92,6 +92,10 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 			BestellpositionsSammlung.remove(s);
 			}
 		}
+	
+	public static Bestellposition getBestellpos(int nummer) {
+		return BestellpositionsSammlung.get(nummer);
+	}
 	}
 	
 	

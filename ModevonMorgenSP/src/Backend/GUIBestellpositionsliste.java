@@ -40,7 +40,7 @@ public class GUIBestellpositionsliste extends JFrame {
 	private JTable table;
 	private JScrollPane scrollpane;
 	private String[] columnNames = { "Bestellpositions Nr.", "Bestell Nr.", "Artikel Nr.", "Preis", "Menge",
-			"GetÃ¤tigte RÃ¼cksendung" };
+			"Getätigte Rücksendung" };
 
 	private class myTableModel extends AbstractTableModel {
 
@@ -170,7 +170,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		getContentPane().add(scrollpane);
 		// Cut
 		/**
-		 * Button um eine RÃ¼cksendung anzunehmen
+		 * Button um eine Rücksendung anzunehmen
 		 */
 		JButton btnRücksAnnehmen = new JButton("R\u00FCcksendung Annehmen");
 		btnRücksAnnehmen.setBounds(776, 11, 177, 48);
@@ -181,7 +181,7 @@ public class GUIBestellpositionsliste extends JFrame {
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				String check = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRücksendung();
 
-				if (check == "Keine Rücksendung") {
+				if (check != "Keine Rücksendung") {
 
 					final Object optionPane = JOptionPane.showOptionDialog(null,
 							"Sie sind dabei eine Rücksendung anzunehmen! \nFortfahren ?", "Rücksendung Annehmen",
