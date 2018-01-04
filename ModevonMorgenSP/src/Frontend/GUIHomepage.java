@@ -166,14 +166,14 @@ public class GUIHomepage {
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
 		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
+		labelMainDamen.setIcon(new ImageIcon(GUI.fülleArtikelStartseite()));
 		panelMain.add(labelMainDamen);
 		
 		labelMainHerren = new JLabel("");
 		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
+		labelMainHerren.setIcon(new ImageIcon(GUI.fülleArtikelStartseite()));
 		panelMain.add(labelMainHerren);
 
 		

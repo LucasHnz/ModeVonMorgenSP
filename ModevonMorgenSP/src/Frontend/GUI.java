@@ -25,10 +25,13 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Set;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.SoftBevelBorder;
 
+import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import Backend.GUIMitarbeiter;
@@ -76,6 +79,36 @@ public class GUI extends JFrame {
 		fenster = gui;
 		
 	}
+	
+	public static Image fülleArtikelStartseite() {
+		HashMap<Integer, Artikel> liste = Artikelsammlung.getArtikelsammlung();
+		Set<Integer> intArray = liste.keySet();
+		int artikel1 = 0;
+		int artikel2 = 0;
+		int artikel3 = 0;
+		int artikel4 = 0;
+
+		
+		int nullen = 0;
+		int random1 = (int) (Math.random() * 2) + 5;
+		int random2 = (int) (Math.random() * 9) + 1;
+		int artNr = Integer.parseInt(String.valueOf(random1+""+nullen+""+nullen+""+nullen+""+nullen+""+nullen+""+nullen+""+nullen+""+random2)); 
+		
+		 
+			 ImageIcon icon;
+				if(Artikelsammlung.getArtikel(artNr).getImage() != null) {
+					icon = new ImageIcon(Artikelsammlung.getArtikel(artNr).getImage());
+				}
+				else 
+					icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
+					Image img = icon.getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH);
+					
+					//System.out.println(artikel1+" "+artikel2+" "+artikel3+" "+artikel4);
+					//System.out.println(intArray);
+					return img;
+		}  
+	
+	
 	
 	public static GUI getFenster() {
 		return (GUI) fenster;
