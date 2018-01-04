@@ -13,13 +13,7 @@ public class Bestellposition {
 	protected int posNr;
 	protected int bestellNr;
 	protected int artikelnummer;
-<<<<<<< HEAD
-	protected boolean Rücksendung;
-=======
 	protected String Rücksendung;
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
-	
-	
 
 	/**
 	 * @param posNr Die einzigartige Positionsnummer.
@@ -27,11 +21,9 @@ public class Bestellposition {
 	 * @param preis der Preis der ganzen Bestellposition.
 	 *  
 	 */
-<<<<<<< HEAD
-	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, boolean rücksendung) {
-=======
+
 	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, String rücksendung) {
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
+
 		this.aMenge=aMenge;
 		this.posNr = posNr;
 		this.artikelnummer = artikelnummer;
@@ -53,34 +45,19 @@ public class Bestellposition {
 	public double getPreis() {
 		return this.preis;
 	}
-	
 	public int getAnummer() {
 		return artikelnummer;
 	}
-
 	public int getBestellNr() {
 		return bestellNr;
 	}
-<<<<<<< HEAD
-	public boolean getRücksendung(){
-=======
-	public String getRücksendung(){
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
+	public String getRücksendung() {
 		return Rücksendung;
 	}
-	
-<<<<<<< HEAD
-	public void setRücksendung(){
-		this.Rücksendung = true;
-=======
 	public void setRücksendung(String Status){
 		this.Rücksendung = Status;
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
 	}
-
 	public void setBestellNr(int bestellNr) {
 		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
-	
-		
 }

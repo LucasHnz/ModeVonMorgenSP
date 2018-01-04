@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
-
-
 import Artikelverwaltung.Artikelsammlung;
 import Warenkorbverwaltung.Warenkorb;
 /**
@@ -37,11 +35,7 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 				int artikelnummer= rs.getInt("ArtikelNr");
 				int aMenge =rs.getInt("Artikel Anzahl");
 				double preis = rs.getDouble("Preis");
-<<<<<<< HEAD
-				boolean checkRücksendung = rs.getBoolean("Rücksendung");
-=======
 				String checkRücksendung = rs.getString("Rücksendung");
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
 				
 				
 				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
@@ -77,11 +71,8 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 				int aMenge =rs.getInt("Menge");
 				double preis =Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 				preis= rs.getDouble("Preis");
-<<<<<<< HEAD
-				boolean checkRücksendung = rs.getBoolean("Rücksendung");
-=======
 				String checkRücksendung = rs.getString("Rücksendung");
->>>>>>> branch 'master' of https://github.com/LucasHnz/ModeVonMorgenSP.git
+
 				
 				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
@@ -110,8 +101,8 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 			String sql="insert into BESTELLPOSITION values ('"+posNr+"',"+bestellNr+"','"+artikelnr+"','"+aMenge+"','"+preis+"','"+rücksendung+" ')";
 			ResultSet rs = stmt.executeQuery(sql);
 			 
-			Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,aMenge,preis,rücksendung);
-			BestellpositionsSammlung.put(bpos.getPosNr(), bpos);
+	//		Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,aMenge,preis,rücksendung);
+	//		BestellpositionsSammlung.put(bpos.getPosNr(), bpos);
 			
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
