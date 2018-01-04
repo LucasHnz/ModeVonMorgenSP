@@ -23,14 +23,14 @@ public class Bestellposition {
 	 * @param preis der Preis der ganzen Bestellposition.
 	 *  
 	 */
-	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis) {
+	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, boolean rücksendung) {
 		this.aMenge=aMenge;
 		this.posNr = posNr;
 		this.artikelnummer = artikelnummer;
 		this.bestellNr = bestellNr;
 		//this.preis = Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 		this.preis = preis;
-		this.Rücksendung = false;
+		this.Rücksendung = rücksendung;
 	}
 	
 	public int getaMenge() {
