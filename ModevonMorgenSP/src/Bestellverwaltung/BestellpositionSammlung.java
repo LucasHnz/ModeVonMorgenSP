@@ -7,7 +7,9 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
 
+
 import Artikelverwaltung.Artikelsammlung;
+import Warenkorbverwaltung.Warenkorb;
 /**
  * 
  * @author annag, Julian
@@ -16,9 +18,9 @@ import Artikelverwaltung.Artikelsammlung;
 
 
 public class BestellpositionSammlung {
-public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
+public static HashMap<Integer,Integer> BestellpositionsSammlung = new HashMap<Integer, Integer>();
 	
-	public static void fÃ¼llenBestellpositionsSammlung(){
+	public static void füllenBestellpositionsSammlung(){
 		
 		try {
 			
@@ -35,12 +37,12 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 				int artikelnummer= rs.getInt("ArtikelNr");
 				int aMenge =rs.getInt("Artikel Anzahl");
 				double preis = rs.getDouble("Preis");
-				boolean checkRÃ¼cksendung = rs.getBoolean("RÃ¼cksendung");
+				boolean checkRücksendung = rs.getBoolean("Rücksendung");
 				
 				
-				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRÃ¼cksendung);
+				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
-				BestellpositionsSammlung.put(b.getPosNr(), b);
+				BestellpositionsSammlung.put(b.getPosNr(), b.getBestellNr());
 				
 			}
 			
@@ -50,11 +52,11 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 		
 		}
 
-	public static HashMap<Integer, Bestellposition> getBestellpositionsSammlung(){
+	public static HashMap<Integer, Integer> getBestellpositionsSammlung(){
 		return BestellpositionsSammlung;
 	}
 	
-	public static void fÃ¼lleMitSpeziellerNummer(int i) {
+	public static void fülleMitSpeziellerNummer(int i) {
 	try {
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -71,11 +73,11 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 				int aMenge =rs.getInt("Menge");
 				double preis =Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 				preis= rs.getDouble("Preis");
-				boolean checkRÃ¼cksendung = rs.getBoolean("RÃ¼cksendung");
+				boolean checkRücksendung = rs.getBoolean("Rücksendung");
 				
-				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRÃ¼cksendung);
+				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
-				BestellpositionsSammlung.put(b.getPosNr(), b);
+				BestellpositionsSammlung.put(b.getPosNr(), b.getBestellNr());
 				
 			}
 			
@@ -84,6 +86,33 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 		}
 		
 	}
+	public static void erstellenBestellposAusWarenkorb (int artikelnummer ,int anzahl) {
+		
+		try {
+			int artikelnr= Warenkorb.getWarenkorb().get(artikelnummer);
+			int aMenge=Warenkorb.getWarenkorb().get(anzahl);
+			double preis= Warenkorb.getGesamtpreis();
+			int posNr= Datenbankverwaltung.holeNächsteNummer.nächsteBestellPosNr();
+			int bestellNr=Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
+			boolean rücksendung= true;
+			
+	
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql="insert into BESTELLPOSITION values ('"+posNr+"',"+bestellNr+"','"+artikelnr+"','"+aMenge+"','"+preis+"','"+rücksendung+" ')";
+			ResultSet rs = stmt.executeQuery(sql);
+			 
+			Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,aMenge,preis,rücksendung);
+			BestellpositionsSammlung.put(bpos.getPosNr(), bpos.getBestellNr());
+			
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void entferneDatenAusListe() {
 		

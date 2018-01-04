@@ -67,7 +67,7 @@ public class GUIWarenkorb {
 		btnZurKasse.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent agr0){
-				GUIKaufvorgang.angemedeltÜberprüfung();
+				//BestellStrg.angemedeltÜberprüfung();
 				//BestellStrg.neueBestellung(Warenkorb.getWarenkorb()); 
 				// sowas in der Richtung.. Keine Ahnung, wie ihr das letztendlich schreibt
 			

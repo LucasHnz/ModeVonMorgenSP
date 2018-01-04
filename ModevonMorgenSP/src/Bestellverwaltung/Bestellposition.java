@@ -13,7 +13,7 @@ public class Bestellposition {
 	protected int posNr;
 	protected int bestellNr;
 	protected int artikelnummer;
-	protected boolean RÃ¼cksendung
+	protected boolean Rücksendung;
 	
 	
 
@@ -23,14 +23,14 @@ public class Bestellposition {
 	 * @param preis der Preis der ganzen Bestellposition.
 	 *  
 	 */
-	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, boolean rÃ¼cksendung) {
+	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, boolean rücksendung) {
 		this.aMenge=aMenge;
 		this.posNr = posNr;
 		this.artikelnummer = artikelnummer;
 		this.bestellNr = bestellNr;
 		//this.preis = Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 		this.preis = preis;
-		this.RÃ¼cksendung = rÃ¼cksendung;
+		this.Rücksendung = rücksendung;
 	}
 	
 	public int getaMenge() {
@@ -53,16 +53,16 @@ public class Bestellposition {
 	public int getBestellNr() {
 		return bestellNr;
 	}
-	public boolean getRÃ¼cksendung(){
-		return RÃ¼cksendung;
+	public boolean getRücksendung(){
+		return Rücksendung;
 	}
 	
-	public void setRÃ¼cksendung(){
-		this.RÃ¼cksendung = true;
+	public void setRücksendung(){
+		this.Rücksendung = true;
 	}
 
 	public void setBestellNr(int bestellNr) {
-		this.bestellNr = Datenbankverwaltung.holeNÃ¤chsteNummer.nÃ¤chsteBestellNr();
+		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
 	
 		
