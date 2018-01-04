@@ -286,11 +286,11 @@ public class GUI extends JFrame {
 					}
 
 				    if(auswahl == "Meine Bestellungen") {
-					   //new GUIKontoBestellungen(frame);
+					   changePanel(new GUIKontoBestellungen(LogStrg.getNutzerNr()));
 					}
 				 
 				    if(auswahl == "Konto verwalten") {
-				    	changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
+				    	changePanel(new GUIKontoVerwalten());
 					}
 				   
 				    if(auswahl == "Abmelden") {

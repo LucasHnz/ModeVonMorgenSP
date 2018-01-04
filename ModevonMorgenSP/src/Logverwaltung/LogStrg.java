@@ -45,17 +45,17 @@ public class LogStrg {
 			
 			
 			if(rs1.next()) {
-				System.out.println("Bestandskunde");
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
 				setNutzerNr(rs1.getInt("nutzernr"));
 				GUI.comboBoxAbfrage();
 				GUI.getFenster().setRechteAnzeigen(recht);
 				GUI.getFenster().removeLogPanel();
+				GUI.getFenster().changePanel(GUIHomepage.getHomepage());		// Damit man nicht immer bei "Meine Bestellungen landet. Ist aber auch ne scheiß Lösung
+																				// Wenn wem was gutes einfällt, dann mach das mal so, dass man da bleibt, wo man war. 
 			}
 			
 			else if(rs2.next()) {
-				System.out.println("MA");
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
 				setNutzerNr(rs2.getInt("nutzernr"));
@@ -66,7 +66,6 @@ public class LogStrg {
 			}
 			
 			else if(rs3.next()) {
-				System.out.println("Admin");
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
 				setNutzerNr(rs3.getInt("nutzernr"));

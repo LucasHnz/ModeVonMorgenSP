@@ -19,7 +19,7 @@ public static void aktualisiereNachname(String nachname, String nutzernr){
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		}catch(SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 	}
@@ -35,7 +35,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		}catch(SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 	}
@@ -53,7 +53,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 	
@@ -70,7 +70,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 	}
@@ -88,7 +88,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 	
@@ -105,7 +105,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 	}
@@ -123,7 +123,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 
@@ -140,7 +140,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 	
@@ -163,7 +163,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 			
 			
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 		
@@ -184,7 +184,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 			
 			
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 	
@@ -202,7 +202,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 

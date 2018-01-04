@@ -35,7 +35,7 @@ public class HoleDatenSatz {
 			rs = stmt.executeQuery(sql);
 			
 		}catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 		return rs;
@@ -64,7 +64,7 @@ public class HoleDatenSatz {
 			rs.close();
 		}
 		catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		return admin;
 		
@@ -94,7 +94,7 @@ public class HoleDatenSatz {
 			rs.close();
 		}
 		catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 		return ma;
@@ -123,7 +123,7 @@ public static Bestandskunde holeKunde(int nutzernr) {
 			rs.close();
 		}
 		catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 		return bk;
@@ -147,7 +147,7 @@ public static Gastkunde holeGKunde(int nutzernr) {
 		rs.close();
 	}
 	catch (SQLException e) {
-		e.getMessage();
+		e.printStackTrace();
 	}
 	
 	return gk;
