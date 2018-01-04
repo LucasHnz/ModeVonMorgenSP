@@ -18,7 +18,7 @@ import Artikelverwaltung.Artikelsammlung;
 public class BestellpositionSammlung {
 public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
 	
-	public static void fÃ¼llenBestellpositionsSammlung(){
+	public static void füllenBestellpositionsSammlung(){
 		
 		try {
 			
@@ -35,10 +35,10 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 				int artikelnummer= rs.getInt("ArtikelNr");
 				int aMenge =rs.getInt("Artikel Anzahl");
 				double preis = rs.getDouble("Preis");
-				boolean checkRÃ¼cksendung = rs.getBoolean("RÃ¼cksendung");
+				boolean checkRücksendung = rs.getBoolean("RÃ¼cksendung");
 				
 				
-				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRÃ¼cksendung);
+				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
 				BestellpositionsSammlung.put(b.getPosNr(), b);
 				
@@ -54,7 +54,7 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 		return BestellpositionsSammlung;
 	}
 	
-	public static void fÃ¼lleMitSpeziellerNummer(int i) {
+	public static void fülleMitSpeziellerNummer(int i) {
 	try {
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -71,9 +71,9 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 				int aMenge =rs.getInt("Menge");
 				double preis =Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 				preis= rs.getDouble("Preis");
-				boolean checkRÃ¼cksendung = rs.getBoolean("RÃ¼cksendung");
+				boolean checkRücksendung = rs.getBoolean("RÃ¼cksendung");
 				
-				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRÃ¼cksendung);
+				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
 				BestellpositionsSammlung.put(b.getPosNr(), b);
 				
