@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -35,7 +37,47 @@ public class GUIAdministratorListe extends JPanel {
 	private JScrollPane scrollpane;
 	private String[] columnNames = { "Nutzer Nummer", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN",
 			"Gehalt", "Passwort" };
+	private myTableModel model;										//
 
+	Comparator<Integer> intcomp = new Comparator<Integer>() {		//
+		@Override
+		public int compare(Integer o1, Integer o2) {
+			if (o1 > o2)
+				return 1;
+			else if (o1 < o2)
+				return -1;
+			else
+				return 0;
+		}
+	};
+
+	WindowListener formularListener = new WindowListener() {			//
+
+		@Override
+		public void windowActivated(WindowEvent e) {}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			model.fireTableStructureChanged();
+			setStructure();
+			}
+
+		@Override
+		public void windowClosing(WindowEvent e) {}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {}
+
+		@Override
+		public void windowIconified(WindowEvent e) {}
+
+		@Override
+		public void windowOpened(WindowEvent e) {}
+	};
+	
 	private class myTableModel extends AbstractTableModel {
 
 		/**
@@ -134,41 +176,11 @@ public class GUIAdministratorListe extends JPanel {
 		setBounds(90, 100, 1200, 600);
 		setBackground(Color.DARK_GRAY);
 
-		table = new JTable(new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames));
+		model = new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames);
+		table = new JTable(model);
 		table.setFillsViewportHeight(true);
-		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(110);
-		table.getColumnModel().getColumn(1).setPreferredWidth(110);
-		table.getColumnModel().getColumn(2).setPreferredWidth(80);
-		table.getColumnModel().getColumn(3).setPreferredWidth(80);
-		table.getColumnModel().getColumn(4).setPreferredWidth(80);
-		table.getColumnModel().getColumn(5).setPreferredWidth(80);
-		table.getColumnModel().getColumn(6).setPreferredWidth(80);
-		table.getColumnModel().getColumn(7).setPreferredWidth(80);
-		table.getColumnModel().getColumn(8).setPreferredWidth(80);
-		table.getColumnModel().getColumn(9).setPreferredWidth(80);
-
-		Comparator<Integer> intcomp = new Comparator<Integer>() {
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				if (o1 > o2)
-					return 1;
-				else if (o1 < o2)
-					return -1;
-				else
-					return 0;
-			}
-		};
-
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
-		sorter.setComparator(8, intcomp);
-		table.setRowSorter(sorter);
-		table.getRowSorter().toggleSortOrder(0);
-		table.setRowSelectionAllowed(true);
-		table.setColumnSelectionAllowed(false);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(30, 42, 800, 395);
-		table.setVisible(true);
+		setStructure();													//
+		
 
 		scrollpane = new JScrollPane();
 		scrollpane.setBounds(10, 11, 900, 490);
@@ -183,7 +195,10 @@ public class GUIAdministratorListe extends JPanel {
 		btnNeuerAdministrator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					new GUIAdministratorErstellenFormular();
+					GUIAdministratorErstellenFormular abc = new GUIAdministratorErstellenFormular();
+					abc.addWindowListener(formularListener);
+					model.fireTableStructureChanged();
+					setStructure();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -232,6 +247,8 @@ public class GUIAdministratorListe extends JPanel {
 					if(optionPane.equals(0)) {
 						AdministratorStrg.entferneAdmin(
 								data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
+						model.fireTableStructureChanged();																							//
+						setStructure();
 						JOptionPane.showMessageDialog(null,  "Administrator wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
 					}else if(optionPane.equals(1)) {
 						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
@@ -268,5 +285,30 @@ public class GUIAdministratorListe extends JPanel {
 
 		setVisible(true);
 
+	}
+	
+	public void setStructure() {					//
+		table.setDragEnabled(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(110);
+		table.getColumnModel().getColumn(1).setPreferredWidth(110);
+		table.getColumnModel().getColumn(2).setPreferredWidth(80);
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		table.getColumnModel().getColumn(4).setPreferredWidth(80);
+		table.getColumnModel().getColumn(5).setPreferredWidth(80);
+		table.getColumnModel().getColumn(6).setPreferredWidth(80);
+		table.getColumnModel().getColumn(7).setPreferredWidth(80);
+		table.getColumnModel().getColumn(8).setPreferredWidth(80);
+		table.getColumnModel().getColumn(9).setPreferredWidth(80);
+
+		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		sorter.setComparator(8, intcomp);
+		table.setRowSorter(sorter);
+		table.getRowSorter().toggleSortOrder(0);
+		table.setRowSelectionAllowed(true);
+		table.setColumnSelectionAllowed(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setBounds(30, 42, 800, 395);
+		table.setVisible(true);
 	}
 }

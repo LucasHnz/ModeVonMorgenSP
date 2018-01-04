@@ -12,11 +12,11 @@ import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
+import BestellungVerwaltung.Bestellung;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
 import KundenVerwaltung.BestandskundeStrg;
 import Logverwaltung.LogStrg;
-import RechnungVerwaltung.Bestellung;
 
 public class GUIKontoVerwalten {
 	

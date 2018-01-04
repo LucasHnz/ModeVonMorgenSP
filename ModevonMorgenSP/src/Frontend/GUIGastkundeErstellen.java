@@ -18,12 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import BestellungVerwaltung.BestellStrg;
+import BestellungVerwaltung.Bestellung;
+import BestellungVerwaltung.BestellungSammlung;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.Gastkunde;
 import MitarbeiterVerwaltung.Mitarbeiter;
-import RechnungVerwaltung.BestellStrg;
-import RechnungVerwaltung.Bestellung;
-import RechnungVerwaltung.BestellungSammlung;
 import Warenkorbverwaltung.Warenkorb;
 
 

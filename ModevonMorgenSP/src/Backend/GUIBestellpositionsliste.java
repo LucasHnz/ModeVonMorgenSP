@@ -22,11 +22,9 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
+import BestellungVerwaltung.Bestellung;
 import Bestellverwaltung.Bestellposition;
 import Bestellverwaltung.BestellpositionSammlung;
-
-import RechnungVerwaltung.Bestellung;
 import RücksendungVerwaltung.Rücksendung;
 import RücksendungVerwaltung.RücksendungSammlung;
 

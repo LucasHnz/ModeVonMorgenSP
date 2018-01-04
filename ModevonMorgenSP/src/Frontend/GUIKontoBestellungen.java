@@ -28,9 +28,9 @@ import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import Backend.GUIArtikelFormular;
 import Backend.GUIBestellpositionsliste;
-import RechnungVerwaltung.BestellStrg;
-import RechnungVerwaltung.Bestellung;
-import RechnungVerwaltung.BestellungSammlung;
+import BestellungVerwaltung.BestellStrg;
+import BestellungVerwaltung.Bestellung;
+import BestellungVerwaltung.BestellungSammlung;
 
 public class GUIKontoBestellungen extends JPanel{
 	
@@ -122,7 +122,7 @@ public class GUIKontoBestellungen extends JPanel{
 		setLayout(null);
 		setBackground(Color.DARK_GRAY);
 		
-		myTableModel model = new myTableModel(RechnungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer), columnNames);
+		myTableModel model = new myTableModel(BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer), columnNames);
 		table = new JTable(model);
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
@@ -137,7 +137,7 @@ public class GUIKontoBestellungen extends JPanel{
 		JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
 		btnStoniereBestellung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer);
+				final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer);
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int bestellnr = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr();
 				
@@ -167,7 +167,7 @@ public class GUIKontoBestellungen extends JPanel{
 		btnBestellpos.setBounds(976, 81, 209, 48);
 		btnBestellpos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Bestellung> data = RechnungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer);
+				final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer);
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 				try{
