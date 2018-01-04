@@ -71,8 +71,9 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 				int aMenge =rs.getInt("Menge");
 				double preis =Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 				preis= rs.getDouble("Preis");
+				boolean checkRücksendung = rs.getBoolean("Rücksendung");
 				
-				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis);
+				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
 				BestellpositionsSammlung.put(b.getPosNr(), b);
 				
