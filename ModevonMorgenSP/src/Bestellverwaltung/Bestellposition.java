@@ -53,7 +53,7 @@ public class Bestellposition {
 	public int getBestellNr() {
 		return bestellNr;
 	}
-	public boolean checkRücksendung(){
+	public boolean getRücksendung(){
 		return Rücksendung;
 	}
 	
