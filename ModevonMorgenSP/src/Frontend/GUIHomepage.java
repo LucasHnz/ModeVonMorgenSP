@@ -5,8 +5,10 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,43 +30,107 @@ public class GUIHomepage {
 	public static JButton btnProduktHerrenRechts= new JButton();
 	public static JButton btnProduktDamen;
 	public static JButton btnProduktHerren;
-	public static JLabel labelMainDamen = new JLabel();
-	public static JLabel labelMainHerren = new JLabel();
+	public static JLabel labelMainDamen;
+	public static JLabel labelMainHerren;
+	static Image img;
+	static  Image img1;
+	static  Image img2;
+	static  Image img3;
+	static  Image img4;
 	
-	public static ImageIcon bildAnpassen(String imageRoot) {
-		
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH));
-		return imageIcon;
-	}
 	
 	public static void wechselOutfitDamenRechts() 
 	{
-		
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_6.jpg"));
+		labelMainDamen.setIcon(new ImageIcon(img3));
 		 
 	}
 	
 	public static void wechselOutfitDamenLinks() 
 	{
 		
-		labelMainDamen.setIcon(bildAnpassen("src\\SWP-Bilder\\Damenkleidung_2.jpg"));
+		labelMainDamen.setIcon(new ImageIcon(img1));
 		
 	}
 	
 	public static void wechselOutfitHerrenRechts() 
 	{
 		
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenkleidung_1.jpg"));
+		labelMainHerren.setIcon(new ImageIcon(img4));
 
 	}
 	
 	public static void wechselOutfitHerrenLinks() 
 	{
 		
-		labelMainHerren.setIcon(bildAnpassen("src\\SWP-Bilder\\Herrenjacke_6.jpg"));
+		labelMainHerren.setIcon(new ImageIcon(img2));
 		 	
 	}
 	
+	
+	public static void fülleArtikelStartseite() {
+
+        HashMap<Integer, Artikel> liste = Artikelsammlung.getArtikelsammlung();
+        Set<Integer> intArray = liste.keySet();
+        ArrayList<Integer>ausgewählteArtikel = new ArrayList<Integer>();
+        int artNr = 0;
+        int x = 0;
+        
+        do {
+
+                int random1 = (int) (Math.random() * 2) + 5;
+                int random2 = (int) (Math.random() * 9) + 1;
+                artNr = Integer.parseInt(String.valueOf(random1+""+0+""+0+""+0+""+0+""+0+""+0+""+0+""+random2));
+              
+
+                       if(intArray.contains(artNr) && !ausgewählteArtikel.contains(artNr)) {
+                    	   
+                               ausgewählteArtikel.add(artNr);
+                       }
+
+            }while(ausgewählteArtikel.size() < 4);
+
+       
+                for(int i = 0 ; i < 4 ; i++) {
+                           ImageIcon icon;
+
+                               if(Artikelsammlung.getArtikel(ausgewählteArtikel.get(i)).getImage() != null) {
+                                      icon = new ImageIcon(Artikelsammlung.getArtikel(ausgewählteArtikel.get(i)).getImage());
+                                      img = icon.getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH);
+                                     
+                                      
+                              }if(Artikelsammlung.getArtikel(ausgewählteArtikel.get(i)).getImage() == null) {
+                                      icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
+                                      img = icon.getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH);
+                                     
+
+                              }
+                              
+                               if(i == 0) {
+                            	   img1 = img;
+                            	
+                               }
+                               if(i == 1) {
+                            	  
+                            	   img2 = img;
+                            	  
+                               }
+                               if(i == 2) {
+                            	   
+                            	   img3 = img;
+                            	   
+                               }
+                               if(i == 3) {
+                            	  
+                            	   img4 = img;
+                            	  
+                               }
+
+                  }
+
+                             
+
+ }
+	/*
 	public static Image fülleArtikelStartseite() {
 		HashMap<Integer, Artikel> liste = Artikelsammlung.getArtikelsammlung();
 		
@@ -84,7 +150,7 @@ public class GUIHomepage {
 					//System.out.println(intArray);
 					return img;
 		}  
-	
+	*/
 	
 	public static JPanel getHomepage() {
 		panelMain = new JPanel();
@@ -101,7 +167,7 @@ public class GUIHomepage {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artikelNummer));
 				
 			}
 			
@@ -116,7 +182,7 @@ public class GUIHomepage {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artikelNummer));
 				
 			}
 			
@@ -192,14 +258,14 @@ public class GUIHomepage {
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
 		labelMainDamen.setBounds(144, 76, 380, 450);
-		labelMainDamen.setIcon(new ImageIcon(fülleArtikelStartseite()));
+		labelMainDamen.setIcon(new ImageIcon(img1));
 		panelMain.add(labelMainDamen);
 		
 		labelMainHerren = new JLabel("");
 		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainHerren.setBounds(656, 76, 380, 450);
-		labelMainHerren.setIcon(new ImageIcon(fülleArtikelStartseite()));
+		labelMainHerren.setIcon(new ImageIcon(img2));
 		panelMain.add(labelMainHerren);
 
 		

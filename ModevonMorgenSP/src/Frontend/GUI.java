@@ -25,6 +25,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Set;
@@ -61,6 +62,7 @@ public class GUI extends JFrame {
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	static String[] array = {"Anmelden"};
 	
+	
 		
 	
 	public static void main(String[] args) 
@@ -76,11 +78,14 @@ public class GUI extends JFrame {
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000003), 10);
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000005), 10);
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000006), 10);
+		GUIHomepage.fülleArtikelStartseite();
 		gui = new GUI();
 		fenster = gui;
 		
 	}
 	
+	
+
 	public static GUI getFenster() {
 		return (GUI) fenster;
 	}

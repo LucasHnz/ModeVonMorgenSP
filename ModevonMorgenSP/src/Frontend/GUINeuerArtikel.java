@@ -24,8 +24,7 @@ public class GUINeuerArtikel {
  */
 static  Component neuerArtikel(int artikelNummer) {
 		
-	
-	System.out.println("Artikel wird erstellt");
+
 	
 	
 		JPanel panelArtikel = new JPanel();
