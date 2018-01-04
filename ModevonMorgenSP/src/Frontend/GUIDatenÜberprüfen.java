@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import KundenVerwaltung.Bestandskunde;
+import Logverwaltung.LogStrg;
 
 public class GUIDatenÜberprüfen  {
 	
@@ -133,7 +134,7 @@ public class GUIDatenÜberprüfen  {
 	                JOptionPane.WARNING_MESSAGE, null, 
 	                new String[]{"Ok"}, "Ok"); 	
 			
-		
+			GUI.getFenster().changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 			
 			}
 		
@@ -147,7 +148,7 @@ public class GUIDatenÜberprüfen  {
 		btnAbbrechen.setBounds(451, 432, 145, 40);
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
+				GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 			}
 		});
 		panel.add(btnAbbrechen);
@@ -159,7 +160,7 @@ public class GUIDatenÜberprüfen  {
 		btnWeiter.setBounds(251, 432, 145, 40);
 		btnWeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI.changePanel();  //weiter die bestellung anzeigen aus dem warenkorb 
+				GUI.getFenster().changePanel();  //weiter die bestellung anzeigen aus dem warenkorb 
 			}
 		});
 		panel.add(btnWeiter);

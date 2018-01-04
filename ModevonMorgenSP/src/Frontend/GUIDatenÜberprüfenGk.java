@@ -69,9 +69,6 @@ public class GUIDatenÜberprüfenGk {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		
-		
-		
 		JTextField textField_Straße = new JTextField();
 		textField_Straße.setToolTipText("Hier Bitte die Straße eintragen");
 		//textField_5.setText(kunde.getStraße());
@@ -136,7 +133,7 @@ public class GUIDatenÜberprüfenGk {
 	                JOptionPane.WARNING_MESSAGE, null, 
 	                new String[]{"Ok"}, "Ok"); 	
 			
-		
+			GUI.getFenster().changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
 			
 			}
 		
@@ -150,7 +147,7 @@ public class GUIDatenÜberprüfenGk {
 		btnAbbrechen.setBounds(451, 432, 145, 40);
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI.changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
+				GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 			}
 		});
 		panel.add(btnAbbrechen);
@@ -162,7 +159,7 @@ public class GUIDatenÜberprüfenGk {
 		btnWeiter.setBounds(251, 432, 145, 40);
 		btnWeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI.changePanel();  //weiter die bestellung anzeigen aus dem warenkorb 
+				GUI.getFenster().changePanel();  //weiter die bestellung anzeigen aus dem warenkorb 
 			}
 		});
 		panel.add(btnWeiter);

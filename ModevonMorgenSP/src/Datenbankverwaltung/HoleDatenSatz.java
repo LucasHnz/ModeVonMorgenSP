@@ -142,7 +142,7 @@ public static Gastkunde holeGKunde(int nutzernr) {
 		
 		rs.next();
 		
-		gk= new Gastkunde(rs.getInt("nutzernr"), rs.getString("nachname"),rs.getString("vorname") ,rs.getString("email"),rs.getString("straﬂe"), rs.getString("ort"),rs.getInt("plz"), rs.getInt("berechtigung"));
+		gk= new Gastkunde(rs.getInt("nutzernr"), rs.getString("nachname"),rs.getString("vorname") ,rs.getString("email"),rs.getString("straﬂe"), rs.getString("ort"),rs.getInt("plz"), rs.getInt("berechtigung"),rs.getString("Iban"));
 	
 		rs.close();
 	}
