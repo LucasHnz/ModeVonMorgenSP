@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
 public abstract class Artikel implements Comparable<Artikel> {

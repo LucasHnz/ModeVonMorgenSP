@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
 public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
@@ -32,19 +32,22 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 	String Gesamtpreis;
 	String EinzelpreisString;
 	
+	/**
+	 * Stellt ein JPanel für einen Artikel im Warenkorb zur Verfügung.
+	 * @param Artikelnummer Die Artikelnummer des Artikels.
+	 * @param Anzahl Die Anzahl des Artikels im Warenkorb.
+	 */
 	public GUIWarenkorbArtikel(int Artikelnummer, int Anzahl) {
 		Artikel a = Artikelsammlung.getArtikel(Artikelnummer);
 		ArtNr = Artikelnummer;
 		
 		Einzelpreis = a.getPreis() * (100 - a.getRabatt()) * 0.01;
 		EinzelpreisString = String.format("%.2f", Einzelpreis);
-		//Gesamtpreis = String.format("%.2f",Einzelpreis * (int) spinnerAnzahl.getValue() );
 		Gesamtpreis = String.format("%.2f",Einzelpreis * Warenkorb.getWarenkorb().get(Artikelnummer).intValue() );
 		
 		setLayout(null);
 		setBorder(null);
 		setBackground(new Color(204, 255, 255));
-		//setBounds(0, 0, 680, 99);
 		setSize(new Dimension(680, 100));
 		
 		JSpinner spinnerAnzahl = new JSpinner();
@@ -57,7 +60,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
         Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_SMOOTH);
 		
 		JLabel lblImage = new JLabel("image");		//new ImageIcon(a.getImage())
-		lblImage.setIcon(new ImageIcon(img));
+		lblImage.setIcon(new ImageIcon(a.getImage()));
 		lblImage.setVerticalAlignment(SwingConstants.TOP);
 		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImage.setBounds(3, 3, 93, 93);
@@ -68,7 +71,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		lblBezeichnung.setBounds(116, 9, 213, 19);
 		add(lblBezeichnung);
 		
-		JLabel lblEInzelpreis = new JLabel(EinzelpreisString + "€");	//Rabatt einberechnen
+		JLabel lblEInzelpreis = new JLabel(EinzelpreisString + "€");	
 		lblEInzelpreis.setFont(new Font("Calibri", Font.PLAIN, 14));
 		lblEInzelpreis.setBounds(453, 40, 80, 20);
 		add(lblEInzelpreis);
@@ -79,7 +82,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		lblVerfügbarkeit.setBounds(116, 64, 213, 30);
 		add(lblVerfügbarkeit);
 		
-		lblGesamtpreis = new JLabel(Gesamtpreis + "€");  //noch zu fixen
+		lblGesamtpreis = new JLabel(Gesamtpreis + "€");  
 		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblGesamtpreis.setBounds(515, 40, 80, 20);
 		add(lblGesamtpreis);
@@ -121,12 +124,15 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnDelete) {
 			Warenkorb.ArtikelEntfernen(Artikelsammlung.getArtikel(ArtNr).getArtikelnummer());
-			GUIWarenkorb.getPanel().removeAll();
+			GUIWarenkorb.clearPanel();
 			GUIWarenkorb.BuildPanel();
 			GUIWarenkorb.updateGesamtpreis();
 		}
 		
 	}
+	/**
+	 * Akualisiert das Label für den Preis des Artikels multipliziert mit der Anzahl.
+	 */
 	public void updatePreisLabel() {
 		lblGesamtpreis.setText(Gesamtpreis +"€");
 	}

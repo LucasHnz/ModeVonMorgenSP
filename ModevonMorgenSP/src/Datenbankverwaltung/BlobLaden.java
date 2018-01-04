@@ -13,31 +13,31 @@ import javax.imageio.ImageIO;
 
 /**
  * 
- * @author julian
+ * @author Falk Maoro
  *
  */
 
 public class BlobLaden {
 	
 	/**
-	 * Läd ein Bild als Blob hoch
-	 * @param befehl
-	 * @param Dateipfad
+	 * Lädt ein Bild von der Festplatte in die Datenbank hoch.
+	 * @param befehl Der SQL Befehl um einen BLOB Wert in die Datenbank hochzuladen.
+	 * @param Dateipfad Der lokale Pfad des Bildes.
 	 */
 	public static void hochladenBlob(String befehl, String Dateipfad) {
 		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		InputStream photoStream = null;
+		
 		try {
-			//Verbindungsaufbau sowie Initialisierung
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			PreparedStatement pstmt = con.prepareStatement(befehl);
-			//File bild = new File (Dateipfad);
-			InputStream photoStream = new BufferedInputStream( new FileInputStream(Dateipfad));
-			//FileInputStream fis = new FileInputStream(bild);
+	
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			pstmt = con.prepareStatement(befehl);
+			photoStream = new BufferedInputStream( new FileInputStream(Dateipfad));
 			
-			//Statement füllen und abfeuern
 			pstmt.setBinaryStream(1, photoStream, photoStream.available());		
 			pstmt.execute();
-			
 			
 			photoStream.close();
 			pstmt.close();
@@ -48,34 +48,19 @@ public class BlobLaden {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Läd ein Blob herunter
-	 * @param befehl
-	 * @return
-	 */
-	public static BufferedImage runterladenBlob(String befehl) {
-		
-		BufferedImage bild = null;
-		
-		try {
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			PreparedStatement pstmt = con.prepareStatement(befehl);
-			ResultSet rs = pstmt.executeQuery(befehl);
-			
-			while(rs.next()) {																					// Methode nicht mehr verwendet 
-				//File file = new File (dateipfad);
-				//FileOutputStream fos = new FileOutputStream (file);
-				BufferedInputStream bis = new BufferedInputStream( rs.getBinaryStream(1) );
-				bild = ImageIO.read(bis)  ;
-				bis.close();
+		finally {
+			try {
+				if(con != null)
+					con.close();
+				if(pstmt != null)
+					pstmt.close();
+				if(photoStream != null)
+					photoStream.close();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
 			
-		}catch ( Exception e) {
-			e.printStackTrace();
 		}
-		return bild;
-		
 	}
 }

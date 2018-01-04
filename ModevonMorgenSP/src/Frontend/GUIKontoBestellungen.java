@@ -31,7 +31,12 @@ import Backend.GUIBestellpositionsliste;
 import BestellungVerwaltung.BestellStrg;
 import BestellungVerwaltung.Bestellung;
 import BestellungVerwaltung.BestellungSammlung;
-
+import Logverwaltung.LogStrg;
+/**
+ * 
+ * @author Falk Maoro
+ *
+ */
 public class GUIKontoBestellungen extends JPanel{
 	
 	private String[] columnNames = {"Rechnungs Nr", "IBAN", "Gesamtpreis", "Rabatt", "Datum", "Versandstatus"};
@@ -114,10 +119,11 @@ public class GUIKontoBestellungen extends JPanel{
 			}
 		}
 	/**
-	 * Create the application.
+	 * Stellt ein JPanel zur Verfügung, in dem alle Bestellungen eines Kunde angezeigt werden können.
 	 */
-	public GUIKontoBestellungen(int nutzernummer) {
-		//0, 0, 1250, 750
+	public GUIKontoBestellungen() {
+		
+		int nutzernummer = LogStrg.getNutzerNr();
 		setBounds(10, 11, 1226, 552);
 		setLayout(null);
 		setBackground(Color.DARK_GRAY);
@@ -182,11 +188,13 @@ public class GUIKontoBestellungen extends JPanel{
 		});
 		add(btnBestellpos);
 	
-
 		setVisible(true);
 		
 
 	}
+	/**
+	 * Baut das JTable neu auf. 
+	 */
 	public void setStructure() {
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(40);

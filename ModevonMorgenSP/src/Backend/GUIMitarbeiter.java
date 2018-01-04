@@ -30,13 +30,19 @@ import java.awt.Dimension;
 
 import javax.swing.JList;
 import javax.swing.JTabbedPane;
-
+/**
+ * 
+ * @author Falk Maoro
+ *
+ */
 public class GUIMitarbeiter{
 	
 	private static JPanel panel;
 	
 	/**
-	 * @wbp.parser.entryPoint
+	 * Gibt das JPanel für die Mitarbeiterverwaltung zurück. Das Panel hat
+	 * je nachdem, ob ein Administrator oder ein Mitarbeiter eingeloggt ist, 
+	 * angepasste Möglichkeiten.  
 	 */
 	public static JPanel getGUIMitarbeiter() {
 		panel = new JPanel();
@@ -44,8 +50,6 @@ public class GUIMitarbeiter{
 		
 		panel.setLayout(null);
 		
-	
-		//Hauptfenster
 		JPanel panelMain = new JPanel();
 		panelMain.setBackground(Color.DARK_GRAY);
 		panelMain.setBounds(10, 2, 1224, 570);

@@ -11,15 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
 public class ArtikelStrg {
 
-	public ArtikelStrg() {
-		
-		
-	}
 	/**
 	 * Ändert die Attribute eines Artikels in der Datenbank und in der Artikelsammlung.
 	 * @param Artikelnummer
@@ -151,6 +147,7 @@ public class ArtikelStrg {
 			
 			stmt.close();
 			con.close();
+			
 			}catch(SQLException e) {
 		    	e.printStackTrace();
 		    }
@@ -195,6 +192,7 @@ public class ArtikelStrg {
 			}
 		}
 	}
+	
 	/**
 	 * Fordert die Artikelsammlung auf, einen neuen Artikel mit den übergebenen Parametern hinzuzufügen.
 	 * @param kateg Eine der drei Artikelkategorien: Schuhe, Accessoires und Kleidung.
@@ -209,6 +207,7 @@ public class ArtikelStrg {
 				Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Schuhgröße, Farbe, Größe);
 		Connection con = null;
 		Statement stmt = null;
+		
 		try {
 			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			stmt = con.createStatement(); 
@@ -309,8 +308,6 @@ public class ArtikelStrg {
 			String sqlbefehl3 = "select * from Kleidung";
 			rs3 = stmt.executeQuery(sqlbefehl3);
 			Artikelsammlung.füllenSammlung(rs3, "Kleidung");
-			
-			
 			
 		}catch(SQLException e){
 			System.out.println(e.getMessage());

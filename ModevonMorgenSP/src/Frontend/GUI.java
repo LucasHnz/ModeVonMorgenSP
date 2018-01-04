@@ -291,7 +291,7 @@ public class GUI extends JFrame {
 					}
 
 				    if(auswahl == "Meine Bestellungen") {
-					   changePanel(new GUIKontoBestellungen(LogStrg.getNutzerNr()));
+					   changePanel(new GUIKontoBestellungen());
 					}
 				 
 				    if(auswahl == "Konto verwalten") {

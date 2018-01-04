@@ -30,15 +30,13 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
 public class GUIArtikelliste extends JPanel {
 	
-	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
 	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Art", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};

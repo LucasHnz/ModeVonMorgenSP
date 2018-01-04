@@ -2,7 +2,7 @@ package Artikelverwaltung;
 
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
 public class Kleidung extends Artikel {

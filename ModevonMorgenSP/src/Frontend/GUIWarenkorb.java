@@ -29,7 +29,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.Component;
-
+/**
+ * 
+ * @author Falk Maoro
+ *
+ */
 public class GUIWarenkorb {
 	
 	static JPanel mainPanel = new JPanel();
@@ -52,12 +56,11 @@ public class GUIWarenkorb {
 
 		getGUIWarenkorb();
 	}
-	
+	/**
+	 * Zeigt dem Nutzer seinen Warenkorb an. 
+	 * @return
+	 */
 	public static JPanel getGUIWarenkorb() {
-		//frame.setResizable(false);
-		//frame.getContentPane().setLayout(null);
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setBounds(0,0,1000,600);
 		mainPanel.setLayout(null);
 		mainPanel.setBounds(0, 0, 1234, 563);
 		BuildPanel();
@@ -94,11 +97,15 @@ public class GUIWarenkorb {
 		
 		return mainPanel;
 	}
-	
-	public static JPanel getPanel() {
-		return panel;
+	/**
+	 * Enfernt alle Artikel aus dem Panel.
+	 */
+	public static void clearPanel() {
+		panel.removeAll();
 	}
-	
+	/**
+	 * Baut das Panel neu auf und fügt alle Artikelpanel hinzu.
+	 */
 	public static void BuildPanel() {
 		panel.setAutoscrolls(true);
 		panel.setOpaque(false);
@@ -115,6 +122,9 @@ public class GUIWarenkorb {
 		}		
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 	}
+	/**
+	 * Aktualisiert das JLabel für die Anzeige des Gesamtpreises im Warenkorb.
+	 */
 	public static void updateGesamtpreis() {
 		Gesamtpreis = String.format("%.2f",Warenkorb.getGesamtpreis());
 		lblGesamtpreis.setText("Gesamtpreis: " +Gesamtpreis + "€");

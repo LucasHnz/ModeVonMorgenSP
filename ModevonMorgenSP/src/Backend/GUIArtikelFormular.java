@@ -32,7 +32,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 /**
  * 
- * @author fmaoro
+ * @author Falk Maoro
  *
  */
 public class GUIArtikelFormular extends JFrame {
@@ -326,7 +326,7 @@ public class GUIArtikelFormular extends JFrame {
 	
 	
 	/**
-	 * Öfnnet das Formular zum verändern eines bestehenden Artikels.
+	 * Öfnnet das Formular zum Editieren eines bestehenden Artikels.
 	 * @param Artikelnummer Die Artikelnummer des zu verändernden Artikels.
 	 * @see Artikelverwaltung.Artikel
 	 */

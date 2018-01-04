@@ -14,11 +14,9 @@ import java.util.Iterator;
 import javax.imageio.ImageIO;
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
-
-
 
 public class Artikelsammlung {
 
@@ -82,7 +80,7 @@ public class Artikelsammlung {
 		}finally {
 			try{
 				if(bis != null)
-				bis.close();
+					bis.close();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -142,86 +140,6 @@ public class Artikelsammlung {
 			artikel = new Kleidung(Artikelnummer, Bestand, Bezeichnung, Art, Geschlecht, Hersteller, Verfügbarkeit, Notiz, Lieferanten, Preis, Rabatt, Größe);
 		Artikelsammlung.put(Artikelnummer, artikel);
 	}
-	
-	 public static void loadImages() {
-		 for(Artikel a : Artikelsammlung.values()) {
-			 a.downloadImage();											// Nicht mehr verwendet 
-		 }
-			 
-		 
-	 }
-	 /** 
-	  * Lädt die Artikelbilder zu allen in der Datenbank gespeicherten Artikeln und 
-	  * speichert sie in den entsprechenden Objekten.
-	  */
-	 public static void loadAllImages()  {
-		 String befehl1 = "select Artikelnr, Bild from Kleidung";
-		 String befehl2 = "select Artikelnr, Bild from Schuhe";
-		 String befehl3 = "select Artikelnr, Bild from Accessoires";					// Kann eigentlich auch raus.
-		 BufferedInputStream bis = null;
-		 BufferedImage bild = null;
-		 int artikelnummer = 0;
-		 Connection con = null;
-		 PreparedStatement pstmt = null;
-		 ResultSet rs = null;
-		 try {
-			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-		
-			pstmt = con.prepareStatement(befehl1);
-			rs = pstmt.executeQuery(befehl1);
-		
-			while(rs.next()) {
-				artikelnummer = rs.getInt(1);
-				bis = new BufferedInputStream( rs.getBinaryStream(2) );
-				bild = ImageIO.read(bis);
-				Artikelsammlung.get(artikelnummer).setImage(bild);
-				System.out.println(artikelnummer);
-				System.out.println(bild);
-			}
-			pstmt.close();
-			
-			pstmt = con.prepareStatement(befehl2);
-			rs = pstmt.executeQuery(befehl2);
-		
-			while(rs.next()) {
-				artikelnummer = rs.getInt(1);
-				bis = new BufferedInputStream( rs.getBinaryStream(2) );
-				bild = ImageIO.read(bis);
-				Artikelsammlung.get(artikelnummer).setImage(bild);
-				System.out.println(artikelnummer);
-				System.out.println(bild);
-			}
-			pstmt.close();
-			
-			pstmt = con.prepareStatement(befehl3);
-			rs = pstmt.executeQuery(befehl3);
-		
-			while(rs.next()) {
-				artikelnummer = rs.getInt(1);
-				bis = new BufferedInputStream( rs.getBinaryStream(2) );
-				bild = ImageIO.read(bis);
-				Artikelsammlung.get(artikelnummer).setImage(bild);
-				System.out.println(artikelnummer);
-				System.out.println(bild);
-			}
-			
-		 }catch(SQLException e) {
-			 e.printStackTrace();
-		 } catch (IOException e) {
-			e.printStackTrace();
-		 }finally{
-			try{
-				if(bis != null)
-					bis.close();
-				if(pstmt != null)
-					pstmt.close();
-				if(con != null)
-					con.close();
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
-		 }
-	 }
+	 
 }
 

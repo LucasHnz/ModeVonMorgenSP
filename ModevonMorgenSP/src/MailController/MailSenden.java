@@ -17,11 +17,17 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.Message.RecipientType;
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
 public class MailSenden {
 
+	/**
+	 * Sendet eine Mail von der Shop-Adresse: modevonmorgen@gmx.de
+	 * @param empfängerAdresse Die Email des Empfängers.
+	 * @param betreff Der Betreff der Email.
+	 * @param text Der Text der Email.
+	 */
 	public static void sendMail(String empfängerAdresse, String betreff,
 			String text) {
 			
@@ -141,15 +147,5 @@ public class MailSenden {
 			e.printStackTrace();
 			return null;
 		}
-	}
-
-	public static void main(String[] args) {
-
-		String recipientsAddress = "maorofalk@online.de";
-		String subject = "Testnachricht JAVA  2";
-		String text = "Test Nr.2";
-
-		sendMail(recipientsAddress, subject, text);
-
 	}
 }

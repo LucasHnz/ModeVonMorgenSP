@@ -9,7 +9,7 @@ import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 /**
  * 
- * @author fmaoro
+ * @author Falk Maoro
  *
  */
 public class Warenkorb {

@@ -16,7 +16,7 @@ import Artikelverwaltung.Artikelsammlung;
 import javax.swing.JTextField;
 /**
  * 
- * @author maoro
+ * @author Falk Maoro
  *
  */
 public class GUIFileChooser extends JFrame implements ActionListener {
@@ -39,10 +39,7 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 	public GUIFileChooser(int Artikelnummer) {
 		this.Artikelnummer=Artikelnummer;
 		setTitle("Bild ausw\u00E4hlen");
-		
-		//ImageIcon ico = new ImageIcon(GUIFileChooser.class.getResource("/Image/Oracle3.png"));
-		//setIconImage(ico.getImage());
-		
+				
 		chooser = new JFileChooser();
 		chooser.addChoosableFileFilter(filter);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -80,29 +77,21 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// Handle open button action.
+		
 		if (e.getSource() == btnDurchsuchen) {
-			// Frame mit Icon erstellen und das Frame dem FileChooser als
-			// Parameter mitgeben, damit FileChooser ein anderes Icon
-			// bekommt.
-			JFrame frame = new JFrame();
-//			ImageIcon bild = new ImageIcon(MyFileChooser.class.getResource("/Image/Ordner.png"));
-//			frame.setIconImage(bild.getImage());
+			
+			JFrame frame = new JFrame();			
 			int returnVal = chooser.showOpenDialog(frame);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = chooser.getSelectedFile();
-				
-				System.out.println("Opening: " + file.getName() + ".");
 				tfDatei.setText(file.toString());
 				this.fileName = file.toString();
-				System.out.println("ausgewählt:" + fileName);
 			}
 		}
 		if(e.getSource() == btnAbbrechen){
 			dispose();
 		}
 		if(e.getSource() == btnHochladen) {
-			System.out.println("btnHochladen");
 			Artikelsammlung.getArtikel(Artikelnummer).uploadImage(fileName);
 		}
 	}

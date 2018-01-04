@@ -20,14 +20,17 @@ import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
 import KundenVerwaltung.BestandskundeStrg;
 import Logverwaltung.LogStrg;
-
+/**
+ * 
+ * @author Falk Maoro
+ *
+ */
 public class GUIKontoVerwalten extends JPanel{
 	
 	private static int nutzernummer;
 	
 	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
+	 * Zeigt dem Nutzer seine Accountdaten an und lässt ihn seine Daten editieren.
 	 */
 	public GUIKontoVerwalten() {
 		setBounds(0, 0, 1248, 563);
