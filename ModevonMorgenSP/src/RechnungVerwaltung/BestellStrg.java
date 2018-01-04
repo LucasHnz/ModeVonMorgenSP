@@ -102,7 +102,7 @@ public class BestellStrg {
 				int plz = rs.getInt("RechnungsPlz");
 			
 				
-				if (nutzernrbk !=null) {
+				if (nutzernrgk=null) {
 					Connection con2= Datenbankverwaltung.VerbindungDB.erstelleConnection();
 					Statement stmt2= con.createStatement();
 					String sqlbefehl2 = "select EMAIL from BESTANSKUNDE where NUTZERNR="+nutzernrb;
@@ -114,7 +114,7 @@ public class BestellStrg {
 					rs2.close();
 					Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con2, stmt2);
 					}
-				else if (nutzernrgk==null){
+				else if (nutzernrgk=null){
 					Connection con3= Datenbankverwaltung.VerbindungDB.erstelleConnection();
 					Statement stmt3= con.createStatement();
 					String sqlbefehl3 = "select EMAIL from GASTKUNDE where NUTZERNR="+nutzernrb;
