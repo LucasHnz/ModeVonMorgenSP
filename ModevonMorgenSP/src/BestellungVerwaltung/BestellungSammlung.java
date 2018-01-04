@@ -10,9 +10,14 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.HashMap;
 
-import MitarbeiterVerwaltung.Mitarbeiter;
+import Bestellverwaltung.Bestellposition;
+import Bestellverwaltung.BestellpositionSammlung;
+import Logverwaltung.LogStrg;
+import Warenkorbverwaltung.Warenkorb;
 
 public class BestellungSammlung {
 
@@ -109,6 +114,60 @@ public class BestellungSammlung {
 			e.printStackTrace();
 		}
 	return BestellungSammlungNR;
+	}
+	
+	public static void erstelleBestellungAusWarenkorb(int bestellnr) {
+		try{
+			
+			int nutzernr=LogStrg.getNutzerNr();
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select * from Bestandskunde where Nutzernr = " + nutzernr;
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			
+			while (rs.next()){
+				
+				int rechnungsnr=Datenbankverwaltung.holeN‰chsteNummer.n‰chsteRechnungsNr();
+				int bestellnummer= BestellpositionSammlung.BestellpositionsSammlung.get(bestellnr);
+				int nutzernrgk=0;
+				String iban=rs.getString("Iban");
+				String nachname = rs.getString("Nachname");
+				String vorname = rs.getString("Vorname");
+				double preis= Warenkorb.getGesamtpreis();
+				int erabatt=0;
+				Date datum= 12.12.2017 ;   //aktuelles Datum 
+				String vstatus="Wird bearbeitet";
+				String rechnungsort = rs.getString("Ort");
+				String rechnungsstrasse = rs.getString("Strasse");
+				int rechnungsplz = rs.getInt("Plz");
+				
+				Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+				Statement stmt1 = con1.createStatement();
+				String sql1 = "insert into RECHNUNGBESTELLUNG values ('"+rechnungsnr+"','"+bestellnr+"','"+ nutzernr+"','"+ nutzernrgk+"','"+ iban+"','"+nachname+"','"+vorname+"','"+preis+"','"+erabatt+"','"+datum+"','"+vstatus+"','"+rechnungsort+"','"+rechnungsstrasse+"','"+rechnungsplz+",)";
+				ResultSet rs1 = stmt.executeQuery(sql);
+				
+				Bestellung b= new Bestellung(rechnungsnr, bestellnr, nutzernr, nutzernrgk, iban, nachname, vorname, preis, erabatt, datum, vstatus, rechnungsort, rechnungsstrasse, rechnungsplz);
+				BestellungSammlung.put(b.getBestellnr(), b);
+				
+				rs1.close();
+				Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con1, stmt1);
+				
+			}
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			
+		}	
+		catch( SQLException e ){
+			e.printStackTrace();
+			
+		}
+		
+		
+		
+		
 	}
 	
 }

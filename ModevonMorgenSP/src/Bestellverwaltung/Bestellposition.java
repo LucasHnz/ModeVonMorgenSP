@@ -14,8 +14,6 @@ public class Bestellposition {
 	protected int bestellNr;
 	protected int artikelnummer;
 	protected String Rücksendung;
-	
-	
 
 	/**
 	 * @param posNr Die einzigartige Positionsnummer.
@@ -23,7 +21,9 @@ public class Bestellposition {
 	 * @param preis der Preis der ganzen Bestellposition.
 	 *  
 	 */
+
 	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, String rücksendung) {
+
 		this.aMenge=aMenge;
 		this.posNr = posNr;
 		this.artikelnummer = artikelnummer;
@@ -45,25 +45,19 @@ public class Bestellposition {
 	public double getPreis() {
 		return this.preis;
 	}
-	
 	public int getAnummer() {
 		return artikelnummer;
 	}
-
 	public int getBestellNr() {
 		return bestellNr;
 	}
-	public String getRücksendung(){
+	public String getRücksendung() {
 		return Rücksendung;
 	}
-	
 	public void setRücksendung(String Status){
 		this.Rücksendung = Status;
 	}
-
 	public void setBestellNr(int bestellNr) {
 		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
-	
-		
 }

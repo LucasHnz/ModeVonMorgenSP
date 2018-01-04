@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Bestellverwaltung.Bestellposition;
+import Logverwaltung.LogStrg;
 
 
 public class BestellStrg {
@@ -73,16 +74,16 @@ public class BestellStrg {
 		return gpreis;
 		}
 	
-	public static void erstelleRechnung () {
+	public static void erstelleRechnung (int nutzernummer) {
 		
-		int nutzernrb=; //noch irgendwie die nutzernr aus der Bestellungholen
 		
+		int nutzernr=LogStrg.getNutzerNr();
 		try {
 			
 			Connection con= Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehl = "select* from RECHNUNGBESTELLUNG where NUTZERNRBESTANDSK="+nutzernrb;
+			String sqlbefehl = "select* from RECHNUNGBESTELLUNG where NUTZERNRBESTANDSK="+nutzernr ;
 			ResultSet rs= stmt.executeQuery(sqlbefehl);
 			
 			while(rs.next()) {
@@ -102,10 +103,10 @@ public class BestellStrg {
 				int plz = rs.getInt("RechnungsPlz");
 			
 				
-				if (nutzernrbk !=null) {
+				if (nutzernrbk=0) {
 					Connection con2= Datenbankverwaltung.VerbindungDB.erstelleConnection();
 					Statement stmt2= con.createStatement();
-					String sqlbefehl2 = "select EMAIL from BESTANSKUNDE where NUTZERNR="+nutzernrb;
+					String sqlbefehl2 = "select EMAIL from BESTANSKUNDE where NUTZERNR="+nutzernr;
 					ResultSet rs2= stmt2.executeQuery(sqlbefehl2);
 					
 					while(rs2.next()) {
@@ -114,10 +115,10 @@ public class BestellStrg {
 					rs2.close();
 					Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con2, stmt2);
 					}
-				else if (nutzernrgk==null){
+				else if (nutzernrgk=0){
 					Connection con3= Datenbankverwaltung.VerbindungDB.erstelleConnection();
 					Statement stmt3= con.createStatement();
-					String sqlbefehl3 = "select EMAIL from GASTKUNDE where NUTZERNR="+nutzernrb;
+					String sqlbefehl3 = "select EMAIL from GASTKUNDE where NUTZERNR="+nutzernr;
 					ResultSet rs3= stmt3.executeQuery(sqlbefehl3);
 					
 					while(rs3.next()) {

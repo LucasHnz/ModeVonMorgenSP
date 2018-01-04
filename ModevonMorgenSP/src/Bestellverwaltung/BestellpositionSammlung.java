@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
-
 import Artikelverwaltung.Artikelsammlung;
+import Warenkorbverwaltung.Warenkorb;
 /**
  * 
  * @author Julian
@@ -16,7 +16,7 @@ import Artikelverwaltung.Artikelsammlung;
 
 
 public class BestellpositionSammlung {
-public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
+public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
 	
 	public static void füllenBestellpositionsSammlung(){
 		
@@ -72,6 +72,7 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 				double preis =Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 				preis= rs.getDouble("Preis");
 				String checkRücksendung = rs.getString("Rücksendung");
+
 				
 				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
@@ -84,6 +85,33 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 		}
 		
 	}
+	public static void erstellenBestellposAusWarenkorb (int artikelnummer ,int anzahl) {
+		
+		try {
+			int artikelnr= Warenkorb.getWarenkorb().get(artikelnummer);
+			int aMenge=Warenkorb.getWarenkorb().get(anzahl);
+			double preis= Warenkorb.getGesamtpreis();
+			int posNr= Datenbankverwaltung.holeNächsteNummer.nächsteBestellPosNr();
+			int bestellNr=Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
+			boolean rücksendung= true;
+			
+	
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql="insert into BESTELLPOSITION values ('"+posNr+"',"+bestellNr+"','"+artikelnr+"','"+aMenge+"','"+preis+"','"+rücksendung+" ')";
+			ResultSet rs = stmt.executeQuery(sql);
+			 
+	//		Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,aMenge,preis,rücksendung);
+	//		BestellpositionsSammlung.put(bpos.getPosNr(), bpos);
+			
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void entferneDatenAusListe() {
 		

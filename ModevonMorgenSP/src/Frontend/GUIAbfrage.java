@@ -19,6 +19,8 @@ public class GUIAbfrage extends JFrame implements ActionListener  {
 	/**
 	 * 
 	 */
+	
+	//mit optionPane in klasse davor tun
 	private static final long serialVersionUID = 1L;
 
 	private JButton btnBk;
@@ -59,7 +61,7 @@ public class GUIAbfrage extends JFrame implements ActionListener  {
 	public void actionPerformed(ActionEvent e){
 		try {
 		if (e.getSource()==btnBk) {
-				new GUIEinloggen();
+				//new GUIEinloggen(); changePanel(GUIAnmedelden) immer überprüfen ob LogStg einen Bestandskundehat
 			}
 			if(e.getSource()==btnGk) {
 				new GUIGastkundeErstellen();
