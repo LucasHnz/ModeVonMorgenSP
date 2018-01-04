@@ -187,9 +187,11 @@ public class GUIBestellpositionsliste extends JFrame{
 				System.out.println(i);
 				
 				RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
-				
+				for(int x = 1; x<16 ; x++ ) {
+					System.out.println(x);
 				MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
-			}});
+				}
+				}});
 		getContentPane().add(btnRücksAnnehmen);
 		
 		/**
