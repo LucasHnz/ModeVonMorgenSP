@@ -297,10 +297,16 @@ public class GUIArtikelliste extends JPanel {
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
 		btnEditiereArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+				try {
+					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+					new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+					
+				}catch (ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Artikel editieren", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+				}
 			}
 		});
 		
@@ -315,23 +321,31 @@ public class GUIArtikelliste extends JPanel {
 		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
 		btnEntferneArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				
-				final Object optionPane = JOptionPane.showConfirmDialog(null,
-						"Wollen Sie den Artikel: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBezeichnung() 
-						+ "\nArtikelnummer: " + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer()
-						+ "\nwirklich löschen?", "Abfrage",
-						JOptionPane.YES_NO_OPTION);
+				try {
 					
-				if(optionPane.equals(0)) {
-					ArtikelStrg.entferneArtikel(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-					model.fireTableStructureChanged();
-					setStructure();
-					JOptionPane.showMessageDialog(null,  "Artikel wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
-				}else if(optionPane.equals(1)) {
-					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-				}			
+					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				
+					final Object optionPane = JOptionPane.showConfirmDialog(null,
+							"Wollen Sie den Artikel: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBezeichnung() 
+							+ "\nArtikelnummer: " + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer()
+							+ "\nwirklich löschen?", "Abfrage",
+							JOptionPane.YES_NO_OPTION);
+					
+					if(optionPane.equals(0)) {
+						ArtikelStrg.entferneArtikel(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+						model.fireTableStructureChanged();
+						setStructure();
+						JOptionPane.showMessageDialog(null,  "Artikel wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane.equals(1)) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}	
+					
+				}catch (ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Artikel entfernen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+				}
 			}
 		});
 		
@@ -347,15 +361,21 @@ public class GUIArtikelliste extends JPanel {
 			final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			public void actionPerformed(ActionEvent arg0) {
-				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Rabatt: " 
-							+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt() + " %", "Rabatt ändern", 
-							JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt());
-				if(optionPane != null) {
-					ArtikelStrg.aktualisiereRabatt(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-					JOptionPane.showMessageDialog(null,  "Rabatt wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-				}else if(optionPane == null) {
-					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-				}		
+				try {
+					final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Rabatt: " 
+								+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt() + " %", "Rabatt ändern", 
+								JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt());
+					if(optionPane != null) {
+						ArtikelStrg.aktualisiereRabatt(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+						JOptionPane.showMessageDialog(null,  "Rabatt wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane == null) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}	
+				}catch (ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Rabatt ändern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+				}	
 			}
 		});
 		
@@ -366,20 +386,32 @@ public class GUIArtikelliste extends JPanel {
 		btnRabatt.setBounds(976, 238, 215, 48);
 		add(btnRabatt);
 				
-		JButton btnNotiz = new JButton("Notiz ändern");
+		JButton btnNotiz = new JButton("Notiz ansehen");
 		btnNotiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktuelle Notiz:\n" 
-						+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz(), "Notiz ändern", 
-						JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz());
-				if(optionPane != null) {
-					ArtikelStrg.aktualisiereNotiz(optionPane, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-					JOptionPane.showMessageDialog(null,  "Notiz wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-				}else if(optionPane == null) {
-					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-				}		
+				try {
+					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+					String notiz;
+					if(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz() != null)
+						notiz = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz();
+					else
+						notiz = "";
+					final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktuelle Notiz:\n" 
+							+ notiz, "Notiz ändern", 
+							JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNotiz());
+					if(optionPane != null) {
+						ArtikelStrg.aktualisiereNotiz(optionPane, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+						JOptionPane.showMessageDialog(null,  "Notiz wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane == null) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}	
+					
+				}catch (ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Artikel editieren", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+				}
 			}
 		});
 		Image Notiz = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
@@ -392,17 +424,23 @@ public class GUIArtikelliste extends JPanel {
 		JButton btnBestand = new JButton("Bestand ändern");
 		btnBestand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Bestand: " 
-						+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand(), "Bestand ändern", 
-						JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand() );
-				if(optionPane != null) {
-					ArtikelStrg.aktualisiereBestand(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-					JOptionPane.showMessageDialog(null,  "Bestand wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-				}else if(optionPane == null) {
-					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-				}		
+				try {
+					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+					final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Bestand: " 
+							+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand(), "Bestand ändern", 
+							JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand() );
+					if(optionPane != null) {
+						ArtikelStrg.aktualisiereBestand(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+						JOptionPane.showMessageDialog(null,  "Bestand wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
+					}else if(optionPane == null) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}	
+				}catch (ArrayIndexOutOfBoundsException e1) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Bestand ändern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+				}
 			}
 		});
 		
@@ -416,10 +454,15 @@ public class GUIArtikelliste extends JPanel {
 		JButton btnArtikelbildHochladen = new JButton("Artikelbild hochladen");
 		btnArtikelbildHochladen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				GUIFileChooser chooser = new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-				
+				try {
+					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
+					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+					GUIFileChooser chooser = new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+				}catch (ArrayIndexOutOfBoundsException e) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Artikelbild hochladen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok"}, "Ok");
+				}
 				
 			}
 		});
