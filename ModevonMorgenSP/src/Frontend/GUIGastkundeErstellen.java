@@ -18,12 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import BestellungVerwaltung.BestellStrg;
-import BestellungVerwaltung.Bestellung;
-import BestellungVerwaltung.BestellungSammlung;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.Gastkunde;
 import MitarbeiterVerwaltung.Mitarbeiter;
+
 import Warenkorbverwaltung.Warenkorb;
 
 
@@ -56,10 +54,7 @@ public class GUIGastkundeErstellen extends JFrame {
 		lblGastkundenNummer.setBounds(10, 10, 126, 16);
 		panel.add(lblGastkundenNummer);
 		
-		JLabel lblAdminNummer = new JLabel("Admin Nummer:");
-		lblAdminNummer.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAdminNummer.setBounds(10, 30, 126, 16);
-		panel.add(lblAdminNummer);
+		
 		
 		JLabel lblNachname = new JLabel("Nachname:");
 		lblNachname.setFont(new Font("Tahoma", Font.BOLD, 11));

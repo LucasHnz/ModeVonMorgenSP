@@ -22,26 +22,27 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import AdministratorVerwaltung.AdministratorStrg;
 import BestellungVerwaltung.Bestellung;
 import Bestellverwaltung.Bestellposition;
 import Bestellverwaltung.BestellpositionSammlung;
-import RÃ¼cksendungVerwaltung.RÃ¼cksendung;
-import RÃ¼cksendungVerwaltung.RÃ¼cksendungSammlung;
+import RücksendungVerwaltung.Rücksendung;
+import RücksendungVerwaltung.RücksendungSammlung;
 
 /**
  * 
  * @author julian
  *
  */
-public class GUIBestellpositionsliste extends JFrame{
-	
+public class GUIBestellpositionsliste extends JFrame {
+
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Bestellpositions Nr.", "Bestell Nr.","Artikel Nr.","Preis","Menge", "GetÃ¤tigte RÃ¼cksendung"};
+	private String[] columnNames = { "Bestellpositions Nr.", "Bestell Nr.", "Artikel Nr.", "Preis", "Menge",
+			"Getätigte Rücksendung" };
 
-	
-	private class myTableModel extends AbstractTableModel{
+	private class myTableModel extends AbstractTableModel {
 
 		/**
 		 * 
@@ -50,9 +51,10 @@ public class GUIBestellpositionsliste extends JFrame{
 		private static final long serialVersionUID = 1L;
 		private String[] columnNames;
 		private HashMap<Integer, Bestellposition> data;
-		
+
 		/**
 		 * FÃ¼llt die Tabelle mit Bestellpositionen
+		 * 
 		 * @param Bposliste
 		 * @param columnNames
 		 */
@@ -60,76 +62,73 @@ public class GUIBestellpositionsliste extends JFrame{
 			this.columnNames = columnNames;
 			this.data = Bposliste;
 		}
-		
+
 		/**
 		 * Holt sich die Anzahl der Spalten
 		 */
 		public int getColumnCount() {
 			return columnNames.length;
 		}
-		
+
 		public String getColumnName(int columnIndex) {
 			return columnNames[columnIndex].toString();
 		}
-		
+
 		/**
 		 * Holt sich die Anzahl der Rows
 		 */
 		public int getRowCount() {
 			return data.size();
 		}
-		
+
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
-				if(columnIndex == 0) {
+				if (columnIndex == 0) {
 					return data.get(keys[rowIndex]).getPosNr();
-				}
-				else if(columnIndex == 1) {
+				} else if (columnIndex == 1) {
 					return data.get(keys[rowIndex]).getBestellNr();
 				}
-				
-				else if (columnIndex ==2) {
+
+				else if (columnIndex == 2) {
 					return data.get(keys[rowIndex]).getAnummer();
 				}
-				
+
 				else if (columnIndex == 3) {
 					return data.get(keys[rowIndex]).getPreis();
-				}
-				else if(columnIndex == 4) {
+				} else if (columnIndex == 4) {
 					return data.get(keys[rowIndex]).getaMenge();
 				}
-				
-				else if (columnIndex == 5){
-					return data.get(keys[rowIndex]).getRÃ¼cksendung();
-				}
-				else
+
+				else if (columnIndex == 5) {
+					return data.get(keys[rowIndex]).getRücksendung();
+				} else
 					return null;
-			
-			}catch(NullPointerException e) {
+
+			} catch (NullPointerException e) {
 				String a = null;
 				return a;
-			}	
+			}
 		}
-		
+
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			return false;	
+			return false;
 		}
-					
+
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public GUIBestellpositionsliste(int i){
-		
-		
+	public GUIBestellpositionsliste(int i) {
+
 		setBackground(Color.DARK_GRAY);
-		BestellpositionSammlung.fÃ¼lleMitSpeziellerNummer(i);
+		BestellpositionSammlung.fülleMitSpeziellerNummer(i);
 		setBounds(200, 200, 979, 446);
 		setBackground(Color.DARK_GRAY);
-		
-		table = new JTable(new myTableModel(Bestellverwaltung.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
+
+		table = new JTable(
+				new myTableModel(Bestellverwaltung.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -142,15 +141,15 @@ public class GUIBestellpositionsliste extends JFrame{
 		Comparator<Integer> intcomp = new Comparator<Integer>() {
 			@Override
 			public int compare(Integer o1, Integer o2) {
-				if(o1 > o2)
+				if (o1 > o2)
 					return 1;
-				else if(o1 < o2)
+				else if (o1 < o2)
 					return -1;
 				else
 					return 0;
-			}		
+			}
 		};
-		
+
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
 		sorter.setComparator(1, intcomp);
 		table.setRowSorter(sorter);
@@ -158,105 +157,115 @@ public class GUIBestellpositionsliste extends JFrame{
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(30,42,250, 210);
+		table.setBounds(30, 42, 250, 210);
 		table.setVisible(true);
-		
+
 		scrollpane = new JScrollPane();
 		scrollpane.setBounds(10, 11, 700, 390);
 		scrollpane.setVisible(true);
 		getContentPane().setLayout(null);
 		scrollpane.setViewportView(table);
 		getContentPane().add(scrollpane);
-		
+
 		getContentPane().add(scrollpane);
 		// Cut
 		/**
-		 * Button um eine RÃ¼cksendung anzunehmen
+		 * Button um eine Rücksendung anzunehmen
 		 */
-		JButton btnRÃ¼cksAnnehmen = new JButton("R\u00FCcksendung Annehmen");
-		btnRÃ¼cksAnnehmen.setBounds(776, 11, 177, 48);
-		btnRÃ¼cksAnnehmen.addActionListener(new ActionListener() {
+		JButton btnRücksAnnehmen = new JButton("R\u00FCcksendung Annehmen");
+		btnRücksAnnehmen.setBounds(776, 11, 177, 48);
+		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean check =data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRÃ¼cksendung();
-				if(check == false{
-				
-				JOptionPane.showOptionDialog(null, "Sie sind dabei eine RÃ¼cksendung anzunehmen! \nFortfahren ?","RÃ¼cksendung Annehmen",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok", "Abbrechen"}, "Ok");
-				
+
 				final HashMap<Integer, Bestellposition> data = BestellpositionSammlung.getBestellpositionsSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				
-				int i =data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getPosNr();
-				
-				System.out.println(i);
-				
-				RÃ¼cksendungVerwaltung.RÃ¼cksendungStrg.erstelleRÃ¼cksendung(i);
-				for(int x = 1; x<16 ; x++ ) {
-					System.out.println(x);
-				MailController.MailSenden.sendMail("julian-hermann@outlook.de","BestÃ¤tigung ihrer RÃ¼cksendung","Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
+				String check = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRücksendung();
+
+				if (check != "Keine Rücksendung") {
+
+					final Object optionPane = JOptionPane.showOptionDialog(null,
+							"Sie sind dabei eine Rücksendung anzunehmen! \nFortfahren ?", "Rücksendung Annehmen",
+							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+							new String[] { "Ok", "Abbrechen" }, "Ok");
+
+					if (optionPane.equals(0)) {
+						
+						int i =data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getPosNr();
+						
+						System.out.println(i);
+						
+						RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
+						
+							
+						MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde, Hoffentlich finden Sie eine alternative");
+
+					} else if (optionPane.equals(1)) {
+						JOptionPane.showMessageDialog(null, "Vorgang abgebrochen!", "Abbruch",
+								JOptionPane.ERROR_MESSAGE);
+					}
+
+				} else {
+
+					JOptionPane.showOptionDialog(null, "Für diese Bestellposition existiert bereits eine Rücksendung!",
+							"Rücksendung Existiert bereits", JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.WARNING_MESSAGE, null, new String[] { "Ok" }, "Ok");
+
 				}
-				else{
-					
-				}}
-				}});
-		getContentPane().add(btnRÃ¼cksAnnehmen);
-		
-		/**
-		 * Button um eine RÃ¼cksendung abzulehnen
-		 */
-		JButton btnRÃ¼cksAblehnen = new JButton("R\u00FCcksendung Ablehnen");
-		btnRÃ¼cksAblehnen.setBounds(776, 81, 177, 48);
-		btnRÃ¼cksAblehnen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-					MailController.MailSenden.sendMail("julian-hermann@outlook.de","Ablehnung ihrer RÃ¼cksendung","Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
-			
-				
 			}
 		});
-		getContentPane().add(btnRÃ¼cksAblehnen);
-		
-		
+		getContentPane().add(btnRücksAnnehmen);
+
+		/**
+		 * Button um eine Rücksendung abzulehnen
+		 */
+		JButton btnRücksAblehnen = new JButton("R\u00FCcksendung Ablehnen");
+		btnRücksAblehnen.setBounds(776, 81, 177, 48);
+		btnRücksAblehnen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				MailController.MailSenden.sendMail("julian-hermann@outlook.de", "Ablehnung ihrer Rücksendung",
+						"Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
+
+			}
+		});
+		getContentPane().add(btnRücksAblehnen);
+
 		/**
 		 * Button um zum Hauptfenster zurÃ¼ck zu kommen
 		 */
-		JButton btnZurÃ¼ck = new JButton ("Beenden");
-		btnZurÃ¼ck.setBounds(776, 149, 177, 48);
-			btnZurÃ¼ck.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					try {
+		JButton btnZurück = new JButton("Beenden");
+		btnZurück.setBounds(776, 149, 177, 48);
+		btnZurück.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
 					Bestellverwaltung.BestellpositionSammlung.entferneDatenAusListe();
 					dispose();
-				}catch(ConcurrentModificationException e) {
+				} catch (ConcurrentModificationException e) {
 					System.out.println(e.getLocalizedMessage());
 					System.out.println(e.getMessage());
-					}}
+				}
 			}
-			);
-			getContentPane().add(btnZurÃ¼ck);
-			setVisible(true);
-			
-			Image Annehmen = new ImageIcon("src\\Icons 64x64\\checked.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-			JLabel lblAnnehmen = new JLabel(new ImageIcon(Annehmen));
-			lblAnnehmen.setBounds(720, 12, 40, 40);
-			getContentPane().add(lblAnnehmen);
-			
-			Image Ablehnen = new ImageIcon("src\\Icons 64x64\\warning.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-			JLabel lblAblehnen = new JLabel(new ImageIcon(Ablehnen));
-			lblAblehnen.setBounds(720, 82, 40, 40);
-			getContentPane().add(lblAblehnen);
-			
-			Image ZurÃ¼ck = new ImageIcon("src\\Icons 64x64\\down-arrow.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-			JLabel lblZurÃ¼ck = new JLabel(new ImageIcon(ZurÃ¼ck));
-			lblZurÃ¼ck.setBounds(720, 150, 40, 40);
-			getContentPane().add(lblZurÃ¼ck);
-		}
-	
-	
-	
-	
+		});
+		getContentPane().add(btnZurück);
+		setVisible(true);
 
+		Image Annehmen = new ImageIcon("src\\Icons 64x64\\checked.png").getImage().getScaledInstance(40, 40,
+				Image.SCALE_SMOOTH);
+		JLabel lblAnnehmen = new JLabel(new ImageIcon(Annehmen));
+		lblAnnehmen.setBounds(720, 12, 40, 40);
+		getContentPane().add(lblAnnehmen);
+
+		Image Ablehnen = new ImageIcon("src\\Icons 64x64\\warning.png").getImage().getScaledInstance(40, 40,
+				Image.SCALE_SMOOTH);
+		JLabel lblAblehnen = new JLabel(new ImageIcon(Ablehnen));
+		lblAblehnen.setBounds(720, 82, 40, 40);
+		getContentPane().add(lblAblehnen);
+
+		Image Zurück = new ImageIcon("src\\Icons 64x64\\down-arrow.png").getImage().getScaledInstance(40, 40,
+				Image.SCALE_SMOOTH);
+		JLabel lblZurück = new JLabel(new ImageIcon(Zurück));
+		lblZurück.setBounds(720, 150, 40, 40);
+		getContentPane().add(lblZurück);
 	}
 
+}

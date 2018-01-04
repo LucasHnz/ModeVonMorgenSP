@@ -117,8 +117,8 @@ public class GUIKontoBestellungen extends JPanel{
 	 * Create the application.
 	 */
 	public GUIKontoBestellungen(int nutzernummer) {
-		
-		setBounds(90, 100, 1200, 600);
+		//0, 0, 1250, 750
+		setBounds(10, 11, 1226, 552);
 		setLayout(null);
 		setBackground(Color.DARK_GRAY);
 		
@@ -129,7 +129,7 @@ public class GUIKontoBestellungen extends JPanel{
 		setStructure();
 	
 		scrollpane = new JScrollPane();
-		scrollpane.setBounds(10, 11, 900, 490);
+		scrollpane.setBounds(10, 11, 949, 530);
 		scrollpane.setVisible(true);
 		scrollpane.setViewportView(table);
 		add(scrollpane);
@@ -157,14 +157,15 @@ public class GUIKontoBestellungen extends JPanel{
 				
 			}
 		});
-		btnStoniereBestellung.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnStoniereBestellung.setFont(new Font("Calibri", Font.BOLD, 15));
 		btnStoniereBestellung.setBackground(Color.WHITE);
-		btnStoniereBestellung.setBounds(976, 179, 215, 48);
+		btnStoniereBestellung.setBounds(983, 70, 209, 48);
 		//btnStoniereBestellung.addActionListener(this);
 		add(btnStoniereBestellung);
 		
 		JButton btnBestellpos = new JButton("Bestellung anzeigen");
-		btnBestellpos.setBounds(976, 81, 209, 48);
+		btnBestellpos.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnBestellpos.setBounds(983, 11, 209, 48);
 		btnBestellpos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer);
