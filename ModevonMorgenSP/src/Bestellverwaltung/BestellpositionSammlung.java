@@ -18,7 +18,7 @@ import Artikelverwaltung.Artikelsammlung;
 public class BestellpositionSammlung {
 public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new HashMap<Integer, Bestellposition>();
 	
-	public static void f�llenBestellpositionsSammlung(){
+	public static void füllenBestellpositionsSammlung(){
 		
 		try {
 			
@@ -35,9 +35,10 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 				int artikelnummer= rs.getInt("ArtikelNr");
 				int aMenge =rs.getInt("Artikel Anzahl");
 				double preis = rs.getDouble("Preis");
+				boolean checkRücksendung = rs.getBoolean("Rücksendung");
 				
 				
-				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis);
+				Bestellposition b = new Bestellposition (posNr,bestellNr, artikelnummer, aMenge, preis, checkRücksendung);
 				
 				BestellpositionsSammlung.put(b.getPosNr(), b);
 				
@@ -53,7 +54,7 @@ public static HashMap<Integer, Bestellposition> BestellpositionsSammlung = new H
 		return BestellpositionsSammlung;
 	}
 	
-	public static void f�lleMitSpeziellerNummer(int i) {
+	public static void fülleMitSpeziellerNummer(int i) {
 	try {
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
