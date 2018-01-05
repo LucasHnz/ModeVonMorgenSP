@@ -28,6 +28,7 @@ import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
 import Artikelverwaltung.Artikelsammlung;
+import Warenkorbverwaltung.Warenkorb;
 
 public class GUIArtikel implements ActionListener {
 	
@@ -99,8 +100,8 @@ public class GUIArtikel implements ActionListener {
 		JButton btnWarenkorbHinz = new JButton("In den Warenkorb");
 		btnWarenkorbHinz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//Hinzufügen
-			}
+				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), 1);					//Es fehlt noch nen JSpinner für die Anzahl, die man in den
+			}																								//Warenkorb legen möchte.
 		});
 		btnWarenkorbHinz.setBounds(361, 185, 153, 35);
 		panel.add(btnWarenkorbHinz);

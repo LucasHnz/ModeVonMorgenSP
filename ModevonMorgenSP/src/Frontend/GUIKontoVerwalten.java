@@ -145,7 +145,6 @@ public class GUIKontoVerwalten extends JPanel{
 		textField_Straﬂe.setFont(new Font("Calibri", Font.PLAIN, 12));
 		textField_Straﬂe.setToolTipText("Hier Bitte die Straﬂe eintragen");
 		textField_Straﬂe.setDocument(new TextDoc(36));
-		System.out.println(kunde.getStraﬂe());
 		textField_Straﬂe.setText(kunde.getStraﬂe());
 		textField_Straﬂe.setColumns(10);
 		textField_Straﬂe.setBounds(650, 231, 161, 33);

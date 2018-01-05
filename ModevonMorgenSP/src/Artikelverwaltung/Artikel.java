@@ -208,16 +208,6 @@ public abstract class Artikel implements Comparable<Artikel> {
 			return 1;
 	}
 	/**
-	 * Lädt das dem Artikel zugehörige Bild von der Datenbank runter und speichert es in der Variablen image.
-	 */
-	public void downloadImage() {
-		String klasse = this.getClass().getName();
-		klasse = klasse.substring(18);
-		String befehl = "select Bild from " +klasse+ " where Artikelnr = " + this.Artikelnummer;			// Nicht mehr verwendet 
-		image = Datenbankverwaltung.BlobLaden.runterladenBlob(befehl);
-		
-	}
-	/**
 	 * Legt das Produktbild fest.
 	 * @param image Das Produktbild als BufferedImage.
 	 */
@@ -232,7 +222,7 @@ public abstract class Artikel implements Comparable<Artikel> {
 		return image;
 	}
 	/**
-	 * Lädt ein neues Artikelbild in die Datenbank hoch und aktualisiert es in der Artikelsammlung.
+	 * Lädt ein neues Artikelbild in die Datenbank hoch.
 	 * @param Dateipfad Der lokale Pfad des Bildes.
 	 */
 	public void uploadImage(String Dateipfad) {
@@ -240,7 +230,6 @@ public abstract class Artikel implements Comparable<Artikel> {
 		klasse = klasse.substring(18);
 		String befehl = "update " +klasse+ " set Bild = ? where Artikelnr= " + this.Artikelnummer;
 		Datenbankverwaltung.BlobLaden.hochladenBlob(befehl, Dateipfad);
-		downloadImage();
 	}
 	
 }
