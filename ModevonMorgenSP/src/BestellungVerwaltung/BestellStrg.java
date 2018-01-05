@@ -7,7 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 import Bestellverwaltung.Bestellposition;
+import Frontend.GUIDatenÜberprüfen;
 import Logverwaltung.LogStrg;
 public class BestellStrg {
 	
@@ -167,6 +170,32 @@ public class BestellStrg {
 			
 			
 		}
+	public static void überprüfeAngemeldet() {
+		try {
+			LogStrg.getAngemeldetStatus();
+			if (LogStrg.getAngemeldetStatus()== 0 ) {
+				
+				  Object stringArray[] = { "Bestandskunde", "Gastkunde" };
+				    JOptionPane.showMessageDialog(null, "Als Bestandskunde oder Gastkunde fortfahren?","Abfrage",
+				        JOptionPane.YES_NO_OPTION,
+				        JOptionPane.QUESTION_MESSAGE,
+				        stringArray,
+				        stringArray[0]);
+				    
+			}
+			if(LogStrg.getAngemeldetStatus()==2) {
+				new GUIDatenÜberprüfen();
+			}
+			else { 
+				JOptionPane.showMessageDialog(null, "Angestellte können nichts bestellen!","Fehler",
+						JOptionPane.ERROR_MESSAGE);
+				
+			}
+			} catch(SQLException a) {
+				System.err.println(a);
+				
+			}
+	}
 	
 }
 
