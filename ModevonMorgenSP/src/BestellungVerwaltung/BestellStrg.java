@@ -18,6 +18,7 @@ public class BestellStrg {
 	
 	protected Bestellung bBestellung;
 	
+	//Julian
 	public static void storniereBestellung(int bestellnr) {
 		int bnr=bestellnr;
 		try{
@@ -43,7 +44,8 @@ public class BestellStrg {
 			}
 		}
 	
-
+	
+	//Julian aber funktioniert nicht so wie ich will
 	/*public static String ändereVersandstatus(String versandStatus, int bestellNr) {
 		try{
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -76,6 +78,7 @@ public class BestellStrg {
 		gpreis = gpreis * multiplikator;
 		return gpreis;
 		}
+	
 	
 	public static void erstelleRechnung (int nutzernummer) {
 		
@@ -150,6 +153,7 @@ public class BestellStrg {
 				}
 		}
 	
+	//Julian
 	public static void aktualisiereVStatus(int i){
 		
 			Bestellung b = BestellungSammlung.getBestellung(i);

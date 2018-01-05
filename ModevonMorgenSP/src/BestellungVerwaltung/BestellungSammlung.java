@@ -24,7 +24,7 @@ public class BestellungSammlung {
 	
 	/**
 	 * füllt die HashMap BestellungSammlung mit Values aus der Datenbank
-	 */
+	 *///Julian
 	public static void füllenBestellungSammlung(){
 		
 		try {
@@ -67,11 +67,11 @@ public class BestellungSammlung {
 	/**
 	 * 
 	 * @return BestellungSammlung
-	 */
+	 *///Julian
 	public static HashMap<Integer, Bestellung> getBestellungSammlung(){
 		return BestellungSammlung;
 	}
-	
+	//Julian
 	public static Bestellung getBestellung(int bestellnr) {
 		return BestellungSammlung.get(bestellnr);
 	}
