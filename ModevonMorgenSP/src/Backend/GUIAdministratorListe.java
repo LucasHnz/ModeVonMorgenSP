@@ -308,13 +308,10 @@ public class GUIAdministratorListe extends JPanel {
 
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
-		sorter.setComparator(8, intcomp);
 		table.setRowSorter(sorter);
 		table.getRowSorter().toggleSortOrder(0);
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(30, 42, 800, 500);
-		table.setVisible(true);
 	}
 }
