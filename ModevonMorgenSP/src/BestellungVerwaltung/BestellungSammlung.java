@@ -10,8 +10,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+
 import java.util.HashMap;
 
 import Bestellverwaltung.Bestellposition;
@@ -116,7 +115,7 @@ public class BestellungSammlung {
 	return BestellungSammlungNR;
 	}
 	
-	public static void erstelleBestellungAusWarenkorb(int bestellnr) {
+	public static void erstelleBestellungAusWarenkorb(int bestellnr1) {
 		try{
 			
 			int nutzernr=LogStrg.getNutzerNr();
@@ -131,7 +130,11 @@ public class BestellungSammlung {
 			while (rs.next()){
 				
 				int rechnungsnr=Datenbankverwaltung.holeNächsteNummer.nächsteRechnungsNr();
-				int bestellnummer= BestellpositionSammlung.BestellpositionsSammlung.get(bestellnr);
+				
+				for(int bestellnr: BestellpositionSammlung.getBestellpositionsSammlung().keySet()) {
+					int bestellnummer=bestellnr;
+					
+				}
 				int nutzernrgk=0;
 				String iban=rs.getString("Iban");
 				String nachname = rs.getString("Nachname");
@@ -146,7 +149,7 @@ public class BestellungSammlung {
 				
 				Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 				Statement stmt1 = con1.createStatement();
-				String sql1 = "insert into RECHNUNGBESTELLUNG values ('"+rechnungsnr+"','"+bestellnr+"','"+ nutzernr+"','"+ nutzernrgk+"','"+ iban+"','"+nachname+"','"+vorname+"','"+preis+"','"+erabatt+"','"+datum+"','"+vstatus+"','"+rechnungsort+"','"+rechnungsstrasse+"','"+rechnungsplz+",)";
+				String sql1 = "insert into RECHNUNGBESTELLUNG values ('"+rechnungsnr+"','"+bestellnr1+"','"+ nutzernr+"','"+ nutzernrgk+"','"+ iban+"','"+nachname+"','"+vorname+"','"+preis+"','"+erabatt+"','"+datum+"','"+vstatus+"','"+rechnungsort+"','"+rechnungsstrasse+"','"+rechnungsplz+",)";
 				ResultSet rs1 = stmt.executeQuery(sql);
 				
 				Bestellung b= new Bestellung(rechnungsnr, bestellnr, nutzernr, nutzernrgk, iban, nachname, vorname, preis, erabatt, datum, vstatus, rechnungsort, rechnungsstrasse, rechnungsplz);

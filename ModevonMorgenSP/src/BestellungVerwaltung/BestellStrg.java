@@ -1,16 +1,14 @@
 package BestellungVerwaltung;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Bestellverwaltung.Bestellposition;
 import Logverwaltung.LogStrg;
-
-
 public class BestellStrg {
 	
 	protected Bestellung bBestellung;
@@ -20,7 +18,7 @@ public class BestellStrg {
 		try{
 			//Dadruch, dass die Reihenfolge der querys wichtig ist, wurde auf einen Batch verzichtet, erst wenn die Erste Anfrage erfolg hatte, wird die zweite aufgeführt
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			Statement stmt = con.createStatement();
+			Statement stmt =  con.createStatement();
 			Statement stmt2 = con.createStatement();
 			
 			String Sql1 = "delete from bestellposition where bestellnr ="+bestellnr;
@@ -103,7 +101,7 @@ public class BestellStrg {
 				int plz = rs.getInt("RechnungsPlz");
 			
 				
-				if (nutzernrbk=0) {
+				if (nutzernrgk = null) {
 					Connection con2= Datenbankverwaltung.VerbindungDB.erstelleConnection();
 					Statement stmt2= con.createStatement();
 					String sqlbefehl2 = "select EMAIL from BESTANSKUNDE where NUTZERNR="+nutzernr;
@@ -115,7 +113,7 @@ public class BestellStrg {
 					rs2.close();
 					Datenbankverwaltung.VerbindungDB.schließeVerbindung(con2, stmt2);
 					}
-				else if (nutzernrgk=0){
+				else if (nutzernrbk= null){
 					Connection con3= Datenbankverwaltung.VerbindungDB.erstelleConnection();
 					Statement stmt3= con.createStatement();
 					String sqlbefehl3 = "select EMAIL from GASTKUNDE where NUTZERNR="+nutzernr;

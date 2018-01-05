@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
+
 import Artikelverwaltung.Artikelsammlung;
 import Warenkorbverwaltung.Warenkorb;
 /**
@@ -85,11 +87,17 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 		}
 		
 	}
-	public static void erstellenBestellposAusWarenkorb (int artikelnummer ,int anzahl) {
+	public static void erstellenBestellposAusWarenkorb () {
 		
 		try {
-			int artikelnr= Warenkorb.getWarenkorb().get(artikelnummer);
-			int aMenge=Warenkorb.getWarenkorb().get(anzahl);
+			for(int artikelnr: Warenkorb.getWarenkorb().keySet()) {
+				int artikelnummer=artikelnr;
+				
+			}
+			for(int anzahl: Warenkorb.getWarenkorb().values()) {
+				int amenge=anzahl;
+			}
+
 			double preis= Warenkorb.getGesamtpreis();
 			int posNr= Datenbankverwaltung.holeNächsteNummer.nächsteBestellPosNr();
 			int bestellNr=Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
@@ -98,11 +106,11 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 	
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql="insert into BESTELLPOSITION values ('"+posNr+"',"+bestellNr+"','"+artikelnr+"','"+aMenge+"','"+preis+"','"+rücksendung+" ')";
+			String sql="insert into BESTELLPOSITION values ('"+posNr+"',"+bestellNr+"','"+artikelnummer+"','"+amenge+"','"+preis+"','"+rücksendung+" ')";
 			ResultSet rs = stmt.executeQuery(sql);
 			 
-	//		Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,aMenge,preis,rücksendung);
-	//		BestellpositionsSammlung.put(bpos.getPosNr(), bpos);
+			Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,aMenge,preis,rücksendung);
+		BestellpositionsSammlung.put(bpos.getBestellNr(),bpos);
 			
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
