@@ -106,10 +106,10 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 	
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql="insert into BESTELLPOSITION values ('"+posNr+"',"+bestellNr+"','"+artikelnummer+"','"+amenge+"','"+preis+"','"+rücksendung+" ')";
+			String sql="insert into BESTELLPOSITION values ('"+posNr+"',"+bestellNr+"','"+artikelnr+"','"+amenge+"','"+preis+"','"+rücksendung+" ')";
 			ResultSet rs = stmt.executeQuery(sql);
 			 
-			Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,aMenge,preis,rücksendung);
+			Bestellposition bpos= new Bestellposition(posNr,bestellNr,artikelnr,amenge,preis,rücksendung);
 		BestellpositionsSammlung.put(bpos.getBestellNr(),bpos);
 			
 			rs.close();

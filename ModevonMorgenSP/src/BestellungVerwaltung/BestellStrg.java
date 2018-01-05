@@ -9,8 +9,10 @@ import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
+import Artikelverwaltung.ArtikelStrg;
 import Bestellverwaltung.Bestellposition;
 import Frontend.GUIDatenÜberprüfen;
+import Frontend.GUIGastkundeErstellen;
 import Logverwaltung.LogStrg;
 public class BestellStrg {
 	
@@ -174,25 +176,30 @@ public class BestellStrg {
 		try {
 			LogStrg.getAngemeldetStatus();
 			if (LogStrg.getAngemeldetStatus()== 0 ) {
-				
-				  Object stringArray[] = { "Bestandskunde", "Gastkunde" };
-				    JOptionPane.showMessageDialog(null, "Als Bestandskunde oder Gastkunde fortfahren?","Abfrage",
-				        JOptionPane.YES_NO_OPTION,
-				        JOptionPane.QUESTION_MESSAGE,
-				        stringArray,
-				        stringArray[0]);
-				    
+				String[] buttons = {  "Bestandskunde", "Gastkunde", "Abbrechen" };
+				int response = JOptionPane.showOptionDialog(null, "ALs Bestandskunde oder Gastkunde fortfahren?", "Abfrage",
+				        JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION, null, buttons, buttons[0]);
+				    if (response == JOptionPane.NO_OPTION) {
+				      new GUIDatenÜberprüfen();
+				    } else if (response == JOptionPane.YES_OPTION) {
+				      new GUIGastkundeErstellen();
+				    } else if (response == JOptionPane.CANCEL_OPTION) {
+					     System.out.println("Abbruch");
 			}
 			if(LogStrg.getAngemeldetStatus()==2) {
 				new GUIDatenÜberprüfen();
 			}
-			else { 
+			if(LogStrg.getAngemeldetStatus()==3){ 
 				JOptionPane.showMessageDialog(null, "Angestellte können nichts bestellen!","Fehler",
 						JOptionPane.ERROR_MESSAGE);
-				
+				}
+			else if(LogStrg.getAngemeldetStatus()==4) {
+				JOptionPane.showMessageDialog(null, "Angestellte können nichts bestellen!","Fehler",
+						JOptionPane.ERROR_MESSAGE);
 			}
-			} catch(SQLException a) {
-				System.err.println(a);
+			} 
+		}catch(SQLException a) {
+			System.err.println(a);
 				
 			}
 	}
