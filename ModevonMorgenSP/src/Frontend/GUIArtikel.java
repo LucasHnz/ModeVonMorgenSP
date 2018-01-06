@@ -43,6 +43,9 @@ public class GUIArtikel implements ActionListener {
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
 	static JLabel lblArtikelStatus;
+	static JLabel lblArtikelTitel;
+	static JLabel lblArtikelBild;
+	static JButton btnWarenkorbHinz;
 	public JPanel panelHerrenKleidung = new JPanel();
 	public static String[] comboBoxGrößen = {"XS", "S","M", "L", "XL", "XXL"};
 
@@ -99,10 +102,10 @@ public class GUIArtikel implements ActionListener {
 		panelMain.add(panel);
 		
 		
-		JLabel labelArtikelBild = new JLabel("");
-		labelArtikelBild.setBackground(Color.WHITE);
-		labelArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArtikelBild.setBounds(54, 32, 250, 250);
+		lblArtikelBild = new JLabel("");
+		lblArtikelBild.setBackground(Color.WHITE);
+		lblArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
+		lblArtikelBild.setBounds(54, 32, 250, 250);
 	
 		ImageIcon icon;
 		if(Artikelsammlung.getArtikel(artikelNummer).getImage() != null) {
@@ -111,11 +114,11 @@ public class GUIArtikel implements ActionListener {
 		else 
 			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
         Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
-        labelArtikelBild.setIcon(new ImageIcon(img));
+        lblArtikelBild.setIcon(new ImageIcon(img));
 		
-		panel.add(labelArtikelBild);
+		panel.add(lblArtikelBild);
 		
-		JLabel lblArtikelTitel = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
+		lblArtikelTitel = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
 		lblArtikelTitel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblArtikelTitel.setBounds(362, 11, 319, 49);
 		panel.add(lblArtikelTitel);
@@ -127,7 +130,7 @@ public class GUIArtikel implements ActionListener {
 		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		lblArtikelStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JButton btnWarenkorbHinz = new JButton("In den Warenkorb");
+		btnWarenkorbHinz = new JButton("In den Warenkorb");
 		btnWarenkorbHinz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int anzahlArtikel = model.getNumber().intValue();
