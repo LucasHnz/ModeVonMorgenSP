@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
@@ -38,24 +39,51 @@ public class GUIArtikel implements ActionListener {
 	public JComboBox comboBoxHerren = new JComboBox();
 	public JComboBox comboBoxDamen = new JComboBox();
 	public JComboBox comboBoxAnmelden = new JComboBox();
-	public static JSpinner spinnerMenge;
 	public String[] damenCbList;
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
+	static JLabel lblArtikelStatus;
 	public JPanel panelHerrenKleidung = new JPanel();
 	public static String[] comboBoxGrößen = {"XS", "S","M", "L", "XL", "XXL"};
 
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();
-
+	
+	static Integer value = new Integer(0);
+	static Integer min = new Integer(0);
+	static Integer max = new Integer(100);
+	static Integer step = new Integer(1);
+	
+	static SpinnerNumberModel model = new SpinnerNumberModel(value, min, max, step);
+	static JSpinner spinnerMenge = new JSpinner(model);
 	
 
-	
 	
 
 	/**
+	 * @return 
 	 * @wbp.parser.entryPoint
 	 */
+	public static Color checkStatus(int artikelNummer) {
+		String status = Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit();
+		Color farbe = null;
+		
+		if(status.equals("Sofort lieferbar")){
+			farbe = Color.GREEN;
+		}
+		if(status.equals("Lieferbar in 1-3 Tagen")) {
+			farbe = Color.ORANGE;
+		}
+		if(status.equals("Lieferbar in 1-3 Wochen")) {
+			farbe = Color.ORANGE;
+		}
+		if(status.equals("Nicht mehr Verfügbar")) {
+			farbe = Color.RED;
+		}
+		return farbe;
+	}
+	
+	
 	static JPanel getGUIArtikel(int artikelNummer) {
 		
 		panelMain = new JPanel();
@@ -66,7 +94,7 @@ public class GUIArtikel implements ActionListener {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setLayout(null);
-		panel.setBackground(SystemColor.inactiveCaption);
+		panel.setBackground(Color.WHITE);
 		panel.setBounds(42, 44, 1150, 491);
 		panelMain.add(panel);
 		
@@ -92,17 +120,17 @@ public class GUIArtikel implements ActionListener {
 		lblArtikelTitel.setBounds(362, 11, 319, 49);
 		panel.add(lblArtikelTitel);
 		
-		JLabel lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
-		lblArtikelStatus.setBounds(362, 57, 319, 43);
+		lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
+		lblArtikelStatus.setBounds(362, 130, 319, 43);
+		lblArtikelStatus.setForeground(checkStatus(artikelNummer));
 		panel.add(lblArtikelStatus);
-		lblArtikelStatus.setForeground(new Color(0, 204, 51));
 		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		lblArtikelStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JButton btnWarenkorbHinz = new JButton("In den Warenkorb");
 		btnWarenkorbHinz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int anzahlArtikel = (int) spinnerMenge.getValue();
+				int anzahlArtikel = model.getNumber().intValue();
 				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), anzahlArtikel);					
 			}																								
 		});
@@ -110,15 +138,16 @@ public class GUIArtikel implements ActionListener {
 		panel.add(btnWarenkorbHinz);
 		btnWarenkorbHinz.setBackground(SystemColor.inactiveCaptionBorder);
 		
-		JComboBox comboBoxArtikelGröße = new JComboBox(comboBoxGrößen);
-		comboBoxArtikelGröße.setBounds(362, 139, 152, 35);
-		comboBoxArtikelGröße.setBackground(SystemColor.inactiveCaptionBorder);
-		panel.add(comboBoxArtikelGröße);
 		
-		spinnerMenge = new JSpinner();
 		spinnerMenge.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		spinnerMenge.setBounds(362, 230, 58, 35);
 		panel.add(spinnerMenge);
+		
+		
+		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getHersteller());
+		lblHersteller.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHersteller.setBounds(362, 56, 183, 33);
+		panel.add(lblHersteller);
 		
 		
 		panelMain.setVisible(true);
