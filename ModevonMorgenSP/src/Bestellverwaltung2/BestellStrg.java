@@ -153,6 +153,7 @@ protected Bestellung bBestellung;
 			}
 			ps.executeBatch();
 			JOptionPane.showMessageDialog(null, "Die Bestellung wurde erstellt", "Bestellung erstellt.", JOptionPane.INFORMATION_MESSAGE);
+			Warenkorb.clearWarenkorb();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

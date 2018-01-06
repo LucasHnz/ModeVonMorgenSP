@@ -69,4 +69,7 @@ public class Warenkorb {
 	public static HashMap<Integer, Integer> getWarenkorb(){
 		return Artikelmap;
 	}
+	public static void clearWarenkorb() {
+		Artikelmap = new HashMap<Integer, Integer>(); 
+	}
 }

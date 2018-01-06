@@ -54,16 +54,12 @@ public class GUIWarenkorb {
 		mainPanel.setLayout(null);
 		mainPanel.setBounds(0, 0, 1234, 563);
 		BuildPanel();
-		JButton btnZurKasse = new JButton("Zur Kasse");
+		JButton btnZurKasse = new JButton("Bestellen");
 		btnZurKasse.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btnZurKasse.setIconTextGap(4);
 		btnZurKasse.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent agr0){
-				BestellStrg.bestellvorgang();
-				//BestellStrg.neueBestellung(Warenkorb.getWarenkorb()); 
-				// sowas in der Richtung.. Keine Ahnung, wie ihr das letztendlich schreibt
-			
+				BestellStrg.bestellvorgang();			
 			}
 		});
 		btnZurKasse.setBounds(1001, 478, 227, 46);
