@@ -32,6 +32,10 @@ public class GUIHomepage {
 	public static JButton btnProduktHerren;
 	public static JLabel labelMainDamen;
 	public static JLabel labelMainHerren;
+	static int artNr1;
+	static int artNr2;
+	static int artNr3;
+	static int artNr4;
 	static Image img;
 	static  Image img1;
 	static  Image img2;
@@ -106,21 +110,22 @@ public class GUIHomepage {
                               }
                               
                                if(i == 0) {
+                            	   artNr1 = ausgewählteArtikel.get(i);
                             	   img1 = img;
                             	
                                }
                                if(i == 1) {
-                            	  
+                            	   artNr2 = ausgewählteArtikel.get(i);
                             	   img2 = img;
                             	  
                                }
                                if(i == 2) {
-                            	   
+                            	   artNr3 = ausgewählteArtikel.get(i);
                             	   img3 = img;
                             	   
                                }
                                if(i == 3) {
-                            	  
+                            	   artNr4 = ausgewählteArtikel.get(i);
                             	   img4 = img;
                             	  
                                }
