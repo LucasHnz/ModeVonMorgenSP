@@ -37,6 +37,7 @@ import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import Backend.GUIMitarbeiter;
+import KundenVerwaltung.BestandskundeStrg;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
@@ -79,6 +80,7 @@ public class GUI extends JFrame {
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000005), 10);
 		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000006), 10);
 		GUIHomepage.fülleArtikelStartseite();
+		BestandskundeStrg.FülleBestandskundeSammlung();
 		gui = new GUI();
 		fenster = gui;
 		

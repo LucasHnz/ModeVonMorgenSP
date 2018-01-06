@@ -1,8 +1,11 @@
 package KundenVerwaltung;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import Artikelverwaltung.Artikelsammlung;
 
 
 public class BestandskundeStrg {
@@ -204,6 +207,35 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	//Falk
+	public static void FülleBestandskundeSammlung() {
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			stmt = con.createStatement();
+			String sqlbefehl = "select * from Bestandskunde";
+			rs = stmt.executeQuery(sqlbefehl);
+			BestandskundeSammlung.fülleSammlung(rs);
+	
+		}catch(SQLException e){
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(stmt !=null) 
+					stmt.close();
+				if(con != null)
+					con.close();
+				if(rs != null)
+					rs.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 }

@@ -12,7 +12,7 @@ public class BestandskundeSammlung {
 	
 	static HashMap<Integer, Bestandskunde> BestandskundenSammlung = new HashMap<Integer,Bestandskunde>();
 	
-	public BestandskundeSammlung(ResultSet rs)  {
+	public static void fülleSammlung(ResultSet rs)  {
 		try {
 		while (rs.next()) {
 			int nutzernr = rs.getInt("Nutzernr");
