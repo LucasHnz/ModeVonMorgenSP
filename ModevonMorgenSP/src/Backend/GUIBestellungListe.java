@@ -36,7 +36,7 @@ public class GUIBestellungListe extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Rechnungs Nr","Bestell Nr", "Gastkunden Nr","Bestandskunden Nr", "IBAN", "Nachname", "Vorname", "Gesamtpreis", "Rabatt", "Datum","Versandstatus", "Ort","Straﬂe","PLZ"};
+	private String[] columnNames = {"Bestell Nr", "Gastkunden Nr","Bestandskunden Nr", "IBAN", "Nachname", "Vorname", "Gesamtpreis", "Rabatt", "Datum","Versandstatus", "Ort","Straﬂe","PLZ"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -77,49 +77,46 @@ public class GUIBestellungListe extends JPanel {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 			try {
 				if(columnIndex == 0) {
-					return data.get(keys[rowIndex]).getRechnungsnr();
-				}
-				else if(columnIndex == 1) {
 					return data.get(keys[rowIndex]).getBestellnr();
 				}
 				
-				else if (columnIndex ==2) {
+				else if (columnIndex ==1) {
 					return data.get(keys[rowIndex]).getNutzernrgk();
 				}
 				
-				else if (columnIndex == 3) {
+				else if (columnIndex == 2) {
 					return data.get(keys[rowIndex]).getNutzernrbk();
 				}
-				else if(columnIndex == 4) {
+				else if(columnIndex == 3) {
 					return data.get(keys[rowIndex]).getIban();
 				}		
-				else if(columnIndex == 5) {
+				else if(columnIndex == 4) {
 					return data.get(keys[rowIndex]).getNachname();
 				}	
-				else if(columnIndex == 6) {
+				else if(columnIndex == 5) {
 					return data.get(keys[rowIndex]).getVorname();
 				}	
-				else if(columnIndex == 7) {
+				else if(columnIndex == 6) {
 					return data.get(keys[rowIndex]).getGesamtpreis();
 				}	
-				else if(columnIndex == 8) {
+				else if(columnIndex == 7) {
 					return data.get(keys[rowIndex]).getErabatt();
 				}	
-				else if(columnIndex == 9) {
+				else if(columnIndex == 8) {
 					return data.get(keys[rowIndex]).getDatum();
 				}
-				else if (columnIndex == 10) {
+				else if (columnIndex == 9) {
 					return data.get(keys[rowIndex]).getVersandstatus();
 				}
-				else if ( columnIndex == 11) {
+				else if ( columnIndex == 10) {
 					return data.get(keys[rowIndex]).getRechnungsort();
 				}
 				
-				else if ( columnIndex == 12 ) {
+				else if ( columnIndex == 11 ) {
 					return data.get(keys[rowIndex]).getRechnungsstrasse();
 				}
 				
-				else if ( columnIndex == 13 ) {
+				else if ( columnIndex == 12 ) {
 					return data.get(keys[rowIndex]).getRechnungsplz();
 				}
 				else
