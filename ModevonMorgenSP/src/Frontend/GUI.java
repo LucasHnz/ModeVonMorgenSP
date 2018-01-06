@@ -335,6 +335,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				GUIHomepage.zurücksetzenArtikel();
 				changePanel(GUIHomepage.getHomepage());
 				
 			}

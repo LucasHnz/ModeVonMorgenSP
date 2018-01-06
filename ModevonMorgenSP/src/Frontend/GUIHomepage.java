@@ -32,6 +32,8 @@ public class GUIHomepage {
 	public static JButton btnProduktHerren;
 	public static JLabel labelMainDamen;
 	public static JLabel labelMainHerren;
+	static int p = 0;
+	static int q = 0;
 	static int artNr1;
 	static int artNr2;
 	static int artNr3;
@@ -43,31 +45,47 @@ public class GUIHomepage {
 	static  Image img4;
 	
 	
+	public static void zurücksetzenArtikel() {
+		p = 0;
+		q = 0;
+	}
+	
 	public static void wechselOutfitDamenRechts() 
 	{
+		p++;
+		if(p>1)
+			p = 1;
 		labelMainDamen.setIcon(new ImageIcon(img3));
+		System.out.println("DR: "+p);
 		 
 	}
 	
 	public static void wechselOutfitDamenLinks() 
 	{
+		p--;
+		if(p < 0)
+			p = 0;
 		
 		labelMainDamen.setIcon(new ImageIcon(img1));
-		
+		System.out.println("DL: "+p);
 	}
 	
 	public static void wechselOutfitHerrenRechts() 
 	{
-		
+		q++;
+		if(q > 1)
+			q = 1;
 		labelMainHerren.setIcon(new ImageIcon(img4));
-
+		System.out.println("HR: "+p);
 	}
 	
 	public static void wechselOutfitHerrenLinks() 
 	{
-		
+		q--;
+		if(q < 0)
+			q = 0;
 		labelMainHerren.setIcon(new ImageIcon(img2));
-		 	
+		System.out.println("HL: "+p);	
 	}
 	
 	
@@ -172,7 +190,13 @@ public class GUIHomepage {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artikelNummer));
+				if( p == 0) {
+					GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artNr1));
+				}
+				if(p == 1) {
+					GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artNr3));
+				}
+				
 				
 			}
 			
@@ -187,7 +211,12 @@ public class GUIHomepage {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artikelNummer));
+				if( q == 0) {
+					GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artNr2));
+				}
+				if(q == 1) {
+					GUI.getFenster().changePanel(GUIArtikel.getGUIArtikel(artNr4));
+				}
 				
 			}
 			
@@ -250,7 +279,7 @@ public class GUIHomepage {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			wechselOutfitHerrenRechts();
+			wechselOutfitHerrenLinks();
 				
 			}
 			
