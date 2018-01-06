@@ -13,6 +13,7 @@ import Bestellverwaltung2.BestellStrg;
 import Warenkorbverwaltung.Warenkorb;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -59,7 +60,11 @@ public class GUIWarenkorb {
 		btnZurKasse.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent agr0){
-				BestellStrg.bestellvorgang();			
+				if(Warenkorb.getWarenkorb().size() >= 1) {
+					BestellStrg.bestellvorgang();			
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Ihr Warenkorb ist leer. \nLegen Sie Artikel in den Warenkorb, um eine Bestellung zu tätigen.", "Fehler", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		btnZurKasse.setBounds(1001, 478, 227, 46);

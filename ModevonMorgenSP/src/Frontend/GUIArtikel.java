@@ -102,8 +102,8 @@ public class GUIArtikel implements ActionListener {
 		JButton btnWarenkorbHinz = new JButton("In den Warenkorb");
 		btnWarenkorbHinz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int anzahlSrtikerl = (int) spinnerMenge.getValue();
-				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), 1);					
+				int anzahlArtikel = (int) spinnerMenge.getValue();
+				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), anzahlArtikel);					
 			}																								
 		});
 		btnWarenkorbHinz.setBounds(430, 230, 153, 35);
