@@ -5,10 +5,17 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.HashMap;
+
+import javax.swing.JOptionPane;
+
 import Artikelverwaltung.Artikelsammlung;
 import Datenbankverwaltung.holeNächsteNummer;
+import Frontend.GUI;
+import Frontend.GUIAnmelden;
+import Frontend.GUIGastkundeErstellen;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
 import Logverwaltung.LogStrg;
@@ -94,6 +101,28 @@ protected Bestellung bBestellung;
 		
 		
 	}
+	public static void bestellvorgang() {
+		if(LogStrg.getAngemeldetStatus() == 2) {
+			erstelleBestellungBK();
+		}
+		else if(LogStrg.getAngemeldetStatus() == 0) {
+			String[] options = {"Anmelden","Als Kunde registrieren", "Als Gastkunde bestellen"};
+			int optionPane = JOptionPane.showOptionDialog(null, "Für eine Bestellung müssen sie angemeldet sein. Wählen sie aus, wie sie fortfahren wollen.", "Bestellvorgang",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			if(optionPane == 0) {
+				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden());
+			}
+			else if(optionPane == 1) {
+			//	GUI.getFenster().changePanel(GUIGastkundeErstellen.getGUIGastkundeErstellen());			Muss noch gemacht werden
+			}
+			else if(optionPane == 2) {
+			//	GUI.getFenster().changePanel(GUIBestandskunde.getGUIBestandskunde());					Muss noch gemacht werden
+			}
+		}
+		else if(LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) {
+			JOptionPane.showMessageDialog(null, "Mitarbeiter können keine Bestellungen tätigen", "Fehler!", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 	//Falk
 	private static void erstelleBestellpositionen(int bestellnr) {
 		HashMap<Integer, Integer> warenkorbMap = Warenkorb.getWarenkorb();
@@ -108,8 +137,8 @@ protected Bestellung bBestellung;
 			for (int i = 0; i < keys.length; i++) {
 				int artikelnummer = keys[i];
 				int menge = warenkorbMap.get(keys[i]);
-				double preis = Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100-Artikelsammlung.getArtikel(artikelnummer).getRabatt()) * 0.01;
-				String rücksendung = "";
+				double preis = Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100-Artikelsammlung.getArtikel(artikelnummer).getRabatt()) * 0.01 * menge;
+				String rücksendung = "Rücksendung";
 				ps.setInt(1, nr);
 				ps.setInt(2, bestellnr);
 				ps.setInt(3, artikelnummer);
@@ -122,8 +151,8 @@ protected Bestellung bBestellung;
 				BestellpositionSammlung.hinzufügenBestellposition(bp);
 				nr = nr +1;
 			}
-			ps.executeUpdate();
-			
+			ps.executeBatch();
+			JOptionPane.showMessageDialog(null, "Die Bestellung wurde erstellt", "Bestellung erstellt.", JOptionPane.INFORMATION_MESSAGE);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -150,7 +179,7 @@ protected Bestellung bBestellung;
 		double gesamtpreis = Warenkorb.getGesamtpreis();
 		int erabatt = 0;
 		Date datum = Date.valueOf(LocalDate.now());
-		String versandstatus = "Noch nicht versandt";
+		String versandstatus = "Vorbereitung";
 		String rechnungsort = bk.getOrt();
 		String rechnungsstrasse = bk.getStraße();
 		int rechnungsplz = bk.getPlz();
@@ -161,10 +190,10 @@ protected Bestellung bBestellung;
 		PreparedStatement ps = null;
 		try {
 			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			ps = con.prepareStatement("insert into Rechnunbestellung values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps = con.prepareStatement("insert into Rechnungbestellung values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setInt(1, bestellnr);
 			ps.setInt(2, nrBK);
-			ps.setInt(3, nrGK);
+			ps.setNull(3, Types.NULL);
 			ps.setString(4, iban);
 			ps.setString(5, nachname);
 			ps.setString(6, vorname);

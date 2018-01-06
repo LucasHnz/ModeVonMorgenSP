@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
+import Bestellverwaltung2.BestellStrg;
 import Warenkorbverwaltung.Warenkorb;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -59,7 +60,7 @@ public class GUIWarenkorb {
 		btnZurKasse.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent agr0){
-				//BestellStrg.angemedeltÜberprüfung();
+				BestellStrg.bestellvorgang();
 				//BestellStrg.neueBestellung(Warenkorb.getWarenkorb()); 
 				// sowas in der Richtung.. Keine Ahnung, wie ihr das letztendlich schreibt
 			
