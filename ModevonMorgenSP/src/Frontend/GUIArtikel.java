@@ -65,7 +65,7 @@ public class GUIArtikel implements ActionListener {
 
 	/**
 	 * @return 
-	 * @wbp.parser.entryPoint
+	 * 
 	 */
 	public static Color checkStatus(int artikelNummer) {
 		String status = Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit();
@@ -87,6 +87,9 @@ public class GUIArtikel implements ActionListener {
 	}
 	
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	static JPanel getGUIArtikel(int artikelNummer) {
 		
 		panelMain = new JPanel();
