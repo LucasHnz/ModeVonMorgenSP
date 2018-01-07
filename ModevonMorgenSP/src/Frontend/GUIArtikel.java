@@ -47,7 +47,6 @@ public class GUIArtikel implements ActionListener {
 	static JLabel lblArtikelBild;
 	static JButton btnWarenkorbHinz;
 	public JPanel panelHerrenKleidung = new JPanel();
-	public static String[] comboBoxGrößen = {"XS", "S","M", "L", "XL", "XXL"};
 
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();

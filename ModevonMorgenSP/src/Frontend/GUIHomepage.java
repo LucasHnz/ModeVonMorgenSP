@@ -56,8 +56,7 @@ public class GUIHomepage {
 		if(p>1)
 			p = 1;
 		labelMainDamen.setIcon(new ImageIcon(img3));
-		System.out.println("DR: "+p);
-		 
+		
 	}
 	
 	public static void wechselOutfitDamenLinks() 
@@ -65,9 +64,8 @@ public class GUIHomepage {
 		p--;
 		if(p < 0)
 			p = 0;
-		
 		labelMainDamen.setIcon(new ImageIcon(img1));
-		System.out.println("DL: "+p);
+		
 	}
 	
 	public static void wechselOutfitHerrenRechts() 
@@ -76,7 +74,6 @@ public class GUIHomepage {
 		if(q > 1)
 			q = 1;
 		labelMainHerren.setIcon(new ImageIcon(img4));
-		System.out.println("HR: "+p);
 	}
 	
 	public static void wechselOutfitHerrenLinks() 
@@ -85,7 +82,6 @@ public class GUIHomepage {
 		if(q < 0)
 			q = 0;
 		labelMainHerren.setIcon(new ImageIcon(img2));
-		System.out.println("HL: "+p);	
 	}
 	
 	
@@ -153,27 +149,7 @@ public class GUIHomepage {
                              
 
  }
-	/*
-	public static Image fülleArtikelStartseite() {
-		HashMap<Integer, Artikel> liste = Artikelsammlung.getArtikelsammlung();
-		
-		Integer[] nummern = liste.keySet().toArray(new Integer[liste.keySet().size()]);
-		Random generator = new Random();
-		int rndmNummer = (int) nummern[generator.nextInt(nummern.length)];
-			 
-			 ImageIcon icon;
-				if(Artikelsammlung.getArtikel(rndmNummer).getImage() != null) {
-					icon = new ImageIcon(Artikelsammlung.getArtikel(rndmNummer).getImage());
-				}
-				else 
-					icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
-					Image img = icon.getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH);
-					
-					//System.out.println(artikel1+" "+artikel2+" "+artikel3+" "+artikel4);
-					//System.out.println(intArray);
-					return img;
-		}  
-	*/
+	
 	
 	public static JPanel getHomepage() {
 		panelMain = new JPanel();
