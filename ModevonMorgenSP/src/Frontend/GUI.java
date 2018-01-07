@@ -74,11 +74,6 @@ public class GUI extends JFrame {
 			e.printStackTrace();
 		}
 		ArtikelStrg.FülleArtikelsammlung();
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000001), 3);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000002), 3);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000003), 10);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000005), 10);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000006), 10);
 		GUIHomepage.fülleArtikelStartseite();
 		BestandskundeStrg.FülleBestandskundeSammlung();
 		gui = new GUI();
