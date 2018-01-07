@@ -137,7 +137,8 @@ public class GUIArtikel implements ActionListener {
 		btnWarenkorbHinz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int anzahlArtikel = model.getNumber().intValue();
-				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), anzahlArtikel);					
+				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), anzahlArtikel);
+				model.setValue(0);
 			}																								
 		});
 		btnWarenkorbHinz.setBounds(430, 230, 153, 35);
