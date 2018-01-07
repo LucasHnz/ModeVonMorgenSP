@@ -193,12 +193,19 @@ public class GUIBestellpositionsliste extends JFrame {
 						int i =data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getPosNr();
 						
 						System.out.println(i);
-						
+						try {
 						RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
+						} catch (NullPointerException e) {
+							System.out.println("Nullpoitner");
+						}
 						
 							
 						MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde, Hoffentlich finden Sie eine alternative");
 
+						JOptionPane.showOptionDialog(null, "Rücksendung Angenommen!",
+								"Rücksendung Angenommen", JOptionPane.YES_NO_CANCEL_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, new String[] { "Ok" }, "Ok");
+						
 					} else if (optionPane.equals(1)) {
 						JOptionPane.showMessageDialog(null, "Vorgang abgebrochen!", "Abbruch",
 								JOptionPane.ERROR_MESSAGE);
@@ -222,9 +229,24 @@ public class GUIBestellpositionsliste extends JFrame {
 		btnRücksAblehnen.setBounds(776, 81, 177, 48);
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				final Object optionPane = JOptionPane.showOptionDialog(null,
+						"Sie sind dabei eine Rücksendung abzulehnen! \nFortfahren ?", "Rücksendung Ablehnen",
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						new String[] { "Ok", "Abbrechen" }, "Ok");
 
-				MailController.MailSenden.sendMail("julian-hermann@outlook.de", "Ablehnung ihrer Rücksendung",
-						"Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
+				if (optionPane.equals(0)) {
+					
+					MailController.MailSenden.sendMail("julian-hermann@outlook.de", "Ablehnung ihrer Rücksendung",
+							"Sehr geehrter Kunde, /n Hoffentlich finden Sie eine alternative");
+					JOptionPane.showOptionDialog(null, "Rücksendung wurde Abgelehnt!!",
+							"Rücksendung Abgelehnt", JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.WARNING_MESSAGE, null, new String[] { "Ok" }, "Ok");
+
+				} else if (optionPane.equals(1)) {
+					JOptionPane.showMessageDialog(null, "Vorgang abgebrochen!", "Abbruch",
+							JOptionPane.ERROR_MESSAGE);
+				}
 
 			}
 		});

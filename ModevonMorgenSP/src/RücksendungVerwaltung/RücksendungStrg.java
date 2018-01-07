@@ -41,8 +41,10 @@ public class RücksendungStrg {
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Connection con2 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Connection con3 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		Statement stmt2 = con.createStatement();
+		Statement stmt3 = con.createStatement();
 		String SQL = "select * from bestellposition where bestellposnr ="+i;
 		
 		ResultSet rs= stmt.executeQuery(SQL);
@@ -58,9 +60,13 @@ public class RücksendungStrg {
 		
 		stmt2.executeQuery(SQL2);
 		
+		String SQL3 = "update Bestellposition set Rücksendung = 'Rücksendung' where bestellposnr ="+i;
+		
+		stmt3.executeQuery(SQL3);
+		
 		Rücksendung r = new Rücksendung(rücksendenr, i, bestellposnr, datum);
 		
-		System.out.println(b.getRücksendung());
+		System.out.println(r.getRücksendenr());
 		
 		
 		RücksendungSammlung.hinzufügenRücksendung(rücksendenr, i, bestellposnr, datum);
@@ -68,6 +74,8 @@ public class RücksendungStrg {
 		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 		
 		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con2, stmt2);
+		
+		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con3, stmt3);
 		
 		
 	} catch(SQLException e) {
