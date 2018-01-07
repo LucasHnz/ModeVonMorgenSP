@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
 import Backend.TextDoc;
+import Bestellverwaltung.BestellStrg;
 
 
 
@@ -195,6 +196,13 @@ private static JPanel panelmain;
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Regestrierung","Sehr geehrter Kunde, Vielen Dank für ihre Regestrierung. Viel Spaß beim Einkaufen! ");
 				;
+				
+				BestellStrg.erstelleBestellungBK();
+				JOptionPane.showMessageDialog(null,
+					    "Erfolgreicher Eingang Ihrer Bestellung.");
+				
+				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
+				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 			}
 			
 		});

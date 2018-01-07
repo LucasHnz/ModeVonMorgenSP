@@ -21,6 +21,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
+import Bestellverwaltung.BestellStrg;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.Gastkunde;
 import MitarbeiterVerwaltung.Mitarbeiter;
@@ -191,11 +192,14 @@ public class GUIGastkundeErstellen  {
 				textField_8.setText("");
 				
 				
-				JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Gastkunden Erstellung",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok"}, "Ok");
 				
+				
+				BestellStrg.erstelleBestellungGK();
+				JOptionPane.showMessageDialog(null,
+					    "Erfolgreicher Eingang Ihrer Bestellung.");
+				
+				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
+				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 				;
 			}
 			
