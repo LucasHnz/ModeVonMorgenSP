@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
-import Bestellverwaltung2.BestellStrg;
+import Bestellverwaltung.BestellStrg;
 import Warenkorbverwaltung.Warenkorb;
 import java.awt.Color;
 import javax.swing.JLabel;

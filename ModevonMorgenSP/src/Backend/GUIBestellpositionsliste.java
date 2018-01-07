@@ -23,9 +23,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import AdministratorVerwaltung.AdministratorStrg;
-import BestellungVerwaltung.Bestellung;
-import Bestellverwaltung.Bestellposition;
-import Bestellverwaltung.BestellpositionSammlung;
+import Bestellverwaltung.Bestellung;
+import BestellverwaltungAlt.Bestellposition;
+import BestellverwaltungAlt.BestellpositionSammlung;
 import RücksendungVerwaltung.Rücksendung;
 import RücksendungVerwaltung.RücksendungSammlung;
 
@@ -128,7 +128,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		setBackground(Color.DARK_GRAY);
 
 		table = new JTable(
-				new myTableModel(Bestellverwaltung.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
+				new myTableModel(BestellverwaltungAlt.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -238,7 +238,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Bestellverwaltung.BestellpositionSammlung.entferneDatenAusListe();
+					BestellverwaltungAlt.BestellpositionSammlung.entferneDatenAusListe();
 					dispose();
 				} catch (ConcurrentModificationException e) {
 					System.out.println(e.getLocalizedMessage());

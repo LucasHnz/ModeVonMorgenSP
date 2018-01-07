@@ -21,9 +21,9 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import BestellungVerwaltung.BestellStrg;
-import BestellungVerwaltung.Bestellung;
-import BestellungVerwaltung.BestellungSammlung;
+import Bestellverwaltung.BestellStrg;
+import Bestellverwaltung.Bestellung;
+import Bestellverwaltung.BestellungSammlung;
 
 public class GUIBestellungListe extends JPanel {
 	
@@ -140,12 +140,12 @@ public class GUIBestellungListe extends JPanel {
 	public GUIBestellungListe() {
 		
 		
-		BestellungVerwaltung.BestellungSammlung.füllenBestellungSammlung();
+		BestellungSammlung.füllenBestellungSammlung();
 		setLayout(null);
 		setBounds(90, 100, 1200, 600);
 		setBackground(Color.DARK_GRAY);
 		
-		table = new JTable(new myTableModel(BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(), columnNames));
+		table = new JTable(new myTableModel(BestellungSammlung.getBestellungSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(110);
@@ -196,7 +196,7 @@ public class GUIBestellungListe extends JPanel {
 		btnBestellungAnzeigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				try {
-				final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung();
+				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 					System.out.println(i);
@@ -219,7 +219,7 @@ public class GUIBestellungListe extends JPanel {
 			btnÄndernVStatus.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					try {
-					final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung();
+					final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung();
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 					
@@ -257,7 +257,7 @@ public class GUIBestellungListe extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung();
+				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 	

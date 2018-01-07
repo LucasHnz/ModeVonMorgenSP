@@ -1,4 +1,4 @@
-package Bestellverwaltung2;
+package Bestellverwaltung;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+
+import Bestellverwaltung.Bestellung;
 
 /**
  * 
@@ -72,5 +74,44 @@ public static HashMap<Integer, Bestellung> BestellungSammlung = new HashMap<Inte
 	//Falk
 	public static void hinzufügenBestellung(Bestellung bestellung) {
 		BestellungSammlung.put(bestellung.getBestellnr(), bestellung);
+	}
+	
+	public static HashMap<Integer, Bestellung> getBestellungSammlung(int nutzernummer){
+		HashMap<Integer, Bestellung> BestellungSammlungNR = new HashMap<Integer, Bestellung>();
+		
+		try {
+			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select * from RECHNUNGBESTELLUNG where Nutzernrbestandsk = " + nutzernummer;
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				int bestellnr = rs.getInt("Bestellnr");
+				int nutzernrbk = rs.getInt("Nutzernrbestandsk");
+				int nutzernrgk = rs.getInt("Nutzernrgastk");
+				String iban = rs.getString("IBAN");
+				String nachname = rs.getString("Nachname");
+				String vorname = rs.getString("Vorname");
+				double gesamtpreis = rs.getDouble("Gesamtpreis");
+				int erabatt = rs.getInt("EingesetzterRabatt");
+				Date datum = rs.getDate("Datum");
+				String vstatus = rs.getString("Versandstatus");
+				String rechnungsort = rs.getString("Rechnungsort");
+				String rechnungsstrasse = rs.getString("Rechnungsstrasse");
+				int rechnungsplz = rs.getInt("Rechnungsplz");
+				
+				Bestellung b = new Bestellung (bestellnr, nutzernrbk, nutzernrgk, iban, nachname, vorname, gesamtpreis, erabatt, datum, vstatus, rechnungsort, rechnungsstrasse, rechnungsplz);
+				
+				BestellungSammlungNR.put(b.getBestellnr(), b);
+				
+			}
+			
+		}catch (SQLException e ) {
+			e.printStackTrace();
+		}
+	return BestellungSammlungNR;
 	}
 }

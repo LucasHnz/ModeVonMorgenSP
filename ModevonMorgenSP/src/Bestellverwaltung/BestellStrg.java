@@ -1,4 +1,4 @@
-package Bestellverwaltung2;
+package Bestellverwaltung;
 
 import java.sql.Connection;
 import java.sql.Date;

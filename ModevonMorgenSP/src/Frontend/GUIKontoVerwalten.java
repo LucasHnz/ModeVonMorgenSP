@@ -1,23 +1,14 @@
 package Frontend;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
-import java.util.HashMap;
-
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.text.NumberFormatter;
-
 import Backend.TextDoc;
-import BestellungVerwaltung.Bestellung;
 import KundenVerwaltung.Bestandskunde;
-import KundenVerwaltung.BestandskundeSammlung;
 import KundenVerwaltung.BestandskundeStrg;
 import Logverwaltung.LogStrg;
 /**

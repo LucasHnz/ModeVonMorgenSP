@@ -1,6 +1,8 @@
-package Bestellverwaltung2;
+package BestellungVerwaltungAlt;
 
 import java.sql.Date;
+
+
 /**
  * 
  * @author julian
@@ -8,6 +10,7 @@ import java.sql.Date;
  */
 public class Bestellung {
 	
+	private int rechnungsnr;
 	private int bestellnr;
 	private int nutzernrbk;
 	private int nutzernrgk;
@@ -24,6 +27,7 @@ public class Bestellung {
 
 	/**
 	 * Konstruktor für die Erstellung einer Bestellung
+	 * @param rechnungsnr
 	 * @param bestellnr
 	 * @param nutzernrbk
 	 * @param nutzernrgk
@@ -38,7 +42,8 @@ public class Bestellung {
 	 * @param Rechnungsstrasse
 	 * @param Rechnungsplz
 	 */
-	public Bestellung(int bestellnr, int nutzernrbk,int nutzernrgk, String iban, String nachname, String vorname, double gesamtpreis, int erabatt, Date datum, String versandstatus, String Rechnungsort, String Rechnungsstrasse, int Rechnungsplz) {
+	public Bestellung(int rechnungsnr, int bestellnr, int nutzernrbk,int nutzernrgk, String iban, String nachname, String vorname, double gesamtpreis, int erabatt, Date datum, String versandstatus, String Rechnungsort, String Rechnungsstrasse, int Rechnungsplz) {
+		this.rechnungsnr = rechnungsnr;
 		this.bestellnr = bestellnr;
 		this.nutzernrbk = nutzernrbk;
 		this.nutzernrgk = nutzernrgk;
@@ -68,6 +73,22 @@ public class Bestellung {
 	 */
 	public void setNutzernrgk(int nutzernrgk) {
 		this.nutzernrgk = nutzernrgk;
+	}
+
+	/**
+	 * 
+	 * @return rechnungsnr
+	 */
+	public int getRechnungsnr() {
+		return rechnungsnr;
+	}
+
+	/**
+	 * setzt die Rechnungsnr für genau eine Bestellung
+	 * @param rechnungsnr
+	 */
+	public void setRechnungsnr(int rechnungsnr) {
+		this.rechnungsnr = rechnungsnr;
 	}
 
 	/**

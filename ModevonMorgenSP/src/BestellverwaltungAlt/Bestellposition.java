@@ -1,4 +1,4 @@
-package Bestellverwaltung2;
+package BestellverwaltungAlt;
 
 
 /**
@@ -28,6 +28,7 @@ public class Bestellposition {
 		this.posNr = posNr;
 		this.artikelnummer = artikelnummer;
 		this.bestellNr = bestellNr;
+		//this.preis = Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100 - Artikelsammlung.getArtikel(artikelnummer).getRabatt()  *0.01);
 		this.preis = preis;
 		this.Rücksendung = rücksendung;
 	}
@@ -44,17 +45,11 @@ public class Bestellposition {
 	public double getPreis() {
 		return this.preis;
 	}
-	public int getArtikelnummer() {
+	public int getAnummer() {
 		return artikelnummer;
-	}
-	public void setPosNr(int posNr) {
-		this.posNr = posNr;
 	}
 	public int getBestellNr() {
 		return bestellNr;
-	}
-	public void setBestellNr(int bestellNr) {
-		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
 	public String getRücksendung() {
 		return Rücksendung;
@@ -62,5 +57,7 @@ public class Bestellposition {
 	public void setRücksendung(String Status){
 		this.Rücksendung = Status;
 	}
-	
+	public void setBestellNr(int bestellNr) {
+		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
+	}
 }

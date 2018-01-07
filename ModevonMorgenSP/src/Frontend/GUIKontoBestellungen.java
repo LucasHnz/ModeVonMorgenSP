@@ -28,9 +28,9 @@ import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import Backend.GUIArtikelFormular;
 import Backend.GUIBestellpositionsliste;
-import BestellungVerwaltung.BestellStrg;
-import BestellungVerwaltung.Bestellung;
-import BestellungVerwaltung.BestellungSammlung;
+import Bestellverwaltung.BestellStrg;
+import Bestellverwaltung.Bestellung;
+import Bestellverwaltung.BestellungSammlung;
 import Logverwaltung.LogStrg;
 /**
  * 
@@ -85,21 +85,18 @@ public class GUIKontoBestellungen extends JPanel{
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				try {
 					if(columnIndex == 0) {
-						return data.get(keys[rowIndex]).getRechnungsnr();
-					}
-					else if(columnIndex == 1) {
 						return data.get(keys[rowIndex]).getIban();
 					}
-					else if(columnIndex == 2) {
+					else if(columnIndex == 1) {
 						return data.get(keys[rowIndex]).getGesamtpreis();
 					}
-					else if(columnIndex == 3) {
+					else if(columnIndex == 2) {
 						return data.get(keys[rowIndex]).getErabatt();
 					}
-					else if(columnIndex == 4) {
+					else if(columnIndex == 3) {
 						return data.get(keys[rowIndex]).getDatum();
 					}
-					else if (columnIndex == 5) {
+					else if (columnIndex == 4) {
 						return data.get(keys[rowIndex]).getVersandstatus();
 					}
 					else 
@@ -128,7 +125,7 @@ public class GUIKontoBestellungen extends JPanel{
 		setLayout(null);
 		setBackground(Color.DARK_GRAY);
 		
-		myTableModel model = new myTableModel(BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer), columnNames);
+		myTableModel model = new myTableModel(BestellungSammlung.getBestellungSammlung(nutzernummer), columnNames);
 		table = new JTable(model);
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
@@ -143,7 +140,7 @@ public class GUIKontoBestellungen extends JPanel{
 		JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
 		btnStoniereBestellung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer);
+				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung(nutzernummer);
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int bestellnr = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr();
 				
@@ -174,7 +171,7 @@ public class GUIKontoBestellungen extends JPanel{
 		btnBestellpos.setBounds(983, 11, 209, 48);
 		btnBestellpos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Bestellung> data = BestellungVerwaltung.BestellungSammlung.getBestellungSammlung(nutzernummer);
+				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung(nutzernummer);
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 				try{
