@@ -198,10 +198,9 @@ private static JPanel panelmain;
 				;
 				
 				BestellStrg.erstelleBestellungBK();
-				JOptionPane.showMessageDialog(null,
-					    "Erfolgreicher Eingang Ihrer Bestellung.");
 				
-				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
+				
+				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, /n Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versandt. ");
 				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 			}
 			

@@ -164,8 +164,8 @@ public class GUIGastkundeErstellen  {
 		/**
 		 * Button hinzufügen aktzeptiert die Eingabe
 		 */
-		JButton btnHinzufgen = new JButton("Hinzufügen");
-		btnHinzufgen.addActionListener(new ActionListener() {
+		JButton btnBestellen = new JButton("Bestellen");
+		btnBestellen.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				
@@ -195,8 +195,6 @@ public class GUIGastkundeErstellen  {
 				
 				
 				BestellStrg.erstelleBestellungGK();
-				JOptionPane.showMessageDialog(null,
-					    "Erfolgreicher Eingang Ihrer Bestellung.");
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
 				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
@@ -204,8 +202,8 @@ public class GUIGastkundeErstellen  {
 			}
 			
 		});
-		btnHinzufgen.setBounds(52, 11, 108, 23);
-		panel_1.add(btnHinzufgen);
+		btnBestellen.setBounds(52, 11, 108, 23);
+		panel_1.add(btnBestellen);
 		panelmain.setVisible(true);
 	
 

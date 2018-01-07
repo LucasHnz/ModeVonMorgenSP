@@ -105,6 +105,7 @@ protected Bestellung bBestellung;
 	public static void bestellvorgang() {
 		if(LogStrg.getAngemeldetStatus() == 2) {
 			erstelleBestellungBK();
+			
 		}
 		else if(LogStrg.getAngemeldetStatus() == 0) {
 			String[] options = {"Anmelden","Als Kunde registrieren", "Als Gastkunde bestellen"};
