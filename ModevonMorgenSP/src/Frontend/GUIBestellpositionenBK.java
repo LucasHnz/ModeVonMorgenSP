@@ -17,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
+import Artikelverwaltung.Artikelsammlung;
 import Bestellverwaltung.Bestellposition;
 import Bestellverwaltung.BestellpositionSammlung;
 
@@ -30,7 +32,7 @@ public class GUIBestellpositionenBK  extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = { "Bestellpositions Nr.", "Bestell Nr.", "Artikel Nr.", "Preis", "Menge" };
+	private String[] columnNames = { "Bestellpositions Nr.", "Artikel Nr.", "Bezeichnung", "Preis", "Menge" };
 
 	private class myTableModel extends AbstractTableModel {
 
@@ -76,13 +78,14 @@ public class GUIBestellpositionenBK  extends JFrame {
 			try {
 				if (columnIndex == 0) {
 					return data.get(keys[rowIndex]).getPosNr();
-				} else if (columnIndex == 1) {
-					return data.get(keys[rowIndex]).getBestellNr();
-				}
-				else if (columnIndex == 2) {
+				} 
+				else if (columnIndex == 1) {
 					return data.get(keys[rowIndex]).getArtikelnummer();
 				}
-				else if (columnIndex == 3) {
+				else if (columnIndex == 2) {
+					return Artikelsammlung.getArtikel(data.get(keys[rowIndex]).getArtikelnummer()).getBezeichnung();
+				}
+				else if(columnIndex == 3) {
 					return data.get(keys[rowIndex]).getPreis();
 				} else if (columnIndex == 4) {
 					return data.get(keys[rowIndex]).getaMenge();

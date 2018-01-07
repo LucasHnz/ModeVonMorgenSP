@@ -27,7 +27,7 @@ import Logverwaltung.LogStrg;
  */
 public class GUIKontoBestellungen extends JPanel{
 	
-	private String[] columnNames = {"Rechnungs Nr", "IBAN", "Gesamtpreis", "Rabatt", "Datum", "Versandstatus"};
+	private String[] columnNames = {"Bestell Nr", "Datum", "Gesamtpreis", "Rabatt", "Versandstatus"};
 	private JTable table;
 	private JScrollPane scrollpane;
 	
@@ -73,16 +73,16 @@ public class GUIKontoBestellungen extends JPanel{
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				try {
 					if(columnIndex == 0) {
-						return data.get(keys[rowIndex]).getIban();
+						return data.get(keys[rowIndex]).getBestellnr();
 					}
 					else if(columnIndex == 1) {
-						return data.get(keys[rowIndex]).getGesamtpreis();
+						return data.get(keys[rowIndex]).getDatum();
 					}
 					else if(columnIndex == 2) {
-						return data.get(keys[rowIndex]).getErabatt();
+						return data.get(keys[rowIndex]).getGesamtpreis();
 					}
 					else if(columnIndex == 3) {
-						return data.get(keys[rowIndex]).getDatum();
+						return data.get(keys[rowIndex]).getErabatt();
 					}
 					else if (columnIndex == 4) {
 						return data.get(keys[rowIndex]).getVersandstatus();
@@ -162,7 +162,6 @@ public class GUIKontoBestellungen extends JPanel{
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 				try{
-					System.out.println(i);
 					new GUIBestellpositionenBK(i);
 				}catch(Exception e) {
 					e.printStackTrace();
@@ -186,11 +185,10 @@ public class GUIKontoBestellungen extends JPanel{
 		table.getColumnModel().getColumn(2).setPreferredWidth(80);
 		table.getColumnModel().getColumn(3).setPreferredWidth(70);
 		table.getColumnModel().getColumn(4).setPreferredWidth(30);
-		table.getColumnModel().getColumn(5).setPreferredWidth(30);
 
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
 		table.setRowSorter(sorter);
-		table.getRowSorter().toggleSortOrder(0);
+		table.getRowSorter().toggleSortOrder(1);
 		table.setRowSelectionAllowed(true);
 		table.setColumnSelectionAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

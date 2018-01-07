@@ -4,30 +4,22 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import AdministratorVerwaltung.AdministratorStrg;
-import Bestellverwaltung.Bestellung;
-import BestellverwaltungAlt.Bestellposition;
-import BestellverwaltungAlt.BestellpositionSammlung;
-import RücksendungVerwaltung.Rücksendung;
-import RücksendungVerwaltung.RücksendungSammlung;
+import Bestellverwaltung.Bestellposition;
+import Bestellverwaltung.BestellpositionSammlung;
 
 /**
  * 
@@ -91,7 +83,7 @@ public class GUIBestellpositionsliste extends JFrame {
 				}
 
 				else if (columnIndex == 2) {
-					return data.get(keys[rowIndex]).getAnummer();
+					return data.get(keys[rowIndex]).getArtikelnummer();
 				}
 
 				else if (columnIndex == 3) {
@@ -128,7 +120,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		setBackground(Color.DARK_GRAY);
 
 		table = new JTable(
-				new myTableModel(BestellverwaltungAlt.BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
+				new myTableModel(BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -260,7 +252,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					BestellverwaltungAlt.BestellpositionSammlung.entferneDatenAusListe();
+					BestellpositionSammlung.entferneDatenAusListe();
 					dispose();
 				} catch (ConcurrentModificationException e) {
 					System.out.println(e.getLocalizedMessage());
