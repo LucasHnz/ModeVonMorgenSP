@@ -1,19 +1,12 @@
 package Frontend;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Comparator;
 import java.util.HashMap;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,11 +15,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import Artikelverwaltung.Artikel;
-import Artikelverwaltung.ArtikelStrg;
-import Artikelverwaltung.Artikelsammlung;
-import Backend.GUIArtikelFormular;
 import Backend.GUIBestellpositionsliste;
 import Bestellverwaltung.BestellStrg;
 import Bestellverwaltung.Bestellung;
@@ -163,7 +151,6 @@ public class GUIKontoBestellungen extends JPanel{
 		btnStoniereBestellung.setFont(new Font("Calibri", Font.BOLD, 15));
 		btnStoniereBestellung.setBackground(Color.WHITE);
 		btnStoniereBestellung.setBounds(983, 70, 209, 48);
-		//btnStoniereBestellung.addActionListener(this);
 		add(btnStoniereBestellung);
 		
 		JButton btnBestellpos = new JButton("Bestellung anzeigen");
@@ -176,7 +163,7 @@ public class GUIKontoBestellungen extends JPanel{
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 				try{
 					System.out.println(i);
-					new GUIBestellpositionsliste(i);
+					new GUIBestellpositionenBK(i);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
