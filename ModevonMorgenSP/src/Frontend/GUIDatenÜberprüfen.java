@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Bestellverwaltung.BestellStrg;
 import KundenVerwaltung.Bestandskunde;
 import Logverwaltung.LogStrg;
 
@@ -29,6 +30,7 @@ public class GUIDatenÜberprüfen  {
 		panel.setLayout(null);
 		panel.setVisible(true);
 
+		JButton btnWeiter;
 	
 		JLabel lblBestandskundenNummer = new JLabel("Kunden Nummer:");
 		lblBestandskundenNummer.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -131,21 +133,21 @@ public class GUIDatenÜberprüfen  {
 			
 			JOptionPane.showOptionDialog(null, "Änderungen wurden gespeichert","Rechnungsdaten wurden bearbeitet.",
 	                JOptionPane.YES_NO_CANCEL_OPTION,
-	                JOptionPane.WARNING_MESSAGE, null, 
+	                JOptionPane.INFORMATION_MESSAGE, null, 
 	                new String[]{"Ok"}, "Ok"); 	
 			
-			GUI.getFenster().changePanel(GUIKontoVerwalten.getGUIKontoVerwalten());
+		
 			
 			}
 		
 		});
 	
 	
-		btnAnnehmen.setBounds(641, 432, 161, 40);
+		btnAnnehmen.setBounds(641, 432, 145, 40);
 		panel.add(btnAnnehmen);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.setBounds(451, 432, 145, 40);
+		btnAbbrechen.setBounds(851, 432, 145, 40);
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
@@ -156,15 +158,18 @@ public class GUIDatenÜberprüfen  {
 		
 		return panel;
 		
-		JButton btnWeiter = new JButton("Weiter");
-		btnWeiter.setBounds(251, 432, 145, 40);
+		btnWeiter =new JButton ("Bestellung aufgeben");
+		btnWeiter.setBounds(409, 432, 176, 40);
 		btnWeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI.getFenster().changePanel();  //weiter die bestellung anzeigen aus dem warenkorb 
+			BestellStrg.erstelleBestellungBK();
+			JOptionPane.showMessageDialog(null,
+				    "Erfolgreicher Eingang Ihrer Bestellung.");
+			
+		//	MailController.MailSenden.sendMail("Email","Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
+			GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 			}
 		});
 		panel.add(btnWeiter);
 	}
 }
-
-

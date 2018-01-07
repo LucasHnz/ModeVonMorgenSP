@@ -147,9 +147,12 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		}
 	}
 	
-	public static void neuerKunde(int nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, String iban, int berechtigung, String passwort, int pss){
-		
-		Bestandskunde bk = new Bestandskunde( nutzernr, nachname,  vorname, email, straﬂe, ort,plz, iban, berechtigung, passwort,pss);
+	public static void neuerKunde(String nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, String plz, String iban, String berechtigung, String passwort, String pss){
+		int  nutzernr2 = Integer.parseInt(nutzernr);
+		int plz2 = Integer.parseInt(plz);
+		int berechtigung2 = Integer.parseInt(berechtigung);
+		int pss2= Integer.parseInt(pss);
+		Bestandskunde bk = new Bestandskunde( nutzernr2, nachname,  vorname, email, straﬂe, ort,plz2, iban, berechtigung2, passwort,pss2);
 		
 		
 		try {
@@ -158,7 +161,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 			
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehl = "insert into Bestandskunde values ('"+nutzernr+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz+"','"+iban+"','"+berechtigung+"','"+passwort+"','"+pss+"')";
+			String sqlbefehl = "insert into Bestandskunde values ('"+nutzernr2+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz2+"','"+iban+"','"+berechtigung2+"','"+passwort+"','"+pss2+"')";
 			
 			stmt.executeQuery(sqlbefehl);
 			

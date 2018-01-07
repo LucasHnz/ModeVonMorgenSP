@@ -15,6 +15,7 @@ import Artikelverwaltung.Artikelsammlung;
 import Datenbankverwaltung.holeNächsteNummer;
 import Frontend.GUI;
 import Frontend.GUIAnmelden;
+import Frontend.GUIBestandskundeRegistrierung;
 import Frontend.GUIGastkundeErstellen;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
@@ -113,10 +114,10 @@ protected Bestellung bBestellung;
 				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden());
 			}
 			else if(optionPane == 1) {
-			//	GUI.getFenster().changePanel(GUIGastkundeErstellen.getGUIGastkundeErstellen());			Muss noch gemacht werden
+				GUI.getFenster().changePanel(GUIGastkundeErstellen.getGUIGastkundeErstellen());	
 			}
 			else if(optionPane == 2) {
-			//	GUI.getFenster().changePanel(GUIBestandskunde.getGUIBestandskunde());					Muss noch gemacht werden
+			GUI.getFenster().changePanel( GUIBestandskundeRegistrierung.getGUIBestandskundeRegistrierung());			
 			}
 		}
 		else if(LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) {

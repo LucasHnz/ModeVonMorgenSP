@@ -1,19 +1,14 @@
 package Frontend;
 
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.NumberFormat;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,25 +16,19 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
-import KundenVerwaltung.Bestandskunde;
-import KundenVerwaltung.Gastkunde;
-import MitarbeiterVerwaltung.Mitarbeiter;
-
-import Warenkorbverwaltung.Warenkorb;
+import Backend.TextDoc;
 
 
 
-public class GUIGastkundeErstellen  {
-	
-	
-	private static JPanel panelmain;
+public class GUIBestandskundeRegistrierung {
+private static JPanel panelmain;
 	
 	/**
-	 * Anmeldemaske für GK
+	 * Registrierungsmaske für BK
 	 * @return 
 	 * 
 	 */
-	public  static JPanel getGUIGastkundeErstellen()  {
+	public  static JPanel getGUIBestandskundeRegistrierung()  {
 		
 		panelmain = new JPanel();
 		panelmain.setBounds(0, 0, 1250, 750);
@@ -59,11 +48,10 @@ public class GUIGastkundeErstellen  {
 	        plzformat.setMinimumIntegerDigits(1);
 	        NumberFormatter plzformatter = new NumberFormatter(plzformat);
 		
-		JLabel lblGastkundenNummer = new JLabel("Gastkunden Nummer:");
+		JLabel lblGastkundenNummer = new JLabel("Bestandskunden Nummer:");
 		lblGastkundenNummer.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblGastkundenNummer.setBounds(10, 6, 126, 16);
 		panel.add(lblGastkundenNummer);
-		
 		
 		
 		JLabel lblNachname = new JLabel("Nachname:");
@@ -101,12 +89,13 @@ public class GUIGastkundeErstellen  {
 		lblIban.setBounds(10, 170, 126, 16);
 		panel.add(lblIban);
 		
+		
 		JFormattedTextField textField1 = new JFormattedTextField();
-		textField1.setToolTipText("Die Gastkundennummer wurde autogeneriert");
-		textField1.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteMaNr()));
+		textField1.setToolTipText("Die Bestandskunden Nummer wurde autogeneriert");
+		textField1.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteBKundenNr()));
 		textField1.setEditable(false);
-		textField1.setBounds(158, 30, 161, 23);
-		panel.add(textField1);
+		textField1.setBounds(169, 10, 161, 23);
+		panelmain.add(textField1);
 		textField1.setColumns(10);
 		
 		JTextField textField_2 = new JTextField();
@@ -152,6 +141,12 @@ public class GUIGastkundeErstellen  {
 		textField_8.setBounds(158, 170, 161, 23);
 		panel.add(textField_8);
 		
+		JPasswordField textField_9 = new JPasswordField();
+		textField_9.setToolTipText("Hier Bitte das Passwort eingeben");
+		textField_9.setDocument(new TextDoc(16));
+		textField_9.setColumns(10);
+		textField_9.setBounds(169, 210, 161, 23);
+		panel.add(textField_9);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 231, 340, 44);
@@ -168,20 +163,21 @@ public class GUIGastkundeErstellen  {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				String nutzernr =textField1.getText();
+				String nutzernr= textField1.getText();
 				String nachname = textField_2.getText();
 				String vorname = textField_3.getText();
 				String email = textField_4.getText();
 				String straße = textField_5.getText();
 				String ort = textField_6.getText();
 				String plz = textField_7.getText();
-				String berechtigung = "1";
 				String iban= textField_8.getText();
+				String berechtigung = "2";
+				String passwort=textField_9.getText();
+				String pss= "0";
 				
-				
-				KundenVerwaltung.GastkundenStrg.hinzufügenGK(nutzernr, nachname, vorname, email, straße, ort, plz, berechtigung,iban);
+				KundenVerwaltung.BestandskundeStrg.neuerKunde(nutzernr, nachname,  vorname, email, straße, ort,plz, iban, berechtigung, passwort,pss);
 				System.out.println(nutzernr);
-				textField1.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteGKundenNr()));
+				textField1.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteBKundenNr()));
 				textField_2.setText("");
 				textField_3.setText("");
 				textField_4.setText("");
@@ -189,13 +185,15 @@ public class GUIGastkundeErstellen  {
 				textField_6.setText("");
 				textField_7.setText("");
 				textField_8.setText("");
+				textField_9.setText("");
 				
 				
-				JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Gastkunden Erstellung",
+				JOptionPane.showOptionDialog(null, "Sie wurden Registriert! ","Registrierung",
 		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
+		                JOptionPane.INFORMATION_MESSAGE, null, 
 		                new String[]{"Ok"}, "Ok");
 				
+				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Regestrierung","Sehr geehrter Kunde, Vielen Dank für ihre Regestrierung. Viel Spaß beim Einkaufen! ");
 				;
 			}
 			
@@ -229,6 +227,6 @@ public class GUIGastkundeErstellen  {
 	
 	
 	public static void main (String[]args) throws SQLException {
-		new GUIGastkundeErstellen();
+		new GUIBestandskundeRegistrierung();
 	}
 }
