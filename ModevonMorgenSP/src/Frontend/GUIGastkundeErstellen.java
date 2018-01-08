@@ -104,7 +104,7 @@ public class GUIGastkundeErstellen  {
 		
 		JFormattedTextField textField1 = new JFormattedTextField();
 		textField1.setToolTipText("Die Gastkundennummer wurde autogeneriert");
-		textField1.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteMaNr()));
+		textField1.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteGKundenNr()));
 		textField1.setEditable(false);
 		textField1.setBounds(158, 30, 161, 23);
 		panel.add(textField1);
@@ -191,16 +191,17 @@ public class GUIGastkundeErstellen  {
 				textField_7.setText("");
 				textField_8.setText("");
 				
-			/*	JOptionPane.showOptionDialog(null, "Bestätigung! ","Bestätigung",
+				JOptionPane.showOptionDialog(null, "Gastkunde erstellt. ","Bestätigung",
 		                JOptionPane.YES_NO_CANCEL_OPTION,
 		                JOptionPane.INFORMATION_MESSAGE, null, 
-		                new String[]{"Ok"}, "Ok"); */
-			
+		                new String[]{"Ok"}, "Ok"); 
 				
-				BestellStrg.erstelleBestellungGK();  // will nicht funktionieren 
+				
+				
+				BestellStrg.erstelleBestellungGK();  //Methode fixen 
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
-				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
+				GUI.getFenster().changePanel(GUIHomepage.getHomepage()); 
 				;
 			}
 			

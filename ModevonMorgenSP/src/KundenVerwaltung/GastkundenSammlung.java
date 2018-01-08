@@ -15,7 +15,7 @@ public class GastkundenSammlung {
 		
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String befehl = "Select * from Gastkunde";
+		String befehl = "Select * from Gastkunde"; 
 	
 		ResultSet rs = stmt.executeQuery(befehl);
 		

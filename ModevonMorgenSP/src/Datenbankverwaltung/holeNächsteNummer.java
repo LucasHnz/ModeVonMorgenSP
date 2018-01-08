@@ -119,12 +119,12 @@ public class holeNächsteNummer {
 		try {
 			
 			Statement stmt = con.createStatement();
-			String sqlbefehl = "select max(nutzernr) from Gastkunde";
+			String sqlbefehl = "select max(nutzernr) from gastkunde";
 			
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
-				i = rs.getInt("nutzernr");
-				
+				i = rs.getInt(1);
+				System.out.println(i);
 			}
 			
 			stmt.close();

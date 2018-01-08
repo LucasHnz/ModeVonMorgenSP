@@ -20,6 +20,8 @@ import Frontend.GUIGastkundeErstellen;
 import Frontend.GUIHomepage;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
+import KundenVerwaltung.Gastkunde;
+import KundenVerwaltung.GastkundenSammlung;
 import Logverwaltung.LogStrg;
 import Warenkorbverwaltung.Warenkorb;
 /**
@@ -114,7 +116,7 @@ protected Bestellung bBestellung;
 			int optionPane = JOptionPane.showOptionDialog(null, "Für eine Bestellung müssen sie angemeldet sein. Wählen sie aus, wie sie fortfahren wollen.", "Bestellvorgang",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			if(optionPane == 0) {
-				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden());
+				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden()); // nachricht, dass sich kunde erst anmelden soll mit JOptionPane
 			}
 			else if(optionPane == 1) {
 				GUI.getFenster().changePanel( GUIBestandskundeRegistrierung.getGUIBestandskundeRegistrierung());			
@@ -231,19 +233,19 @@ protected Bestellung bBestellung;
 	//Falk
 	public static void erstelleBestellungGK() {						//GK Nummer einfügen, Versandstatus, Rabatt
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
-		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(LogStrg.getNutzerNr());
-		int nrBK = bk.getNutzernr();
-		int nrGK = 0;
-		String iban = bk.getIban();
-		String nachname = bk.getNachname();
-		String vorname = bk.getVorname();
+		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());
+		int nrGK = gk.getNutzernr();
+		int nrBK = 0;
+		String iban = gk.getIban();
+		String nachname = gk.getNachname();
+		String vorname = gk.getVorname();
 		double gesamtpreis = Warenkorb.getGesamtpreis();
 		int erabatt = 0;
 		Date datum = Date.valueOf(LocalDate.now());
 		String versandstatus = "Noch nicht versandt";
-		String rechnungsort = bk.getOrt();
-		String rechnungsstrasse = bk.getStraße();
-		int rechnungsplz = bk.getPlz();
+		String rechnungsort = gk.getOrt();
+		String rechnungsstrasse = gk.getStraße();
+		int rechnungsplz = gk.getPlz();
 
 		Bestellung bestellung = new Bestellung(bestellnr, nrBK, nrGK, iban, nachname, vorname, gesamtpreis, erabatt, datum, versandstatus, rechnungsort, rechnungsstrasse, rechnungsplz);
 		

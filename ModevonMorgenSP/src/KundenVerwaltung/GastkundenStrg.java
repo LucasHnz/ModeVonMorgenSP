@@ -16,7 +16,7 @@ public class GastkundenStrg {
 	
 		//Gastkunde gk = new Gastkunde( nutzernr2, nachname,  vorname, email, straße, ort,plz2, iban, berechtigung2);
 		
-		
+		 
 		
 		
 		
