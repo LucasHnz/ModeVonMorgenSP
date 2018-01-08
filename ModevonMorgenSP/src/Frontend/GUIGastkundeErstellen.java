@@ -24,6 +24,8 @@ import javax.swing.text.NumberFormatter;
 import Bestellverwaltung.BestellStrg;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.Gastkunde;
+import KundenVerwaltung.GastkundenStrg;
+import Logverwaltung.LogStrg;
 import MitarbeiterVerwaltung.Mitarbeiter;
 
 import Warenkorbverwaltung.Warenkorb;
@@ -31,7 +33,9 @@ import Warenkorbverwaltung.Warenkorb;
 
 
 public class GUIGastkundeErstellen  {
-	
+	/**
+	 * @author annag
+	 */
 	
 	private static JPanel panelmain;
 	
@@ -197,8 +201,9 @@ public class GUIGastkundeErstellen  {
 		                new String[]{"Ok"}, "Ok"); 
 				
 				
+				//LogStrg.setAnmeldeStatus(1);
 				
-				BestellStrg.erstelleBestellungGK();  //Methode fixen 
+				BestellStrg.erstelleBestellungGK(nutzernr);  //Methode fixen 
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
 				GUI.getFenster().changePanel(GUIHomepage.getHomepage()); 

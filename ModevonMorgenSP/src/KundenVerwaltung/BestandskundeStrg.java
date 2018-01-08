@@ -148,16 +148,31 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		}
 	}
 	
+	//Anna
+public static void aktualisierePSS(int pss, String nutzernr) {
+		
+		try{
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		
+		String sqlbefehl = "update Bestandskunde set PSS ='"+pss+"' where nutzernr ="+nutzernr;
+		
+		stmt.execute(sqlbefehl)	;
+		
+		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//Anna
 	public static void neuerKunde(String nutzernr, String nachname, String vorname, String email, String straße, String ort, String plz, String iban, String berechtigung, String passwort, String pss){
 		int  nutzernr2 = Integer.parseInt(nutzernr);
 		int plz2 = Integer.parseInt(plz);
 		int berechtigung2 = Integer.parseInt(berechtigung);
 		int pss2= Integer.parseInt(pss);
 		//Bestandskunde bk = new Bestandskunde( nutzernr2, nachname,  vorname, email, straße, ort,plz2, iban, berechtigung2, passwort,pss2);
-		
-		
-		
-		
 		
 		try {
 			
@@ -198,7 +213,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 			e.printStackTrace();
 		}
 	}
-	
+	//Anna -> muss noch in Kontoverwaltung oder?
 	public static void anzeigenPunktestand(int nutzerNr){
 		int kdnr = nutzerNr;
 		try {

@@ -19,7 +19,9 @@ import javax.swing.text.NumberFormatter;
 import Backend.TextDoc;
 import Bestellverwaltung.BestellStrg;
 
-
+/**
+ * @author annag
+ */
 
 public class GUIBestandskundeRegistrierung {
 private static JPanel panelmain;

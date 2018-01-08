@@ -28,7 +28,7 @@ public class LogStrg {
 	public static  void anmelden(String passwort, String email) {
 		try 
 		{
-			
+			 
 			Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Connection con2 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Connection con3 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
