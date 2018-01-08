@@ -127,7 +127,7 @@ public class GUIArtikel implements ActionListener {
 		panel.add(lblArtikelTitel);
 		
 		lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
-		lblArtikelStatus.setBounds(362, 130, 319, 43);
+		lblArtikelStatus.setBounds(362, 100, 319, 43);
 		lblArtikelStatus.setForeground(checkStatus(artikelNummer));
 		panel.add(lblArtikelStatus);
 		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
