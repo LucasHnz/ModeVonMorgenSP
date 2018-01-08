@@ -59,21 +59,17 @@ public class GUIHerrenKleidung {
 	public static void ladeArtikel() {
 	
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Kleidung where geschlecht = 'W' ";	
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()) {
-			System.out.println("2");
 			int artikelnr = rs.getInt("Artikelnr");
 			panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
 			
-			System.out.println("Artikel ist " + artikelnr);
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -88,19 +84,16 @@ public class GUIHerrenKleidung {
 	public static void ladeArtikelJacken() {
 		
 		try {
-			System.out.println("3");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println("2");
 				int artikelnr = rs.getInt("Artikelnr");
 				panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				
 			}
-			System.out.println(anzahlArtikel);
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
@@ -113,7 +106,6 @@ public class GUIHerrenKleidung {
 		
 		
 		try {
-			System.out.println("4");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Kleidung where geschlecht = 'W' and art = 'Hose' ";	
@@ -125,7 +117,6 @@ public class GUIHerrenKleidung {
 				panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel +1;
 			}
-			System.out.println(anzahlArtikel);
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
@@ -231,9 +222,4 @@ public class GUIHerrenKleidung {
 	}
 	
 	
-	public static ImageIcon bildAnpassen(String imageRoot) {
-		
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon(imageRoot).getImage().getScaledInstance(133, 135, Image.SCALE_DEFAULT));
-		return imageIcon;
-	}	
 }

@@ -41,6 +41,8 @@ public class GUIHerrenAccessoires {
 	JButton btnAnmelden = new JButton();
 	static JButton btnAlleArtikel;
 	static JButton btnRinge;
+	static JButton btnArmb‰nder;
+	static JButton btnOhrringe;
 	
 
 	public JFrame frame;
@@ -52,7 +54,6 @@ public class GUIHerrenAccessoires {
 public static void ladeArtikel() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Accessoires where geschlecht = 'M' ";	
@@ -63,9 +64,7 @@ public static void ladeArtikel() {
 			panelHerrenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
 			
-			System.out.println("Artikel ist " + artikelnr);
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -78,7 +77,6 @@ public static void ladeArtikel() {
 	public static void ladeArtikelRinge() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Accessoires where geschlecht = 'M' and art = 'Ring' ";	
@@ -89,9 +87,7 @@ public static void ladeArtikel() {
 			panelHerrenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
 			
-			System.out.println("Artikel ist " + artikelnr);
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -100,6 +96,52 @@ public static void ladeArtikel() {
 		}
 		
 	}
+	
+public static void ladeArtikelArmb‰nder() {
+		
+		try {
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		String sql = "select Artikelnr from Accessoires where geschlecht = 'M' and art = 'Armband'";	
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		while(rs.next()) {
+			int artikelnr = rs.getInt("Artikelnr");
+			panelHerrenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+			anzahlArtikel = anzahlArtikel +1;
+			
+		}
+		rs.close();
+		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+public static void ladeArtikelOhrringe() {
+	
+	try {
+	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+	Statement stmt = con.createStatement();
+	String sql = "select Artikelnr from Accessoires where geschlecht = 'M' and art = 'Ohrring' ";	
+	ResultSet rs = stmt.executeQuery(sql);
+	
+	while(rs.next()) {
+		int artikelnr = rs.getInt("Artikelnr");
+		panelHerrenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+		anzahlArtikel = anzahlArtikel +1;
+		
+	}
+	rs.close();
+	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+	
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	
+}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -137,7 +179,7 @@ public static void ladeArtikel() {
 		panelScrollPaneLinks.add(btnAlleArtikel);
 		
 		
-		btnRinge = new JButton("Stiefel");
+		btnRinge = new JButton("Ringe");
 		btnRinge.setFont(new Font("Lucida Bright", Font.BOLD, 15));
 		btnRinge.setBackground(SystemColor.inactiveCaptionBorder);
 		btnRinge.setBounds(10, 87, 248, 43);
@@ -151,6 +193,33 @@ public static void ladeArtikel() {
 		});
 		panelScrollPaneLinks.add(btnRinge);
 		
+		btnArmb‰nder = new JButton("Armb‰nder");
+		btnArmb‰nder.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnArmb‰nder.setBackground(SystemColor.inactiveCaptionBorder);
+		btnArmb‰nder.setBounds(10, 151, 248, 43);
+		btnArmb‰nder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenAccessoires.removeAll();
+				ladeArtikelArmb‰nder();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnArmb‰nder);
+		
+		btnOhrringe = new JButton("Ohrringe");
+		btnOhrringe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnOhrringe.setBackground(SystemColor.inactiveCaptionBorder);
+		btnOhrringe.setBounds(10, 215, 248, 43);
+		btnOhrringe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelHerrenAccessoires.removeAll();
+				ladeArtikelOhrringe();
+				panelMain.revalidate();
+				panelMain.repaint();
+			}
+		});
+		panelScrollPaneLinks.add(btnOhrringe);
 		
 		
 		

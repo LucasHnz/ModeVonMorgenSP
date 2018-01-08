@@ -52,7 +52,6 @@ public class GUIDamenSchuhe  {
 public static void ladeArtikel() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Schuhe where geschlecht = 'W' ";	
@@ -64,7 +63,6 @@ public static void ladeArtikel() {
 			anzahlArtikel = anzahlArtikel +1;
 	
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -77,7 +75,6 @@ public static void ladeArtikel() {
 public static void ladeArtikelHausschuhe() {
 	
 	try {
-	System.out.println("1");
 	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 	Statement stmt = con.createStatement();
 	String sql = "select Artikelnr from Schuhe where geschlecht = 'W' and art = 'Hausschuh' ";	
@@ -90,7 +87,6 @@ public static void ladeArtikelHausschuhe() {
 		
 		System.out.println("Artikel ist " + artikelnr);
 	}
-	System.out.println(anzahlArtikel);
 	rs.close();
 	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -103,7 +99,6 @@ public static void ladeArtikelHausschuhe() {
 public static void ladeArtikelHighHeels() {
 	
 	try {
-	System.out.println("1");
 	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 	Statement stmt = con.createStatement();
 	String sql = "select Artikelnr from Schuhe where geschlecht = 'W' and art = 'High Heels' ";	
@@ -116,7 +111,6 @@ public static void ladeArtikelHighHeels() {
 		
 		System.out.println("Artikel ist " + artikelnr);
 	}
-	System.out.println(anzahlArtikel);
 	rs.close();
 	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	

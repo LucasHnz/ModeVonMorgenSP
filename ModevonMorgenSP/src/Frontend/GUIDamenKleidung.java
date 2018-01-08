@@ -56,7 +56,6 @@ public class GUIDamenKleidung {
 	public static void ladeArtikel() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Kleidung where geschlecht = 'M'";	
@@ -67,7 +66,6 @@ public class GUIDamenKleidung {
 			panelDamenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -82,7 +80,6 @@ public class GUIDamenKleidung {
 public static void ladeArtikelSchaals() {
 		
 		try {
-		System.out.println("1");
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Kleidung where geschlecht = 'M' and art = 'Schaal'";	
@@ -93,7 +90,6 @@ public static void ladeArtikelSchaals() {
 			panelDamenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -108,7 +104,6 @@ public static void ladeArtikelSchaals() {
 public static void ladeArtikelHosen() {
 	
 	try {
-	System.out.println("1");
 	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 	Statement stmt = con.createStatement();
 	String sql = "select Artikelnr from Kleidung where geschlecht = 'M' and art = 'Hose'";	
@@ -119,7 +114,6 @@ public static void ladeArtikelHosen() {
 		panelDamenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 		anzahlArtikel = anzahlArtikel +1;
 	}
-	System.out.println(anzahlArtikel);
 	rs.close();
 	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	

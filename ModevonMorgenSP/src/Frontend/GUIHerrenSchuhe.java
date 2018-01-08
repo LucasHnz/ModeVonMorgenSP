@@ -69,7 +69,6 @@ public class GUIHerrenSchuhe {
 			
 			System.out.println("Artikel ist " + artikelnr);
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -95,9 +94,7 @@ public class GUIHerrenSchuhe {
 			panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 			anzahlArtikel = anzahlArtikel +1;
 			
-			System.out.println("Artikel ist " + artikelnr);
 		}
-		System.out.println(anzahlArtikel);
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -113,7 +110,6 @@ public class GUIHerrenSchuhe {
 	public static void ladeArtikelSport() {
 	
 		try {
-			System.out.println("1");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Sportschuh' ";	
@@ -124,9 +120,7 @@ public class GUIHerrenSchuhe {
 				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel +1;
 		
-				System.out.println("Artikel ist " + artikelnr);
 			}
-			System.out.println(anzahlArtikel);
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -295,7 +289,6 @@ public class GUIHerrenSchuhe {
 		
 		ladeArtikel();
 		erstelleListe();
-		
 		
 		panelMain.setVisible(true);
 		return panelMain;

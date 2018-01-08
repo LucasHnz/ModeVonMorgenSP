@@ -88,7 +88,6 @@ public static void ladeArtikelKopfschmuck() {
 		panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 		anzahlArtikel = anzahlArtikel +1;
 	}
-	System.out.println(anzahlArtikel);
 	rs.close();
 	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -113,7 +112,6 @@ while(rs.next()) {
 	panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 	anzahlArtikel = anzahlArtikel +1;
 }
-System.out.println(anzahlArtikel);
 rs.close();
 Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -164,7 +162,6 @@ while(rs.next()) {
 	panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 	anzahlArtikel = anzahlArtikel +1;
 }
-System.out.println(anzahlArtikel);
 rs.close();
 Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -179,7 +176,6 @@ GUI.getFenster().repaint();
 public static void ladeArtikelRinge() {
 
 try {
-System.out.println("1");
 Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 Statement stmt = con.createStatement();
 String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ring'";	
@@ -190,7 +186,6 @@ while(rs.next()) {
 	panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 	anzahlArtikel = anzahlArtikel +1;
 }
-System.out.println(anzahlArtikel);
 rs.close();
 Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
