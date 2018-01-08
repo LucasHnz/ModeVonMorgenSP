@@ -17,6 +17,7 @@ import Frontend.GUI;
 import Frontend.GUIAnmelden;
 import Frontend.GUIBestandskundeRegistrierung;
 import Frontend.GUIGastkundeErstellen;
+import Frontend.GUIHomepage;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
 import Logverwaltung.LogStrg;
@@ -105,7 +106,8 @@ protected Bestellung bBestellung;
 	public static void bestellvorgang() {
 		if(LogStrg.getAngemeldetStatus() == 2) {
 			erstelleBestellungBK(); 
-			
+			//MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
+			GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 		}
 		else if(LogStrg.getAngemeldetStatus() == 0) {
 			String[] options = {"Anmelden","Als Kunde registrieren", "Als Gastkunde bestellen"};
