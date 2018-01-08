@@ -104,7 +104,7 @@ protected Bestellung bBestellung;
 	}
 	public static void bestellvorgang() {
 		if(LogStrg.getAngemeldetStatus() == 2) {
-			erstelleBestellungBK();
+			erstelleBestellungBK(); 
 			
 		}
 		else if(LogStrg.getAngemeldetStatus() == 0) {
@@ -115,10 +115,11 @@ protected Bestellung bBestellung;
 				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden());
 			}
 			else if(optionPane == 1) {
-				GUI.getFenster().changePanel(GUIGastkundeErstellen.getGUIGastkundeErstellen());	
+				GUI.getFenster().changePanel( GUIBestandskundeRegistrierung.getGUIBestandskundeRegistrierung());			
 			}
 			else if(optionPane == 2) {
-			GUI.getFenster().changePanel( GUIBestandskundeRegistrierung.getGUIBestandskundeRegistrierung());			
+				GUI.getFenster().changePanel(GUIGastkundeErstellen.getGUIGastkundeErstellen());
+				
 			}
 		}
 		else if(LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) {

@@ -13,8 +13,11 @@ public class GastkundenStrg {
 		int  nutzernr2 = Integer.parseInt(nutzernr);
 		int plz2 = Integer.parseInt(plz);
 		int berechtigung2 = Integer.parseInt(berechtigung);
+	
+		//Gastkunde gk = new Gastkunde( nutzernr2, nachname,  vorname, email, straﬂe, ort,plz2, iban, berechtigung2);
 		
-		Gastkunde gk = new Gastkunde(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2,berechtigung2,iban);
+		
+		
 		
 		
 		try {
@@ -28,14 +31,15 @@ public class GastkundenStrg {
 			stmt.executeQuery(sqlbefehl);
 			
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			GastkundenSammlung.hinzuf¸genGastkunde(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2,berechtigung2, iban);
 			
-			
-			GastkundenSammlung.GastkundenSammlung.put(nutzernr2, gk);
-			
-		}catch (SQLException e) {
-			e.getMessage();
+		}catch (SQLException e) { 
+			e.printStackTrace();
 		}
+		
+		
+		
 	}
-
 }
+
 

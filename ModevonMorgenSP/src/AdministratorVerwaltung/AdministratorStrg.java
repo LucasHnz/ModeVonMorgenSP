@@ -262,7 +262,7 @@ public static void aktualisiereName(String name, int nutzernr){
 			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 			AdministratorSammlung.hinzufügenAdmin(nutzernr2, nachname, vorname, email, straße, ort, plz2, iban, gehalt2, berechtigung2, passwort);
 			
-		}catch (SQLException e) {
+		}catch (SQLException e) { 
 			e.printStackTrace();
 		}
 		

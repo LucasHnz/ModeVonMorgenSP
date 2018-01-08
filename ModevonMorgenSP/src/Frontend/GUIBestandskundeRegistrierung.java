@@ -90,6 +90,11 @@ private static JPanel panelmain;
 		lblIban.setBounds(10, 170, 126, 16);
 		panel.add(lblIban);
 		
+		JLabel lblPasswort = new JLabel("Passwort:");
+		lblPasswort.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPasswort.setBounds(10, 210, 126, 16);
+		panel.add(lblPasswort);
+		
 		
 		JFormattedTextField textField1 = new JFormattedTextField();
 		textField1.setToolTipText("Die Bestandskunden Nummer wurde autogeneriert");
@@ -133,20 +138,20 @@ private static JPanel panelmain;
 		JFormattedTextField textField_7 = new JFormattedTextField(plzformatter);
 		textField_7.setToolTipText("Hier Bitte die PLZ des Wohnorts eintragen");
 		textField_7.setColumns(10);
-		textField_7.setBounds(169, 150, 161, 23);
+		textField_7.setBounds(158, 150, 161, 23);
 		panel.add(textField_7);
 		
 		JTextField textField_8= new JTextField();
 		textField_8.setToolTipText("Hier Bitte die Iban eintragen");
 		textField_8.setColumns(10);
-		textField_8.setBounds(158, 170, 161, 23);
+		textField_8.setBounds(158, 170, 161, 23);   
 		panel.add(textField_8);
 		
 		JPasswordField textField_9 = new JPasswordField();
 		textField_9.setToolTipText("Hier Bitte das Passwort eingeben");
 		textField_9.setDocument(new TextDoc(16));
 		textField_9.setColumns(10);
-		textField_9.setBounds(169, 210, 161, 23);
+		textField_9.setBounds(158, 210, 161, 23);
 		panel.add(textField_9);
 
 		JPanel panel_1 = new JPanel();
@@ -195,9 +200,9 @@ private static JPanel panelmain;
 		                new String[]{"Ok"}, "Ok");
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Regestrierung","Sehr geehrter Kunde, Vielen Dank für ihre Regestrierung. Viel Spaß beim Einkaufen! ");
-				;
 				
-				BestellStrg.erstelleBestellungBK();
+				
+				BestellStrg.erstelleBestellungBK();  //will nciht ab hier
 				
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, /n Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versandt. ");
@@ -220,6 +225,8 @@ private static JPanel panelmain;
 				    "Vorgang wurde abgebrochen",
 				    "Abbruch",
 				    JOptionPane.ERROR_MESSAGE);
+			GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
+			
 							
 		}
 		

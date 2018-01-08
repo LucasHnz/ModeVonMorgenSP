@@ -144,7 +144,7 @@ public class GUIGastkundeErstellen  {
 		JFormattedTextField textField_7 = new JFormattedTextField(plzformatter);
 		textField_7.setToolTipText("Hier Bitte die PLZ des Wohnorts eintragen");
 		textField_7.setColumns(10);
-		textField_7.setBounds(169, 150, 161, 23);
+		textField_7.setBounds(158, 150, 161, 23);
 		panel.add(textField_7);
 		
 		JTextField textField_8= new JTextField();
@@ -191,10 +191,13 @@ public class GUIGastkundeErstellen  {
 				textField_7.setText("");
 				textField_8.setText("");
 				
+			/*	JOptionPane.showOptionDialog(null, "Bestätigung! ","Bestätigung",
+		                JOptionPane.YES_NO_CANCEL_OPTION,
+		                JOptionPane.INFORMATION_MESSAGE, null, 
+		                new String[]{"Ok"}, "Ok"); */
+			
 				
-				
-				
-				BestellStrg.erstelleBestellungGK();
+				BestellStrg.erstelleBestellungGK();  // will nicht funktionieren 
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
 				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
@@ -217,7 +220,7 @@ public class GUIGastkundeErstellen  {
 				    "Vorgang wurde abgebrochen",
 				    "Abbruch",
 				    JOptionPane.ERROR_MESSAGE);
-							
+				GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 		}
 		
 		

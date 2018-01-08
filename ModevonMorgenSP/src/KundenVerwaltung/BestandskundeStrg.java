@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import AdministratorVerwaltung.AdministratorSammlung;
 import Artikelverwaltung.Artikelsammlung;
 
 
@@ -152,7 +153,10 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		int plz2 = Integer.parseInt(plz);
 		int berechtigung2 = Integer.parseInt(berechtigung);
 		int pss2= Integer.parseInt(pss);
-		Bestandskunde bk = new Bestandskunde( nutzernr2, nachname,  vorname, email, straﬂe, ort,plz2, iban, berechtigung2, passwort,pss2);
+		//Bestandskunde bk = new Bestandskunde( nutzernr2, nachname,  vorname, email, straﬂe, ort,plz2, iban, berechtigung2, passwort,pss2);
+		
+		
+		
 		
 		
 		try {
@@ -166,11 +170,12 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 			stmt.executeQuery(sqlbefehl);
 			
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+			BestandskundeSammlung.hinzuf¸genBestandskunde(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2, iban, berechtigung2, passwort,pss2);
 			
-			
-		}catch (SQLException e) {
+		}catch (SQLException e) { 
 			e.printStackTrace();
 		}
+		
 		
 		
 	}
