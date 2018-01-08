@@ -53,6 +53,8 @@ public class GUIArtikel implements ActionListener {
 	static JButton btnWarenkorbHinz;
 	public JPanel panelHerrenKleidung = new JPanel();
 	static JLabel lblZusatz;
+	static JLabel lblPreis;
+	static JLabel lblRabatt;
 
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();
@@ -116,11 +118,30 @@ public class GUIArtikel implements ActionListener {
 		return zusatz;
 	}
 	
+	public static void ladeRabattPreis(int artikelNummer) {
+		double rabatt = Artikelsammlung.getArtikel(artikelNummer).getRabatt();
+		double preis = Artikelsammlung.getArtikel(artikelNummer).getPreis();
+		double rabattPreis = rabatt / 100;
+		double rabattPreis2 = preis * rabattPreis;
+		double neuerPreis = preis - rabattPreis2;
+		
+		if(rabatt == 0) {
+			lblPreis.setText(preis + " €");
+		}
+		if(rabatt > 0) {
+			lblPreis.setText(neuerPreis + " €");
+			lblRabatt.setText("Statt: " + preis + " €");
+			lblRabatt.setForeground(Color.RED);
+		}
+		
+	}
+	
 	
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 	static JPanel getGUIArtikel(int artikelNummer) {
+		
 		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
@@ -152,7 +173,7 @@ public class GUIArtikel implements ActionListener {
 		panel.add(lblArtikelBild);
 		
 		lblArtikelTitel = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
-		lblArtikelTitel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblArtikelTitel.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		lblArtikelTitel.setBounds(362, 11, 319, 49);
 		panel.add(lblArtikelTitel);
 		
@@ -177,7 +198,7 @@ public class GUIArtikel implements ActionListener {
 		
 		
 		spinnerMenge.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spinnerMenge.setBounds(362, 270, 58, 35);
+		spinnerMenge.setBounds(362, 266, 58, 35);
 		panel.add(spinnerMenge);
 		
 		
@@ -192,18 +213,18 @@ public class GUIArtikel implements ActionListener {
 		lblZusatz.setBounds(362, 81, 221, 26);
 		panel.add(lblZusatz);
 		
-		JLabel lblPreis = new JLabel(String.valueOf(Artikelsammlung.getArtikel(artikelNummer).getPreis())+ "€");
+		lblPreis = new JLabel("");
 		lblPreis.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblPreis.setBounds(362, 128, 163, 43);
 		panel.add(lblPreis);
 		
-		JLabel lblRabatt = new JLabel(String.valueOf(Artikelsammlung.getArtikel(artikelNummer).getRabatt())+ "%");
-		lblRabatt.setForeground(Color.RED);
+		lblRabatt = new JLabel("");
+		lblRabatt.setForeground(Color.BLACK);
 		lblRabatt.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblRabatt.setBounds(362, 169, 92, 26);
+		lblRabatt.setBounds(362, 169, 163, 26);
 		panel.add(lblRabatt);
 		
-		
+		ladeRabattPreis(artikelNummer);
 		panelMain.setVisible(true);
 		return panelMain;
 	}
