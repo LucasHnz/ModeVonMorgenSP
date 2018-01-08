@@ -29,7 +29,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.border.LineBorder;
 
+import Artikelverwaltung.Accessoires;
+import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
+import Artikelverwaltung.Kleidung;
+import Artikelverwaltung.Schuhe;
 import Warenkorbverwaltung.Warenkorb;
 
 public class GUIArtikel implements ActionListener {
@@ -48,6 +52,7 @@ public class GUIArtikel implements ActionListener {
 	static JLabel lblArtikelBild;
 	static JButton btnWarenkorbHinz;
 	public JPanel panelHerrenKleidung = new JPanel();
+	static JLabel lblZusatz;
 
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();
@@ -59,6 +64,8 @@ public class GUIArtikel implements ActionListener {
 	
 	static SpinnerNumberModel model = new SpinnerNumberModel(value, min, max, step);
 	static JSpinner spinnerMenge = new JSpinner(model);
+	private static JLabel label;
+	private static JLabel lblNewLabel;
 	
 
 	
@@ -86,6 +93,29 @@ public class GUIArtikel implements ActionListener {
 		return farbe;
 	}
 	
+	public static String zusatzLaden(int artikelNummer) {
+		String zusatz = null;
+		Artikel a = Artikelsammlung.getArtikel(artikelNummer);
+		
+		if(a.getClass().getName().equals("Artikelverwaltung.Schuhe")) {
+			Schuhe s = (Schuhe) a;
+			int x = s.getSchuhgröße();
+			zusatz ="Größe: "+ String.valueOf(x);
+		}
+		if(a.getClass().getName().equals("Artikelverwaltung.Kleidung")) {
+			Kleidung k = (Kleidung) a;
+			String x = k.getGröße();
+			zusatz ="Größe: "+ x;
+		};
+		if(a.getClass().getName().equals("Artikelverwaltung.Accessoires")) {
+			Accessoires ac = (Accessoires) a;
+			String x = ac.getFarbe();
+			zusatz = "Farbe: "+ x;
+		};
+		
+		return zusatz;
+	}
+	
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -98,7 +128,7 @@ public class GUIArtikel implements ActionListener {
 		panelMain.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBorder(null);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(42, 44, 1150, 491);
@@ -113,10 +143,10 @@ public class GUIArtikel implements ActionListener {
 		ImageIcon icon;
 		if(Artikelsammlung.getArtikel(artikelNummer).getImage() != null) {
 			icon = new ImageIcon(Artikelsammlung.getArtikel(artikelNummer).getImage());
-		}
-		else 
+			}
+			else 
 			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
-        Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        	Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         lblArtikelBild.setIcon(new ImageIcon(img));
 		
 		panel.add(lblArtikelBild);
@@ -127,7 +157,7 @@ public class GUIArtikel implements ActionListener {
 		panel.add(lblArtikelTitel);
 		
 		lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
-		lblArtikelStatus.setBounds(362, 100, 319, 43);
+		lblArtikelStatus.setBounds(372, 229, 319, 43);
 		lblArtikelStatus.setForeground(checkStatus(artikelNummer));
 		panel.add(lblArtikelStatus);
 		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
@@ -141,20 +171,37 @@ public class GUIArtikel implements ActionListener {
 				model.setValue(0);
 			}																								
 		});
-		btnWarenkorbHinz.setBounds(430, 230, 153, 35);
+		btnWarenkorbHinz.setBounds(430, 268, 153, 35);
 		panel.add(btnWarenkorbHinz);
 		btnWarenkorbHinz.setBackground(SystemColor.inactiveCaptionBorder);
 		
 		
 		spinnerMenge.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spinnerMenge.setBounds(362, 230, 58, 35);
+		spinnerMenge.setBounds(362, 270, 58, 35);
 		panel.add(spinnerMenge);
 		
 		
 		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getHersteller());
 		lblHersteller.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblHersteller.setBounds(362, 56, 183, 33);
+		lblHersteller.setBounds(362, 51, 183, 33);
 		panel.add(lblHersteller);
+		
+		lblZusatz = new JLabel();
+		lblZusatz.setText(zusatzLaden(artikelNummer));
+		lblZusatz.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblZusatz.setBounds(362, 81, 221, 26);
+		panel.add(lblZusatz);
+		
+		JLabel lblPreis = new JLabel(String.valueOf(Artikelsammlung.getArtikel(artikelNummer).getPreis())+ "€");
+		lblPreis.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblPreis.setBounds(362, 128, 163, 43);
+		panel.add(lblPreis);
+		
+		JLabel lblRabatt = new JLabel(String.valueOf(Artikelsammlung.getArtikel(artikelNummer).getRabatt())+ "%");
+		lblRabatt.setForeground(Color.RED);
+		lblRabatt.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblRabatt.setBounds(362, 169, 92, 26);
+		panel.add(lblRabatt);
 		
 		
 		panelMain.setVisible(true);
