@@ -37,7 +37,7 @@ import Artikelverwaltung.Schuhe;
 import Warenkorbverwaltung.Warenkorb;
 
 public class GUIArtikel implements ActionListener {
-	
+	//ABC
 	
 	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
