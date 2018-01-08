@@ -262,9 +262,9 @@ protected Bestellung bBestellung;
 		
 	}
 	//Falk
-	public static void erstelleBestellungGK( String nutzerNr) {						//GK Nummer einfügen, Versandstatus, Rabatt
+	public static void erstelleBestellungGK( ) {						//GK Nummer einfügen, Versandstatus, Rabatt
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
-		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(nutzerNr);
+		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());
 		int nrGK = gk.getNutzernr();
 		int nrBK = 0;
 		String iban = gk.getIban();
@@ -347,7 +347,7 @@ protected Bestellung bBestellung;
 			
 				
 			KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2);
-			System.out.println("neuer Stand:"+pssNeu);
+			System.out.println("neuer Stand:"+pssNeu);                  
 			}
 			rs1.close();
 			rs.close();
@@ -390,8 +390,8 @@ protected Bestellung bBestellung;
 						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if(frage2 == 0) {
 						double pRabatt=0.05;
-						setzeNeuenPreis(pRabatt,bestellnr); //geht nivht
-						int pssNeu=pss-5;
+						setzeNeuenPreis(pRabatt,bestellnr); 
+						int pssNeu=pss-5;					
 						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); //geht
 						}
 					else if(frage2 == 1) {
@@ -430,30 +430,33 @@ protected Bestellung bBestellung;
 	}
 	
 	//Anna
-		public static void setzeNeuenPreis(double pRabatt, int bestellnr) { //gehtnciht
+		public static void setzeNeuenPreis(double pRabatt, int bestellnr) { 
 			
 			try{
 				Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 				Statement stmt = con.createStatement();
-				Statement stmt2 = con.createStatement();
+				
 				String sqlbefehl ="select gesamtpreis from RechnungBestellung where Bestellnr = '"+bestellnr+"'";
 				stmt.executeQuery(sqlbefehl);
 				ResultSet rs= stmt.executeQuery(sqlbefehl);
-				rs.next();
-				double preis=rs.getDouble("GesamtPreis");
+				Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+				Statement stmt1 = con.createStatement();
+				while(rs.next()) {
+				double preis=rs.getDouble("GesamtPreis");		
 				double rabattEuro=preis*pRabatt;
-				 double neuerPreis=preis-rabattEuro;
-				 
-				 String sqlbefehl1=" update RechnungBestellung set Gesamtpreis ="+neuerPreis+ "where bestellnr ="+bestellnr;
-				 stmt2.executeQuery(sqlbefehl1);
-				 
+				double neuerPreis=preis-rabattEuro;												//reduziert den Preis nicht und zeigt auch nicht das nächste optionPane
 				
-				rs.close();
-				 stmt2.close();
-				 Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+				String sqlbefehl1=" update RechnungBestellung set Gesamtpreis ="+neuerPreis+ "where bestellnr ="+bestellnr;  
+				 stmt1.executeQuery(sqlbefehl1);
+				 
 				 JOptionPane.showMessageDialog(null, "Der Preis wurde geändert auf :"+ neuerPreis, "Rabatt angewendet.", JOptionPane.INFORMATION_MESSAGE);
+				}
+					rs.close();
+				Datenbankverwaltung.VerbindungDB.schließeVerbindung(con1, stmt1);
+				 Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+				 
 				 erstelleBestellungBK();
-				 errechnePunkte(bestellnr);
+				 
 				 
 				}catch(SQLException e) {
 					e.printStackTrace();
@@ -462,7 +465,7 @@ protected Bestellung bBestellung;
 	
 	
 }
-		/*public static void Buttonsichbar(int pss) {
+		/*public static void Buttonsichbar(int pss) {		//notizen
 			boolean sichtbar5;
 			boolean sichtbar10;
 			boolean sichtbar15;
