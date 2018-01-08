@@ -293,6 +293,7 @@ public class GUIArtikelliste extends JPanel {
 		
 		
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
+		btnEditiereArtikel.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnEditiereArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -317,6 +318,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnEditiereArtikel);
 		
 		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
+		btnEntferneArtikel.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnEntferneArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -355,6 +357,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnEntferneArtikel);
 		
 		JButton btnRabatt = new JButton("Rabatt ändern");
+		btnRabatt.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnRabatt.addActionListener(new ActionListener() {
 			final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
@@ -385,6 +388,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnRabatt);
 				
 		JButton btnNotiz = new JButton("Notiz ansehen");
+		btnNotiz.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnNotiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -420,6 +424,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnNotiz);
 			
 		JButton btnBestand = new JButton("Bestand ändern");
+		btnBestand.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnBestand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -450,6 +455,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnBestand);
 		
 		JButton btnArtikelbildHochladen = new JButton("Artikelbild hochladen");
+		btnArtikelbildHochladen.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnArtikelbildHochladen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {

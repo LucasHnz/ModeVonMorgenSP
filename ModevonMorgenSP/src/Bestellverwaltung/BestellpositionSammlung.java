@@ -65,16 +65,10 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 	public static void hinzufügenBestellposition(Bestellposition position) {
 		BestellpositionsSammlung.put(position.getPosNr(), position);
 	}
-	public static void entferneDatenAusListe() {
-		
-		for(Iterator<Integer> it = BestellpositionsSammlung.keySet().iterator(); it.hasNext();) {
-			Integer s = it.next();
-			BestellpositionsSammlung.remove(s);
-			}
-		}
 	public static void fülleMitSpeziellerNummer(int i) {
 	try {
 			
+			clearListe();
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select * from BESTELLPOSITION where Bestellnr = '"+i+"'";
@@ -102,5 +96,8 @@ public static HashMap<Integer,Bestellposition> BestellpositionsSammlung = new Ha
 			e.printStackTrace();
 		}
 		
+	}
+	public static void clearListe() {
+		BestellpositionsSammlung = new HashMap<Integer, Bestellposition>(); 
 	}
 }

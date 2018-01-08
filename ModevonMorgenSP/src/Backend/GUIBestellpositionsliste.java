@@ -252,7 +252,6 @@ public class GUIBestellpositionsliste extends JFrame {
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					BestellpositionSammlung.entferneDatenAusListe();
 					dispose();
 				} catch (ConcurrentModificationException e) {
 					System.out.println(e.getLocalizedMessage());
