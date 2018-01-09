@@ -139,7 +139,7 @@ public class MailSenden {
 				 */
 				@Override
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("modevonmorgen@gmx.de", "passwort");
+					return new PasswordAuthentication("modevonmorgen@gmx.de", "SoftwareprojektWiSe1718");
 				}
 			};
 			return auth;
