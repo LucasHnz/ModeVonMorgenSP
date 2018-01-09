@@ -497,7 +497,7 @@ protected Bestellung bBestellung;
 	
 	
 		//Anna
-		public static void aktualisiereEingRabatt(int eRabatt ,int bestellnr) {
+		public static void aktualisiereEingRabatt(int eRabatt ,int bestellnr) {  // weiﬂ noch nicht wie und wohin damit 
 			
 			try{
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
