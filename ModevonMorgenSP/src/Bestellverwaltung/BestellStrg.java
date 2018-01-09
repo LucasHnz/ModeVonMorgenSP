@@ -124,11 +124,11 @@ protected Bestellung bBestellung;
 			String email=rs1.getString("Email");
 			int pss=rs1.getInt("PSS");
 			if(pss>=5) {
-				abfrageRabatt(pss);							//klappt bis auf die eine Methode
+				abfrageRabatt(pss);							
 				}
 			else {
 			erstelleBestellungBK(); }						//Email wird auch versand!
-			MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
+			MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versandt. ");
 			}
 			rs1.close();
 			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con1, stmt1);
@@ -328,7 +328,7 @@ protected Bestellung bBestellung;
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		    Statement stmt = con.createStatement();
-			String sqlbefehl ="select gesamtpreis from RechnungBestellung where bestellnr = '"+bestellnr+"'";
+			String sqlbefehl ="select Gesamtpreis from RechnungBestellung where bestellnr = '"+bestellnr+"'";
 			stmt.executeQuery(sqlbefehl);
 			ResultSet rs= stmt.executeQuery(sqlbefehl);
 			
@@ -347,7 +347,7 @@ protected Bestellung bBestellung;
 			
 				
 			KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2);
-			System.out.println("neuer Stand:"+pssNeu);                  
+			               
 			}
 			rs1.close();
 			rs.close();
@@ -361,7 +361,7 @@ protected Bestellung bBestellung;
 		}
 		
 	}
-	//Anna                     						//	muss noch wenn nicht genug Punkte vorhanden sind die Buttons ausstellen                             (s.u.)
+	//Anna                     					                   
 	public static void abfrageRabatt(int bestellnr) {
 		try{
 			int nutzernr=LogStrg.getNutzerNr();
@@ -385,27 +385,85 @@ protected Bestellung bBestellung;
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, möglichkeiten, möglichkeiten[0]);
 			
 			if(frage1==0) {
+				if(pss>15) {
 				String[] options = {"5Punkte","10Punkte", "15 Punkte"};
 				int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if(frage2 == 0) {
+						int eRabatt=5;
+						aktualisiereEingRabatt(eRabatt, bestellnr);
 						double pRabatt=0.05;
 						setzeNeuenPreis(pRabatt,bestellnr); 
 						int pssNeu=pss-5;					
-						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); //geht
+						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
+						
 						}
 					else if(frage2 == 1) {
+						int eRabatt=10;
+						aktualisiereEingRabatt(eRabatt, bestellnr);
 						double pRabatt=0.1;
 						setzeNeuenPreis(pRabatt,bestellnr);	
 						int pssNeu=pss-10;
 						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2);
+						
 						}
 					else if(frage2 == 2) {
+						int eRabatt=15;
+						aktualisiereEingRabatt(eRabatt, bestellnr);
 						double pRabatt=0.15;
 						setzeNeuenPreis(pRabatt,bestellnr);
 						int pssNeu=pss-15;
 						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2);
+					
 					}
+				}
+				if(pss<=15 && pss>=10) {
+					String[] options = {"5Punkte","10Punkte"};
+					int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+						if(frage2 == 0) {
+							int eRabatt=5;
+							aktualisiereEingRabatt(eRabatt, bestellnr);
+							double pRabatt=0.05;
+							setzeNeuenPreis(pRabatt,bestellnr); 
+							int pssNeu=pss-5;					
+							KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
+							
+							}
+						else if(frage2 == 1) {
+							int eRabatt=10;
+							aktualisiereEingRabatt(eRabatt, bestellnr);
+							double pRabatt=0.1;
+							setzeNeuenPreis(pRabatt,bestellnr);	
+							int pssNeu=pss-10;
+							KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2);
+							
+							}
+						
+				}
+				if(pss>5) {
+					String[] options = {"5Punkte","Abbruch"};
+					int frage2 = JOptionPane.showOptionDialog(null, "Sie können nur 5Punkte einsetzten. Möchten Sie das? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+						if(frage2 == 0) {
+							int eRabatt=5;
+							aktualisiereEingRabatt(eRabatt, bestellnr);
+							double pRabatt=0.05;
+							setzeNeuenPreis(pRabatt,bestellnr); 
+							int pssNeu=pss-5;					
+							KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
+							
+							}
+						if(frage2==1) {
+							JOptionPane.showMessageDialog(null,
+								    "Vorgang wurde abgebrochen",
+								    "Abbruch",
+								    JOptionPane.ERROR_MESSAGE);
+								GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
+						}
+						
+					
+				}
 					
 				}
 
@@ -430,30 +488,43 @@ protected Bestellung bBestellung;
 	}
 	
 	//Anna
-		public static void setzeNeuenPreis(double pRabatt, int bestellnr) { 
+		public static void setzeNeuenPreis(double pRabatt, int bestellnr) { //geht nicht bzw setzt keinen neuen Preis
 			
 			try{
+				System.out.println(bestellnr);
 				Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 				Statement stmt = con.createStatement();
 				
 				String sqlbefehl ="select gesamtpreis from RechnungBestellung where Bestellnr = '"+bestellnr+"'";
 				stmt.executeQuery(sqlbefehl);
 				ResultSet rs= stmt.executeQuery(sqlbefehl);
-				Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-				Statement stmt1 = con.createStatement();
-				while(rs.next()) {
+				
+				System.out.println(rs.next());
+			
+				if(rs.next()) {						//geht nicht in die Schleife da rs.next =false
+					
 				double preis=rs.getDouble("GesamtPreis");		
 				double rabattEuro=preis*pRabatt;
 				double neuerPreis=preis-rabattEuro;												//reduziert den Preis nicht und zeigt auch nicht das nächste optionPane
-				
-				String sqlbefehl1=" update RechnungBestellung set Gesamtpreis ="+neuerPreis+ "where bestellnr ="+bestellnr;  
-				 stmt1.executeQuery(sqlbefehl1);
+				try{
+					Connection con1 = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+					Statement stmt1 = con1.createStatement();
+					
+					String sqlbefehl1 = "update RechnungBestellung set Gesamtpreis ='"+neuerPreis+"' where bestellnr ="+bestellnr;
+					
+					stmt.execute(sqlbefehl1)	;
+					
+					JOptionPane.showMessageDialog(null, "Der Preis wurde geändert auf :"+ neuerPreis, "Rabatt angewendet.", JOptionPane.INFORMATION_MESSAGE);
+					Datenbankverwaltung.VerbindungDB.schließeVerbindung(con1, stmt1);
+					
+					}catch (SQLException e) {
+						e.printStackTrace();
+					}				
 				 
-				 JOptionPane.showMessageDialog(null, "Der Preis wurde geändert auf :"+ neuerPreis, "Rabatt angewendet.", JOptionPane.INFORMATION_MESSAGE);
-				}
+				}else {System.out.println("Fehler");}
 					rs.close();
-				Datenbankverwaltung.VerbindungDB.schließeVerbindung(con1, stmt1);
-				 Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+
+				Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 				 
 				 erstelleBestellungBK();
 				 
@@ -465,34 +536,21 @@ protected Bestellung bBestellung;
 	
 	
 }
-		/*public static void Buttonsichbar(int pss) {		//notizen
-			boolean sichtbar5;
-			boolean sichtbar10;
-			boolean sichtbar15;
+		//Anna
+		public static void aktualisiereEingRabatt(int eRabatt ,int bestellnr) {
 			
-			if (pss>=5 && pss<10) {
-				sichtbar5=true;
-				sichtbar10=false;
-				sichtbar15=false;
-				
+			try{
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			
+			String sqlbefehl = "update RechnungBestellung set EingesetzterRabatt='"+eRabatt+"' where bestellnr ="+bestellnr;
+			
+			stmt.execute(sqlbefehl)	;  // wird nicht ausgeführt
+			System.out.println(eRabatt);
+			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
 			}
-			if (pss>=10 && pss<15) {
-				sichtbar5=true;
-				sichtbar10=true;
-				sichtbar15=false;
-			}
-			if(pss>=15) {
-				sichtbar5=true;
-				sichtbar10=true;
-				sichtbar15=true;
-			}
-			else {
-				JOptionPane.showMessageDialog(null,
-					    "Abbruch der Bestellung",
-					    "Fehler",
-					    JOptionPane.ERROR_MESSAGE);
-					GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
-				
-			}
-		}*/
+		}
 }

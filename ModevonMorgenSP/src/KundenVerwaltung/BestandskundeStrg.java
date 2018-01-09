@@ -165,6 +165,8 @@ public static void aktualisierePSS(int pss, String nutzernr) {
 			e.printStackTrace();
 		}
 	}
+
+
 	
 	//Anna
 	public static void neuerKunde(String nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, String plz, String iban, String berechtigung, String passwort, String pss){
