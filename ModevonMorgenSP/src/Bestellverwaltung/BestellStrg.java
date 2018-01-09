@@ -127,7 +127,7 @@ protected Bestellung bBestellung;
 					}
 					else {
 						double pRabatt=0.0;
-						erstelleBestellungBK(pRabatt); }						//Email wird auch versand!
+						erstelleBestellungBK(pRabatt); }						
 			MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versandt. ");
 			}
 			rs1.close();
@@ -191,8 +191,6 @@ protected Bestellung bBestellung;
 			ps.executeBatch();
 			JOptionPane.showMessageDialog(null, "Die Bestellung wurde erstellt", "Bestellung erstellt.", JOptionPane.INFORMATION_MESSAGE);
 			errechnePunkte(bestellnr);
-			//int eRabatt=(int) pRabatt*100;
-			//aktualisiereEingRabatt(eRabatt ,bestellnr);
 			Warenkorb.clearWarenkorb();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -250,6 +248,8 @@ protected Bestellung bBestellung;
 			ps.executeUpdate();
 			BestellungSammlung.hinzufügenBestellung(bestellung);
 			erstelleBestellpositionen(bestellnr);
+			int eRabatt=(int) pRabatt*100;
+			aktualisiereEingRabatt(eRabatt ,bestellnr);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -305,6 +305,7 @@ protected Bestellung bBestellung;
 			ps.executeUpdate();
 			BestellungSammlung.hinzufügenBestellung(bestellung);
 			erstelleBestellpositionen(bestellnr);
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -369,13 +370,13 @@ protected Bestellung bBestellung;
 		int nutzernr=LogStrg.getNutzerNr();
 		String nutzernr2=String.valueOf(nutzernr);
 						
-			String[] möglichkeiten = {"Ja","Nein", "Abbruch"};     //geht
-			int frage1 = JOptionPane.showOptionDialog(null, "Sie haben die Möglichkeit Ihre Punkte in einen Rabatt umzutauschen. Möchten sie dies?", "Punkte einlösen",
+			String[] möglichkeiten = {"Ja","Nein", "Abbruch"};     
+			int frage1 = JOptionPane.showOptionDialog(null, "Sie haben die Möglichkeit Ihre Punkte in einen Rabatt umzutauschen.Beim Einlösen von Punkten werden keine Punkte gesammelt!Punkte einlösen?", "Punkte einlösen",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, möglichkeiten, möglichkeiten[0]);
 			
 			if(frage1==0) {
 				if(pss>15) {
-				String[] options = {"5Punkte","10Punkte", "15 Punkte"};				//bei mehr als 10/15 punkten öffnet sich nach der Bestellung noch das eine 5PunkteFenster
+				String[] options = {"5Punkte","10Punkte", "15 Punkte"};	
 				int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if(frage2 == 0) {
@@ -454,7 +455,7 @@ protected Bestellung bBestellung;
 						
 				}
 			
-				if(pss>5) {
+				if(pss>5&&pss<10) {
 					String[] options = {"5Punkte","Abbruch"};
 					int frage2 = JOptionPane.showOptionDialog(null, "Sie können nur 5Punkte einsetzten. Möchten Sie das? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);

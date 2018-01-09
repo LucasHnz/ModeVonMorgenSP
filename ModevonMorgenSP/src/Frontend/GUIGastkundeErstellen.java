@@ -203,7 +203,7 @@ public class GUIGastkundeErstellen  {
 				
 				
 				
-				BestellStrg.erstelleBestellungGK();  //Methode fixen 
+				BestellStrg.erstelleBestellungGK();  //Methode fixen ; muss irgendwie angemeldet bleiben
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
 				GUI.getFenster().changePanel(GUIHomepage.getHomepage()); 
