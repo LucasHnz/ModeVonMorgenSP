@@ -159,7 +159,7 @@ public class GUIGastkundeErstellen extends JPanel {
 		/**
 		 * Button hinzufügen aktzeptiert die Eingabe
 		 */
-		JButton btnBestellen = new JButton("Registrieren");
+		JButton btnBestellen = new JButton("Bestellen");
 		btnBestellen.setFont(new Font("Calibri", Font.BOLD, 14));
 		btnBestellen.addActionListener(new ActionListener() {
 			
@@ -198,7 +198,7 @@ public class GUIGastkundeErstellen extends JPanel {
 				BestellStrg.erstelleBestellungGK(nutzernr2);  //Methode fixen ; muss irgendwie angemeldet bleiben
 				
 				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
-				GUI.getFenster().changePanel(GUIHomepage.getHomepage()); 
+				
 				;
 			}
 			

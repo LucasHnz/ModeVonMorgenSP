@@ -128,7 +128,9 @@ public class GUIKontoBestellungen extends JPanel{
 		JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
 		btnStoniereBestellung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung(nutzernummer);
+				try {
+					final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung(nutzernummer);
+				
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int bestellnr = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr();
 				
@@ -144,7 +146,14 @@ public class GUIKontoBestellungen extends JPanel{
 					JOptionPane.showMessageDialog(null,  "Bestellung wurde storniert!", "Information", JOptionPane.INFORMATION_MESSAGE);
 				}else if(optionPane.equals(1)) {
 					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-				}			
+				}	
+				}catch (ArrayIndexOutOfBoundsException b) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Bestellung stornieren", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+							new String[] { "Ok"}, "Ok");
+					System.out.println("Index Fehler, keine Zeile ausgewählt");
+				}
+				
 				
 			}
 		});

@@ -29,7 +29,7 @@ import Logverwaltung.LogStrg;
 import Warenkorbverwaltung.Warenkorb;
 /**
  * 
- * @author Falk Maoro, Julian, Anna Gross
+ * @author Falk Maoro, Julian, Anna 
  *
  */
 public class BestellStrg {
@@ -146,17 +146,17 @@ protected Bestellung bBestellung;
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			if(optionPane == 0) {
 				JOptionPane.showMessageDialog(null, "Bitte anmelden und Bestellung widerholen", "Bitte anmelden", JOptionPane.INFORMATION_MESSAGE);
-				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden()); 										//klappt
+				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden()); 					//klappt
 			}
 			else if(optionPane == 1) {
-				GUI.getFenster().changePanel(new GUIBestandskundeRegistrierung());	//klappt		
+				GUI.getFenster().changePanel(new GUIBestandskundeRegistrierung());				//klappt		
 			}
 			else if(optionPane == 2) {
 				GUI.getFenster().changePanel(new GUIGastkundeErstellen());						//klappt nicht
 				
 			}
 		}
-		else if(LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) {							//klappt
+		else if(LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) {    //klappt
 			JOptionPane.showMessageDialog(null, "Mitarbeiter können keine Bestellungen tätigen", "Fehler!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -188,6 +188,7 @@ protected Bestellung bBestellung;
 				BestellpositionSammlung.hinzufügenBestellposition(bp);
 				nr = nr +1;
 			}
+			System.out.println("Bestellnr:"+bestellnr+"posnr:"+nr);
 			ps.executeBatch();       //hier der Fehler 
 			JOptionPane.showMessageDialog(null, "Die Bestellung wurde erstellt", "Bestellung erstellt.", JOptionPane.INFORMATION_MESSAGE);
 			errechnePunkte(bestellnr);
@@ -268,6 +269,7 @@ protected Bestellung bBestellung;
 	public static void erstelleBestellungGK( int nutzernr) {						//GK Nummer einfügen, Versandstatus, Rabatt
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(nutzernr);  
+		System.out.println(nutzernr);
 		int nrGK = nutzernr;
 		int nrBK = 0;
 		String iban = gk.getIban();
