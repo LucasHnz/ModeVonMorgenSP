@@ -19,7 +19,7 @@ import Frontend.GUIAnmelden;
 import Frontend.GUIBestandskundeRegistrierung;
 import Frontend.GUIGastkundeErstellen;
 import Frontend.GUIHomepage;
-
+import Frontend.GUIKontoBestellungen;
 import Frontend.GUIWarenkorb;
 import KundenVerwaltung.Bestandskunde;
 import KundenVerwaltung.BestandskundeSammlung;
@@ -149,10 +149,10 @@ protected Bestellung bBestellung;
 				GUI.getFenster().changePanel(GUIAnmelden.getGUIAnmelden()); 										//klappt
 			}
 			else if(optionPane == 1) {
-				GUI.getFenster().changePanel( GUIBestandskundeRegistrierung.getGUIBestandskundeRegistrierung());	//klappt		
+				GUI.getFenster().changePanel(new GUIBestandskundeRegistrierung());	//klappt		
 			}
 			else if(optionPane == 2) {
-				GUI.getFenster().changePanel(GUIGastkundeErstellen.getGUIGastkundeErstellen());						//klappt nicht
+				GUI.getFenster().changePanel(new GUIGastkundeErstellen());						//klappt nicht
 				
 			}
 		}
@@ -188,7 +188,7 @@ protected Bestellung bBestellung;
 				BestellpositionSammlung.hinzufügenBestellposition(bp);
 				nr = nr +1;
 			}
-			ps.executeBatch();
+			ps.executeBatch();       //hier der Fehler 
 			JOptionPane.showMessageDialog(null, "Die Bestellung wurde erstellt", "Bestellung erstellt.", JOptionPane.INFORMATION_MESSAGE);
 			errechnePunkte(bestellnr);
 			Warenkorb.clearWarenkorb();
@@ -249,7 +249,7 @@ protected Bestellung bBestellung;
 			BestellungSammlung.hinzufügenBestellung(bestellung);
 			erstelleBestellpositionen(bestellnr);
 			int eRabatt=(int) pRabatt*100;
-			aktualisiereEingRabatt(eRabatt ,bestellnr);
+			aktualisiereEingRabatt(eRabatt ,bestellnr);		//geht nicht 
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -265,10 +265,10 @@ protected Bestellung bBestellung;
 		
 	}
 	//Falk
-	public static void erstelleBestellungGK( ) {						//GK Nummer einfügen, Versandstatus, Rabatt
+	public static void erstelleBestellungGK( int nutzernr) {						//GK Nummer einfügen, Versandstatus, Rabatt
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
-		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());  // da keine 
-		int nrGK = gk.getNutzernr();
+		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(nutzernr);  
+		int nrGK = nutzernr;
 		int nrBK = 0;
 		String iban = gk.getIban();
 		String nachname = gk.getNachname();
@@ -302,8 +302,8 @@ protected Bestellung bBestellung;
 			ps.setString(12, rechnungsstrasse);
 			ps.setInt(13, rechnungsplz);
 			
-			ps.executeUpdate();
 			BestellungSammlung.hinzufügenBestellung(bestellung);
+			System.out.println("Bestellnr:"+bestellnr+"nutzernr:"+nutzernr);
 			erstelleBestellpositionen(bestellnr);
 			
 		}catch(SQLException e) {
@@ -370,12 +370,12 @@ protected Bestellung bBestellung;
 		int nutzernr=LogStrg.getNutzerNr();
 		String nutzernr2=String.valueOf(nutzernr);
 						
-			String[] möglichkeiten = {"Ja","Nein", "Abbruch"};     
-			int frage1 = JOptionPane.showOptionDialog(null, "Sie haben die Möglichkeit Ihre Punkte in einen Rabatt umzutauschen.Beim Einlösen von Punkten werden keine Punkte gesammelt!Punkte einlösen?", "Punkte einlösen",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, möglichkeiten, möglichkeiten[0]);
+		String[] möglichkeiten = {"Ja","Nein", "Abbruch"};     
+		int frage1 = JOptionPane.showOptionDialog(null, "Sie haben die Möglichkeit Ihre Punkte in einen Rabatt umzutauschen. Beim Einlösen von Punkten werden keine Punkte gesammelt! Punkte einlösen?", "Punkte einlösen",
+					 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, möglichkeiten, möglichkeiten[0]);
 			
-			if(frage1==0) {
-				if(pss>15) {
+		if(frage1==0) {
+			if(pss>15) {
 				String[] options = {"5Punkte","10Punkte", "15 Punkte"};	
 				int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
@@ -422,6 +422,7 @@ protected Bestellung bBestellung;
 						
 					
 					}
+					
 				}
 				if(pss<=15 && pss>=10) {
 					String[] options = {"5Punkte","10Punkte"};
@@ -476,7 +477,7 @@ protected Bestellung bBestellung;
 								    "Vorgang wurde abgebrochen",
 								    "Abbruch",
 								    JOptionPane.ERROR_MESSAGE);
-								GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
+							GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 						}
 					}
 			}

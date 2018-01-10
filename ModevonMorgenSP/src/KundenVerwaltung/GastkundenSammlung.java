@@ -55,7 +55,7 @@ public class GastkundenSammlung {
 	public static Gastkunde getGastkunde(int Nutzernummer) {
 		return GastkundenSammlung.get(Nutzernummer);
 	}
-	public static void removeGastkunde(int Nutzernummer) {    //muss aber nach der Bestellung wieder gelöscht werden bzw nach einer zeit oder gar nicht?
+	public static void removeGastkunde(int Nutzernummer) {    
 		GastkundenSammlung.remove(Nutzernummer);
 	} 
 }
