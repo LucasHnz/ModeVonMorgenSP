@@ -216,8 +216,9 @@ protected Bestellung bBestellung;
 		String nachname = bk.getNachname();
 		String vorname = bk.getVorname();
 		double rSumme=Warenkorb.getGesamtpreis()*pRabatt;
-		double gesamtpreis = Warenkorb.getGesamtpreis()-rSumme;
-		int erabatt = 0;
+		double gesamtpreis = Warenkorb.getGesamtpreis()-rSumme;		//geht
+		int erabattZ= (int)pRabatt*100;  //geht nicht 
+		int erabatt=erabattZ;
 		Date datum = Date.valueOf(LocalDate.now());
 		String versandstatus = "Vorbereitung";
 		String rechnungsort = bk.getOrt();
@@ -248,8 +249,7 @@ protected Bestellung bBestellung;
 			ps.executeUpdate();
 			BestellungSammlung.hinzufügenBestellung(bestellung);
 			erstelleBestellpositionen(bestellnr);
-			int eRabatt=(int) pRabatt*100;
-			aktualisiereEingRabatt(eRabatt ,bestellnr);		//geht nicht 
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -375,9 +375,9 @@ protected Bestellung bBestellung;
 					 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, möglichkeiten, möglichkeiten[0]);
 			
 		if(frage1==0) {
-			if(pss>15) {
+			if(pss>=15) {
 				String[] options = {"5Punkte","10Punkte", "15 Punkte"};	
-				int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
+				int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung. Sie haben "+pss+" Punkte.", "Punkte einlösen",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if(frage2 == 0) {
 				
@@ -387,7 +387,7 @@ protected Bestellung bBestellung;
 						erstelleBestellungBK(pRabatt);
 						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
 						JOptionPane.showMessageDialog(null,
-							    "Preis der Bestellung wurde um 5% reduziert"
+							    "Preis der Bestellung wurde um 5% reduziert. Sie haben nun noch "+pssNeu+" Punkte."
 							    ,"Preis Änderung",
 							    JOptionPane.INFORMATION_MESSAGE);
 						
@@ -401,7 +401,7 @@ protected Bestellung bBestellung;
 						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
 						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2);
 						JOptionPane.showMessageDialog(null,
-							    "Preis der Bestellung wurde um 10% reduziert"
+							    "Preis der Bestellung wurde um 10% reduziert.Sie haben nun noch "+pssNeu+" Punkte."
 							    ,"Preis Änderung",
 							    JOptionPane.INFORMATION_MESSAGE);
 						
@@ -416,7 +416,7 @@ protected Bestellung bBestellung;
 						KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
 						
 						JOptionPane.showMessageDialog(null,
-							    "Preis der Bestellung wurde um 15% reduziert"
+							    "Preis der Bestellung wurde um 15% reduziert.Sie haben nun noch "+pssNeu+" Punkte"
 							    ,"Preis Änderung",
 							    JOptionPane.INFORMATION_MESSAGE);
 						
@@ -426,7 +426,7 @@ protected Bestellung bBestellung;
 				}
 				if(pss<=15 && pss>=10) {
 					String[] options = {"5Punkte","10Punkte"};
-					int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
+					int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlösen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.Sie haben "+pss+ " Punkte.", "Punkte einlösen",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						if(frage2 == 0) {
 	
@@ -436,7 +436,7 @@ protected Bestellung bBestellung;
 							erstelleBestellungBK(pRabatt);
 							KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
 							JOptionPane.showMessageDialog(null,
-								    "Preis der Bestellung wurde um 5% reduziert"
+								    "Preis der Bestellung wurde um 5% reduziert.Sie haben nun noch "+pssNeu+" Punkte"
 								    ,"Preis Änderung",
 								    JOptionPane.INFORMATION_MESSAGE);
 							
@@ -448,7 +448,7 @@ protected Bestellung bBestellung;
 							erstelleBestellungBK(pRabatt);			
 							KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
 							JOptionPane.showMessageDialog(null,
-								    "Preis der Bestellung wurde um 10% reduziert"
+								    "Preis der Bestellung wurde um 10% reduziert.Sie haben nun noch "+pssNeu+" Punkte"
 									,"Preis Änderung",
 								    JOptionPane.INFORMATION_MESSAGE);
 							
@@ -458,7 +458,7 @@ protected Bestellung bBestellung;
 			
 				if(pss>5&&pss<10) {
 					String[] options = {"5Punkte","Abbruch"};
-					int frage2 = JOptionPane.showOptionDialog(null, "Sie können nur 5Punkte einsetzten. Möchten Sie das? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.", "Punkte einlösen",
+					int frage2 = JOptionPane.showOptionDialog(null, "Sie können nur 5Punkte einsetzten. Möchten Sie das? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung. Sie haben "+pss+" Punkte.", "Punkte einlösen",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						if(frage2 == 0) {
 							
@@ -467,7 +467,7 @@ protected Bestellung bBestellung;
 							erstelleBestellungBK(pRabatt);
 							KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
 							JOptionPane.showMessageDialog(null,
-								    "Preis der Bestellung wurde um 5% reduziert"
+								    "Preis der Bestellung wurde um 5% reduziert.Sie haben nun noch "+pssNeu+" Punkte."
 								    ,"Preis Änderung",
 								    JOptionPane.INFORMATION_MESSAGE);
 							
