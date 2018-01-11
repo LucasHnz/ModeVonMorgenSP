@@ -133,7 +133,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 		JTextField textField_3 = new JTextField();
 		textField_3.setToolTipText("Hier Bitte den Vor-Namen eintragen");
-		textField_2.setDocument(new TextDoc(26));
+		textField_3.setDocument(new TextDoc(26));
 		textField_3.setText(admin.getVorname());
 		textField_3.setColumns(10);
 		textField_3.setBounds(158, 51, 161, 23);
