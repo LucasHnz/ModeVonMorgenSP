@@ -125,8 +125,8 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 		JTextField textField_2 = new JTextField();
 		textField_2.setToolTipText("Hier Bitte den Nach-Namen eintragen");
-		textField_2.setText(admin.getNachname());
 		textField_2.setDocument(new TextDoc(26));
+		textField_2.setText(admin.getNachname());
 		textField_2.setColumns(10);
 		textField_2.setBounds(158, 31, 161, 23);
 		panel.add(textField_2);
