@@ -1,6 +1,7 @@
 package Backend;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -167,6 +168,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		 */
 		JButton btnRücksAnnehmen = new JButton("R\u00FCcksendung Annehmen");
 		btnRücksAnnehmen.setBounds(776, 11, 177, 48);
+		btnRücksAnnehmen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -220,6 +222,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		 */
 		JButton btnRücksAblehnen = new JButton("R\u00FCcksendung Ablehnen");
 		btnRücksAblehnen.setBounds(776, 81, 177, 48);
+		btnRücksAblehnen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -249,6 +252,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		 * Button um zum Hauptfenster zurÃ¼ck zu kommen
 		 */
 		JButton btnZurück = new JButton("Beenden");
+		btnZurück.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnZurück.setBounds(776, 149, 177, 48);
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

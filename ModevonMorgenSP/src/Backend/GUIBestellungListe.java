@@ -1,6 +1,7 @@
 package Backend;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -193,6 +194,7 @@ public class GUIBestellungListe extends JPanel {
 		 * Button, der die Bestellpositionsübersicht zu einer speziellen Bestellung anzeigt
 		 */
 		JButton btnBestellungAnzeigen = new JButton("Bestellung anzeigen");
+		btnBestellungAnzeigen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnBestellungAnzeigen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				try {
@@ -216,6 +218,7 @@ public class GUIBestellungListe extends JPanel {
 		 * Button um VStatus zu ändern
 		 */
 		JButton btnÄndernVStatus = new JButton ("Versandstatus Ändern");
+		btnÄndernVStatus.setFont(new Font("Dialog", Font.BOLD, 14));
 			btnÄndernVStatus.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					try {
@@ -254,6 +257,7 @@ public class GUIBestellungListe extends JPanel {
 		add(lblBlöschen);
 		
 		JButton btnNewButton = new JButton("Bestellung löschen");
+		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

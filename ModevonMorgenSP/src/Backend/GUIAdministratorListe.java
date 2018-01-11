@@ -1,6 +1,7 @@
 package Backend;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -192,6 +193,7 @@ public class GUIAdministratorListe extends JPanel {
 		 * Button mit Action Listener um einen Admin hinzuzufügen
 		 */
 		JButton btnNeuerAdministrator = new JButton("Administrator hinzufügen");
+		btnNeuerAdministrator.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnNeuerAdministrator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -210,6 +212,7 @@ public class GUIAdministratorListe extends JPanel {
 		 * Button um einen Admin zu editieren
 		 */
 		JButton btnEditiereAdministrator = new JButton("Administrator editieren");
+		btnEditiereAdministrator.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnEditiereAdministrator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -232,6 +235,7 @@ public class GUIAdministratorListe extends JPanel {
 		 * Button um einen Admin zu löschen
 		 */
 		JButton btnLöscheAdmin = new JButton("Administrator löschen");
+		btnLöscheAdmin.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnLöscheAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 

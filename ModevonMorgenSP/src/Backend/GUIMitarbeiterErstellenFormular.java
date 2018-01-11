@@ -3,6 +3,7 @@ package Backend;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -40,7 +41,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 	 * @throws SQLException
 	 */
 	public GUIMitarbeiterErstellenFormular() throws SQLException {
-		setBounds(200, 100, 365, 315);
+		setBounds(200, 100, 365, 351);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Mitarbeiter Erstellen Formular");
@@ -199,6 +200,16 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		textField_10.setBounds(169, 210, 161, 23);
 		panel.add(textField_10);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(10, 287, 340, 35);
+		contentPane.add(panel_2);
+		setVisible(true);
+		panel_2.setLayout(null);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(53, 0, 242, 19);
+		panel_2.add(progressBar);
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(169, 30, 161, 23);
 		
@@ -270,18 +281,40 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 					textField_8.setText("");
 					textField_9.setText("");
 					textField_10.setText("");
+					
+					Runnable runnable = new Runnable(){
+						public void run(){
+							for (int i = 0; i <= 100; i++) {
+								
+								if (i == 100) {
+									JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Mitarbeiter Erstellung",
+							                JOptionPane.YES_NO_CANCEL_OPTION,
+							                JOptionPane.WARNING_MESSAGE, null, 
+							                new String[]{"Ok"}, "Ok");
+										dispose();
+								}
+								
+								try {
+									Thread.sleep(10);
+								} catch (InterruptedException ex) {
+								}
+								progressBar.setValue(i);
+								progressBar.setStringPainted(true);
+
+							}
+						}
+					};
+					
+					Thread t = new Thread(runnable);
+					t.start();
 				
-					JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Mitarbeiter Erstellung",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok"}, "Ok");
-					dispose();
+					
 			}
 			
 		});
 		btnHinzufgen.setBounds(52, 11, 108, 23);
 		panel_1.add(btnHinzufgen);
-		setVisible(true);
+		
 		
 	}
 	

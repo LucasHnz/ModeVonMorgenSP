@@ -2,6 +2,7 @@ package Backend;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -197,6 +198,7 @@ public class GUIMitarbeiterListe extends JPanel {
 		 * erstell das Pop Up Fenster für eine Mitarbeiter Hinzufügen Operation
 		 */
 		JButton btnNeuerMitarbeiter = new JButton("Mitarbeiter hinzufügen");
+		btnNeuerMitarbeiter.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnNeuerMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -217,6 +219,7 @@ public class GUIMitarbeiterListe extends JPanel {
 		 * Erstellt ein Pop Up Fenster um einen ausgewählten Mitarbeiter zu editieren
 		 */
 		JButton btnEditiereMitarbeiter = new JButton("Mitarbeiter editieren");
+		btnEditiereMitarbeiter.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnEditiereMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -245,6 +248,7 @@ public class GUIMitarbeiterListe extends JPanel {
 		 * löscht einen ausgewählten Mitarbeiter
 		 */
 		JButton btnLöscheMitarbeiter = new JButton("Mitarbeiter löschen");
+		btnLöscheMitarbeiter.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnLöscheMitarbeiter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {

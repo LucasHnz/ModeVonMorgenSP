@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
@@ -34,7 +35,7 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 	 * @throws SQLException
 	 */
 	public GUIAdministratorErstellenFormular() throws SQLException {
-		setBounds(200, 100, 366, 312);
+		setBounds(200, 100, 365, 333);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Administrator Erstellen Formular");
@@ -185,6 +186,15 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(10, 270, 340, 34);
+		getContentPane().add(panel_2);
+		setVisible(true);
+		panel_2.setLayout(null);
+		JProgressBar progressBar = new JProgressBar(10,100);
+		progressBar.setBounds(41, 5, 240, 18);
+		panel_2.add(progressBar);
+		
 		//Button Abbrechen
 		JButton btnNewButton = new JButton("Abbrechen");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -234,26 +244,43 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 				textField_9.setText("");
 				textField_10.setText("");
 				
-				JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Administrator Erstellung",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok"}, "Ok");
+				Runnable runnable = new Runnable(){
+					public void run(){
+						for (int i = 0; i <= 100; i++) {
+							
+							if (i == 100) {
+								JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Administrator Erstellung",
+						                JOptionPane.YES_NO_CANCEL_OPTION,
+						                JOptionPane.WARNING_MESSAGE, null, 
+						                new String[]{"Ok"}, "Ok");
+									dispose();
+							}
+							
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException ex) {
+							}
+							progressBar.setValue(i);
+							progressBar.setStringPainted(true);
+
+						}
+					}
+				};
 				
-				dispose();
+				Thread t = new Thread(runnable);
+				t.start();
 				
 			}
 			
 		});
 		btnHinzufgen.setBounds(39, 12, 108, 23);
 		panel_1.add(btnHinzufgen);
-		setVisible(true);
+		
+		
 		
 	}
 	
 	public static void main (String[]args) throws SQLException {
 		new GUIAdministratorErstellenFormular();
 	}
-	
-	
-
 }
