@@ -43,6 +43,7 @@ public class GUIMitarbeiter{
 	 * Gibt das JPanel für die Mitarbeiterverwaltung zurück. Das Panel hat
 	 * je nachdem, ob ein Administrator oder ein Mitarbeiter eingeloggt ist, 
 	 * angepasste Möglichkeiten.  
+	 * @wbp.parser.entryPoint
 	 */
 	public static JPanel getGUIMitarbeiter() {
 		panel = new JPanel();
@@ -57,16 +58,17 @@ public class GUIMitarbeiter{
 		panel.add(panelMain);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setFont(new Font("Dialog", Font.BOLD, 13));
 		tabbedPane.setBounds(10, 11, 1204, 541);
 		panelMain.add(tabbedPane);
 		
 		tabbedPane.addTab("Artikelverwaltung", new GUIArtikelliste() );
-		tabbedPane.addTab("Bestellungs Liste", new GUIBestellungListe());
+		tabbedPane.addTab("Bestellungen", new GUIBestellungListe());
 		
 		if(LogStrg.getAngemeldetStatus() == 4) {
-			tabbedPane.addTab("Administrator Liste", new GUIAdministratorListe());
+			tabbedPane.addTab("Administratoren", new GUIAdministratorListe());
 			try {
-				tabbedPane.addTab("Mitarbeiter Liste", new GUIMitarbeiterListe());
+				tabbedPane.addTab("Mitarbeiter", new GUIMitarbeiterListe());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

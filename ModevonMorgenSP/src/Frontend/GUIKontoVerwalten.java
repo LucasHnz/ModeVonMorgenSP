@@ -2,6 +2,7 @@ package Frontend;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
@@ -19,12 +20,12 @@ import Logverwaltung.LogStrg;
 public class GUIKontoVerwalten extends JPanel{
 	
 	private static int nutzernummer;
-	private JTextField textField_1;
 	
 	/**
 	 * Zeigt dem Nutzer seine Accountdaten an und lässt ihn seine Daten editieren.
 	 */
 	public GUIKontoVerwalten() {
+		setBackground(Color.DARK_GRAY);
 		setBounds(0, 0, 1248, 563);
 		setLayout(null);
 		nutzernummer = LogStrg.getNutzerNr();
@@ -45,7 +46,7 @@ public class GUIKontoVerwalten extends JPanel{
 				}
 			}
 		});
-		btnKontoLöschen.setFont(new Font("Calibri", Font.BOLD, 15));
+		btnKontoLöschen.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnKontoLöschen.setBackground(Color.WHITE);
 		btnKontoLöschen.setBounds(1023, 504, 215, 48);
 		add(btnKontoLöschen);
@@ -53,47 +54,56 @@ public class GUIKontoVerwalten extends JPanel{
 		
 		
 		JLabel lblBestandskundenNummer = new JLabel("Kunden Nummer:");
-		lblBestandskundenNummer.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblBestandskundenNummer.setForeground(Color.WHITE);
+		lblBestandskundenNummer.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblBestandskundenNummer.setBounds(460, 55, 145, 33);
 		add(lblBestandskundenNummer);
 	
 		JLabel lblNachname = new JLabel("Nachname:");
-		lblNachname.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblNachname.setForeground(Color.WHITE);
+		lblNachname.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblNachname.setBounds(460, 99, 145, 33);
 		add(lblNachname);
 	
 		JLabel lblVorname = new JLabel("Vorname:");
-		lblVorname.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblVorname.setForeground(Color.WHITE);
+		lblVorname.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblVorname.setBounds(460, 143, 145, 33);
 		add(lblVorname);
 	
 		JLabel lblEmailAdresse = new JLabel("E-Mail Adresse:");
-		lblEmailAdresse.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblEmailAdresse.setForeground(Color.WHITE);
+		lblEmailAdresse.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblEmailAdresse.setBounds(460, 187, 145, 33);
 		add(lblEmailAdresse);
 	
 		JLabel lblStraße = new JLabel("Straße:");
-		lblStraße.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblStraße.setForeground(Color.WHITE);
+		lblStraße.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblStraße.setBounds(460, 233, 145, 33);
 		add(lblStraße);
 	
 		JLabel lblOrt = new JLabel("Ort:");
-		lblOrt.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblOrt.setForeground(Color.WHITE);
+		lblOrt.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblOrt.setBounds(460, 275, 145, 33);
 		add(lblOrt);
 	
 		JLabel lblPlz = new JLabel("PLZ:");
-		lblPlz.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblPlz.setForeground(Color.WHITE);
+		lblPlz.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblPlz.setBounds(460, 319, 145, 33);
 		add(lblPlz);
 	
 		JLabel lblIban = new JLabel("IBAN:");
-		lblIban.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblIban.setForeground(Color.WHITE);
+		lblIban.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblIban.setBounds(460, 363, 145, 33);
 		add(lblIban);
 		
 		JLabel lblPasswort = new JLabel("Passwort:");
-		lblPasswort.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblPasswort.setForeground(Color.WHITE);
+		lblPasswort.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblPasswort.setBounds(460, 407, 145, 33);
 		add(lblPasswort);
 		
@@ -184,11 +194,16 @@ public class GUIKontoVerwalten extends JPanel{
 		textField_Passwort.setBounds(650, 407, 161, 33);
 		add(textField_Passwort);
 		
-	
+		Image Annehmen = new ImageIcon("src\\Icons 64x64\\checked.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblAnnehmen = new JLabel(new ImageIcon(Annehmen));
+		lblAnnehmen.setBounds(650, 476, 40, 40);
+		add(lblAnnehmen);
+		
+		
 		JButton btnAnnehmen = new JButton("Speichern");
-		btnAnnehmen.setFont(new Font("Calibri", Font.BOLD, 14));
+		btnAnnehmen.setFont(new Font("Dialog", Font.BOLD, 14));	
 		btnAnnehmen.addActionListener(new ActionListener() {
-			
+		
 		@SuppressWarnings("deprecation")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -234,38 +249,32 @@ public class GUIKontoVerwalten extends JPanel{
 			}
 		
 		});
-	
-		btnAnnehmen.setBounds(650, 476, 161, 40);
+
+		btnAnnehmen.setBounds(700, 476, 111, 40);
 		add(btnAnnehmen);
 		
 		JButton btnAbbrechen = new JButton("Abbrechen");
-		btnAbbrechen.setFont(new Font("Calibri", Font.BOLD, 14));
-		btnAbbrechen.setBounds(460, 476, 145, 40);
+		btnAbbrechen.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnAbbrechen.setBounds(507, 476, 109, 40);
 		btnAbbrechen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUI.getFenster().changePanel(new GUIKontoVerwalten());
 			}
 		});
+		
+		Image Abbrechen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblAbbrechen = new JLabel(new ImageIcon(Abbrechen));
+		lblAbbrechen.setBounds(457, 476, 40, 40);
+		add(lblAbbrechen);
 		add(btnAbbrechen);
-		
-		//Anna 
-		JLabel lblPunktestand = new JLabel("Punktestand:");
-		lblPunktestand.setBounds(900, 233, 120, 33);
+		 
+		JLabel lblPunktestand = new JLabel("Rabattpunkte: " + kunde.getPss());
+		lblPunktestand.setForeground(Color.WHITE);
+		lblPunktestand.setToolTipText("Ihre gesammelten Rabattpunkte. Pro Punkt k\u00F6nnen Sie ein Prozent \nbei ihrer n\u00F6chsten Bestellung sparen.");
+		lblPunktestand.setFont(new Font("Dialog", Font.BOLD, 15));
+		lblPunktestand.setBounds(1056, 54, 161, 35);
 		add(lblPunktestand);
-		
-		String pss=String.valueOf(kunde.getPss());
-		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Calibri", Font.PLAIN, 12));
-		textField_1.setToolTipText("Aktueller Punktestand.");
-		textField_1.setText(pss);
-		textField_1.setEditable(false);
-		textField_1.setBounds(1050, 231, 140, 33);
-		add(textField_1);
-		textField_1.setColumns(10);
-		
-		
-		
+			
 		setVisible(true);
 		
 	}

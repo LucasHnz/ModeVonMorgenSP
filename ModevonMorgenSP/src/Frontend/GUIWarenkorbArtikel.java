@@ -52,7 +52,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		setSize(new Dimension(1124, 100));
 		
 		JSpinner spinnerAnzahl = new JSpinner();
-		spinnerAnzahl.setFont(new Font("Calibri", Font.PLAIN, 13));
+		spinnerAnzahl.setFont(new Font("Dialog", Font.PLAIN, 13));
 		spinnerAnzahl.setBounds(606, 33, 71, 35);
 		spinnerAnzahl.setValue(Anzahl);
 		add(spinnerAnzahl);
@@ -72,12 +72,12 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		add(lblImage);
 		
 		JLabel lblBezeichnung = new JLabel(a.getBezeichnung());
-		lblBezeichnung.setFont(new Font("Calibri", Font.BOLD, 15));
+		lblBezeichnung.setFont(new Font("Dialog", Font.BOLD, 15));
 		lblBezeichnung.setBounds(165, 11, 213, 19);
 		add(lblBezeichnung);
 		
 		JLabel lblEInzelpreis = new JLabel(EinzelpreisString + "€");	
-		lblEInzelpreis.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblEInzelpreis.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblEInzelpreis.setBounds(687, 40, 80, 20);
 		add(lblEInzelpreis);
 		
@@ -93,12 +93,12 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 			case "Nicht mehr Verfügbar":	lblVerfügbarkeit.setForeground(Color.RED);
 											break;
 		}
-		lblVerfügbarkeit.setFont(new Font("Calibri", Font.PLAIN, 14));
+		lblVerfügbarkeit.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblVerfügbarkeit.setBounds(165, 66, 213, 30);
 		add(lblVerfügbarkeit);
 		
 		lblGesamtpreis = new JLabel(Gesamtpreis + "€");  
-		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblGesamtpreis.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblGesamtpreis.setBounds(749, 40, 80, 20);
 		add(lblGesamtpreis);
 		
@@ -107,7 +107,7 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		add(lblHersteller);
 		
 		btnZumArtikel = new JButton("Zum Artikel");
-		btnZumArtikel.setFont(new Font("Calibri", Font.PLAIN, 14));
+		btnZumArtikel.setFont(new Font("Dialog", Font.BOLD, 13));
 		btnZumArtikel.setBackground(Color.WHITE);
 		btnZumArtikel.setBounds(573, 67, 103, 29);
 		btnZumArtikel.addActionListener(this);

@@ -74,8 +74,11 @@ public class GUI extends JFrame {
 			e.printStackTrace();
 		}
 		ArtikelStrg.FülleArtikelsammlung();
+		System.out.println("Artikel geladen");
 		GUIHomepage.fülleArtikelStartseite();
+		System.out.println("Startseite geladen");
 		BestandskundeStrg.FülleBestandskundeSammlung();
+		System.out.println("BK geladen");
 		gui = new GUI();
 		fenster = gui;
 		
@@ -198,12 +201,12 @@ public class GUI extends JFrame {
 		panelLogo.setLayout(null);
 		
 		lblRechte = new JLabel("");
-		lblRechte.setBounds(1040, 68, 172, 20);
+		lblRechte.setBounds(1046, 73, 172, 20);
 		panelLogo.add(lblRechte);
 		lblRechte.setText(LogStrg.getRechte());
-		lblRechte.setForeground(Color.BLUE);
-		lblRechte.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRechte.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRechte.setForeground(Color.BLACK);
+		lblRechte.setHorizontalAlignment(SwingConstants.LEFT);
+		lblRechte.setFont(new Font("Dialog", Font.BOLD, 15));
 		
 		JLabel labelLogo = new JLabel("");
 		labelLogo.setBounds(59, 0, 1248, 99);
@@ -217,7 +220,7 @@ public class GUI extends JFrame {
 		panelBar.setLayout(null);
 		
 		comboBoxDamen = new JComboBox(damenCbList);
-		comboBoxDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		comboBoxDamen.setFont(new Font("Dialog", Font.BOLD, 15));
 		comboBoxDamen.setBackground(SystemColor.control);
 		comboBoxDamen.setBounds(10, 2, 250, 48);
 		comboBoxDamen.addActionListener(new ActionListener(){
@@ -243,7 +246,7 @@ public class GUI extends JFrame {
 		panelBar.add(comboBoxDamen);
 		
 		comboBoxHerren = new JComboBox(herrenCbList);
-		comboBoxHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		comboBoxHerren.setFont(new Font("Dialog", Font.BOLD, 15));
 		comboBoxHerren.setBackground(SystemColor.control);
 		comboBoxHerren.setBounds(270, 2, 250, 48);
 		comboBoxHerren.addActionListener(new ActionListener() {
@@ -273,8 +276,8 @@ public class GUI extends JFrame {
 		panelBar.add(comboBoxHerren);
 		
 		comboBoxAnmelden = new JComboBox(array);
-		comboBoxAnmelden.setBounds(1040, 2, 173, 48);
-		comboBoxAnmelden.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		comboBoxAnmelden.setBounds(1040, 2, 191, 48);
+		comboBoxAnmelden.setFont(new Font("Dialog", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
 		comboBoxAnmelden.addActionListener(new ActionListener() {
 

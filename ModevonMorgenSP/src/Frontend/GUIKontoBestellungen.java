@@ -2,6 +2,7 @@ package Frontend;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Comparator;
@@ -20,6 +21,9 @@ import Bestellverwaltung.BestellStrg;
 import Bestellverwaltung.Bestellung;
 import Bestellverwaltung.BestellungSammlung;
 import Logverwaltung.LogStrg;
+import javax.swing.JLabel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 /**
  * 
  * @author Falk Maoro
@@ -115,6 +119,8 @@ public class GUIKontoBestellungen extends JPanel{
 		
 		myTableModel model = new myTableModel(BestellungSammlung.getBestellungSammlung(nutzernummer), columnNames);
 		table = new JTable(model);
+		table.setRowHeight(18);
+		table.setFont(new Font("Dialog", Font.PLAIN, 14));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		setStructure();
@@ -124,6 +130,11 @@ public class GUIKontoBestellungen extends JPanel{
 		scrollpane.setVisible(true);
 		scrollpane.setViewportView(table);
 		add(scrollpane);
+		
+		Image Storno = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblStorno = new JLabel(new ImageIcon(Storno));
+		lblStorno.setBounds(971, 76, 40, 40);
+		add(lblStorno);
 		
 		JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
 		btnStoniereBestellung.addActionListener(new ActionListener() {
@@ -157,14 +168,20 @@ public class GUIKontoBestellungen extends JPanel{
 				
 			}
 		});
-		btnStoniereBestellung.setFont(new Font("Calibri", Font.BOLD, 15));
+		
+		btnStoniereBestellung.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnStoniereBestellung.setBackground(Color.WHITE);
-		btnStoniereBestellung.setBounds(983, 70, 209, 48);
+		btnStoniereBestellung.setBounds(1029, 70, 187, 48);
 		add(btnStoniereBestellung);
+	
+		Image Anzeigen = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		JLabel lblAnzeigen = new JLabel(new ImageIcon(Anzeigen));
+		lblAnzeigen.setBounds(971, 16, 40, 40);
+		add(lblAnzeigen);
 		
 		JButton btnBestellpos = new JButton("Bestellung anzeigen");
-		btnBestellpos.setFont(new Font("Calibri", Font.BOLD, 15));
-		btnBestellpos.setBounds(983, 11, 209, 48);
+		btnBestellpos.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnBestellpos.setBounds(1029, 11, 187, 48);
 		btnBestellpos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung(nutzernummer);
@@ -178,6 +195,7 @@ public class GUIKontoBestellungen extends JPanel{
 				
 			}
 		});
+		
 		add(btnBestellpos);
 	
 		setVisible(true);

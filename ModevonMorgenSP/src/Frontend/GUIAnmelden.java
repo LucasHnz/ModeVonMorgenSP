@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import Logverwaltung.LogStrg;
+import java.awt.Font;
 
 public class GUIAnmelden {
 	
@@ -23,6 +24,9 @@ public class GUIAnmelden {
 	static String[] anmeldenCbList;
 	public static JPanel panelAnmelden;
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static JPanel getGUIAnmelden() {
 		panelAnmelden = new JPanel();
 		panelAnmelden.setLayout(null);
@@ -31,7 +35,8 @@ public class GUIAnmelden {
 									
 		
 		btnAnmeldenEinloggen = new JButton("Einloggen");
-		btnAnmeldenEinloggen.setBounds(0, 95, 89, 23);
+		btnAnmeldenEinloggen.setFont(new Font("Dialog", Font.BOLD, 11));
+		btnAnmeldenEinloggen.setBounds(0, 95, 95, 23);
 		panelAnmelden.add(btnAnmeldenEinloggen);
 		btnAnmeldenEinloggen.addActionListener(new ActionListener() {
 
@@ -48,7 +53,8 @@ public class GUIAnmelden {
 		//panelAnmelden.getRootPane().setDefaultButton(btnAnmeldenEinloggen);
 			
 		btnAnmeldenAbbrechen = new JButton("Abbrechen");
-		btnAnmeldenAbbrechen.setBounds(105, 95, 89, 23);
+		btnAnmeldenAbbrechen.setFont(new Font("Dialog", Font.BOLD, 11));
+		btnAnmeldenAbbrechen.setBounds(99, 95, 95, 23);
 		btnAnmeldenAbbrechen.addActionListener(new ActionListener() {
 
 			@Override
@@ -60,12 +66,14 @@ public class GUIAnmelden {
 		});
 		panelAnmelden.add(btnAnmeldenAbbrechen);
 		anmeldenEmail = new JTextField();
+		anmeldenEmail.setFont(new Font("Dialog", Font.PLAIN, 11));
 		anmeldenEmail.setToolTipText("Email Adresse");
 		anmeldenEmail.setBounds(10, 11, 174, 28);
 		panelAnmelden.add(anmeldenEmail);
 		anmeldenEmail.setColumns(10);
 			
 		anmeldenPasswort = new JPasswordField();
+		anmeldenPasswort.setFont(new Font("Dialog", Font.PLAIN, 11));
 		anmeldenPasswort.setToolTipText("Passwort");
 		anmeldenPasswort.setBounds(10, 45, 174, 28);
 		panelAnmelden.add(anmeldenPasswort);

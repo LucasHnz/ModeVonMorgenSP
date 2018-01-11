@@ -151,6 +151,9 @@ public class GUIHomepage {
  }
 	
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static JPanel getHomepage() {
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
@@ -158,7 +161,7 @@ public class GUIHomepage {
 		panelMain.setLayout(null);
 		
 		btnProduktDamen = new JButton("Zum Produkt");
-		btnProduktDamen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnProduktDamen.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnProduktDamen.setBackground(Color.WHITE);
 		btnProduktDamen.setForeground(Color.BLACK);
 		btnProduktDamen.setBounds(249, 458, 165, 35);
@@ -181,7 +184,7 @@ public class GUIHomepage {
 		
 		btnProduktHerren = new JButton("Zum Produkt");
 		btnProduktHerren.setBackground(Color.WHITE);
-		btnProduktHerren.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnProduktHerren.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnProduktHerren.setBounds(774, 458, 165, 35);
 		btnProduktHerren.addActionListener(new ActionListener() {
 
@@ -264,6 +267,7 @@ public class GUIHomepage {
 		
 		
 		labelMainDamen = new JLabel();
+		labelMainDamen.setBackground(Color.WHITE);
 		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
@@ -272,6 +276,7 @@ public class GUIHomepage {
 		panelMain.add(labelMainDamen);
 		
 		labelMainHerren = new JLabel("");
+		labelMainHerren.setBackground(Color.WHITE);
 		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainHerren.setBounds(656, 76, 380, 450);

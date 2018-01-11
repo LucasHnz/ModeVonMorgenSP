@@ -21,6 +21,7 @@ import javax.swing.table.TableRowSorter;
 import Artikelverwaltung.Artikelsammlung;
 import Bestellverwaltung.Bestellposition;
 import Bestellverwaltung.BestellpositionSammlung;
+import java.awt.Font;
 
 /**
  * 
@@ -119,6 +120,7 @@ public class GUIBestellpositionenBK  extends JFrame {
 
 		table = new JTable(
 				new myTableModel(BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));
+		table.setFont(new Font("Dialog", Font.PLAIN, 13));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -159,6 +161,7 @@ public class GUIBestellpositionenBK  extends JFrame {
 		
 		
 		JButton btnArtikel = new JButton("Zum Artikel");
+		btnArtikel.setFont(new Font("Dialog", Font.BOLD, 13));
 		btnArtikel.setBounds(776, 11, 177, 48);
 		btnArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -176,7 +179,8 @@ public class GUIBestellpositionenBK  extends JFrame {
 		 * Button um zum Hauptfenster zurÃ¼ck zu kommen
 		 */
 		JButton btnZurück = new JButton("Beenden");
-		btnZurück.setBounds(776, 89, 177, 48);
+		btnZurück.setFont(new Font("Dialog", Font.BOLD, 13));
+		btnZurück.setBounds(776, 70, 177, 48);
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 					dispose();
@@ -195,7 +199,7 @@ public class GUIBestellpositionenBK  extends JFrame {
 		Image Zurück = new ImageIcon("src\\Icons 64x64\\logout.png").getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblZurück = new JLabel(new ImageIcon(Zurück));
-		lblZurück.setBounds(720, 89, 40, 40);
+		lblZurück.setBounds(720, 76, 40, 40);
 		getContentPane().add(lblZurück);
 	}
 

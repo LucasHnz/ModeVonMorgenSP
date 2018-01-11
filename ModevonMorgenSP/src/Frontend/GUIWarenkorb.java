@@ -56,6 +56,7 @@ public class GUIWarenkorb {
 		mainPanel.setBounds(0, 0, 1234, 563);
 		BuildPanel();
 		JButton btnZurKasse = new JButton("Bestellen");
+		btnZurKasse.setFont(new Font("Dialog", Font.BOLD, 13));
 		btnZurKasse.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnZurKasse.addActionListener(new ActionListener() {
 			
@@ -81,7 +82,7 @@ public class GUIWarenkorb {
 		lblGesamtpreis = new JLabel("Gesamtpreis: " +Gesamtpreis + "€");
 		
 		lblGesamtpreis.setBackground(Color.WHITE);
-		lblGesamtpreis.setFont(new Font("Calibri", Font.BOLD, 18));
+		lblGesamtpreis.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblGesamtpreis.setBounds(766, 478, 223, 46);
 		mainPanel.add(lblGesamtpreis);
 		mainPanel.setVisible(true);

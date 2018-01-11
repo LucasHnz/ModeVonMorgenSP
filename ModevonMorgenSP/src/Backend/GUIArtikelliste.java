@@ -230,6 +230,7 @@ public class GUIArtikelliste extends JPanel {
 			
 		model = new myTableModel(Artikelsammlung.getArtikelsammlung(), columnNames);
 		table = new JTable(model);
+		table.setFont(new Font("Dialog", Font.PLAIN, 13));
 		table.setFillsViewportHeight(true);
 		setStructure();
 		
@@ -250,7 +251,7 @@ public class GUIArtikelliste extends JPanel {
 		add(lblNeuerArtikel);
 		
 		
-		Image accessoires = new ImageIcon("src\\Icons 64x64\\glasses.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		Image accessoires = new ImageIcon("src\\Icons 64x64\\glasses.png").getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
 		JButton btnNeuesAccessoir = new JButton(new ImageIcon(accessoires));
 		btnNeuesAccessoir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -258,13 +259,13 @@ public class GUIArtikelliste extends JPanel {
 				accFormular.addWindowListener(formularListener);					
 			}
 		});
-		btnNeuesAccessoir.setBounds(921, 51, 86, 48);
+		btnNeuesAccessoir.setBounds(921, 51, 86, 55);
 		btnNeuesAccessoir.setBorder(BorderFactory.createEmptyBorder());
 		btnNeuesAccessoir.setContentAreaFilled(false);
 		add(btnNeuesAccessoir);
 		
 		
-		Image kleidung = new ImageIcon("src\\Icons 64x64\\t-shirt.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		Image kleidung = new ImageIcon("src\\Icons 64x64\\t-shirt.png").getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
 		JButton btnNeuerKleidungsartikel = new JButton(new ImageIcon(kleidung));
 		btnNeuerKleidungsartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -272,12 +273,12 @@ public class GUIArtikelliste extends JPanel {
 				kleidungFormular.addWindowListener(formularListener);
 			}
 		});
-		btnNeuerKleidungsartikel.setBounds(1013, 51, 86, 48);
+		btnNeuerKleidungsartikel.setBounds(1013, 51, 86, 55);
 		btnNeuerKleidungsartikel.setBorder(BorderFactory.createEmptyBorder());
 		btnNeuerKleidungsartikel.setContentAreaFilled(false);
 		add(btnNeuerKleidungsartikel);
 		
-		Image schuhe = new ImageIcon("src\\Icons 64x64\\shoe.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		Image schuhe = new ImageIcon("src\\Icons 64x64\\shoe.png").getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
 		JButton btnNeuerSchuhartikel = new JButton();
 		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -286,14 +287,14 @@ public class GUIArtikelliste extends JPanel {
 			}
 		});
 		btnNeuerSchuhartikel.setIcon(new ImageIcon(schuhe));
-		btnNeuerSchuhartikel.setBounds(1105, 51, 86, 48);
+		btnNeuerSchuhartikel.setBounds(1105, 51, 86, 55);
 		btnNeuerSchuhartikel.setBorder(BorderFactory.createEmptyBorder());
 		btnNeuerSchuhartikel.setContentAreaFilled(false);
 		add(btnNeuerSchuhartikel);
 		
 		
 		JButton btnEditiereArtikel = new JButton("Artikel editieren");
-		btnEditiereArtikel.setFont(new Font("Dialog", Font.PLAIN, 14));
+		btnEditiereArtikel.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnEditiereArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -318,7 +319,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnEditiereArtikel);
 		
 		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
-		btnEntferneArtikel.setFont(new Font("Dialog", Font.PLAIN, 14));
+		btnEntferneArtikel.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnEntferneArtikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -357,7 +358,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnEntferneArtikel);
 		
 		JButton btnRabatt = new JButton("Rabatt ändern");
-		btnRabatt.setFont(new Font("Dialog", Font.PLAIN, 14));
+		btnRabatt.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRabatt.addActionListener(new ActionListener() {
 			final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
@@ -388,7 +389,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnRabatt);
 				
 		JButton btnNotiz = new JButton("Notiz ansehen");
-		btnNotiz.setFont(new Font("Dialog", Font.PLAIN, 14));
+		btnNotiz.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnNotiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -424,7 +425,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnNotiz);
 			
 		JButton btnBestand = new JButton("Bestand ändern");
-		btnBestand.setFont(new Font("Dialog", Font.PLAIN, 14));
+		btnBestand.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnBestand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -455,7 +456,7 @@ public class GUIArtikelliste extends JPanel {
 		add(btnBestand);
 		
 		JButton btnArtikelbildHochladen = new JButton("Artikelbild hochladen");
-		btnArtikelbildHochladen.setFont(new Font("Dialog", Font.PLAIN, 14));
+		btnArtikelbildHochladen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnArtikelbildHochladen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
