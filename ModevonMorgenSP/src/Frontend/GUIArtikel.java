@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -55,6 +56,7 @@ public class GUIArtikel implements ActionListener {
 	static JLabel lblZusatz;
 	static JLabel lblPreis;
 	static JLabel lblRabatt;
+	static String status;
 
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();
@@ -76,8 +78,20 @@ public class GUIArtikel implements ActionListener {
 	 * @return 
 	 * 
 	 */
+	
+	public static void bestellungFehlermeldung() {
+		
+		JOptionPane.showOptionDialog(null, "Der Artikel ist leider nicht mehr auf Lager",
+				"Bestellung",
+				JOptionPane.YES_NO_CANCEL_OPTION,
+				JOptionPane.WARNING_MESSAGE,
+				null,
+				new String[] {"Erneut versuchen"}, "");
+		
+	}
+
 	public static Color checkStatus(int artikelNummer) {
-		String status = Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit();
+		status = Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit();
 		Color farbe = null;
 		
 		if(status.equals("Sofort lieferbar")){
@@ -187,9 +201,16 @@ public class GUIArtikel implements ActionListener {
 		btnWarenkorbHinz = new JButton("In den Warenkorb");
 		btnWarenkorbHinz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(status.equals("Nicht mehr Verfügbar")) {
+					bestellungFehlermeldung();
+				}
+				
+				if(!(status.equals("Nicht mehr Verfügbar"))) {
 				int anzahlArtikel = model.getNumber().intValue();
 				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), anzahlArtikel);
 				model.setValue(0);
+				}
 			}																								
 		});
 		btnWarenkorbHinz.setBounds(430, 268, 153, 35);
