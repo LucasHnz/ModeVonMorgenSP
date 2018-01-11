@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import Artikelverwaltung.Artikelsammlung;
 
 import javax.swing.JTextField;
+import java.awt.Font;
 /**
  * 
  * @author Falk Maoro
@@ -51,25 +52,30 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 
 		btnDurchsuchen = new JButton("Durchsuchen...");
+		btnDurchsuchen.setFont(new Font("Dialog", Font.PLAIN, 11));
 		btnDurchsuchen.setBounds(235, 11, 107, 23);
 		contentPane.add(btnDurchsuchen);
 		btnDurchsuchen.addActionListener(this);
 
 		btnAbbrechen = new JButton("Abbrechen");
+		btnAbbrechen.setFont(new Font("Dialog", Font.PLAIN, 11));
 		btnAbbrechen.setBounds(235, 47, 107, 23);
 		contentPane.add(btnAbbrechen);
 		btnAbbrechen.addActionListener(this);
 		
 		tfDatei = new JTextField();
+		tfDatei.setFont(new Font("Dialog", Font.PLAIN, 11));
 		tfDatei.setBounds(47, 12, 178, 20);
 		contentPane.add(tfDatei);
 		tfDatei.setColumns(10);
 		
 		JLabel lblDatei = new JLabel("Datei:");
+		lblDatei.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblDatei.setBounds(10, 15, 46, 14);
 		contentPane.add(lblDatei);
 		
 		btnHochladen = new JButton("Hochladen");
+		btnHochladen.setFont(new Font("Dialog", Font.PLAIN, 11));
 		btnHochladen.setBounds(136, 47, 89, 23);
 		btnHochladen.addActionListener(this);
 		contentPane.add(btnHochladen);
