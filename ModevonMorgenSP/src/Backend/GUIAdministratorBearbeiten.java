@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
@@ -203,11 +204,23 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(10, 270, 340, 34);
+		panel_2.setVisible(false);
+		getContentPane().add(panel_2);
+		panel_2.setVisible(false);
+		panel_2.setLayout(null);
+		JProgressBar progressBar = new JProgressBar(10,100);
+		panel_2.add(progressBar);
+		
 		JButton btnAnnehmen = new JButton("Annehmen");
 		btnAnnehmen.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
+				setBounds(200, 100, 354, 338);
+				panel_2.setVisible(true);
 				
 				if(textField_2.getText() != admin.getNachname()) {
 					AdministratorVerwaltung.AdministratorStrg.aktualisiereName(textField_2.getText(),admin.getNutzernr());

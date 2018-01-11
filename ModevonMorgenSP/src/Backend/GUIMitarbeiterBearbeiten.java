@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
@@ -225,6 +226,15 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(10, 270, 340, 34);
+		panel_2.setVisible(false);
+		getContentPane().add(panel_2);
+		panel_2.setVisible(false);
+		panel_2.setLayout(null);
+		JProgressBar progressBar = new JProgressBar(10,100);
+		panel_2.add(progressBar);
+		
 		/**
 		 * Aktzeptiert die Änderungen
 		 */
@@ -233,6 +243,8 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				
+				setBounds(200, 100, 365, 349);
+				panel_2.setVisible(true);
 				if(textField_2.getText() != ma.getNachname()) {
 				
 					MitarbeiterVerwaltung.MitarbeiterStrg.aktualisiereName(textField_2.getText(),ma.getNutzernr());
@@ -272,12 +284,31 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 					MitarbeiterVerwaltung.MitarbeiterStrg.aktualisierePasswort(textField_10.getText(), ma.getNutzernr());
 				}
 				
-				JOptionPane.showOptionDialog(null, "Datensatz wurde bearbeitet","Mitarbeiter Bearbeitung",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok"}, "Ok");  
+				Runnable runnable = new Runnable(){
+					public void run(){
+						for (int i = 0; i <= 100; i++) {
+							
+							if (i == 100) {
+								JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Administrator Erstellung",
+						                JOptionPane.YES_NO_CANCEL_OPTION,
+						                JOptionPane.WARNING_MESSAGE, null, 
+						                new String[]{"Ok"}, "Ok");
+									dispose();
+							}
+							
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException ex) {
+							}
+							progressBar.setValue(i);
+							progressBar.setStringPainted(true);
+
+						}
+					}
+				};
 				
-				dispose();
+				Thread t = new Thread(runnable);
+				t.start();
 				
 				
 			}

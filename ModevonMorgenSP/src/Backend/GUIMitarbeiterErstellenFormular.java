@@ -256,6 +256,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 			
 			{
 				
+				try {
 					setBounds(200, 100, 365, 351);
 					panel_2.setVisible(true);
 					
@@ -312,6 +313,12 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 					t.start();
 				
 					
+			}catch (NumberFormatException r) {
+				JOptionPane.showOptionDialog(null, "Bitte alle Pflichtfelder vollständig ausfüllen","Administrator Erstellung",
+		                JOptionPane.YES_NO_CANCEL_OPTION,
+		                JOptionPane.WARNING_MESSAGE, null, 
+		                new String[]{"Ok"}, "Ok");
+				}
 			}
 			
 		});

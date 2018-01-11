@@ -35,7 +35,7 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 	 * @throws SQLException
 	 */
 	public GUIAdministratorErstellenFormular() throws SQLException {
-		setBounds(200, 100, 365, 333);
+		setBounds(200, 100, 365, 299);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Administrator Erstellen Formular");
@@ -188,6 +188,7 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(10, 270, 340, 34);
+		panel_2.setVisible(false);
 		getContentPane().add(panel_2);
 		setVisible(true);
 		panel_2.setLayout(null);
@@ -217,6 +218,9 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 			
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
+				try {
+				setBounds(200, 100, 365,  333);
+				panel_2.setVisible(true);
 				
 				String nutzernr =textField.getText();
 				String nachname = textField_2.getText();
@@ -270,9 +274,14 @@ public class GUIAdministratorErstellenFormular extends JFrame {
 				Thread t = new Thread(runnable);
 				t.start();
 				
+			}catch ( NumberFormatException r) {
+				JOptionPane.showOptionDialog(null, "Bitte alle Pflichtfelder vollständig ausfüllen","Administrator Erstellung",
+		                JOptionPane.YES_NO_CANCEL_OPTION,
+		                JOptionPane.WARNING_MESSAGE, null, 
+		                new String[]{"Ok"}, "Ok");
 			}
 			
-		});
+		}});
 		btnHinzufgen.setBounds(39, 12, 108, 23);
 		panel_1.add(btnHinzufgen);
 		
