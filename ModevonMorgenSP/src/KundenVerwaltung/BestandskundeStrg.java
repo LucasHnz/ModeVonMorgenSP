@@ -215,24 +215,24 @@ public static void aktualisierePSS(int pss, String nutzernr) {
 			e.printStackTrace();
 		}
 	}
-	//Anna -> muss noch in Kontoverwaltung oder?
-	public static void anzeigenPunktestand(int nutzerNr){
-		int kdnr = nutzerNr;
-		try {
 
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			
-			Statement stmt = con.createStatement();
-			
-			String sqlbefehel ="select PSS from Bestandskunde where nutzerNr = '"+kdnr+"'";
-			
-			stmt.executeQuery(sqlbefehel);
-			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
-			
-		}catch (SQLException e) {
-			e.printStackTrace();
+	public static void anzeigenPunktestand(int nutzerNr){
+			int kdnr = nutzerNr;
+			try {
+
+				Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+				
+				Statement stmt = con.createStatement();
+				
+				String sqlbefehel ="select PSS from Bestandskunde where nutzerNr = '"+kdnr+"'";
+				
+				stmt.executeQuery(sqlbefehel);
+				Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-	}
 	//Falk
 	public static void FülleBestandskundeSammlung() {
 		Connection con = null;

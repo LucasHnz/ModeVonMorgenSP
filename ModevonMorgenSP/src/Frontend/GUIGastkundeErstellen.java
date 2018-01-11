@@ -206,7 +206,9 @@ public class GUIGastkundeErstellen extends JPanel {
 		btnBestellen.setBounds(650, 476, 161, 40);
 		add(btnBestellen);
 		
-		
+		/**
+		 * Button abbrechen, unterbricht die Erstellung eines GK
+		 */
 	
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Calibri", Font.BOLD, 14));

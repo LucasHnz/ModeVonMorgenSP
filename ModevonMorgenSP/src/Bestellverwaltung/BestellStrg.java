@@ -324,6 +324,11 @@ protected Bestellung bBestellung;
 	}
 	
 	//Anna
+	/**
+	 * 
+	 * @param bestellnr
+	 * berechnet die gesammelten Punkte einer Bestellung
+	 */
 	public static void errechnePunkte(int bestellnr) {  //geht nur wenn man keinen Rabatt einlöst 
 		
 		try {
@@ -366,7 +371,12 @@ protected Bestellung bBestellung;
 		}
 		
 	}
-	//Anna                     					                   
+	//Anna        
+	/**
+	 * 
+	 * @param pss
+	 * Wenn die Möglichkeit besteht Punkte in Rabatt einzulösen wird gefragt wie viele Punkte eingelöst werden sollen und die Punkte werden reduziert
+	 */
 	public static void abfrageRabatt(int pss) {
 		
 		int nutzernr=LogStrg.getNutzerNr();

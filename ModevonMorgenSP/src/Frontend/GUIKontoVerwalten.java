@@ -19,6 +19,7 @@ import Logverwaltung.LogStrg;
 public class GUIKontoVerwalten extends JPanel{
 	
 	private static int nutzernummer;
+	private JTextField textField_1;
 	
 	/**
 	 * Zeigt dem Nutzer seine Accountdaten an und l‰sst ihn seine Daten editieren.
@@ -73,7 +74,7 @@ public class GUIKontoVerwalten extends JPanel{
 	
 		JLabel lblStraﬂe = new JLabel("Straﬂe:");
 		lblStraﬂe.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblStraﬂe.setBounds(460, 231, 145, 33);
+		lblStraﬂe.setBounds(460, 233, 145, 33);
 		add(lblStraﬂe);
 	
 		JLabel lblOrt = new JLabel("Ort:");
@@ -246,6 +247,24 @@ public class GUIKontoVerwalten extends JPanel{
 			}
 		});
 		add(btnAbbrechen);
+		
+		//Anna 
+		JLabel lblPunktestand = new JLabel("Punktestand:");
+		lblPunktestand.setBounds(900, 233, 120, 33);
+		add(lblPunktestand);
+		
+		String pss=String.valueOf(kunde.getPss());
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Calibri", Font.PLAIN, 12));
+		textField_1.setToolTipText("Aktueller Punktestand.");
+		textField_1.setText(pss);
+		textField_1.setEditable(false);
+		textField_1.setBounds(1050, 231, 140, 33);
+		add(textField_1);
+		textField_1.setColumns(10);
+		
+		
 		
 		setVisible(true);
 		
