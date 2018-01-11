@@ -42,7 +42,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		System.out.println(admin.getNachname());
 	
 		
-		setBounds(200, 100, 354, 304);
+		setBounds(200, 100, 365, 299);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Administrator Bearbeiten Formular");
@@ -210,9 +210,10 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		panel_2.setBounds(10, 270, 340, 34);
 		panel_2.setVisible(false);
 		getContentPane().add(panel_2);
-		panel_2.setVisible(false);
+		setVisible(true);
 		panel_2.setLayout(null);
 		JProgressBar progressBar = new JProgressBar(10,100);
+		progressBar.setBounds(41, 5, 240, 18);
 		panel_2.add(progressBar);
 		
 		JButton btnAnnehmen = new JButton("Annehmen");
@@ -221,7 +222,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				setBounds(200, 100, 354, 338);
+				setBounds(200, 100, 365,  333);
 				panel_2.setVisible(true);
 				
 				if(textField_2.getText() != admin.getNachname()) {
@@ -256,10 +257,34 @@ public class GUIAdministratorBearbeiten extends JFrame {
 					AdministratorVerwaltung.AdministratorStrg.aktualisierePasswort(textField_10.getText(), admin.getNutzernr());
 				}
 				
-				JOptionPane.showOptionDialog(null, "Datensatz wurde bearbeitet","Administrator Bearbeitung",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.WARNING_MESSAGE, null, 
-		                new String[]{"Ok"}, "Ok");  
+				Runnable runnable = new Runnable(){
+					public void run(){
+						
+						for (int i = 0; i <= 100; i++) {
+							
+							if (i == 100) {
+								JOptionPane.showOptionDialog(null, "Datensatz wurde erstellt","Administrator Erstellung",
+						                JOptionPane.YES_NO_CANCEL_OPTION,
+						                JOptionPane.WARNING_MESSAGE, null, 
+						                new String[]{"Ok"}, "Ok");
+									dispose();
+							}
+							
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException ex) {
+							}
+							progressBar.setValue(i);
+							progressBar.setStringPainted(true);
+
+						}
+					}
+				};
+				
+				Thread t = new Thread(runnable);
+				t.start();
+				
+		
 				
 				String nutzernr =textField.getText();
 				String nachname = textField_2.getText();
@@ -277,7 +302,6 @@ public class GUIAdministratorBearbeiten extends JFrame {
 				
 				Administrator admin = new Administrator(Integer.parseInt(nutzernr), nachname, vorname, email, straße, ort,Integer.parseInt( plz), iban, Integer.parseInt(gehalt), Integer.parseInt(berechtigung), passwort);
 				//AdministratorSammlung.put(Integer.parseInt(nutzernr),admin);
-				dispose();
 				
 			}
 		

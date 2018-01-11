@@ -1,6 +1,8 @@
 package Backend;
 
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -50,7 +52,7 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 		
 		Mitarbeiter ma = Datenbankverwaltung.HoleDatenSatz.holeMitarbeiter(nutzernr);
 		
-		setBounds(200, 100, 365, 315);
+		setBounds(200, 100, 365, 316);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Mitarbeiter Erstellen Formular");
@@ -227,12 +229,14 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 		panel_1.setLayout(null);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 270, 340, 34);
 		panel_2.setVisible(false);
-		getContentPane().add(panel_2);
-		panel_2.setVisible(false);
+		panel_2.setBounds(10, 287, 340, 35);
+		add(panel_2);
+		setVisible(true);
 		panel_2.setLayout(null);
-		JProgressBar progressBar = new JProgressBar(10,100);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(53, 0, 242, 19);
 		panel_2.add(progressBar);
 		
 		/**
@@ -243,8 +247,9 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				setBounds(200, 100, 365, 349);
+				setBounds(200, 100, 365, 351);
 				panel_2.setVisible(true);
+				
 				if(textField_2.getText() != ma.getNachname()) {
 				
 					MitarbeiterVerwaltung.MitarbeiterStrg.aktualisiereName(textField_2.getText(),ma.getNutzernr());
@@ -313,7 +318,7 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 				
 			}
 		});
-		btnNewButton.setBounds(31, 11, 126, 23);
+		btnNewButton.setBounds(29, 11, 126, 23);
 		panel_1.add(btnNewButton);
 		
 		/**
