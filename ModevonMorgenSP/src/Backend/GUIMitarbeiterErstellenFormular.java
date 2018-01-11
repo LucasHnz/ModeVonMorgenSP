@@ -41,7 +41,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 	 * @throws SQLException
 	 */
 	public GUIMitarbeiterErstellenFormular() throws SQLException {
-		setBounds(200, 100, 365, 351);
+		setBounds(200, 100, 365, 316);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setTitle("Mitarbeiter Erstellen Formular");
@@ -201,6 +201,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		panel.add(textField_10);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setVisible(false);
 		panel_2.setBounds(10, 287, 340, 35);
 		contentPane.add(panel_2);
 		setVisible(true);
@@ -255,7 +256,9 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 			
 			{
 				
-				
+					setBounds(200, 100, 365, 351);
+					panel_2.setVisible(true);
+					
 					String nutzernr =textField.getText();
 					String admin = String.valueOf(comboBox.getSelectedItem());
 					String nachname = textField_2.getText();
