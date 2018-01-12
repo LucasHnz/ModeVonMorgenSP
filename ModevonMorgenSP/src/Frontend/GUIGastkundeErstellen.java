@@ -23,6 +23,9 @@ import javax.swing.text.NumberFormatter;
 
 import Backend.TextDoc;
 import Bestellverwaltung.BestellStrg;
+import KundenVerwaltung.Gastkunde;
+import KundenVerwaltung.GastkundenSammlung;
+import Logverwaltung.LogStrg;
 
 
 
@@ -31,7 +34,6 @@ public class GUIGastkundeErstellen extends JPanel {
 	/**
 	 * @author annag
 	 */
-	
 	
 	
 	/**
@@ -176,28 +178,25 @@ public class GUIGastkundeErstellen extends JPanel {
 				String berechtigung = "1";
 				
 				
+				int nutzernr2=Integer.parseInt(nutzernr);
+				
 				KundenVerwaltung.GastkundenStrg.hinzufügenGK(nutzernr, nachname, vorname, email, straße, ort, plz, berechtigung,iban);
-				System.out.println(nutzernr);
-				textField.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteGKundenNr()));
-				textField_Nachname.setText("");
-				textField_Vorname.setText("");
-				textField_Mail.setText("");
-				textField_Straße.setText("");
-				textField_Ort.setText("");
-				textField_PLZ.setText("");
-				textField_IBAN.setText("");
+				Gastkunde gk= GastkundenSammlung.getGastkundenSammlung().get(nutzernr2);
+				GastkundenSammlung.fülleGastkundenListe();
 				
 				
-				JOptionPane.showOptionDialog(null, "Gastkunde erstellt. ","Bestätigung",
-		                JOptionPane.YES_NO_CANCEL_OPTION,
-		                JOptionPane.INFORMATION_MESSAGE, null, 
-		                new String[]{"Ok"}, "Ok"); 
+				JOptionPane.showMessageDialog(null,
+					    "Gastkunde erstellt",
+					    "Gastkunden Erstellung",
+					    JOptionPane.INFORMATION_MESSAGE);
 				
-				int nutzernr2=Integer.parseInt(nutzernr);	
-				System.out.println("Nutzernr="+nutzernr2);
-				BestellStrg.erstelleBestellungGK(nutzernr2);  //Methode fixen ; muss irgendwie angemeldet bleiben
 				
-				MailController.MailSenden.sendMail(email,"Bestätigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versand. ");
+				
+				LogStrg.setNutzerNr(nutzernr2);
+				LogStrg.setAnmeldeStatus(1);
+				LogStrg.setRecht("Gastkunde");
+				
+				GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 				
 				;
 			}

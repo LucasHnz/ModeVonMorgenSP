@@ -13,51 +13,81 @@ import java.util.HashMap;
 
 public class GastkundenSammlung {
 	
- static HashMap<Integer, Gastkunde> GastkundenSammlung = new HashMap<Integer, Gastkunde>();
-	
-	public static void gastkundenSammlung() throws SQLException {
+	static HashMap<Integer, Gastkunde> GastkundenListe = new HashMap<Integer, Gastkunde>();
+	/**
+	 * Füllt die Static HashMap GastkundenListe mit den Values aus der Datenbank
+	 * 
+	 */
+	public static void fülleGastkundenListe()  {
 		
-		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-		Statement stmt = con.createStatement();
-		String befehl = "Select * from Gastkunde"; 
-	
-		ResultSet rs = stmt.executeQuery(befehl);
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String befehl = "Select * from Gastkunde";
 		
-		while (rs.next()) {
-			
-			int nutzernr = rs.getInt("Nutzernr");
-			String nachname = rs.getString("Nachname");
-			String vorname = rs.getString("Vorname");
-			String email = rs.getString("Email");
-			String straße = rs.getString("Straße");
-			String ort = rs.getString("Ort");
-			int plz = rs.getInt("Plz");
-			int berechtigung = rs.getInt("Berechtigung");
-			String iban =rs.getString("iban");
-			
-			
-			Gastkunde gk = new Gastkunde (nutzernr, nachname, vorname, email, straße, ort, plz,berechtigung,iban);
-			
-			GastkundenSammlung.put(gk.getNutzernr(), gk);
+			ResultSet rs = stmt.executeQuery(befehl);
 		
+		
+		
+			while (rs.next()) {
+				int nutzernr = rs.getInt("Nutzernr");
+				String nachname = rs.getString("Nachname");
+				String vorname = rs.getString("Vorname");
+				String email = rs.getString("Email");
+				String straße = rs.getString("Straße");
+				String ort = rs.getString("Ort");
+				int plz = rs.getInt("Plz");
+				String iban = rs.getString("IBAN");
+				int berechtigung = rs.getInt("Berechtigung");
+			
+				Gastkunde gk = new Gastkunde(nutzernr, nachname, vorname, email, straße, ort, plz, berechtigung, iban);
+			
+				GastkundenListe.put(gk.getNutzernr(), gk);
+			}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
-		
-	}
 	
+	/**
+	 * 
+	 * @return GastkundenListe
+	 */
 	public static HashMap<Integer,Gastkunde> getGastkundenSammlung(){
-		return GastkundenSammlung;
+		return GastkundenListe;
 	}
 	
-	public static void hinzufügenGastkunde(int nutzernr, String nachname, String vorname, String email, String Straße, String ort, int plz, int berechtigung,String iban) {
-		Gastkunde gk = new Gastkunde(nutzernr, nachname, vorname, email, Straße, ort, plz, berechtigung,iban);
-		GastkundenSammlung.put(nutzernr, gk);
+
+	
+	/**
+	 * Holt genau einen Gastkunden aus der Liste
+	 * @param Adminnr
+	 * @return Administrator
+	 */
+	public static Gastkunde getGastkunde(int nutzernr) {
+		return GastkundenListe.get(nutzernr);
 	}
-	public static Gastkunde getGastkunde(int Nutzernummer) {
-		return GastkundenSammlung.get(Nutzernummer);
+	
+	public static void removeGastkunde(int nr) {
+		GastkundenListe.remove(nr);
 	}
-	public static void removeGastkunde(int Nutzernummer) {    
-		GastkundenSammlung.remove(Nutzernummer);
-	} 
+	
+	/**
+	 * Fügt der Datenbank einen neuen Gastkunde hinzu
+	 * 
+	 * @param nutzernr
+	 * @param nachname
+	 * @param vorname
+	 * @param email
+	 * @param straße
+	 * @param ort
+	 * @param plz
+	 * @param iban
+	 * @param berechtigung
+	 */
+	public static void hinzufügenGastkunde(int nutzernr, String nachname , String vorname, String email, String straße, String ort, int plz,  int berechtigung, String iban) {
+		Gastkunde gk = new Gastkunde(nutzernr,nachname,  vorname,email, straße,  ort,plz,berechtigung,iban);
+		GastkundenListe.put(nutzernr, gk);
+		}
 }
-
-
