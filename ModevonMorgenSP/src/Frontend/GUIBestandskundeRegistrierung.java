@@ -224,7 +224,7 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 	                JOptionPane.INFORMATION_MESSAGE, null, 
 	                new String[]{"Ok"}, "Ok");
 			
-			MailController.MailSenden.sendMail(email,"Bestätigung ihrer Regestrierung","Sehr geehrter Kunde, Vielen Dank für ihre Regestrierung. Viel Spaß beim Einkaufen! ");
+			MailController.MailSenden.sendMail(email,"Bestätigung ihrer Registrierung","Sehr geehrter Kunde, Vielen Dank für ihre Registrierung. Viel Spaß beim Einkaufen! ");
 			
 			JOptionPane.showOptionDialog(null, "Bitte noch einmal anmelden und bestellen. ","Bestätigung",
 	                JOptionPane.YES_NO_CANCEL_OPTION,

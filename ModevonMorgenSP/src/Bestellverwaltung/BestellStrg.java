@@ -13,7 +13,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 import Artikelverwaltung.Artikelsammlung;
-import Datenbankverwaltung.holeN√§chsteNummer;
+import Datenbankverwaltung.holeN‰chsteNummer;
 import Frontend.GUI;
 import Frontend.GUIAnmelden;
 import Frontend.GUIBestandskundeRegistrierung;
@@ -56,34 +56,14 @@ protected Bestellung bBestellung;
 			
 			BestellungSammlung.BestellungSammlung.remove(bestellnr);
 			
-			Datenbankverwaltung.VerbindungDB.schlie√üeVerbindung(con, stmt);
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
 			}catch (SQLException e) {
 				e.getMessage();
 			}
 		}
 	
-	//Julian aber funktioniert nicht so wie ich will  		
-		//Wof√ºr der String return?
-	/**
-		public static String √§ndereVersandstatus(String versandStatus, int bestellNr) {
-			try{
-				Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-				Statement stmt = con.createStatement();
-				
-				String sqlbefehl = "update RechnungBestellung set versandStatus ='"+versandStatus+"' where bestellNr ="+bestellNr;
-				
-				stmt.execute(sqlbefehl)	;
-				
-				Datenbankverwaltung.VerbindungDB.schlie√üeVerbindung(con, stmt);
-				
-				return sqlbefehl ;
-				}catch (SQLException e) {
-					e.getMessage();
-				}
-			
-			}
-**/
+
 	
 	//Julian
 	public static void aktualisiereVStatus(int i){
@@ -98,7 +78,7 @@ protected Bestellung bBestellung;
 		
 		stmt.executeQuery(sqlbefehl);
 		
-		Datenbankverwaltung.VerbindungDB.schlie√üeVerbindung(con, stmt);
+		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		b.setVersandstatus("Zugestellt");
 		
@@ -126,8 +106,8 @@ protected Bestellung bBestellung;
 			int optionPane = JOptionPane.showOptionDialog(null, "F√ºr eine Bestellung m√ºssen sie angemeldet sein. W√§hlen sie aus, wie sie fortfahren wollen.", "Bestellvorgang",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			if(optionPane == 0) {
-				JOptionPane.showMessageDialog(null, "Bitte anmelden und Bestellung widerholen", "Bitte anmelden", JOptionPane.INFORMATION_MESSAGE);
-				GUI.getFenster().√∂ffnenAnmeldefenster();					//klappt
+				JOptionPane.showMessageDialog(null, "Bitte anmelden und Bestellung wiederholen", "Bitte anmelden", JOptionPane.INFORMATION_MESSAGE);
+				GUI.getFenster().ˆffnenAnmeldefenster();					//klappt
 			}
 			else if(optionPane == 1) {
 				GUI.getFenster().changePanel(new GUIBestandskundeRegistrierung());				//klappt		
@@ -141,12 +121,12 @@ protected Bestellung bBestellung;
 				Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());
 				String email=gk.getEmail();
 				erstelleBestellungGK();
-				MailController.MailSenden.sendMail(email,"Best√§tigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank f√ºr ihre Bestellung. Ihre Bestellung wird in K√ºrze bearbeitet und in 5-7 Werktagen versandt. ");
+				MailController.MailSenden.sendMail(email,"Best‰tigung ihrer Bestellung","Sehr geehrter Kunde, Vielen Dank f¸r ihre Bestellung. Ihre Bestellung wird in K¸rze bearbeitet und in 5-7 Werktagen versandt. ");
 				
 			}
 		
 		else if(LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) {    //klappt
-			JOptionPane.showMessageDialog(null, "Mitarbeiter k√∂nnen keine Bestellungen t√§tigen", "Fehler!", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Mitarbeiter kˆnnen keine Bestellungen t‰tigen", "Fehler!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	//Falk
@@ -159,22 +139,22 @@ protected Bestellung bBestellung;
 			ps = con.prepareStatement("insert into Bestellposition values(?,?,?,?,?,?)");
 	
 			Integer[] keys = warenkorbMap.keySet().toArray(new Integer[warenkorbMap.keySet().size()]);
-			int nr = holeN√§chsteNummer.n√§chsteBestellPosNr();
+			int nr = holeN‰chsteNummer.n‰chsteBestellPosNr();
 			for (int i = 0; i < keys.length; i++) {
 				int artikelnummer = keys[i];
 				int menge = warenkorbMap.get(keys[i]);
 				double preis = Artikelsammlung.getArtikel(artikelnummer).getPreis() * (100-Artikelsammlung.getArtikel(artikelnummer).getRabatt()) * 0.01 * menge;
-				String r√ºcksendung = "Keine R√ºcksendung";
+				String r¸cksendung = "Keine R¸cksendung";
 				ps.setInt(1, nr);
 				ps.setInt(2, bestellnr);
 				ps.setInt(3, artikelnummer);
 				ps.setDouble(4, preis);
 				ps.setInt(5, menge);
-				ps.setString(6, r√ºcksendung);
+				ps.setString(6, r¸cksendung);
 				ps.addBatch();
 				
-				Bestellposition bp = new Bestellposition(nr, bestellnr, artikelnummer, menge, preis, r√ºcksendung);
-				BestellpositionSammlung.hinzuf√ºgenBestellposition(bp);
+				Bestellposition bp = new Bestellposition(nr, bestellnr, artikelnummer, menge, preis, r¸cksendung);
+				BestellpositionSammlung.hinzuf¸genBestellposition(bp);
 				nr = nr +1;
 			}
 			System.out.println("Bestellnr:"+bestellnr+"posnr:"+nr);
@@ -198,7 +178,7 @@ protected Bestellung bBestellung;
 	}
 	//Falk
 	public static void erstelleBestellungBK(int pRabatt) {			//Versandstatus, Rabatt			evtl. commit und rollback, damit entweder alles, oder gar nichts gespeichert wird.
-		int bestellnr = Datenbankverwaltung.holeN√§chsteNummer.n√§chsteBestellNr();
+		int bestellnr = Datenbankverwaltung.holeN‰chsteNummer.n‰chsteBestellNr();
 		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(LogStrg.getNutzerNr());
 		int nrBK = bk.getNutzernr();
 		int nrGK = 0;
@@ -211,7 +191,7 @@ protected Bestellung bBestellung;
 		Date datum = Date.valueOf(LocalDate.now());
 		String versandstatus = "Vorbereitung";
 		String rechnungsort = bk.getOrt();
-		String rechnungsstrasse = bk.getStra√üe();
+		String rechnungsstrasse = bk.getStraﬂe();
 		int rechnungsplz = bk.getPlz();
 
 		Bestellung bestellung = new Bestellung(bestellnr, nrBK, nrGK, iban, nachname, vorname, gesamtpreis, erabatt, datum, versandstatus, rechnungsort, rechnungsstrasse, rechnungsplz);
@@ -236,7 +216,7 @@ protected Bestellung bBestellung;
 			ps.setInt(13, rechnungsplz);
 			
 			ps.executeUpdate();
-			BestellungSammlung.hinzuf√ºgenBestellung(bestellung);
+			BestellungSammlung.hinzuf¸genBestellung(bestellung);
 			erstelleBestellpositionen(bestellnr);
 			
 		}catch(SQLException e) {
@@ -255,7 +235,7 @@ protected Bestellung bBestellung;
 	}
 	//Falk
 	public static void erstelleBestellungGK( ) {						//GK Nummer einf√ºgen, Versandstatus, Rabatt
-		int bestellnr = Datenbankverwaltung.holeN√§chsteNummer.n√§chsteBestellNr();
+		int bestellnr = Datenbankverwaltung.holeN‰chsteNummer.n‰chsteBestellNr();
 		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());  
 		
 		int nrGK = LogStrg.getNutzerNr();
@@ -268,7 +248,7 @@ protected Bestellung bBestellung;
 		Date datum = Date.valueOf(LocalDate.now());
 		String versandstatus = "Vorbereitung";
 		String rechnungsort = gk.getOrt();
-		String rechnungsstrasse = gk.getStra√üe();
+		String rechnungsstrasse = gk.getStraﬂe();
 		int rechnungsplz = gk.getPlz();
 
 		Bestellung bestellung = new Bestellung(bestellnr, nrBK, nrGK, iban, nachname, vorname, gesamtpreis, erabatt, datum, versandstatus, rechnungsort, rechnungsstrasse, rechnungsplz);
@@ -293,7 +273,7 @@ protected Bestellung bBestellung;
 			ps.setInt(13, rechnungsplz);
 			
 			ps.executeUpdate();				//geht nicht
-			BestellungSammlung.hinzuf√ºgenBestellung(bestellung);
+			BestellungSammlung.hinzuf¸genBestellung(bestellung);
 			erstelleBestellpositionen(bestellnr);
 			
 		}catch(SQLException e) {
@@ -343,7 +323,7 @@ protected Bestellung bBestellung;
 	/**
 	 * 
 	 * @param pss
-	 * Wenn die M√∂glichkeit besteht Punkte in Rabatt einzul√∂sen wird gefragt wie viele Punkte eingel√∂st werden sollen und die Punkte werden reduziert
+	 * Wenn die Mˆglichkeit besteht Punkte in Rabatt einzulˆsen wird gefragt wie viele Punkte eingelˆst werden sollen und die Punkte werden reduziert
 	 */
 	public static int abfrageRabatt() {
 		int nutzernr=LogStrg.getNutzerNr();
@@ -353,14 +333,14 @@ protected Bestellung bBestellung;
 		int pRabatt=0;
 		int pssNeu=pss;
 		if (pss>5) {
-		String[] m√∂glichkeiten = {"Ja","Nein", "Abbruch"};     
-		int frage1 = JOptionPane.showOptionDialog(null, "Sie haben die M√∂glichkeit Ihre Punkte in einen Rabatt umzutauschen. Beim Einl√∂sen von Punkten werden keine Punkte gesammelt! Punkte einl√∂sen?", "Punkte einl√∂sen",
-					 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, m√∂glichkeiten, m√∂glichkeiten[0]);
+		String[] mˆglichkeiten = {"Ja","Nein", "Abbruch"};     
+		int frage1 = JOptionPane.showOptionDialog(null, "Sie haben die Mˆglichkeit Ihre Punkte in einen Rabatt umzutauschen.Punkte einlˆsen?", "Punkte einlˆsen",
+					 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, mˆglichkeiten, mˆglichkeiten[0]);
 			
 		if(frage1==0) {
 			if(pss>=15) {
 				String[] options = {"5Punkte","10Punkte", "15 Punkte"};	
-				int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einl√∂sen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung. Sie haben "+pss+" Punkte.", "Punkte einl√∂sen",
+				int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einl√∂sen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung. Sie haben "+pss+" Punkte.", "Punkte einlˆsen",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if(frage2 == 0) {
 				
@@ -384,14 +364,14 @@ protected Bestellung bBestellung;
 						}
 					JOptionPane.showMessageDialog(null,
 						    "Preis der Bestellung wurde um "+pRabatt+" % reduziert.Sie haben nun noch "+pssNeu+" Punkte"
-							,"Preis √Ñnderung",
+							,"Preis ƒnderung",
 						    JOptionPane.INFORMATION_MESSAGE);
 					GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 					
 				}
 				if(pss<=15 && pss>=10) {
 					String[] options = {"5Punkte","10Punkte"};
-					int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einl√∂sen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.Sie haben "+pss+ " Punkte.", "Punkte einl√∂sen",
+					int frage2 = JOptionPane.showOptionDialog(null, "Wie viele Punkte wollen Sie einlˆsen? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung.Sie haben "+pss+ " Punkte.", "Punkte einlˆsen",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						if(frage2 == 0) {
 	
@@ -406,14 +386,14 @@ protected Bestellung bBestellung;
 								}
 						JOptionPane.showMessageDialog(null,
 							    "Preis der Bestellung wurde um "+pRabatt+" % reduziert.Sie haben nun noch "+pssNeu+" Punkte"
-								,"Preis √Ñnderung",
+								,"Preis ƒnderung",
 							    JOptionPane.INFORMATION_MESSAGE);
 						GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 						}
 				
 				if(pss>5&&pss<10) {
 					String[] options = {"5Punkte","Abbruch"};
-					int frage2 = JOptionPane.showOptionDialog(null, "Sie k√∂nnen nur 5Punkte einsetzten. M√∂chten Sie das? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung. Sie haben "+pss+" Punkte.", "Punkte einl√∂sen",
+					int frage2 = JOptionPane.showOptionDialog(null, "Sie kˆnnen nur 5Punkte einsetzten. Mˆchten Sie das? 1 Punkt entspricht 1% Rabatt auf die gesamte Bestellung. Sie haben "+pss+" Punkte.", "Punkte einlˆsen",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 						if(frage2 == 0) {
 							
@@ -422,7 +402,7 @@ protected Bestellung bBestellung;
 							KundenVerwaltung.BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2); 
 							JOptionPane.showMessageDialog(null,
 								    "Preis der Bestellung wurde um 5% reduziert.Sie haben nun noch "+pssNeu+" Punkte."
-								    ,"Preis √Ñnderung",
+								    ,"Preis ƒnderung",
 								    JOptionPane.INFORMATION_MESSAGE);
 							GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 							}
