@@ -182,6 +182,7 @@ public class GUIGastkundeErstellen extends JPanel {
 				
 				KundenVerwaltung.GastkundenStrg.hinzufügenGK(nutzernr, nachname, vorname, email, straße, ort, plz, berechtigung,iban);
 				Gastkunde gk= GastkundenSammlung.getGastkundenSammlung().get(nutzernr2);
+
 				GastkundenSammlung.fülleGastkundenListe();
 				
 				
@@ -189,9 +190,6 @@ public class GUIGastkundeErstellen extends JPanel {
 					    "Gastkunde erstellt",
 					    "Gastkunden Erstellung",
 					    JOptionPane.INFORMATION_MESSAGE);
-				
-				
-				
 				LogStrg.setNutzerNr(nutzernr2);
 				LogStrg.setAnmeldeStatus(1);
 				LogStrg.setRecht("Gastkunde");
