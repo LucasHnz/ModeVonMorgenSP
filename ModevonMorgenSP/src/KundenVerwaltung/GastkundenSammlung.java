@@ -15,7 +15,7 @@ public class GastkundenSammlung {
 	
 	static HashMap<Integer, Gastkunde> GastkundenListe = new HashMap<Integer, Gastkunde>();
 	/**
-	 * Füllt die Static HashMap GastkundenListe mit den Values aus der Datenbank
+	 * Füllt die Static HashMap GastkundenListe mit den Werten aus der Datenbank
 	 * 
 	 */
 	public static void fülleGastkundenListe()  {
@@ -62,13 +62,16 @@ public class GastkundenSammlung {
 	
 	/**
 	 * Holt genau einen Gastkunden aus der Liste
-	 * @param Adminnr
-	 * @return Administrator
+	 * @param Gastkundennr
+	 * @return Gastkunde
 	 */
 	public static Gastkunde getGastkunde(int nutzernr) {
 		return GastkundenListe.get(nutzernr);
 	}
-	
+	/**
+	 * Löscht den Gastkunden aus der Liste
+	 * @param nr
+	 */
 	public static void removeGastkunde(int nr) {
 		GastkundenListe.remove(nr);
 	}

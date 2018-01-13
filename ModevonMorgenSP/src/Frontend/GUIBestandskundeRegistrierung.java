@@ -163,7 +163,7 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 		
 		
 		/**
-		 * Button hinzufügen aktzeptiert die Eingabe
+		 * Button abbrechen , beendet den vorgang
 		 */
 	
 	
@@ -187,6 +187,10 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 		
 	});
 	add(btnAbbrechen);
+	
+	/**
+	 * Button Registrieren fügt den neuen Kunden zu der DB hinzu
+	 */
 	
 	JButton btnRegistrieren = new JButton("Registrieren");
 	btnRegistrieren.setFont(new Font("Calibri", Font.BOLD, 14));
@@ -243,15 +247,8 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 	add(btnRegistrieren);
 	
 	setVisible(true);
-	
-	
-	
 	}
 	
-	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main (String[]args) throws SQLException {
 		new GUIBestandskundeRegistrierung();
 	}

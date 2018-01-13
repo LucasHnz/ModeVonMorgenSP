@@ -159,7 +159,7 @@ public class GUIGastkundeErstellen extends JPanel {
 		
 		
 		/**
-		 * Button hinzufügen aktzeptiert die Eingabe
+		 * Button hinzufügen fügt den Gastkunden zu Datenbank hinzu
 		 */
 		JButton btnBestellen = new JButton("weiter");
 		btnBestellen.setFont(new Font("Calibri", Font.BOLD, 14));

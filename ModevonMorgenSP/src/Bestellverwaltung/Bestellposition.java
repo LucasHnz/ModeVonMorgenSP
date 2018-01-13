@@ -16,11 +16,14 @@ public class Bestellposition {
 	protected String Rücksendung;
 
 	/**
-	 * @param posNr Die einzigartige Positionsnummer.
-	 * @param aMenge Die Anzahl der Artikel der Bestellposition.
-	 * @param preis der Preis der ganzen Bestellposition.
-	 *  
-	 */
+	 * Konstruktor
+	 * @param posnr
+	 * @param bestellnr
+	 * @param artikelnummer
+	 * @param aMenge
+	 * @param preis
+	 * @param Rücksendung
+	 **/
 
 	public Bestellposition (int posNr,int bestellNr, int artikelnummer, int aMenge, double preis, String rücksendung) {
 
@@ -32,33 +35,74 @@ public class Bestellposition {
 		this.Rücksendung = rücksendung;
 	}
 	
+	/**
+	 * 
+	 * @return aMenge
+	 */
+	
 	public int getaMenge() {
 		return aMenge;
 	}
+	
+	/**
+	 * 
+	 * @param aMenge
+	 */
 	public void setaMenge(int aMenge) {
 		this.aMenge = aMenge;
 	}
+	/**
+	 * @return posnr
+	 */
 	public int getPosNr(){
 		return posNr;
 	}
+	/**
+	 * 
+	 * @return preis
+	 */
 	public double getPreis() {
 		return this.preis;
 	}
+	/**
+	 * 
+	 * @return artikelnummer
+	 */
 	public int getArtikelnummer() {
 		return artikelnummer;
 	}
+	/**
+	 * 
+	 * @param posNr
+	 */
 	public void setPosNr(int posNr) {
 		this.posNr = posNr;
 	}
+	/**
+	 * 
+	 * @return bestellnr
+	 */
 	public int getBestellNr() {
 		return bestellNr;
 	}
+	/**
+	 * 
+	 * @param bestellNr
+	 */
 	public void setBestellNr(int bestellNr) {
 		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 	}
+	/**
+	 * 
+	 * @return Rücksendung
+	 */
 	public String getRücksendung() {
 		return Rücksendung;
 	}
+	/**
+	 * 
+	 * @param Status
+	 */
 	public void setRücksendung(String Status){
 		this.Rücksendung = Status;
 	}

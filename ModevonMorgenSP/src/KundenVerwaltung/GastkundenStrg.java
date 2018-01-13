@@ -1,7 +1,4 @@
 package KundenVerwaltung;
-/**
- * @author annag
- */
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +8,26 @@ import Frontend.GUI;
 import Frontend.GUIHomepage;
 import Logverwaltung.LogStrg;
 
+/**
+ * 
+ * @author annag
+ *
+ */
 
 
 public class GastkundenStrg {
+	/**
+	 ** Fügt der Liste sowie der Datenbank einen neuen Gastkunden hinzu
+	 * @param nutzernr
+	 * @param nachname
+	 * @param vorname
+	 * @param email
+	 * @param straße
+	 * @param ort
+	 * @param plz
+	 * @param iban
+	 * @param berechtigung
+	 */
 	public static void hinzufügenGK(String nutzernr,String nachname, String vorname, String email, String straße, String ort, String plz, String berechtigung,String iban)
 	{
 		
@@ -22,11 +36,7 @@ public class GastkundenStrg {
 		int berechtigung2 = Integer.parseInt(berechtigung);
 	
 		//Gastkunde gk = new Gastkunde( nutzernr2, nachname,  vorname, email, straße, ort,plz2, iban, berechtigung2);
-		
-		 
-		
-		
-		
+	
 		try {
 			
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
