@@ -339,6 +339,7 @@ public class BestellStrg {
 		int pRabatt = 0;
 
 		boolean prüfen = true;
+		if(pssAkt>0) {
 		while(prüfen) {
 
 			String eingabe = JOptionPane.showInputDialog(null,
@@ -376,10 +377,13 @@ public class BestellStrg {
 				prüfen = false;
 
 			}
+			else {
+				pRabatt=0;
+			}
 
 			
 		}
-
+		}
 		return pRabatt;
 	}
 }
