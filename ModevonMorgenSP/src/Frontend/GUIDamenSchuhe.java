@@ -39,13 +39,9 @@ public class GUIDamenSchuhe  {
 	static JButton btnAlleArtikel;
 	static JButton btnHausschuhe;
 	static JButton btnHighHeels;
-
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();
 	static JPanel panelDamenSchuhe = new JPanel();
-	private JTextField txtSchwarzeJacke;
-	private JTextField textField_1;
-	private JTextField txtGre;
 	public static int anzahlArtikel = 0;
 	
 
@@ -56,6 +52,7 @@ public static void ladeArtikel() {
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Schuhe where geschlecht = 'W' ";	
 		ResultSet rs = stmt.executeQuery(sql);
+		anzahlArtikel = 0;
 		
 		while(rs.next()) {
 			int artikelnr = rs.getInt("Artikelnr");
@@ -63,6 +60,10 @@ public static void ladeArtikel() {
 			anzahlArtikel = anzahlArtikel +1;
 	
 		}
+		int length = anzahlArtikel / 2 * 188;
+		if (anzahlArtikel % 2 == 1)
+			length = length + 188;
+		panelDamenSchuhe.setPreferredSize(new Dimension(549, length));
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -79,6 +80,7 @@ public static void ladeArtikelHausschuhe() {
 	Statement stmt = con.createStatement();
 	String sql = "select Artikelnr from Schuhe where geschlecht = 'W' and art = 'Hausschuh' ";	
 	ResultSet rs = stmt.executeQuery(sql);
+	anzahlArtikel = 0;
 	
 	while(rs.next()) {
 		int artikelnr = rs.getInt("Artikelnr");
@@ -87,6 +89,10 @@ public static void ladeArtikelHausschuhe() {
 		
 		System.out.println("Artikel ist " + artikelnr);
 	}
+	int length = anzahlArtikel / 2 * 188;
+	if (anzahlArtikel % 2 == 1)
+		length = length + 188;
+	panelDamenSchuhe.setPreferredSize(new Dimension(549, length));
 	rs.close();
 	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -103,6 +109,7 @@ public static void ladeArtikelHighHeels() {
 	Statement stmt = con.createStatement();
 	String sql = "select Artikelnr from Schuhe where geschlecht = 'W' and art = 'High Heels' ";	
 	ResultSet rs = stmt.executeQuery(sql);
+	anzahlArtikel = 0;
 	
 	while(rs.next()) {
 		int artikelnr = rs.getInt("Artikelnr");
@@ -111,6 +118,10 @@ public static void ladeArtikelHighHeels() {
 		
 		System.out.println("Artikel ist " + artikelnr);
 	}
+	int length = anzahlArtikel / 2 * 188;
+	if (anzahlArtikel % 2 == 1)
+		length = length + 188;
+	panelDamenSchuhe.setPreferredSize(new Dimension(549, length));
 	rs.close();
 	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -198,12 +209,7 @@ public static void ladeArtikelHighHeels() {
 		panelMain.add(scrollPaneDamenSchuhe);
 		
 		ladeArtikel();
-		
-		int length = anzahlArtikel/2 * 188;
-		if(anzahlArtikel%2 == 1)
-			length = length +188;
 		panelDamenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
-		panelDamenSchuhe.setPreferredSize(new Dimension(549, length));
 	
 		panelMain.setVisible(true);
 		return panelMain;

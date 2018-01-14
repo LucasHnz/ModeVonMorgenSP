@@ -37,19 +37,12 @@ import Warenkorbverwaltung.Warenkorb;
 
 public class GUIHerrenKleidung {
 	
-	static JButton btnZur¸ck = new JButton();
-	static JButton btnAnmelden = new JButton();
 	static JButton btnJacken = new JButton();
 	static JButton btnAlleArtikel = new JButton();
 	static JButton btnHandschuhe = new JButton();
 	static JButton btnHosen = new JButton();
-	static JButton btnHinz = new JButton();
 	static JPanel panelMain = new JPanel();
-	static public JButton btnZumArtikel = new JButton();
-	static public JButton btnZumArtikel2 = new JButton();
 	static public JPanel panelHerrenKleidung;
-	static public int abstandPlus = 230;
-	static public int abstand = 270;
 	static public int anzahlArtikel = 0;
 
 	/**
@@ -61,8 +54,9 @@ public class GUIHerrenKleidung {
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 		Statement stmt = con.createStatement();
-		String sql = "select Artikelnr from Kleidung where geschlecht = 'W' ";	
+		String sql = "select Artikelnr from Kleidung where geschlecht = 'M' ";	
 		ResultSet rs = stmt.executeQuery(sql);
+		anzahlArtikel = 0;
 		
 		while(rs.next()) {
 			int artikelnr = rs.getInt("Artikelnr");
@@ -70,6 +64,10 @@ public class GUIHerrenKleidung {
 			anzahlArtikel = anzahlArtikel +1;
 			
 		}
+		int length = anzahlArtikel / 2 * 188;
+		if (anzahlArtikel % 2 == 1)
+			length = length + 188;
+		panelHerrenKleidung.setPreferredSize(new Dimension(549, length));
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -86,14 +84,19 @@ public class GUIHerrenKleidung {
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr from Kleidung where geschlecht = 'W' and art = 'Jacke' ";	
+			String sql = "select Artikelnr from Kleidung where geschlecht = 'M' and art = 'Jacke' ";	
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 			
 			while(rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-				
+				anzahlArtikel = anzahlArtikel +1;
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenKleidung.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
@@ -108,15 +111,19 @@ public class GUIHerrenKleidung {
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr from Kleidung where geschlecht = 'W' and art = 'Hose' ";	
+			String sql = "select Artikelnr from Kleidung where geschlecht = 'M' and art = 'Hose' ";	
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 			
 			while(rs.next()) {
-				
 				int artikelnr = rs.getInt("Artikelnr");
 				panelHerrenKleidung.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel +1;
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenKleidung.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 			
@@ -208,14 +215,8 @@ public class GUIHerrenKleidung {
 		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneHerrenKleidung);
 		
-		ladeArtikel();
-		
-		int length = anzahlArtikel/2 * 188;
-		if(anzahlArtikel%2 == 1)
-			length = length +188;
+		ladeArtikel();		
 		panelHerrenKleidung.setLayout(new GridLayout(0, 2, 0, 0));
-		panelHerrenKleidung.setPreferredSize(new Dimension(549, length));
-		
 		
 		panelMain.setVisible(true);
 		return panelMain;

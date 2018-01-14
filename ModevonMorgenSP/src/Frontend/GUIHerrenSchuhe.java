@@ -34,22 +34,14 @@ import javax.swing.border.LineBorder;
 
 public class GUIHerrenSchuhe {
 	
-	JButton btnAnmelden;
 	static JButton btnAlleArtikel;
 	static JButton btnOutdoor;
 	static JButton btnSport;
 	static JButton btnHausschuhe;
 	static JButton btnStiefel;
-	public String[] damenCbList;
-	public String[] herrenCbList;
-	public String[] anmeldenCbList;
-
-	public JFrame frame;
 	static JPanel panelMain;
 	static public JPanel panelHerrenSchuhe;
 	static public int anzahlArtikel = 0;
-
-	//AGBS
 	
 	
 	public static void ladeArtikel() {
@@ -59,6 +51,7 @@ public class GUIHerrenSchuhe {
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' ";	
 		ResultSet rs = stmt.executeQuery(sql);
+		anzahlArtikel = 0;
 		
 		while(rs.next()) {
 			int artikelnr = rs.getInt("Artikelnr");
@@ -67,6 +60,10 @@ public class GUIHerrenSchuhe {
 			
 			System.out.println("Artikel ist " + artikelnr);
 		}
+		int length = anzahlArtikel / 2 * 188;
+		if (anzahlArtikel % 2 == 1)
+			length = length + 188;
+		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -84,6 +81,7 @@ public class GUIHerrenSchuhe {
 		Statement stmt = con.createStatement();
 		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Outdoorschuh' ";	
 		ResultSet rs = stmt.executeQuery(sql);
+		anzahlArtikel = 0;
 		
 		while(rs.next()) {
 			int artikelnr = rs.getInt("Artikelnr");
@@ -91,6 +89,10 @@ public class GUIHerrenSchuhe {
 			anzahlArtikel = anzahlArtikel +1;
 			
 		}
+		int length = anzahlArtikel / 2 * 188;
+		if (anzahlArtikel % 2 == 1)
+			length = length + 188;
+		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 		rs.close();
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
@@ -108,6 +110,7 @@ public class GUIHerrenSchuhe {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Sportschuh' ";	
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 	
 			while(rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
@@ -115,6 +118,10 @@ public class GUIHerrenSchuhe {
 				anzahlArtikel = anzahlArtikel +1;
 		
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -132,6 +139,7 @@ public class GUIHerrenSchuhe {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Hausschuh' ";	
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 	
 			while(rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
@@ -139,6 +147,10 @@ public class GUIHerrenSchuhe {
 				anzahlArtikel = anzahlArtikel +1;
 		
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -155,6 +167,7 @@ public class GUIHerrenSchuhe {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Stiefel'";	
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 	
 			while(rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
@@ -162,6 +175,10 @@ public class GUIHerrenSchuhe {
 				anzahlArtikel = anzahlArtikel +1;
 		
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 	
@@ -270,7 +287,7 @@ public class GUIHerrenSchuhe {
 		
 		
 		panelHerrenSchuhe = new JPanel();
-		panelHerrenSchuhe.setBackground(SystemColor.inactiveCaptionBorder);
+		panelHerrenSchuhe.setBackground(Color.WHITE);
 		panelHerrenSchuhe.setAutoscrolls(true);
 			
 		JScrollPane scrollPaneHerrenKleidung = new JScrollPane();
@@ -280,19 +297,9 @@ public class GUIHerrenSchuhe {
 		panelMain.add(scrollPaneHerrenKleidung);
 		
 		ladeArtikel();
-		erstelleListe();
+		panelHerrenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		panelMain.setVisible(true);
 		return panelMain;
-	}
-	
-	
-	
-	public static void erstelleListe() {
-		int length = anzahlArtikel/2 * 188;
-		if(anzahlArtikel%2 == 1)
-			length = length +188;
-		panelHerrenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
-		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
 	}
 }

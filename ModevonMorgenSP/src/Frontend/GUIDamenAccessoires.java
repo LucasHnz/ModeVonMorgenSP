@@ -41,11 +41,6 @@ public class GUIDamenAccessoires {
 	static JButton btnOhrringe;
 	static JButton btnArmb‰nder;
 	static JButton btnRinge;
-
-	private JTextField txtSchwarzeJacke;
-	private JTextField textField_1;
-	private JTextField txtGre;
-
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();
 	static JPanel panelDamenAccessoires = new JPanel();
@@ -61,13 +56,18 @@ public class GUIDamenAccessoires {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' ";
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 
 			while (rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel + 1;
-
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelDamenAccessoires.setPreferredSize(new Dimension(549, length));
+
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -86,12 +86,17 @@ public class GUIDamenAccessoires {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kopfschmuck'";
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 
 			while (rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel + 1;
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelDamenAccessoires.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -113,12 +118,17 @@ public class GUIDamenAccessoires {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kette'";
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 
 			while (rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel + 1;
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelDamenAccessoires.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -140,13 +150,17 @@ public class GUIDamenAccessoires {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ohrring'";
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 
 			while (rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel + 1;
-			}
-
+				}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelDamenAccessoires.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -169,12 +183,18 @@ public class GUIDamenAccessoires {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Armband'";
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 
 			while (rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel + 1;
+				
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelDamenAccessoires.setPreferredSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -196,12 +216,17 @@ public class GUIDamenAccessoires {
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ring'";
 			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
 
 			while (rs.next()) {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel + 1;
 			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelDamenAccessoires.setSize(new Dimension(549, length));
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
@@ -328,13 +353,8 @@ public class GUIDamenAccessoires {
 		panelMain.add(scrollPaneDamenAccessoires);
 
 		ladeArtikel();
-
-		int length = anzahlArtikel / 2 * 188;
-		if (anzahlArtikel % 2 == 1)
-			length = length + 188;
 		panelDamenAccessoires.setLayout(new GridLayout(0, 2, 0, 0));
-		panelDamenAccessoires.setPreferredSize(new Dimension(549, length));
-
+		
 		panelMain.setVisible(true);
 		return panelMain;
 	}
