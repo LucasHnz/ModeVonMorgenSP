@@ -137,7 +137,7 @@ public class BestellStrg {
 
 		}
 
-		else if (LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) { // klappt
+		else if (LogStrg.getAngemeldetStatus() == 3 || LogStrg.getAngemeldetStatus() == 4) { 
 			JOptionPane.showMessageDialog(null, "Mitarbeiter können keine Bestellungen tätigen", "Fehler!",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -327,11 +327,12 @@ public class BestellStrg {
 
 	}
 
-	// Anna
+	
 	/**
-	 * 
-	 * @param bestellnr
-	 *            berechnet die gesammelten Punkte einer Bestellung
+	 * Anna Gross
+	 * @param preis ,pRabatt
+	 * Berechnet die aktuelle Anzahl an Punkten, die ein Bestandskunde nach einer Bestellung hat. Der Kunde bekommt Punkte pro 
+	 * Bestellung gut geschrieben und die Punkte die er für eine Bestellung eingesetzt hat werden abgezogen.
 	 */
 	public static void errechnePunkte(double preis, int pRabatt) {
 		int nutzernr = LogStrg.getNutzerNr();
@@ -345,12 +346,12 @@ public class BestellStrg {
 	}
 
 	
-	// Anna
+	
 	/**
-	 * 
-	 * @return pRabatt Wenn die Möglichkeit besteht Punkte in Rabatt einzulösen wird
-	 *         gefragt wie viele Punkte eingelöst werden sollen und die Punkte
-	 *         werden reduziert
+	 * Anna Gross
+	 * @return pRabatt 
+	 * Wenn die Möglichkeit besteht Punkte in Rabatt einzulösen wird
+	 * gefragt wie viele Punkte eingelöst werden sollen.
 	 */
 	public static int abfrageRabatt() {
 		int nutzernr = LogStrg.getNutzerNr();

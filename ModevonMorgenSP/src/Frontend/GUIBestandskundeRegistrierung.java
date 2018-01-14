@@ -28,10 +28,7 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 
 	
 	/**
-	 * Registrierungsmaske für BK
-	 * @return 
-	 * @wbp.parser.entryPoint
-	 * 
+	 * Registrierungsmaske für Bestandskunden
 	 */
 	public GUIBestandskundeRegistrierung () {
 		
@@ -190,7 +187,7 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 	add(btnAbbrechen);
 	
 	/**
-	 * Button Registrieren fügt den neuen Kunden zu der DB hinzu
+	 * Button Registrieren fügt den neuen Kunden zu der Datenbank hinzu
 	 */
 	
 	JButton btnRegistrieren = new JButton("Registrieren");
