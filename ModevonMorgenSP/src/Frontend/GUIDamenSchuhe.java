@@ -143,7 +143,7 @@ public static void ladeArtikelHighHeels() {
 		
 
 		btnAlleArtikel = new JButton("Alle Artikel");
-		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
@@ -158,7 +158,7 @@ public static void ladeArtikelHighHeels() {
 		
 		
 		btnHausschuhe = new JButton("Hausschuhe");
-		btnHausschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHausschuhe.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHausschuhe.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHausschuhe.setBounds(10, 87, 248, 43);
 		btnHausschuhe.addActionListener(new ActionListener() {
@@ -172,7 +172,7 @@ public static void ladeArtikelHighHeels() {
 		panelScrollPaneLinks.add(btnHausschuhe);
 		
 		btnHighHeels = new JButton("High Heels");
-		btnHighHeels.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHighHeels.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHighHeels.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHighHeels.setBounds(10, 151, 248, 43);
 		btnHighHeels.addActionListener(new ActionListener() {

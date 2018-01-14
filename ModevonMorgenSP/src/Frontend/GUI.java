@@ -61,10 +61,10 @@ public class GUI extends JFrame {
     
     public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	static String[] array = {"Anmelden"};
+	static String[] array = {"Anmelden", "Registrieren"};
 	
 	
-		
+
 	
 	public static void main(String[] args) 
 	{
@@ -85,7 +85,10 @@ public class GUI extends JFrame {
 	}
 	
 	
-
+	/**
+	 * Gibt das Fenster der Klasse zurück
+	 * @return (GUI) fenster Fester der Klasse 
+	 */
 	public static GUI getFenster() {
 		return (GUI) fenster;
 	}
@@ -101,6 +104,10 @@ public class GUI extends JFrame {
 		frame.repaint();
 	}
 	
+	
+	/**
+	 * Checkt die Brechtigung des angemeldeten Nutzers und fällt dementsprechend die ComboBox
+	 */
 	public static void comboBoxAbfrage() {
 		int status = LogStrg.getAngemeldetStatus();
 		String[] arrayNeu;
@@ -108,8 +115,19 @@ public class GUI extends JFrame {
 		if(status == 0) {
 			//Abgemeldet
 			String item1 = "Anmelden";
+			String item2 = "Registrieren";
 			comboBoxAnmelden.removeAllItems();
 			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+		}
+		
+		if(status == 1) {
+			//Gastkunde
+			String item1 = "Gastkunde";
+			String item2 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
 		}
 		
 		if(status == 2) {
@@ -144,34 +162,48 @@ public class GUI extends JFrame {
 	}
 	
 	
-	
+	/**
+	 * Schließt das Fenster der Klasse
+	 */
 	public static void fensterSchließen() {
 		gui.dispose();
 	}
+	/**
+	 * Zerlegt das Fenster und erstellt es anschließend Neu
+	 */
 	public static void fensterRestart() {
 		gui.dispose();
 		fenster = new GUI();
 	}
-	
+	/**
+	 * Setzt Text um anzuzeigen welche Rechte man besitzt
+	 * @param recht Bestimmt welche Funktionen und Rechte hat
+	 */
 	public void setRechteAnzeigen(String recht) {
 		lblRechte.setText(recht);
 		frame.revalidate();
 		frame.repaint();
 	}
-
+	/**
+	 * Öffnet das Anmeldefenster
+	 */
 	public void öffnenAnmeldefenster() {	
 		panelAnmelden = GUIAnmelden.getGUIAnmelden();
 		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);
 		frame.getRootPane().setDefaultButton(GUIAnmelden.btnAnmeldenEinloggen);
 	}
+	/**
+	 * Entfernt Anmeldefenster
+	 */
 	public void removeLogPanel() {
 		layeredPane.remove(panelAnmelden);
 		frame.revalidate();
 		frame.repaint();
 	}
-	
+	/**
+	 * Öffnet Fenster mit Fehlermeldung
+	 */
 	public void anmeldenFehlermeldung() {
-		
 		System.out.println("OPT");
 		JOptionPane.showOptionDialog(null, "Email und Passwort stimmen nicht überein",
 				"Anmeldung",
@@ -181,9 +213,10 @@ public class GUI extends JFrame {
 				new String[] {"Erneut versuchen"}, "");
 		
 	}
-	
+	/**
+	 * Erstellt Hauptfenster des Programms
+	 */
 	public GUI() {
-				
 		layeredPane.setSize(1248, 563);
 		layeredPane.setLocation(0, 148);
 		frame = new JFrame();
@@ -279,6 +312,7 @@ public class GUI extends JFrame {
 		comboBoxAnmelden.setBounds(1040, 2, 191, 48);
 		comboBoxAnmelden.setFont(new Font("Dialog", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
+		
 		comboBoxAnmelden.addActionListener(new ActionListener() {
 
 			@Override
@@ -304,6 +338,9 @@ public class GUI extends JFrame {
 				    
 				    if(auswahl == "Verwaltung") {
 				    	changePanel(GUIMitarbeiter.getGUIMitarbeiter());
+				    }
+				    if(auswahl == "Registrieren") {
+				    	changePanel(new GUIBestandskundeRegistrierung());
 				    }
 				}
 		});

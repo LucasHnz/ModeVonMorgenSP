@@ -165,7 +165,7 @@ public static void ladeArtikelOhrringe() {
 		
 		
 		btnAlleArtikel = new JButton("Alle Artikel");
-		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
@@ -180,7 +180,7 @@ public static void ladeArtikelOhrringe() {
 		
 		
 		btnRinge = new JButton("Ringe");
-		btnRinge.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnRinge.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnRinge.setBackground(SystemColor.inactiveCaptionBorder);
 		btnRinge.setBounds(10, 87, 248, 43);
 		btnRinge.addActionListener(new ActionListener() {
@@ -194,7 +194,7 @@ public static void ladeArtikelOhrringe() {
 		panelScrollPaneLinks.add(btnRinge);
 		
 		btnArmbänder = new JButton("Armbänder");
-		btnArmbänder.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnArmbänder.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnArmbänder.setBackground(SystemColor.inactiveCaptionBorder);
 		btnArmbänder.setBounds(10, 151, 248, 43);
 		btnArmbänder.addActionListener(new ActionListener() {
@@ -208,7 +208,7 @@ public static void ladeArtikelOhrringe() {
 		panelScrollPaneLinks.add(btnArmbänder);
 		
 		btnOhrringe = new JButton("Ohrringe");
-		btnOhrringe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnOhrringe.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnOhrringe.setBackground(SystemColor.inactiveCaptionBorder);
 		btnOhrringe.setBounds(10, 215, 248, 43);
 		btnOhrringe.addActionListener(new ActionListener() {

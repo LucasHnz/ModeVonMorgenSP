@@ -88,7 +88,7 @@ public class LogStrg {
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con3, stmt3);
 			
 		}catch(SQLException e) {
-			System.out.println("Fehler"+ e.getMessage());
+			e.printStackTrace();
                             			
 		}
 
@@ -96,6 +96,12 @@ public class LogStrg {
 	
 	
 }
+	public static void anmeldenGK(int nutzernr) {
+		LogStrg.setNutzerNr(nutzernr);
+		LogStrg.setAnmeldeStatus(1);
+		LogStrg.setRecht("Gastkunde");
+		GUI.comboBoxAbfrage();
+	}
 	
 	public static void abmelden() {
 		GUI.getFenster().changePanel(GUIHomepage.getHomepage());

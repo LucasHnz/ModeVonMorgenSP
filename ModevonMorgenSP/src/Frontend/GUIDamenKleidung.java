@@ -40,7 +40,7 @@ public class GUIDamenKleidung {
 
 	JButton btnAnmelden = new JButton();
 	static JButton btnAlleArtikel;
-	static JButton btnSchaals;
+	static JButton btnSchals;
 	static JButton btnHosen;
 	
 
@@ -149,7 +149,7 @@ public static void ladeArtikelHosen() {
 		
 		
 		btnAlleArtikel = new JButton("Alle Artikel");
-		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
@@ -162,11 +162,11 @@ public static void ladeArtikelHosen() {
 		});
 		panelScrollPaneLinks.add(btnAlleArtikel);
 		
-		btnSchaals = new JButton("Schaals");
-		btnSchaals.setFont(new Font("Lucida Bright", Font.BOLD, 15));
-		btnSchaals.setBackground(SystemColor.inactiveCaptionBorder);
-		btnSchaals.setBounds(10, 87, 248, 43);
-		btnSchaals.addActionListener(new ActionListener() {
+		btnSchals = new JButton("Schals");
+		btnSchals.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnSchals.setBackground(SystemColor.inactiveCaptionBorder);
+		btnSchals.setBounds(10, 87, 248, 43);
+		btnSchals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panelDamenKleidung.removeAll();
 				ladeArtikelSchaals();
@@ -174,10 +174,10 @@ public static void ladeArtikelHosen() {
 				panelMain.repaint();
 			}
 		});
-		panelScrollPaneLinks.add(btnSchaals);
+		panelScrollPaneLinks.add(btnSchals);
 		
 		btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHosen.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHosen.setBounds(10, 151, 248, 43);
 		btnHosen.addActionListener(new ActionListener() {

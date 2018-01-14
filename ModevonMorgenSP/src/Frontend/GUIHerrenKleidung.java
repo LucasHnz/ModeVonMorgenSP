@@ -149,7 +149,7 @@ public class GUIHerrenKleidung {
 		panelMain.add(scrollPaneLinks);
 		
 		btnAlleArtikel = new JButton("Alle Artikel");
-		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
@@ -164,7 +164,7 @@ public class GUIHerrenKleidung {
 		
 		
 		btnJacken = new JButton("Jacken");
-		btnJacken.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnJacken.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnJacken.setBackground(SystemColor.inactiveCaptionBorder);
 		btnJacken.setBounds(10, 87, 248, 43);
 		btnJacken.addActionListener(new ActionListener() {
@@ -178,7 +178,7 @@ public class GUIHerrenKleidung {
 		panelScrollPaneLinks.add(btnJacken);
 		
 		btnHosen = new JButton("Hosen");
-		btnHosen.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHosen.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHosen.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHosen.setBounds(10, 151, 248, 43);
 		btnHosen.addActionListener(new ActionListener() {
@@ -193,7 +193,7 @@ public class GUIHerrenKleidung {
 		panelScrollPaneLinks.add(btnHosen);
 		
 		btnHandschuhe = new JButton("Handschuhe");
-		btnHandschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHandschuhe.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHandschuhe.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHandschuhe.setBounds(10, 215, 248, 43);
 		panelScrollPaneLinks.add(btnHandschuhe);
