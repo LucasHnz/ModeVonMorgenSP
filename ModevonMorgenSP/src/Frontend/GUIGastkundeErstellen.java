@@ -181,7 +181,7 @@ public class GUIGastkundeErstellen extends JPanel {
 				int nutzernr2=Integer.parseInt(nutzernr);
 				
 				KundenVerwaltung.GastkundenStrg.hinzufügenGK(nutzernr, nachname, vorname, email, straße, ort, plz, berechtigung,iban);
-				Gastkunde gk= GastkundenSammlung.getGastkundenSammlung().get(nutzernr2);
+			//	Gastkunde gk= GastkundenSammlung.getGastkundenSammlung().get(nutzernr2);
 
 				GastkundenSammlung.fülleGastkundenListe();
 				
