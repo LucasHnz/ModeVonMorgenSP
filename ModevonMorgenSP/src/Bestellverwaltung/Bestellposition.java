@@ -87,13 +87,6 @@ public class Bestellposition {
 	}
 	/**
 	 * 
-	 * @param bestellNr
-	 */
-	public void setBestellNr(int bestellNr) {
-		this.bestellNr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
-	}
-	/**
-	 * 
 	 * @return Rücksendung
 	 */
 	public String getRücksendung() {

@@ -63,19 +63,19 @@ public static HashMap<Integer, Bestellung> BestellungSammlung = new HashMap<Inte
 	public static HashMap<Integer, Bestellung> getBestellungSammlung(){
 		return BestellungSammlung;
 	}
-	//Falk   - keine Ahnung, ob gebraucht :D
-	public static void removeBestellung(int bestellnr) {
-		BestellungSammlung.remove(bestellnr);
-	}
+	
 	//Julian
 	public static Bestellung getBestellung(int bestellnr) {
 		return BestellungSammlung.get(bestellnr);
 	}
-	//Falk
+	/**
+	 * Fügt der Bestellungssammlung eine Bestellung hinzu.
+	 * @param bestellung Die hinzuzufügende Bestellung.
+	 */
 	public static void hinzufügenBestellung(Bestellung bestellung) {
 		BestellungSammlung.put(bestellung.getBestellnr(), bestellung);
 	}
-	
+	//Julian
 	public static HashMap<Integer, Bestellung> getBestellungSammlung(int nutzernummer){
 		HashMap<Integer, Bestellung> BestellungSammlungNR = new HashMap<Integer, Bestellung>();
 		

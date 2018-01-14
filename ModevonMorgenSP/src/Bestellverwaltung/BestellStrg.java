@@ -87,6 +87,13 @@ public class BestellStrg {
 
 	}
 
+	/**
+	 * Falk Maoro, Anna Gross
+	 * Initialisiert den Bestellvorgang, indem geprüft wird, welche Art von Nutzer eingeloggt ist. 
+	 * Der Nutzer bekommt die Möglichkeit, sich als Gast- oder Bestandskunde zu registrieren, oder sich anzumelden.
+	 * Nur ein angemeldeter Kunde kann schließlich bestellen. Bestandskunden bekommen zusätzlich die 
+	 * Möglichkeit, ihre Rabattpunkte einzusetzten.
+	 */
 	public static void bestellvorgang() {
 		if (LogStrg.getAngemeldetStatus() == 2) {				
 
@@ -136,7 +143,12 @@ public class BestellStrg {
 		}
 	}
 
-	// Falk
+	/**
+	 * Falk Maoro
+	 * Erstellt die Bestellpositionen zu einer vorher angelegten Bestellung. Dazu werden die Artikel und 
+	 * deren Anzahl aus dem Warenkorb in Bestellpositionen in der Datenbank gespeichert.
+	 * @param bestellnr Die Bestellnummer der zugehörigen Bestellung.
+	 */
 	private static void erstelleBestellpositionen(int bestellnr) {
 		HashMap<Integer, Integer> warenkorbMap = Warenkorb.getWarenkorb();
 		Connection con = null;
@@ -187,9 +199,15 @@ public class BestellStrg {
 
 	}
 
-	// Falk
-	public static void erstelleBestellungBK(int pRabatt) {  // Versandstatus, Rabatt evtl. commit und rollback, damit
-															// entweder alles, oder gar nichts gespeichert wird.
+	/**
+	 * Falk Maoro
+	 * Erstellt eine Bestellung für einen Bestandskunden. Dazu werden die Nutzerdaten aus der Bestandskundensammlung
+	 * und die Bestelldaten aus dem Warenkorb verwendet. Im Anschluss daran werden die Bestellpositionen erstellt.
+	 * @param pRabatt Der Bestandskunde hat vor Abschluss der Bestellung die Möglichkeit, seine Rabattpunkte einzusetzten.
+	 * Diese werden in den Gesamtpreis der Bestellung mit einberechnet.
+	 */
+	public static void erstelleBestellungBK(int pRabatt) {  
+		
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(LogStrg.getNutzerNr());
 		int nrBK = bk.getNutzernr();
@@ -247,7 +265,11 @@ public class BestellStrg {
 
 	}
 
-	// Falk
+	/**
+	 * Falk Maoro
+	 * Erstellt eine Bestellung für einen Gastkunden. Dazu werden die Nutzerdaten aus der Gastkundensammlung
+	 * und die Bestelldaten aus dem Warenkorb verwendet. Im Anschluss daran werden die Bestellpositionen erstellt.
+	 */
 	public static void erstelleBestellungGK() { 
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());

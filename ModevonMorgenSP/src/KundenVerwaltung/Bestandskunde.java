@@ -28,19 +28,8 @@ public class Bestandskunde {
 		this.pss = pss;
 	}
 
-	@Override
-	public String toString() {
-		return "Bestandskunde [nutzernr=" + nutzernr + ", nachname=" + nachname + ", vorname=" + vorname + ", email="
-				+ email + ", straﬂe=" + straﬂe + ", ort=" + ort + ", plz=" + plz + ", iban=" + iban + ", berechtigung="
-				+ berechtigung + ", passwort=" + passwort + ", pss=" + pss + "]";
-	}
-
 	public int getNutzernr() {
 		return nutzernr;
-	}
-
-	public void setNutzernr(int nutzernr) {
-		this.nutzernr = Datenbankverwaltung.holeN‰chsteNummer.n‰chsteBKundenNr();
 	}
 
 	public String getNachname() {
