@@ -25,7 +25,8 @@ public class GUIAnmelden {
 	public static JPanel panelAnmelden;
 	
 	/**
-	 * @wbp.parser.entryPoint
+	 * Erstellt und liefert Anmeldefenster
+	 * @return panelAnmelden Anmeldefenster
 	 */
 	public static JPanel getGUIAnmelden() {
 		panelAnmelden = new JPanel();
@@ -45,12 +46,10 @@ public class GUIAnmelden {
 				  String pwd = new String(anmeldenPasswort.getPassword());
 				  String email = anmeldenEmail.getText();					  
 				  LogStrg.anmelden(pwd, email);
-				  //GUI.getFenster().removeLogPanel();
 					
 			}
 				
 		});
-		//panelAnmelden.getRootPane().setDefaultButton(btnAnmeldenEinloggen);
 			
 		btnAnmeldenAbbrechen = new JButton("Abbrechen");
 		btnAnmeldenAbbrechen.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -59,7 +58,6 @@ public class GUIAnmelden {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//panelAnmelden.setVisible(false);
 				GUI.getFenster().removeLogPanel();
 			}
 				
@@ -81,18 +79,5 @@ public class GUIAnmelden {
 		panelAnmelden.setVisible(true);
 		return panelAnmelden;
 	}
-	
-	
-	public static void anmeldenFehlermeldung() {
 		
-		System.out.println("OPT");
-		JOptionPane.showOptionDialog(null, "Dies ist ein Optionsdialog",
-				"Optionsdialog",
-				JOptionPane.YES_NO_CANCEL_OPTION,
-				JOptionPane.WARNING_MESSAGE,
-				null,
-				new String[] {"A", "B", "C"},"B");
-		
-	}
-	
 }

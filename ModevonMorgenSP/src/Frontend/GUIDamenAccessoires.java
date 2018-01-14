@@ -33,7 +33,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class GUIDamenAccessoires {
-	
+
 	JButton btnAnmelden = new JButton();
 	static JButton btnAlleArtikel;
 	static JButton btnKopfschmuck;
@@ -41,7 +41,7 @@ public class GUIDamenAccessoires {
 	static JButton btnOhrringe;
 	static JButton btnArmb‰nder;
 	static JButton btnRinge;
-	
+
 	private JTextField txtSchwarzeJacke;
 	private JTextField textField_1;
 	private JTextField txtGre;
@@ -51,174 +51,188 @@ public class GUIDamenAccessoires {
 	static JPanel panelDamenAccessoires = new JPanel();
 	public static int anzahlArtikel = 0;
 
-	
-public static void ladeArtikel() {
-		
+	/**
+	 * L‰dt alle Artikel
+	 */
+	public static void ladeArtikel() {
+
 		try {
-		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-		Statement stmt = con.createStatement();
-		String sql = "select Artikelnr from Accessoires where geschlecht = 'W' ";	
-		ResultSet rs = stmt.executeQuery(sql);
-		
-		while(rs.next()) {
-			int artikelnr = rs.getInt("Artikelnr");
-			panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-			anzahlArtikel = anzahlArtikel +1;
-			
-		}
-		rs.close();
-		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
-		}catch(SQLException e) {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' ";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+
+			}
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-public static void ladeArtikelKopfschmuck() {
-	
-	try {
-	Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-	Statement stmt = con.createStatement();
-	String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kopfschmuck'";	
-	ResultSet rs = stmt.executeQuery(sql);
-	
-	while(rs.next()) {
-		int artikelnr = rs.getInt("Artikelnr");
-		panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-		anzahlArtikel = anzahlArtikel +1;
+	/**
+	 * L‰dt Artikel vom Typ Kopfschmuck
+	 */
+	public static void ladeArtikelKopfschmuck() {
+
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kopfschmuck'";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+			}
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
 	}
-	rs.close();
-	Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-	
-	}catch(SQLException e) {
-		e.printStackTrace();
+
+	/**
+	 * L‰dt Artikel vom Typ Ketten
+	 */
+	public static void ladeArtikelKetten() {
+
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kette'";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+			}
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
 	}
-	
-	GUI.getFenster().revalidate();
-	GUI.getFenster().repaint();
-}
 
-public static void ladeArtikelKetten() {
-
-try {
-Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-Statement stmt = con.createStatement();
-String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Kette'";	
-ResultSet rs = stmt.executeQuery(sql);
-
-while(rs.next()) {
-	int artikelnr = rs.getInt("Artikelnr");
-	panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-	anzahlArtikel = anzahlArtikel +1;
-}
-rs.close();
-Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-
-}catch(SQLException e) {
-	e.printStackTrace();
-}
-
-GUI.getFenster().revalidate();
-GUI.getFenster().repaint();
-}
-
+	/**
+	 * L‰dt Artikel vom Typ Ohrringe
+	 */
 	public static void ladeArtikelOhrringe() {
 
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ohrring'";	
+			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ohrring'";
 			ResultSet rs = stmt.executeQuery(sql);
 
-			while(rs.next()) {
-			int artikelnr = rs.getInt("Artikelnr");
-			panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-			anzahlArtikel = anzahlArtikel +1;
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
 			}
-			
+
 			rs.close();
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
-			}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-			}
+		}
 
 		GUI.getFenster().revalidate();
 		GUI.getFenster().repaint();
-			}
-
-public static void ladeArtikelArmb‰nder() {
-
-try {
-System.out.println("1");
-Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-Statement stmt = con.createStatement();
-String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Armband'";	
-ResultSet rs = stmt.executeQuery(sql);
-
-while(rs.next()) {
-	int artikelnr = rs.getInt("Artikelnr");
-	panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-	anzahlArtikel = anzahlArtikel +1;
-}
-rs.close();
-Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-
-}catch(SQLException e) {
-	e.printStackTrace();
-}
-
-GUI.getFenster().revalidate();
-GUI.getFenster().repaint();
-}
-
-public static void ladeArtikelRinge() {
-
-try {
-Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-Statement stmt = con.createStatement();
-String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ring'";	
-ResultSet rs = stmt.executeQuery(sql);
-
-while(rs.next()) {
-	int artikelnr = rs.getInt("Artikelnr");
-	panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-	anzahlArtikel = anzahlArtikel +1;
-}
-rs.close();
-Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-
-}catch(SQLException e) {
-	e.printStackTrace();
-}
-
-GUI.getFenster().revalidate();
-GUI.getFenster().repaint();
-}
-
-
-
+	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * L‰dt Artikel vom Typ Armb‰nder
+	 */
+	public static void ladeArtikelArmb‰nder() {
+
+		try {
+			System.out.println("1");
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Armband'";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+			}
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
+	}
+
+	/**
+	 * L‰dt Artikel vom Typ Ringe
+	 */
+	public static void ladeArtikelRinge() {
+
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Ring'";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelDamenAccessoires.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+			}
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		GUI.getFenster().revalidate();
+		GUI.getFenster().repaint();
+	}
+
+	/**
+	 * Erstellt und Liefert Fenster f¸r DamenAccessoires
+	 * @return panelMain Frame f¸r DamenAccessoires
 	 */
 	static JPanel getGUIDamenAccessoires() {
-		
+
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
-		
+
 		JPanel panelScrollPaneLinks = new JPanel();
 		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneLinks.setLayout(null);
-		
+
 		JScrollPane scrollPaneDamenAccessoiresLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneDamenAccessoiresLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneDamenAccessoiresLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneDamenAccessoiresLinks);
-		
+
 		btnAlleArtikel = new JButton("Alle Artikel");
 		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
@@ -232,7 +246,7 @@ GUI.getFenster().repaint();
 			}
 		});
 		panelScrollPaneLinks.add(btnAlleArtikel);
-		
+
 		btnKopfschmuck = new JButton("Kopfschmuck");
 		btnKopfschmuck.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnKopfschmuck.setBackground(SystemColor.inactiveCaptionBorder);
@@ -246,7 +260,7 @@ GUI.getFenster().repaint();
 			}
 		});
 		panelScrollPaneLinks.add(btnKopfschmuck);
-		
+
 		btnKetten = new JButton("Ketten");
 		btnKetten.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnKetten.setBackground(SystemColor.inactiveCaptionBorder);
@@ -260,8 +274,7 @@ GUI.getFenster().repaint();
 			}
 		});
 		panelScrollPaneLinks.add(btnKetten);
-		
-		
+
 		btnOhrringe = new JButton("Ohrringe");
 		btnOhrringe.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnOhrringe.setBackground(SystemColor.inactiveCaptionBorder);
@@ -275,7 +288,7 @@ GUI.getFenster().repaint();
 			}
 		});
 		panelScrollPaneLinks.add(btnOhrringe);
-		
+
 		btnArmb‰nder = new JButton("Armb‰nder");
 		btnArmb‰nder.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnArmb‰nder.setBackground(SystemColor.inactiveCaptionBorder);
@@ -289,7 +302,7 @@ GUI.getFenster().repaint();
 			}
 		});
 		panelScrollPaneLinks.add(btnArmb‰nder);
-		
+
 		btnRinge = new JButton("Ringe");
 		btnRinge.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnRinge.setBackground(SystemColor.inactiveCaptionBorder);
@@ -303,28 +316,27 @@ GUI.getFenster().repaint();
 			}
 		});
 		panelScrollPaneLinks.add(btnRinge);
-		
+
 		panelDamenAccessoires = new JPanel();
 		panelDamenAccessoires.setBackground(Color.WHITE);
 		panelDamenAccessoires.setAutoscrolls(true);
-		
+
 		JScrollPane scrollPaneDamenAccessoires = new JScrollPane();
 		scrollPaneDamenAccessoires.setBounds(323, 97, 901, 455);
 		scrollPaneDamenAccessoires.setViewportView(panelDamenAccessoires);
 		scrollPaneDamenAccessoires.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneDamenAccessoires);
-		
+
 		ladeArtikel();
-		
-		int length = anzahlArtikel/2 * 188;
-		if(anzahlArtikel%2 == 1)
-			length = length +188;
+
+		int length = anzahlArtikel / 2 * 188;
+		if (anzahlArtikel % 2 == 1)
+			length = length + 188;
 		panelDamenAccessoires.setLayout(new GridLayout(0, 2, 0, 0));
 		panelDamenAccessoires.setPreferredSize(new Dimension(549, length));
-		
+
 		panelMain.setVisible(true);
 		return panelMain;
 	}
-	
-	
+
 }

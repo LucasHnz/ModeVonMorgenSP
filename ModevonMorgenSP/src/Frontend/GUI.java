@@ -64,7 +64,7 @@ public class GUI extends JFrame {
 	static String[] array = {"Anmelden", "Registrieren"};
 	
 	
-		
+
 	
 	public static void main(String[] args) 
 	{
@@ -85,7 +85,10 @@ public class GUI extends JFrame {
 	}
 	
 	
-
+	/**
+	 * Gibt das Fenster der Klasse zurück
+	 * @return (GUI) fenster Fester der Klasse 
+	 */
 	public static GUI getFenster() {
 		return (GUI) fenster;
 	}
@@ -101,6 +104,10 @@ public class GUI extends JFrame {
 		frame.repaint();
 	}
 	
+	
+	/**
+	 * Checkt die Brechtigung des angemeldeten Nutzers und fällt dementsprechend die ComboBox
+	 */
 	public static void comboBoxAbfrage() {
 		int status = LogStrg.getAngemeldetStatus();
 		String[] arrayNeu;
@@ -155,34 +162,48 @@ public class GUI extends JFrame {
 	}
 	
 	
-	
+	/**
+	 * Schließt das Fenster der Klasse
+	 */
 	public static void fensterSchließen() {
 		gui.dispose();
 	}
+	/**
+	 * Zerlegt das Fenster und erstellt es anschließend Neu
+	 */
 	public static void fensterRestart() {
 		gui.dispose();
 		fenster = new GUI();
 	}
-	
+	/**
+	 * Setzt Text um anzuzeigen welche Rechte man besitzt
+	 * @param recht Bestimmt welche Funktionen und Rechte hat
+	 */
 	public void setRechteAnzeigen(String recht) {
 		lblRechte.setText(recht);
 		frame.revalidate();
 		frame.repaint();
 	}
-
+	/**
+	 * Öffnet das Anmeldefenster
+	 */
 	public void öffnenAnmeldefenster() {	
 		panelAnmelden = GUIAnmelden.getGUIAnmelden();
 		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);
 		frame.getRootPane().setDefaultButton(GUIAnmelden.btnAnmeldenEinloggen);
 	}
+	/**
+	 * Entfernt Anmeldefenster
+	 */
 	public void removeLogPanel() {
 		layeredPane.remove(panelAnmelden);
 		frame.revalidate();
 		frame.repaint();
 	}
-	
+	/**
+	 * Öffnet Fenster mit Fehlermeldung
+	 */
 	public void anmeldenFehlermeldung() {
-		
 		System.out.println("OPT");
 		JOptionPane.showOptionDialog(null, "Email und Passwort stimmen nicht überein",
 				"Anmeldung",
@@ -192,9 +213,10 @@ public class GUI extends JFrame {
 				new String[] {"Erneut versuchen"}, "");
 		
 	}
-	
+	/**
+	 * Erstellt Hauptfenster des Programms
+	 */
 	public GUI() {
-				
 		layeredPane.setSize(1248, 563);
 		layeredPane.setLocation(0, 148);
 		frame = new JFrame();

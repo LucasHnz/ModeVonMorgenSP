@@ -37,14 +37,10 @@ import Artikelverwaltung.Kleidung;
 import Artikelverwaltung.Schuhe;
 import Warenkorbverwaltung.Warenkorb;
 
-public class GUIArtikel implements ActionListener {
-	//ABC
+public class GUIArtikel {
 	
 	JButton btnZurück = new JButton();
 	JButton btnAnmelden = new JButton();
-	public JComboBox comboBoxHerren = new JComboBox();
-	public JComboBox comboBoxDamen = new JComboBox();
-	public JComboBox comboBoxAnmelden = new JComboBox();
 	public String[] damenCbList;
 	public String[] herrenCbList;
 	public String[] anmeldenCbList;
@@ -75,10 +71,8 @@ public class GUIArtikel implements ActionListener {
 	
 
 	/**
-	 * @return 
-	 * 
+	 * Erstellt Fenster bei Bestellung eines Artikels de nicht mehr auf Lager ist
 	 */
-	
 	public static void bestellungFehlermeldung() {
 		
 		JOptionPane.showOptionDialog(null, "Der Artikel ist leider nicht mehr auf Lager",
@@ -90,6 +84,11 @@ public class GUIArtikel implements ActionListener {
 		
 	}
 
+	/**
+	 * Überprüft Verfügbarkeit des Artikels und setzt dementsprechen die Farbe des Textes
+	 * @param artikelNummer Eindeutige Nummer des Artikels
+	 * @return farbe Farbe die auskunft über Verfügbarkeit des Artikels gibt
+	 */
 	public static Color checkStatus(int artikelNummer) {
 		status = Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit();
 		Color farbe = null;
@@ -109,6 +108,11 @@ public class GUIArtikel implements ActionListener {
 		return farbe;
 	}
 	
+	/**
+	 * Überprüft Artikelkategorie und lädt dementsprechen zusätzliches Attribut 
+	 * @param artikelNummer eindeutige Nummer des Artikels
+	 * @return zusatz Je nach Artikelkategorie zusätzliches Attribut (Kleidungsgröße, Schuhgröße, Farbe)
+	 */
 	public static String zusatzLaden(int artikelNummer) {
 		String zusatz = null;
 		Artikel a = Artikelsammlung.getArtikel(artikelNummer);
@@ -132,6 +136,10 @@ public class GUIArtikel implements ActionListener {
 		return zusatz;
 	}
 	
+	/**
+	 * Errechnet Rabattpreis und setzt den neuen und alten Preis
+	 * @param artikelNummer eindeutige Nummer des Artikels
+	 */
 	public static void ladeRabattPreis(int artikelNummer) {
 		double rabatt = Artikelsammlung.getArtikel(artikelNummer).getRabatt();
 		double preis = Artikelsammlung.getArtikel(artikelNummer).getPreis();
@@ -154,7 +162,9 @@ public class GUIArtikel implements ActionListener {
 	
 	
 	/**
-	 * @wbp.parser.entryPoint
+	 * Erstellt und Liefert Fenster für einen Artikel
+	 * @param artikelNummer eindeutige Nummer des Artikels
+	 * @return panelMain Artikelseite
 	 */
 	static JPanel getGUIArtikel(int artikelNummer) {
 		
@@ -251,19 +261,6 @@ public class GUIArtikel implements ActionListener {
 		ladeRabattPreis(artikelNummer);
 		panelMain.setVisible(true);
 		return panelMain;
-	}
-	
-	
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource() == btnZurück) 
-		{
-			frame.dispose();
-			new GUI();
-		}
-
 	}
 }
 
