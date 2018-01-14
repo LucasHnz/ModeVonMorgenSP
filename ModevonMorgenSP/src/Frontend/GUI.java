@@ -61,7 +61,7 @@ public class GUI extends JFrame {
     
     public String[] damenCbList = {"Damen", "-----------------------------------", "Kleidung", "Schuhe", "Accessoires"};
 	public String[] herrenCbList = {"Herren","------------------------------------", "Kleidung", "Schuhe", "Accessoires"};
-	static String[] array = {"Anmelden"};
+	static String[] array = {"Anmelden", "Registrieren"};
 	
 	
 		
@@ -108,8 +108,19 @@ public class GUI extends JFrame {
 		if(status == 0) {
 			//Abgemeldet
 			String item1 = "Anmelden";
+			String item2 = "Registrieren";
 			comboBoxAnmelden.removeAllItems();
 			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
+		}
+		
+		if(status == 1) {
+			//Gastkunde
+			String item1 = "Gastkunde";
+			String item2 = "Abmelden";
+			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item1);
+			comboBoxAnmelden.addItem(item2);
 		}
 		
 		if(status == 2) {
@@ -279,6 +290,7 @@ public class GUI extends JFrame {
 		comboBoxAnmelden.setBounds(1040, 2, 191, 48);
 		comboBoxAnmelden.setFont(new Font("Dialog", Font.BOLD, 15));
 		comboBoxAnmelden.setBackground(SystemColor.control);
+		
 		comboBoxAnmelden.addActionListener(new ActionListener() {
 
 			@Override
@@ -304,6 +316,9 @@ public class GUI extends JFrame {
 				    
 				    if(auswahl == "Verwaltung") {
 				    	changePanel(GUIMitarbeiter.getGUIMitarbeiter());
+				    }
+				    if(auswahl == "Registrieren") {
+				    	changePanel(new GUIBestandskundeRegistrierung());
 				    }
 				}
 		});

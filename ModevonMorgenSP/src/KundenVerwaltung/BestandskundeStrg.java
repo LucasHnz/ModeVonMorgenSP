@@ -11,7 +11,7 @@ import Artikelverwaltung.Artikelsammlung;
 
 public class BestandskundeStrg {
 	
-public static void aktualisiereNachname(String nachname, String nutzernr){
+public static void aktualisiereNachname(String nachname, int nutzernr){
 		
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -27,7 +27,7 @@ public static void aktualisiereNachname(String nachname, String nutzernr){
 		}
 		
 	}
-public static void aktualisiereVorname(String vorname, String nutzernr){
+public static void aktualisiereVorname(String vorname, int nutzernr){
 		
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -44,7 +44,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		
 	}
 	
-	public static void aktualisiereEmail(String email, String nutzernr) {
+	public static void aktualisiereEmail(String email, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -61,7 +61,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		}
 	}
 	
-	public static void aktualisiereStraﬂe(String straﬂe, String nutzernr) {
+	public static void aktualisiereStraﬂe(String straﬂe, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -79,7 +79,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		
 	}
 	
-	public static void aktualisiereOrt(String ort, String nutzernr) {
+	public static void aktualisiereOrt(String ort, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -96,7 +96,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		}
 	}
 	
-	public static void aktualisierePLZ(String plz, String nutzernr) {
+	public static void aktualisierePLZ(String plz, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -114,7 +114,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		
 	}
 
-	public static void aktualisiereIBAN(String iban, String nutzernr) {
+	public static void aktualisiereIBAN(String iban, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -131,7 +131,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 		}
 	}
 
-	public static void aktualisierePasswort(String passwort, String nutzernr) {
+	public static void aktualisierePasswort(String passwort, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -149,7 +149,7 @@ public static void aktualisiereVorname(String vorname, String nutzernr){
 	}
 	
 	//Anna
-public static void aktualisierePSS(int pss, String nutzernr) {
+public static void aktualisierePSS(int pss, int nutzernr) {
 		
 		try{
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -158,7 +158,7 @@ public static void aktualisierePSS(int pss, String nutzernr) {
 		String sqlbefehl = "update Bestandskunde set PSS ='"+pss+"' where nutzernr ="+nutzernr;
 		
 		stmt.execute(sqlbefehl)	;
-		
+		BestandskundeSammlung.getBestandskunde(nutzernr).setPss(pss);
 		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 		
 		}catch (SQLException e) {
@@ -169,32 +169,22 @@ public static void aktualisierePSS(int pss, String nutzernr) {
 
 	
 	//Anna
-	public static void neuerKunde(String nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, String plz, String iban, String berechtigung, String passwort, String pss){
-		int  nutzernr2 = Integer.parseInt(nutzernr);
-		int plz2 = Integer.parseInt(plz);
-		int berechtigung2 = Integer.parseInt(berechtigung);
-		int pss2= Integer.parseInt(pss);
-		//Bestandskunde bk = new Bestandskunde( nutzernr2, nachname,  vorname, email, straﬂe, ort,plz2, iban, berechtigung2, passwort,pss2);
+	public static void neuerKunde(int nutzernr, String nachname, String vorname, String email, String straﬂe, String ort, int plz, String iban, int berechtigung, String passwort, int pss){
+	
 		
-		try {
-			
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			
-			Statement stmt = con.createStatement();
-			
-			String sqlbefehl = "insert into Bestandskunde values ('"+nutzernr2+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz2+"','"+iban+"','"+berechtigung2+"','"+passwort+"','"+pss2+"')";
-			
-			stmt.executeQuery(sqlbefehl);
-			
+		
+		try {			
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();			
+			Statement stmt = con.createStatement();			
+			String sqlbefehl = "insert into Bestandskunde values ('"+nutzernr+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz+"','"+iban+"','"+berechtigung+"','"+passwort+"','"+pss+"')";			
+			stmt.executeQuery(sqlbefehl);			
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-			BestandskundeSammlung.hinzuf¸genBestandskunde(nutzernr2, nachname, vorname, email, straﬂe, ort, plz2, iban, berechtigung2, passwort,pss2);
+			BestandskundeSammlung.hinzuf¸genBestandskunde(nutzernr, nachname, vorname, email, straﬂe, ort, plz, iban, berechtigung, passwort,pss);
 			
 		}catch (SQLException e) { 
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
 
 	public static void lˆschenAccount(int nutzerNr) {
@@ -202,15 +192,11 @@ public static void aktualisierePSS(int pss, String nutzernr) {
 			
 			int kdnr = nutzerNr;
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			
 			Statement stmt = con.createStatement();
-			
 			String sqlbefehel ="delete from Bestandskunde where nutzerNr = '"+kdnr+"'";
 			
 			stmt.executeQuery(sqlbefehel);
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-			
-			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -219,11 +205,8 @@ public static void aktualisierePSS(int pss, String nutzernr) {
 	public static void anzeigenPunktestand(int nutzerNr){
 			int kdnr = nutzerNr;
 			try {
-
 				Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-				
 				Statement stmt = con.createStatement();
-				
 				String sqlbefehel ="select PSS from Bestandskunde where nutzerNr = '"+kdnr+"'";
 				
 				stmt.executeQuery(sqlbefehel);
@@ -232,7 +215,8 @@ public static void aktualisierePSS(int pss, String nutzernr) {
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+	}
+	
 	//Falk
 	public static void F¸lleBestandskundeSammlung() {
 		Connection con = null;

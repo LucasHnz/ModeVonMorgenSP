@@ -88,7 +88,7 @@ public class BestellStrg {
 	}
 
 	public static void bestellvorgang() {
-		if (LogStrg.getAngemeldetStatus() == 2) {				//klappt wenn man nur eine Bestellung durch führt, wenn man zwei mal hintereinander eine bestellung durch führt, werden falsche punkte benutzt
+		if (LogStrg.getAngemeldetStatus() == 2) {				
 
 			int nutzernr = LogStrg.getNutzerNr();
 			Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(nutzernr);
@@ -112,14 +112,16 @@ public class BestellStrg {
 			if (optionPane == 0) {
 				JOptionPane.showMessageDialog(null, "Bitte anmelden und Bestellung wiederholen", "Bitte anmelden",
 						JOptionPane.INFORMATION_MESSAGE);
-				GUI.getFenster().öffnenAnmeldefenster(); // klappt
+				GUI.getFenster().öffnenAnmeldefenster(); 
 			} else if (optionPane == 1) {
-				GUI.getFenster().changePanel(new GUIBestandskundeRegistrierung()); // klappt
+				JOptionPane.showMessageDialog(null, "Bitte registrieren und Bestellung wiederholen", "Bitte anmelden",
+						JOptionPane.INFORMATION_MESSAGE);
+				GUI.getFenster().changePanel(new GUIBestandskundeRegistrierung()); 
 			} else if (optionPane == 2) {
-				GUI.getFenster().changePanel(new GUIGastkundeErstellen()); // klappt nicht
+				GUI.getFenster().changePanel(new GUIGastkundeErstellen()); 
 
 			}
-		} else if (LogStrg.getAngemeldetStatus() == 1) {			//klappt nicht
+		} else if (LogStrg.getAngemeldetStatus() == 1) {			
 			Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());
 			String email = gk.getEmail();
 			erstelleBestellungGK();
@@ -165,7 +167,6 @@ public class BestellStrg {
 				Artikel a = Artikelsammlung.getArtikelsammlung().get(artikelnummer);
 				int nBestand = a.getBestand() - menge;
 				ArtikelStrg.aktualisiereBestand(nBestand, artikelnummer);
-				System.out.println("Bestandsänderung auf " + nBestand);
 			}
 			ps.executeBatch();
 			JOptionPane.showMessageDialog(null, "Die Bestellung wurde erstellt", "Bestellung erstellt.",
@@ -187,7 +188,7 @@ public class BestellStrg {
 	}
 
 	// Falk
-	public static void erstelleBestellungBK(int pRabatt) { // Versandstatus, Rabatt evtl. commit und rollback, damit
+	public static void erstelleBestellungBK(int pRabatt) {  // Versandstatus, Rabatt evtl. commit und rollback, damit
 															// entweder alles, oder gar nichts gespeichert wird.
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(LogStrg.getNutzerNr());
@@ -197,8 +198,8 @@ public class BestellStrg {
 		String nachname = bk.getNachname();
 		String vorname = bk.getVorname();
 		double preis = Warenkorb.getGesamtpreis();
-		double gesamtpreis = preis - ((pRabatt * preis) / 100);				//klappt
-		int erabatt = pRabatt;												//klappt
+		double gesamtpreis = preis - ((pRabatt * preis) / 100);				
+		int erabatt = pRabatt;												
 		Date datum = Date.valueOf(LocalDate.now());
 		String versandstatus = "Vorbereitung";
 		String rechnungsort = bk.getOrt();
@@ -247,7 +248,7 @@ public class BestellStrg {
 	}
 
 	// Falk
-	public static void erstelleBestellungGK() { // GK Nummer einfügen, Versandstatus, Rabatt
+	public static void erstelleBestellungGK() { 
 		int bestellnr = Datenbankverwaltung.holeNächsteNummer.nächsteBestellNr();
 		Gastkunde gk = GastkundenSammlung.getGastkundenSammlung().get(LogStrg.getNutzerNr());
 		int nrGK = LogStrg.getNutzerNr();
@@ -265,13 +266,14 @@ public class BestellStrg {
 
 		Bestellung bestellung = new Bestellung(bestellnr, nrBK, nrGK, iban, nachname, vorname, gesamtpreis, erabatt,
 				datum, versandstatus, rechnungsort, rechnungsstrasse, rechnungsplz);
+		
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			ps = con.prepareStatement("insert into Rechnungbestellung values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setInt(1, bestellnr);
-			ps.setInt(2, Types.NULL);
+			ps.setNull(2, Types.NULL);
 			ps.setInt(3, nrGK);
 			ps.setString(4, iban);
 			ps.setString(5, nachname);
@@ -284,7 +286,7 @@ public class BestellStrg {
 			ps.setString(12, rechnungsstrasse);
 			ps.setInt(13, rechnungsplz);
 
-			ps.executeUpdate(); 						//GEHT NICHT wieso auch immer, fülle auch die sammlung in der Gui aber will trz nicht 
+			ps.executeUpdate(); 						
 			BestellungSammlung.hinzufügenBestellung(bestellung);
 			erstelleBestellpositionen(bestellnr);
 
@@ -311,15 +313,12 @@ public class BestellStrg {
 	 */
 	public static void errechnePunkte(double preis, int pRabatt) {
 		int nutzernr = LogStrg.getNutzerNr();
-		String nutzernr2 = String.valueOf(nutzernr);
 		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(nutzernr);
-
 		int pss = bk.getPss();
 		double preisZ = preis / 10;
 		int pssZ = (int) preisZ;
 		int pssNeu = pss + pssZ - pRabatt;
-		System.out.println("Alter wert: " + pss + " neuer Wert: " + pssNeu);
-		BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr2);
+		BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr);
 
 	}
 
@@ -334,7 +333,7 @@ public class BestellStrg {
 	public static int abfrageRabatt() {
 		int nutzernr = LogStrg.getNutzerNr();
 		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(nutzernr);
-		int pssAkt = bk.getPss();       														   //wenn man eine zweite Bestellung durchführt, nimmt er den Wert ,der vor der ersten Bestellung war und nicht den aktuellen aus der DB.
+		int pssAkt = bk.getPss();       														   
 		int pRabatt = 0;
 		boolean prüfen = true;
 		if(pssAkt>0) {
@@ -342,8 +341,7 @@ public class BestellStrg {
 
 			String eingabe = JOptionPane.showInputDialog(null,
 					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. Sie haben" + pssAkt
-							+ "Punkte. Sie können nicht mehr als 20 Punkte einlösen.",
-					"Eingabe");
+							+ "Punkte. Sie können nicht mehr als 20 Punkte einlösen.");
 
 			pRabatt = Integer.parseInt(eingabe);
 
@@ -354,20 +352,22 @@ public class BestellStrg {
 						JOptionPane.ERROR_MESSAGE);
 
 			}
-			if ( pRabatt > pssAkt) {
+			else if ( pRabatt > pssAkt) {
 
 				JOptionPane.showMessageDialog(null,
 						"Sie haben nicht genug Punkte ! Wählen Sie eine andere Anzahl von Punkten, die Sie eintauschen möchten.",
 						"Fehler", JOptionPane.ERROR_MESSAGE);
 
 			}
-			if (pRabatt>20) {
+			else if (pRabatt>20) {
 				JOptionPane.showMessageDialog(null,
 						"Sie können nicht mehr als 20 Punkte einlösen ! Wählen Sie eine andere Anzahl von Punkten, die Sie eintauschen möchten.",
 						"Fehler", JOptionPane.ERROR_MESSAGE);
 
 			}
-			if (pRabatt <= 20 && pRabatt <= pssAkt) {
+			else if (pRabatt <= 20 && pRabatt <= pssAkt) {
+				int pNeu = pssAkt - pRabatt;
+				BestandskundeStrg.aktualisierePSS(pNeu, nutzernr);
 				JOptionPane.showMessageDialog(
 						null, "Der Preis Ihrer Bestellung wurde um " + pRabatt
 								+ " % reduziert. " ,

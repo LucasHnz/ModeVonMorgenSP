@@ -18,6 +18,7 @@ import javax.swing.text.NumberFormatter;
 
 import Backend.TextDoc;
 import Bestellverwaltung.BestellStrg;
+import Logverwaltung.LogStrg;
 
 /**
  * @author annag
@@ -32,7 +33,7 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 	 * @wbp.parser.entryPoint
 	 * 
 	 */
-	public  GUIBestandskundeRegistrierung () {
+	public GUIBestandskundeRegistrierung () {
 		
 		setBounds(0, 0, 1248, 563);
 		setLayout(null);
@@ -198,48 +199,32 @@ public class GUIBestandskundeRegistrierung extends JPanel{
 		
 		public void actionPerformed(ActionEvent e) {
 			
-			String nutzernr= textField.getText();
+			int nutzernr= Integer.valueOf(textField.getText());
 			String nachname = textField_Nachname.getText();
 			String vorname = textField_Vorname.getText();
 			String email = textField_Mail.getText();
 			String straﬂe = textField_Straﬂe.getText();
 			String ort = textField_Ort.getText();
-			String plz = textField_PLZ.getText();
+			int plz = Integer.valueOf(textField_PLZ.getText());
 			String iban= textField_IBAN.getText();
-			String berechtigung = "2";
+			int berechtigung = 2;
 			String passwort=textField_Passwort.getText();
-			String pss= "0";
+			int pss= 0;
 			
-			KundenVerwaltung.BestandskundeStrg.neuerKunde(nutzernr, nachname,  vorname, email, straﬂe, ort,plz, iban, berechtigung, passwort,pss);
-			System.out.println(nutzernr);
-			textField.setText(String.valueOf(Datenbankverwaltung.holeN‰chsteNummer.n‰chsteBKundenNr()));
-			textField_Nachname.setText("");
-			textField_Vorname.setText("");
-			textField_Mail.setText("");
-			textField_Straﬂe.setText("");
-			textField_Ort.setText("");
-			textField_PLZ.setText("");
-			textField_IBAN.setText("");
-			textField_Passwort.setText("");
+			KundenVerwaltung.BestandskundeStrg.neuerKunde(nutzernr, nachname,  vorname, email, straﬂe, ort,plz, iban, berechtigung, passwort,pss);	
 			
-			
-			JOptionPane.showOptionDialog(null, "Sie wurden Registriert! ","Registrierung",
+			JOptionPane.showOptionDialog(null, "Sie wurden registriert! ","Registrierung",
 	                JOptionPane.YES_NO_CANCEL_OPTION,
 	                JOptionPane.INFORMATION_MESSAGE, null, 
 	                new String[]{"Ok"}, "Ok");
 			
 			MailController.MailSenden.sendMail(email,"Best‰tigung ihrer Registrierung","Sehr geehrter Kunde, Vielen Dank f¸r ihre Registrierung. Viel Spaﬂ beim Einkaufen! ");
-			
-			JOptionPane.showOptionDialog(null, "Bitte anmelden und Bestellung wiederholen. ","Best‰tigung",
-	                JOptionPane.YES_NO_CANCEL_OPTION,
-	                JOptionPane.INFORMATION_MESSAGE, null, 
-	                new String[]{"Ok"}, "Ok"); 
-			
-			GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
-			
-			
-			
-		
+			LogStrg.setAnmeldeStatus(2);
+			LogStrg.setNutzerNr(nutzernr);
+			LogStrg.setRecht("Angemeldet");
+			GUI.comboBoxAbfrage();
+			GUI.getFenster().changePanel(GUIHomepage.getHomepage());
+
 		}
 		
 	});

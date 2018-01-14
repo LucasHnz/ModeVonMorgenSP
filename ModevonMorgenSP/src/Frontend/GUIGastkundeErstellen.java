@@ -167,46 +167,32 @@ public class GUIGastkundeErstellen extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				String nutzernr= textField.getText();
+				int nutzernr= Integer.valueOf(textField.getText());
 				String nachname = textField_Nachname.getText();
 				String vorname = textField_Vorname.getText();
 				String email = textField_Mail.getText();
 				String straße = textField_Straße.getText();
 				String ort = textField_Ort.getText();
-				String plz = textField_PLZ.getText();
+				int plz = Integer.valueOf(textField_PLZ.getText());
 				String iban= textField_IBAN.getText();
-				String berechtigung = "1";
+				int berechtigung = 1;
 				
-				
-				int nutzernr2=Integer.parseInt(nutzernr);
-				
-				KundenVerwaltung.GastkundenStrg.hinzufügenGK(nutzernr, nachname, vorname, email, straße, ort, plz, berechtigung,iban);
-			//	Gastkunde gk= GastkundenSammlung.getGastkundenSammlung().get(nutzernr2);
-
-				GastkundenSammlung.fülleGastkundenListe();
-				
+				KundenVerwaltung.GastkundenStrg.hinzufügenGK(nutzernr, nachname, vorname, email, straße, ort, plz, berechtigung,iban);			
 				
 				JOptionPane.showMessageDialog(null,
 					    "Gastkunde erstellt",
 					    "Gastkunden Erstellung",
 					    JOptionPane.INFORMATION_MESSAGE);
-				LogStrg.setNutzerNr(nutzernr2);
-				LogStrg.setAnmeldeStatus(1);
-				LogStrg.setRecht("Gastkunde");
 				
+				LogStrg.anmeldenGK(nutzernr);
 				GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 				
-				;
 			}
 			
 		});
 		btnBestellen.setBounds(650, 476, 161, 40);
 		add(btnBestellen);
 		
-		/**
-		 * Button abbrechen, unterbricht die Erstellung eines GK
-		 */
-	
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Calibri", Font.BOLD, 14));
 		btnAbbrechen.setBounds(460, 476, 145, 40);

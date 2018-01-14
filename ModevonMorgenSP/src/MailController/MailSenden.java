@@ -14,6 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.swing.JOptionPane;
 import javax.mail.Message.RecipientType;
 /**
  * 
@@ -75,7 +76,10 @@ public class MailSenden {
 		}
 
 		catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,
+				    "Email konnte nicht verschickt werden! \n" + e.getMessage(),
+				    "Fehler",
+				    JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
