@@ -90,6 +90,7 @@ public class GUINeuerArtikel {
 	 * @param artikelNummer Eindeutige Nummer des Artikels
 	 * @return farbe Farbe die auskunft über Verfügbarkeit des Artikels gibt
 	 */
+
 	static Component neuerArtikel(int artikelNummer) {
 
 		JPanel panelArtikel = new JPanel();
