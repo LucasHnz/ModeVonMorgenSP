@@ -51,9 +51,7 @@ public class GUIHerrenSchuhe {
 
 	//AGBS
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
+	
 	public static void ladeArtikel() {
 		
 		try {
@@ -78,9 +76,7 @@ public class GUIHerrenSchuhe {
 		
 	}
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
+	
 	public static void ladeArtikelOutdoor() {
 		
 		try {
@@ -104,9 +100,7 @@ public class GUIHerrenSchuhe {
 		
 	}
 
-	/**
-	 * @wbp.parser.entryPoint
-	 */
+	
 	public static void ladeArtikelSport() {
 	
 		try {
@@ -130,9 +124,7 @@ public class GUIHerrenSchuhe {
 	
 	}
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
+	
 	public static void ladeArtikelHausschuhe() {
 		
 		try {
@@ -204,7 +196,7 @@ public class GUIHerrenSchuhe {
 		
 		
 		btnAlleArtikel = new JButton("Alle Artikel");
-		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(Color.WHITE);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
@@ -219,7 +211,7 @@ public class GUIHerrenSchuhe {
 		
 		
 		btnStiefel = new JButton("Stiefel");
-		btnStiefel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnStiefel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnStiefel.setBackground(SystemColor.inactiveCaptionBorder);
 		btnStiefel.setBounds(10, 87, 248, 43);
 		btnStiefel.addActionListener(new ActionListener() {
@@ -234,7 +226,7 @@ public class GUIHerrenSchuhe {
 		
 		
 		btnOutdoor = new JButton("Outdoor");
-		btnOutdoor.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnOutdoor.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnOutdoor.setBackground(SystemColor.inactiveCaptionBorder);
 		btnOutdoor.setBounds(10, 151, 248, 43);
 		btnOutdoor.addActionListener(new ActionListener() {
@@ -249,7 +241,7 @@ public class GUIHerrenSchuhe {
 	
 		
 		btnSport = new JButton("Sport");
-		btnSport.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnSport.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnSport.setBackground(SystemColor.inactiveCaptionBorder);
 		btnSport.setBounds(10, 215, 248, 43);
 		btnSport.addActionListener(new ActionListener() {
@@ -263,7 +255,7 @@ public class GUIHerrenSchuhe {
 		panelScrollPaneLinks.add(btnSport);
 		
 		btnHausschuhe = new JButton("Hausschuh");
-		btnHausschuhe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnHausschuhe.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHausschuhe.setBackground(SystemColor.inactiveCaptionBorder);
 		btnHausschuhe.setBounds(10, 279, 248, 43);
 		btnHausschuhe.addActionListener(new ActionListener() {

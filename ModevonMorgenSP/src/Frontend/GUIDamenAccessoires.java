@@ -220,7 +220,7 @@ GUI.getFenster().repaint();
 		panelMain.add(scrollPaneDamenAccessoiresLinks);
 		
 		btnAlleArtikel = new JButton("Alle Artikel");
-		btnAlleArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(SystemColor.inactiveCaptionBorder);
 		btnAlleArtikel.setBounds(10, 23, 248, 43);
 		btnAlleArtikel.addActionListener(new ActionListener() {
@@ -234,7 +234,7 @@ GUI.getFenster().repaint();
 		panelScrollPaneLinks.add(btnAlleArtikel);
 		
 		btnKopfschmuck = new JButton("Kopfschmuck");
-		btnKopfschmuck.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnKopfschmuck.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnKopfschmuck.setBackground(SystemColor.inactiveCaptionBorder);
 		btnKopfschmuck.setBounds(10, 87, 248, 43);
 		btnKopfschmuck.addActionListener(new ActionListener() {
@@ -248,7 +248,7 @@ GUI.getFenster().repaint();
 		panelScrollPaneLinks.add(btnKopfschmuck);
 		
 		btnKetten = new JButton("Ketten");
-		btnKetten.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnKetten.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnKetten.setBackground(SystemColor.inactiveCaptionBorder);
 		btnKetten.setBounds(10, 151, 248, 43);
 		btnKetten.addActionListener(new ActionListener() {
@@ -263,7 +263,7 @@ GUI.getFenster().repaint();
 		
 		
 		btnOhrringe = new JButton("Ohrringe");
-		btnOhrringe.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnOhrringe.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnOhrringe.setBackground(SystemColor.inactiveCaptionBorder);
 		btnOhrringe.setBounds(10, 215, 248, 43);
 		btnOhrringe.addActionListener(new ActionListener() {
@@ -277,7 +277,7 @@ GUI.getFenster().repaint();
 		panelScrollPaneLinks.add(btnOhrringe);
 		
 		btnArmbänder = new JButton("Armbänder");
-		btnArmbänder.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnArmbänder.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnArmbänder.setBackground(SystemColor.inactiveCaptionBorder);
 		btnArmbänder.setBounds(10, 279, 248, 43);
 		btnArmbänder.addActionListener(new ActionListener() {
@@ -291,7 +291,7 @@ GUI.getFenster().repaint();
 		panelScrollPaneLinks.add(btnArmbänder);
 		
 		btnRinge = new JButton("Ringe");
-		btnRinge.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnRinge.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnRinge.setBackground(SystemColor.inactiveCaptionBorder);
 		btnRinge.setBounds(10, 343, 248, 43);
 		btnRinge.addActionListener(new ActionListener() {
