@@ -209,34 +209,34 @@ public class GUIKontoVerwalten extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			if(textField_Nachname.getText() != kunde.getNachname()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereNachname(textField_Nachname.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisiereNachname(textField_Nachname.getText(),kunde.getNutzernr());
 			}
 			if(textField_Vorname.getText() != kunde.getVorname()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_Vorname.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_Vorname.getText(),kunde.getNutzernr());
 			}
 			
 			if(textField_Mail.getText() != kunde.getEmail()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereEmail(textField_Mail.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisiereEmail(textField_Mail.getText(),kunde.getNutzernr());
 			}
 			
 			if(textField_Straﬂe.getText() != kunde.getStraﬂe()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereStraﬂe(textField_Straﬂe.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisiereStraﬂe(textField_Straﬂe.getText(),kunde.getNutzernr());
 			}
 			
 			if(textField_Ort.getText() != kunde.getOrt()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereOrt(textField_Ort.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisiereOrt(textField_Ort.getText(),kunde.getNutzernr());
 			}
 			
 			if(textField_PLZ.getText() != String.valueOf(kunde.getPlz())) {
-				KundenVerwaltung.BestandskundeStrg.aktualisierePLZ(textField_PLZ.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisierePLZ(textField_PLZ.getText(),kunde.getNutzernr());
 			}
 			
 			if(textField_IBAN.getText() != kunde.getIban()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereIBAN(textField_IBAN.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisiereIBAN(textField_IBAN.getText(),kunde.getNutzernr());
 			}
 			
 			if(textField_Passwort.getText() != kunde.getPasswort()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_Passwort.getText(),Integer.toString(kunde.getNutzernr()));
+				KundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_Passwort.getText(),kunde.getNutzernr());
 			}
 			
 			JOptionPane.showOptionDialog(null, "ƒnderungen wurden gespeichert","Bestandskunden Bearbeitung",

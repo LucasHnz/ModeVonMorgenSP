@@ -106,17 +106,18 @@ public class GUIBestellpositionenBK  extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Zeigt die Bestellpositionen einer Bestellung für den Kunden an.
+	 * @param bestellnr Die Bestellnummer
 	 */
-	public GUIBestellpositionenBK(int i) {
+	public GUIBestellpositionenBK(int bestellnr) {
 		getContentPane().setBackground(Color.DARK_GRAY);
 
 		setBackground(Color.DARK_GRAY);
-		BestellpositionSammlung.fülleMitSpeziellerNummer(i);
+		BestellpositionSammlung.fülleMitSpeziellerNummer(bestellnr);
 		setBounds(200, 200, 979, 446);
 		setBackground(Color.DARK_GRAY);
 		setResizable(false);
-		setTitle("Bestellpositionen der Bestellung: " + i);
+		setTitle("Bestellpositionen der Bestellung: " + bestellnr);
 
 		table = new JTable(
 				new myTableModel(BestellpositionSammlung.getBestellpositionsSammlung(), columnNames));

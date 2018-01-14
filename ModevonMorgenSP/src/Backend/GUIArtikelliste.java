@@ -481,6 +481,10 @@ public class GUIArtikelliste extends JPanel {
 	
 		setVisible(true);
 	}
+	/**
+	 * Stellt die Tabellenstruktur her. Wird vor allem nach einem Update der 
+	 * Zeilenanzahl genutzt.
+	 */
 	public void setStructure() {
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(40);
