@@ -338,9 +338,9 @@ public class BestellStrg {
 		int nutzernr = LogStrg.getNutzerNr();
 		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(nutzernr);
 		int pss = bk.getPss();
-		double preisZ = preis / 10;
+		double preisZ = (preis - (preis * pRabatt)/100) / 10;
 		int pssZ = (int) preisZ;
-		int pssNeu = pss + pssZ - pRabatt;
+		int pssNeu = pss + pssZ; 
 		BestandskundeStrg.aktualisierePSS(pssNeu, nutzernr);
 
 	}
@@ -371,6 +371,7 @@ public class BestellStrg {
 			else
 				pRabatt = 0;
 
+			
 			if (pRabatt > 20 && pRabatt > pssAkt) {
 
 				JOptionPane.showMessageDialog(null,
