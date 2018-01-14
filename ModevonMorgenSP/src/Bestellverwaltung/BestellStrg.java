@@ -79,7 +79,7 @@ public class BestellStrg {
 
 			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
 
-			b.setVersandstatus("Zugestellt");
+			b.setVersandstatus("Versandt");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
