@@ -135,9 +135,11 @@ public class GUIArtikel implements ActionListener {
 	public static void ladeRabattPreis(int artikelNummer) {
 		double rabatt = Artikelsammlung.getArtikel(artikelNummer).getRabatt();
 		double preis = Artikelsammlung.getArtikel(artikelNummer).getPreis();
+		preis = Math.round(preis*10)/10.0;
 		double rabattPreis = rabatt / 100;
 		double rabattPreis2 = preis * rabattPreis;
 		double neuerPreis = preis - rabattPreis2;
+		neuerPreis = Math.round(neuerPreis*10)/10.0;
 		
 		if(rabatt == 0) {
 			lblPreis.setText(preis + " €");
@@ -187,8 +189,8 @@ public class GUIArtikel implements ActionListener {
 		panel.add(lblArtikelBild);
 		
 		lblArtikelTitel = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
-		lblArtikelTitel.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		lblArtikelTitel.setBounds(362, 11, 319, 49);
+		lblArtikelTitel.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblArtikelTitel.setBounds(362, 0, 319, 49);
 		panel.add(lblArtikelTitel);
 		
 		lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
@@ -196,9 +198,10 @@ public class GUIArtikel implements ActionListener {
 		lblArtikelStatus.setForeground(checkStatus(artikelNummer));
 		panel.add(lblArtikelStatus);
 		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblArtikelStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblArtikelStatus.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
 		btnWarenkorbHinz = new JButton("In den Warenkorb");
+		btnWarenkorbHinz.setFont(new Font("Dialog", Font.PLAIN, 21));
 		btnWarenkorbHinz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -213,35 +216,35 @@ public class GUIArtikel implements ActionListener {
 				}
 			}																								
 		});
-		btnWarenkorbHinz.setBounds(430, 268, 153, 35);
+		btnWarenkorbHinz.setBounds(430, 268, 208, 35);
 		panel.add(btnWarenkorbHinz);
 		btnWarenkorbHinz.setBackground(SystemColor.inactiveCaptionBorder);
 		
 		
-		spinnerMenge.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spinnerMenge.setFont(new Font("Dialog", Font.PLAIN, 15));
 		spinnerMenge.setBounds(362, 266, 58, 35);
 		panel.add(spinnerMenge);
 		
 		
 		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getHersteller());
-		lblHersteller.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHersteller.setFont(new Font("Dialog", Font.BOLD, 15));
 		lblHersteller.setBounds(362, 51, 183, 33);
 		panel.add(lblHersteller);
 		
 		lblZusatz = new JLabel();
 		lblZusatz.setText(zusatzLaden(artikelNummer));
-		lblZusatz.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblZusatz.setFont(new Font("Dialog", Font.BOLD, 17));
 		lblZusatz.setBounds(362, 81, 221, 26);
 		panel.add(lblZusatz);
 		
 		lblPreis = new JLabel("");
-		lblPreis.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblPreis.setFont(new Font("Dialog", Font.BOLD, 28));
 		lblPreis.setBounds(362, 128, 163, 43);
 		panel.add(lblPreis);
 		
 		lblRabatt = new JLabel("");
 		lblRabatt.setForeground(Color.BLACK);
-		lblRabatt.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblRabatt.setFont(new Font("Dialog", Font.PLAIN, 15));
 		lblRabatt.setBounds(362, 169, 163, 26);
 		panel.add(lblRabatt);
 		

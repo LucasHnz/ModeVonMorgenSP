@@ -31,9 +31,11 @@ public class GUINeuerArtikel {
 	public static void ladeRabattPreis(int artikelNummer) {
 		double rabatt = Artikelsammlung.getArtikel(artikelNummer).getRabatt();
 		double preis = Artikelsammlung.getArtikel(artikelNummer).getPreis();
+		preis = Math.round(preis*10)/10.0;
 		double rabattPreis = rabatt / 100;
 		double rabattPreis2 = preis * rabattPreis;
 		double neuerPreis = preis - rabattPreis2;
+		neuerPreis = Math.round(neuerPreis*10)/10.0;
 		
 		if(rabatt == 0) {
 			lblPreis.setText(preis + " €");
@@ -99,21 +101,22 @@ static  Component neuerArtikel(int artikelNummer) {
 		panelArtikel.add(labelArtikelBild);
 		
 		JLabel lblSchwarzeJackeDenim = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
-		lblSchwarzeJackeDenim.setFont(new Font("Lucida Bright", Font.BOLD, 18));
+		lblSchwarzeJackeDenim.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblSchwarzeJackeDenim.setBounds(186, 11, 213, 30);
 		panelArtikel.add(lblSchwarzeJackeDenim);
 		
 		lblPreis = new JLabel();
-		lblPreis.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		lblPreis.setFont(new Font("Dialog", Font.BOLD, 22));
 		lblPreis.setBounds(186, 108, 101, 30);
 		panelArtikel.add(lblPreis);
 		
 		lblRabattPreis = new JLabel("");
+		lblRabattPreis.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblRabattPreis.setBounds(297, 108, 125, 30);
 		panelArtikel.add(lblRabattPreis);
 		
 		JButton btnZumArtikel = new JButton("Zum Artikel");
-		btnZumArtikel.setFont(new Font("Lucida Bright", Font.BOLD, 15));
+		btnZumArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnZumArtikel.setBackground(Color.WHITE);
 		btnZumArtikel.setBounds(186, 147, 139, 30);
 		btnZumArtikel.addActionListener(new ActionListener() {
@@ -125,13 +128,13 @@ static  Component neuerArtikel(int artikelNummer) {
 		
 		lblZusatz = new JLabel(ladeZusatz(artikelNummer));
 		lblZusatz.setForeground(Color.BLACK);
-		lblZusatz.setFont(new Font("Lucida Bright", Font.BOLD, 14));
+		lblZusatz.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblZusatz.setBounds(186, 67, 213, 30);
 		panelArtikel.add(lblZusatz);
 		
 		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getHersteller());
-		lblHersteller.setFont(new Font("Lucida Bright", Font.BOLD, 14));
-		lblHersteller.setBounds(186, 36, 213, 30);
+		lblHersteller.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblHersteller.setBounds(186, 38, 213, 30);
 		panelArtikel.add(lblHersteller);
 		
 		
