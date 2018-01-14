@@ -54,7 +54,6 @@ public class GUIArtikel {
 	static JLabel lblRabatt;
 	static String status;
 
-	public JFrame frame;
 	static JPanel panelMain = new JPanel();
 	
 	static Integer value = new Integer(1);
@@ -64,8 +63,6 @@ public class GUIArtikel {
 	
 	static SpinnerNumberModel model = new SpinnerNumberModel(value, min, max, step);
 	static JSpinner spinnerMenge = new JSpinner(model);
-	private static JLabel label;
-	private static JLabel lblNewLabel;
 	
 
 	
@@ -222,7 +219,7 @@ public class GUIArtikel {
 				if(!(status.equals("Nicht mehr Verfügbar"))) {
 				int anzahlArtikel = model.getNumber().intValue();
 				Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(artikelNummer), anzahlArtikel);
-				model.setValue(0);
+				model.setValue(1);
 				}
 			}																								
 		});
