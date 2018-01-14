@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +52,12 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 		setSize(new Dimension(1124, 100));
 		
-		JSpinner spinnerAnzahl = new JSpinner();
+		Integer value = new Integer(1);
+		Integer min = new Integer(1);
+		Integer max = new Integer(100);
+		Integer step = new Integer(1);		
+		SpinnerNumberModel model = new SpinnerNumberModel(value, min, max, step);
+		JSpinner spinnerAnzahl = new JSpinner(model);
 		spinnerAnzahl.setFont(new Font("Dialog", Font.PLAIN, 13));
 		spinnerAnzahl.setBounds(606, 33, 71, 35);
 		spinnerAnzahl.setValue(Anzahl);

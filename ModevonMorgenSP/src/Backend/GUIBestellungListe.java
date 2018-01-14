@@ -273,7 +273,7 @@ public class GUIBestellungListe extends JPanel {
 						new String[] { "Ok", "Abbrechen" }, "Ok");
 				
 				if(optionPane.equals(0)) {
-					BestellStrg.storniereBestellung(i);
+					BestellStrg.storniereBestellung(BestellungSammlung.getBestellungSammlung(), i);
 					JOptionPane.showMessageDialog(null,  "Bestellung wurde storniert", "Information", JOptionPane.INFORMATION_MESSAGE);
 				}else if(optionPane.equals(1)) {
 					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);

@@ -38,7 +38,7 @@ public class BestellStrg {
 	protected Bestellung bBestellung;
 
 	// Julian
-	public static void storniereBestellung(int bestellnr) {
+	public static void storniereBestellung(HashMap<Integer, Bestellung> bestellungen, int bestellnr) {
 		int bnr = bestellnr;
 		try {
 			// Dadruch, dass die Reihenfolge der querys wichtig ist, wurde auf einen Batch
@@ -55,12 +55,12 @@ public class BestellStrg {
 
 			stmt2.executeQuery(Sql2);
 
-			BestellungSammlung.BestellungSammlung.remove(bestellnr);
+			bestellungen.remove(bestellnr);
 
 			Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 
 		} catch (SQLException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 
@@ -365,7 +365,10 @@ public class BestellStrg {
 					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. Sie haben" + pssAkt
 							+ "Punkte. Sie können nicht mehr als 20 Punkte einlösen.");
 
-			pRabatt = Integer.parseInt(eingabe);
+			if(eingabe !=  null)
+				pRabatt = Integer.parseInt(eingabe);
+			else
+				pRabatt = 0;
 
 			if (pRabatt > 20 && pRabatt > pssAkt) {
 

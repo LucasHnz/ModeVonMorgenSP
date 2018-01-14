@@ -97,7 +97,9 @@ public class GUIKontoBestellungen extends JPanel{
 				}catch(NullPointerException e) {
 					String a = null;
 					return a;
-				}	
+				}catch(ArrayIndexOutOfBoundsException a) {
+					return null;
+				}
 				
 			}
 			public String getColumnName(int columnIndex) {
@@ -117,7 +119,9 @@ public class GUIKontoBestellungen extends JPanel{
 		setLayout(null);
 		setBackground(Color.DARK_GRAY);
 		
-		myTableModel model = new myTableModel(BestellungSammlung.getBestellungSammlung(nutzernummer), columnNames);
+		HashMap<Integer, Bestellung> bestellungen = BestellungSammlung.getBestellungSammlung(nutzernummer);
+		
+		myTableModel model = new myTableModel(bestellungen, columnNames);
 		table = new JTable(model);
 		table.setRowHeight(18);
 		table.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -139,30 +143,27 @@ public class GUIKontoBestellungen extends JPanel{
 		JButton btnStoniereBestellung = new JButton("Bestellung stornieren");
 		btnStoniereBestellung.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung(nutzernummer);
+				try {				
+					Integer[] keys = bestellungen.keySet().toArray(new Integer[bestellungen.keySet().size()]);
+					int bestellnr = bestellungen.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr();
 				
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				int bestellnr = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr();
-				
-				final Object optionPane = JOptionPane.showConfirmDialog(null,
-						"Wollen Sie die Bestellung: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr() 
-						+ "\nwirklich stornieren?", "Abfrage",
-						JOptionPane.YES_NO_OPTION);
+					final Object optionPane = JOptionPane.showConfirmDialog(null,
+							"Wollen Sie die Bestellung: \n" + bestellungen.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr() 
+							+ "\nwirklich stornieren?", "Abfrage",
+							JOptionPane.YES_NO_OPTION);
 					
-				if(optionPane.equals(0)) {
-					BestellStrg.storniereBestellung(bestellnr);
-					model.fireTableStructureChanged();
-					setStructure();
-					JOptionPane.showMessageDialog(null,  "Bestellung wurde storniert!", "Information", JOptionPane.INFORMATION_MESSAGE);
-				}else if(optionPane.equals(1)) {
-					JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-				}	
+					if(optionPane.equals(0)) {
+						BestellStrg.storniereBestellung(bestellungen, bestellnr);
+						JOptionPane.showMessageDialog(null,  "Bestellung wurde storniert!", "Information", JOptionPane.INFORMATION_MESSAGE);
+						model.fireTableStructureChanged();
+						setStructure();
+					}else if(optionPane.equals(1)) {
+						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
+					}	
 				}catch (ArrayIndexOutOfBoundsException b) {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Bestellung stornieren", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok"}, "Ok");
-					System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
 				
 				
@@ -184,13 +185,14 @@ public class GUIKontoBestellungen extends JPanel{
 		btnBestellpos.setBounds(1029, 11, 187, 48);
 		btnBestellpos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung(nutzernummer);
-				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 				try{
+					Integer[] keys = bestellungen.keySet().toArray(new Integer[bestellungen.keySet().size()]);
+					int i = (bestellungen.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
 					new GUIBestellpositionenBK(i);
-				}catch(Exception e) {
-					e.printStackTrace();
+				}catch (ArrayIndexOutOfBoundsException b) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Bestellung stornieren", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+							new String[] { "Ok"}, "Ok");
 				}
 				
 			}

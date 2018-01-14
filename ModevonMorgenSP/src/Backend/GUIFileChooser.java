@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -98,7 +99,13 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 			dispose();
 		}
 		if(e.getSource() == btnHochladen) {
-			Artikelsammlung.getArtikel(Artikelnummer).uploadImage(fileName);
+			try {
+				Artikelsammlung.getArtikel(Artikelnummer).uploadImage(fileName);
+			}catch(NullPointerException n) {
+				JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Datei aus!",
+						"Fehler", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						new String[] { "Ok"}, "Ok");
+			}
 		}
 	}
 }
