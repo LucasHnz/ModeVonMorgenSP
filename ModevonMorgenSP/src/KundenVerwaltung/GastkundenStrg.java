@@ -41,7 +41,7 @@ public class GastkundenStrg {
 			
 			Statement stmt = con.createStatement();
 			
-			String sqlbefehl = "insert into Gastkunde values ('"+nutzernr+"','"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"','"+plz+"','"+berechtigung+"','"+iban+"')";
+			String sqlbefehl = "insert into Gastkunde values ("+nutzernr+",'"+nachname+"','"+vorname+"','"+email+"','"+straﬂe+"','"+ort+"',"+plz+","+berechtigung+",'"+iban+"')";
 			
 			stmt.executeQuery(sqlbefehl);
 			

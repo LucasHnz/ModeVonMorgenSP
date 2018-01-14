@@ -30,8 +30,8 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt(1);
-				if ( i< 30000000) {
-					i = 30000000;
+				if ( i< 300000000) {
+					i = 300000000;
 				}else {
 					continue;
 				}
@@ -66,8 +66,8 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt(1);
-				if ( i< 40000000) {
-					i = 40000000;
+				if ( i< 400000000) {
+					i = 400000000;
 				}else {
 					continue;
 				}
@@ -102,8 +102,8 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("max(nutzernr)");
-				if ( i< 20000000) {
-					i = 20000000;
+				if ( i< 200000000) {
+					i = 200000000;
 				}else {
 					continue;
 				}
@@ -140,8 +140,8 @@ public class holeNächsteNummer {
 			while (rs.next()) {
 				i = rs.getInt(1);
 				System.out.println(i);
-				if ( i< 10000000) {
-					i = 10000000;
+				if ( i< 100000000) {
+					i = 100000000;
 				}else {
 					continue;
 				}
@@ -308,8 +308,8 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt("max(rechnungsnr)");
-				if ( i< 80000000) {
-					i = 80000000;
+				if ( i< 800000000) {
+					i = 800000000;
 				}else {
 					continue;
 				}
