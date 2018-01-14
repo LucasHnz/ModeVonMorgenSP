@@ -229,7 +229,11 @@ public class GUIAdministratorBearbeiten extends JFrame {
 					AdministratorVerwaltung.AdministratorStrg.aktualisiereName(textField_2.getText(),admin.getNutzernr());
 				}
 				
-				if(textField_4.getText() != admin.getVorname()) {
+				if (textField_3.getText()!= admin.getVorname()) {
+					AdministratorVerwaltung.AdministratorStrg.aktualisiereVorName(textField_3.getText(),admin.getNutzernr());
+				}
+				
+				if(textField_4.getText() != admin.getEmail()) {
 					AdministratorVerwaltung.AdministratorStrg.aktualisiereEmail(textField_4.getText(), admin.getNutzernr());
 				}
 				

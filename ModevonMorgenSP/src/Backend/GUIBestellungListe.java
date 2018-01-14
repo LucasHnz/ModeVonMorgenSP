@@ -37,7 +37,7 @@ public class GUIBestellungListe extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Bestell Nr", "Gastkunden Nr","Bestandskunden Nr", "IBAN", "Nachname", "Vorname", "Gesamtpreis", "Rabatt", "Datum","Versandstatus", "Ort","Straﬂe","PLZ"};
+	private String[] columnNames = {"Bestell Nr", "Gastkunden Nr","Bestandskunden Nr", "IBAN", "Nachname", "Vorname", "Gesamtpreis (Ä)", "Rabatt (%)", "Datum","Versandstatus", "Ort","Straﬂe","PLZ"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -126,7 +126,10 @@ public class GUIBestellungListe extends JPanel {
 			}catch(NullPointerException e) {
 				String a = null;
 				return a;
-			}	
+			}catch (ArrayIndexOutOfBoundsException r) {
+				System.out.println(r.getMessage());
+				return null;
+			}
 		}
 		
 		public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -68,6 +68,30 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 		
 	}
+
+/**
+ * Aktualisiert den Vornamen in der Liste und in der Datenbank
+ * @param name
+ * @param nutzernr
+ */
+public static void aktualisiereVorName(String name, int nutzernr){
+	
+	Administrator a = AdministratorSammlung.getAdmin(nutzernr);
+		try {
+		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+		Statement stmt = con.createStatement();
+		
+		String sqlbefehl = "update Administrator set vorname ='"+name+"' where nutzernr ="+nutzernr;
+		
+		stmt.execute(sqlbefehl)	;
+		
+		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+		a.setVorname(name);
+		}catch(SQLException e) {
+			e.getMessage();
+		}
+		
+	}
 		
 	/**
 	 * Aktualisiert die Email in der Lsite und in der Datenbank
