@@ -336,7 +336,6 @@ public class BestellStrg {
 		Bestandskunde bk = BestandskundeSammlung.getBestandskundenSammlung().get(nutzernr);
 		int pssAkt = bk.getPss();       														   //wenn man eine zweite Bestellung durchführt, nimmt er den Wert ,der vor der ersten Bestellung war und nicht den aktuellen aus der DB.
 		int pRabatt = 0;
-
 		boolean prüfen = true;
 		if(pssAkt>0) {
 		while(prüfen) {
