@@ -37,8 +37,7 @@ public class GUIGastkundeErstellen extends JPanel {
 	
 	
 	/**
-	 * Anmeldemaske für GK
-	 * @return 
+	 * Eingabemaske für einen Gastkunden 
 	 * 
 	 */
 	public  GUIGastkundeErstellen()  {
@@ -159,7 +158,7 @@ public class GUIGastkundeErstellen extends JPanel {
 		
 		
 		/**
-		 * Button hinzufügen fügt den Gastkunden zu Datenbank hinzu
+		 * Button hinzufügen fügt den Gastkunden zur Datenbank hinzu
 		 */
 		JButton btnBestellen = new JButton("weiter");
 		btnBestellen.setFont(new Font("Calibri", Font.BOLD, 14));
@@ -190,9 +189,14 @@ public class GUIGastkundeErstellen extends JPanel {
 			}
 			
 		});
+		
+		
 		btnBestellen.setBounds(650, 476, 161, 40);
 		add(btnBestellen);
 		
+		/**
+		 * Button abbrechen beendet den Vorgang einer Gastkundenerstellung
+		 */
 		JButton btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Calibri", Font.BOLD, 14));
 		btnAbbrechen.setBounds(460, 476, 145, 40);
