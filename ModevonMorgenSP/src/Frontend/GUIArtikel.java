@@ -57,8 +57,8 @@ public class GUIArtikel {
 	public JFrame frame;
 	static JPanel panelMain = new JPanel();
 	
-	static Integer value = new Integer(0);
-	static Integer min = new Integer(0);
+	static Integer value = new Integer(1);
+	static Integer min = new Integer(1);
 	static Integer max = new Integer(100);
 	static Integer step = new Integer(1);
 	

@@ -113,6 +113,8 @@ public class GUIWarenkorb {
 		 
 		}		
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		panel.revalidate();
+		panel.repaint();
 	}
 	/**
 	 * Aktualisiert das JLabel für die Anzeige des Gesamtpreises im Warenkorb.
