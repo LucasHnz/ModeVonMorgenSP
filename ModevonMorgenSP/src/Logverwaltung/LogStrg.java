@@ -1,5 +1,11 @@
 package Logverwaltung;
 
+/**
+ * 
+ * @author Hinz
+
+ *
+ */
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Array;
 import java.sql.Connection;
