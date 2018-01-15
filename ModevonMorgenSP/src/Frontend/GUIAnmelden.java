@@ -6,14 +6,13 @@ package Frontend;
  *
  */
 
-import java.awt.EventQueue;
-import java.awt.GridLayout;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import Logverwaltung.LogStrg;
 import java.awt.Font;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 public class GUIAnmelden {
 	
@@ -27,9 +26,12 @@ public class GUIAnmelden {
 	/**
 	 * Erstellt und liefert Anmeldefenster
 	 * @return panelAnmelden Anmeldefenster
+	 * @wbp.parser.entryPoint
 	 */
 	public static JPanel getGUIAnmelden() {
 		panelAnmelden = new JPanel();
+		panelAnmelden.setBorder(new LineBorder(new Color(51, 204, 255), 1, true));
+		panelAnmelden.setBackground(Color.WHITE);
 		panelAnmelden.setLayout(null);
 		panelAnmelden.setBounds(1040, 0, 194, 118);
 		panelAnmelden.setOpaque(true);
@@ -37,7 +39,7 @@ public class GUIAnmelden {
 		
 		btnAnmeldenEinloggen = new JButton("Einloggen");
 		btnAnmeldenEinloggen.setFont(new Font("Dialog", Font.BOLD, 11));
-		btnAnmeldenEinloggen.setBounds(0, 95, 95, 23);
+		btnAnmeldenEinloggen.setBounds(2, 93, 95, 23);
 		panelAnmelden.add(btnAnmeldenEinloggen);
 		btnAnmeldenEinloggen.addActionListener(new ActionListener() {
 
@@ -53,7 +55,7 @@ public class GUIAnmelden {
 			
 		btnAnmeldenAbbrechen = new JButton("Abbrechen");
 		btnAnmeldenAbbrechen.setFont(new Font("Dialog", Font.BOLD, 11));
-		btnAnmeldenAbbrechen.setBounds(99, 95, 95, 23);
+		btnAnmeldenAbbrechen.setBounds(97, 93, 95, 23);
 		btnAnmeldenAbbrechen.addActionListener(new ActionListener() {
 
 			@Override

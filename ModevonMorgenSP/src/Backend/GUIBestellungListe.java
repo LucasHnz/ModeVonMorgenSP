@@ -5,11 +5,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,7 +18,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
 import Bestellverwaltung.BestellStrg;
 import Bestellverwaltung.Bestellung;
 import Bestellverwaltung.BestellungSammlung;
@@ -203,7 +199,6 @@ public class GUIBestellungListe extends JPanel {
 				final HashMap<Integer, Bestellung> data = BestellungSammlung.getBestellungSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestellnr());
-					System.out.println(i);
 					new GUIBestellpositionsliste(i);
 				}catch(ArrayIndexOutOfBoundsException q) {
 						JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",

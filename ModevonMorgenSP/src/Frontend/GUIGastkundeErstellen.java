@@ -3,28 +3,16 @@ package Frontend;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.NumberFormat;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
-
 import Backend.TextDoc;
-import Bestellverwaltung.BestellStrg;
-import KundenVerwaltung.Gastkunde;
-import KundenVerwaltung.GastkundenSammlung;
 import Logverwaltung.LogStrg;
 
 

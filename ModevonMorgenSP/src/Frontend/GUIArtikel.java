@@ -7,29 +7,19 @@ package Frontend;
  */
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
-import javax.swing.border.LineBorder;
-
 import Artikelverwaltung.Accessoires;
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
@@ -162,6 +152,7 @@ public class GUIArtikel {
 	 * Erstellt und Liefert Fenster für einen Artikel
 	 * @param artikelNummer eindeutige Nummer des Artikels
 	 * @return panelMain Artikelseite
+	 * @wbp.parser.entryPoint
 	 */
 	static JPanel getGUIArtikel(int artikelNummer) {
 		
@@ -197,7 +188,7 @@ public class GUIArtikel {
 		
 		lblArtikelTitel = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
 		lblArtikelTitel.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblArtikelTitel.setBounds(362, 0, 319, 49);
+		lblArtikelTitel.setBounds(362, 0, 514, 49);
 		panel.add(lblArtikelTitel);
 		
 		lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
@@ -235,13 +226,13 @@ public class GUIArtikel {
 		
 		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getHersteller());
 		lblHersteller.setFont(new Font("Dialog", Font.BOLD, 15));
-		lblHersteller.setBounds(362, 51, 183, 33);
+		lblHersteller.setBounds(362, 51, 396, 33);
 		panel.add(lblHersteller);
 		
 		lblZusatz = new JLabel();
 		lblZusatz.setText(zusatzLaden(artikelNummer));
 		lblZusatz.setFont(new Font("Dialog", Font.BOLD, 17));
-		lblZusatz.setBounds(362, 81, 221, 26);
+		lblZusatz.setBounds(362, 81, 358, 26);
 		panel.add(lblZusatz);
 		
 		lblPreis = new JLabel("");

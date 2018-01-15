@@ -6,19 +6,12 @@ package Logverwaltung;
 
  *
  */
-import java.awt.event.ActionEvent;
-import java.lang.reflect.Array;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.*;
-
 import Backend.GUIMitarbeiter;
 import Frontend.GUI;
-import Frontend.GUIAnmelden;
 import Frontend.GUIHomepage;
 
 public class LogStrg {

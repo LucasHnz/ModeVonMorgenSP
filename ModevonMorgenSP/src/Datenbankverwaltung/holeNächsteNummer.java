@@ -139,7 +139,6 @@ public class holeNächsteNummer {
 			ResultSet rs = stmt.executeQuery(sqlbefehl);
 			while (rs.next()) {
 				i = rs.getInt(1);
-				System.out.println(i);
 				if ( i< 100000000) {
 					i = 100000000;
 				}else {
@@ -393,7 +392,6 @@ public class holeNächsteNummer {
 		
 		
 		} catch (SQLException e) {
-			System.out.println("HIER");
 			e.printStackTrace();
 		}
 		

@@ -8,9 +8,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-import Bestellverwaltung.Bestellposition;
-import Bestellverwaltung.BestellpositionSammlung;
-
 public class RücksendungStrg {
 	
 	public static String aktuellesDatum() {
@@ -20,9 +17,7 @@ public class RücksendungStrg {
 		DateTimeFormatter df;
 		
 		df = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
-		
-		
-		
+				
 		String datum = String.valueOf(date.format(df));
 		
 		return datum ;
@@ -34,9 +29,7 @@ public class RücksendungStrg {
 		
 		
 		String datum = aktuellesDatum();
-		System.out.println(datum);
 		int rücksendenr = Datenbankverwaltung.holeNächsteNummer.nächsteRüccksendeNr();
-		System.out.println(rücksendenr);
 		int bestellposnr = 0;
 		try {
 		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
@@ -52,10 +45,7 @@ public class RücksendungStrg {
 		while(rs.next()) {
 			bestellposnr = rs.getInt("Bestellnr");
 		}
-		
-		Bestellposition b = BestellpositionSammlung.getBestellpos(bestellposnr);
-		
-		
+
 		String SQL2 = "insert into Rücksendung values ('"+rücksendenr+"','"+i+"','"+bestellposnr+"','"+datum+"')";
 		
 		stmt2.executeQuery(SQL2);
@@ -63,12 +53,7 @@ public class RücksendungStrg {
 		String SQL3 = "update Bestellposition set Rücksendung = 'Rücksendung' where bestellposnr ="+i;
 		
 		stmt3.executeQuery(SQL3);
-		
-		Rücksendung r = new Rücksendung(rücksendenr, i, bestellposnr, datum);
-		
-		System.out.println(r.getRücksendenr());
-		
-		
+
 		RücksendungSammlung.hinzufügenRücksendung(rücksendenr, i, bestellposnr, datum);
 		
 		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
@@ -80,7 +65,7 @@ public class RücksendungStrg {
 		
 	} catch(SQLException e) {
 		e.printStackTrace();
-	}
+		}
 	}
 	
 	public static void main(String [] args) {

@@ -38,9 +38,9 @@ public class GUIAdministratorListe extends JPanel {
 	private JScrollPane scrollpane;
 	private String[] columnNames = { "Nutzer Nummer", "Nachname", "Vorname", "EMail", "Straße", "Ort", "PLZ", "IBAN",
 			"Gehalt", "Passwort" };
-	private myTableModel model;										//
+	private myTableModel model;										
 
-	Comparator<Integer> intcomp = new Comparator<Integer>() {		//
+	Comparator<Integer> intcomp = new Comparator<Integer>() {		
 		@Override
 		public int compare(Integer o1, Integer o2) {
 			if (o1 > o2)
@@ -52,7 +52,7 @@ public class GUIAdministratorListe extends JPanel {
 		}
 	};
 
-	WindowListener formularListener = new WindowListener() {			//
+	WindowListener formularListener = new WindowListener() {			
 
 		@Override
 		public void windowActivated(WindowEvent e) {}
@@ -179,7 +179,7 @@ public class GUIAdministratorListe extends JPanel {
 		model = new myTableModel(AdministratorSammlung.getAdminSammlung(), columnNames);
 		table = new JTable(model);
 		table.setFillsViewportHeight(true);
-		setStructure();													//
+		setStructure();													
 		
 
 		scrollpane = new JScrollPane();
@@ -240,9 +240,7 @@ public class GUIAdministratorListe extends JPanel {
 				try {
 					final HashMap<Integer, Administrator> data = AdministratorSammlung.getAdminSammlung();
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-					int i = (data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
 
-					
 					final Object optionPane = JOptionPane.showOptionDialog(null, "Sie sind dabei einen Administrator zu löschen! Fortfahren ?",
 							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok", "Abbrechen" }, "Ok");
@@ -250,7 +248,7 @@ public class GUIAdministratorListe extends JPanel {
 						
 						int prüfsumme = AdministratorStrg.entferneAdmin(
 								data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getNutzernr());
-						model.fireTableStructureChanged();																							//
+						model.fireTableStructureChanged();																							
 						setStructure();
 						if (prüfsumme == 0) {
 						JOptionPane.showMessageDialog(null,  "Administrator wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);

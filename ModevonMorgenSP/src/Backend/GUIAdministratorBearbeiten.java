@@ -3,12 +3,7 @@ package Backend;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.NumberFormat;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,11 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
-
 import AdministratorVerwaltung.Administrator;
-import AdministratorVerwaltung.AdministratorSammlung;
-import Datenbankverwaltung.VerbindungDB;
-
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 /**
@@ -282,27 +273,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 				};
 				
 				Thread t = new Thread(runnable);
-				t.start();
-				
-		
-				
-				String nutzernr =textField.getText();
-				String nachname = textField_2.getText();
-				String vorname = textField_3.getText();
-				String email = textField_4.getText();
-				String straﬂe = textField_5.getText();
-				String ort = textField_6.getText();
-				String plz = textField_7.getText();
-				String iban = textField_8.getText();
-				String gehalt = textField_9.getText();
-				String berechtigung = "4";
-				String passwort = textField_10.getText();
-				
-				
-				
-				Administrator admin = new Administrator(Integer.parseInt(nutzernr), nachname, vorname, email, straﬂe, ort,Integer.parseInt( plz), iban, Integer.parseInt(gehalt), Integer.parseInt(berechtigung), passwort);
-				//AdministratorSammlung.put(Integer.parseInt(nutzernr),admin);
-				
+				t.start();	
 			}
 		
 		});
@@ -316,7 +287,6 @@ public class GUIAdministratorBearbeiten extends JFrame {
 			
 			
 			public void actionPerformed(ActionEvent arg0) {
-				
 				dispose();				
 			}
 			
@@ -325,14 +295,5 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		panel_1.add(btnAbbrechen);
 		setVisible(true);
 		
-	}
-	
-	/**
-	 * Test
-	 * @param args
-	 */
-	public static void main(String[]args) {
-		int nutzernr = 400000003;
-		new GUIAdministratorBearbeiten(nutzernr);
 	}
 }

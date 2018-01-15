@@ -169,7 +169,8 @@ public class GUI extends JFrame {
 	/**
 	 * Öffnet das Anmeldefenster
 	 */
-	public void öffnenAnmeldefenster() {	
+	public void öffnenAnmeldefenster() {
+		removeLogPanel();
 		panelAnmelden = GUIAnmelden.getGUIAnmelden();
 		layeredPane.add(panelAnmelden, JLayeredPane.POPUP_LAYER);
 		frame.getRootPane().setDefaultButton(GUIAnmelden.btnAnmeldenEinloggen);
@@ -178,15 +179,20 @@ public class GUI extends JFrame {
 	 * Entfernt Anmeldefenster
 	 */
 	public void removeLogPanel() {
-		layeredPane.remove(panelAnmelden);
-		frame.revalidate();
-		frame.repaint();
+		try {
+			layeredPane.remove(panelAnmelden);
+			frame.revalidate();
+			frame.repaint();
+		}catch(NullPointerException e) {
+			/* Dient nur zum Abfangen der Exception. Der Fehler hat keinen Einfluss
+			 * auf den Nutzer.
+			 */
+		}
 	}
 	/**
 	 * Öffnet Fenster mit Fehlermeldung
 	 */
 	public void anmeldenFehlermeldung() {
-		System.out.println("OPT");
 		JOptionPane.showOptionDialog(null, "Email und Passwort stimmen nicht überein",
 				"Anmeldung",
 				JOptionPane.YES_NO_CANCEL_OPTION,

@@ -1,14 +1,11 @@
 package Backend;
 
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -20,9 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
-
 import MitarbeiterVerwaltung.Mitarbeiter;
-import MitarbeiterVerwaltung.MitarbeiterSammlung;
 
 /**
  * 
@@ -41,7 +36,6 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 	private JTextField textField_8;
 	private JFormattedTextField textField_9;
 	private JTextField textField_10;
-	private int[] AdminNummern;
 	
 	/**
 	 * Erstellt ein Pop Up Fenster um einen bestehenden Mitarbeiter zu bearbeiten

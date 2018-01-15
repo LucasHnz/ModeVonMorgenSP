@@ -225,7 +225,7 @@ public abstract class Artikel implements Comparable<Artikel> {
 	 * Lädt ein neues Artikelbild in die Datenbank hoch.
 	 * @param Dateipfad Der lokale Pfad des Bildes.
 	 */
-	public void uploadImage(String Dateipfad) {
+	public void uploadImage(String Dateipfad) throws NullPointerException{
 		String klasse = this.getClass().getName();
 		klasse = klasse.substring(18);
 		String befehl = "update " +klasse+ " set Bild = ? where Artikelnr= " + this.Artikelnummer;

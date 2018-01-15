@@ -11,9 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Set;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
 
@@ -108,7 +105,6 @@ public class GUIHomepage {
 		Set<Integer> intArray = liste.keySet();
 		ArrayList<Integer> ausgewählteArtikel = new ArrayList<Integer>();
 		int artNr = 0;
-		int x = 0;
 
 		do {
 

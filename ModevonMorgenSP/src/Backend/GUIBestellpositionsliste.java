@@ -189,7 +189,9 @@ public class GUIBestellpositionsliste extends JFrame {
 						try {
 						RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
 						} catch (NullPointerException e) {
-							System.out.println("Nullpointer");
+							JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+									"Artikel entfernen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+									null, new String[] { "Ok"}, "Ok");
 						}
 						
 							

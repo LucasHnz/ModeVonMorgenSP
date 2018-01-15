@@ -9,20 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
-
-import MitarbeiterVerwaltung.Mitarbeiter;
-
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-
-import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 
@@ -33,7 +26,6 @@ import java.awt.event.ActionEvent;
  */
 public class GUIMitarbeiterErstellenFormular extends JFrame{
 
-	private int[] AdminNummern;
 	private JPanel contentPane;
 	
 	/**

@@ -2,11 +2,7 @@ package AdministratorVerwaltung;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
-
-import javax.swing.JOptionPane;
-
 import AdministratorVerwaltung.AdministratorSammlung;
 
 /**
@@ -40,7 +36,7 @@ public class AdministratorStrg {
 
 		
 	}catch (SQLException e) {
-		System.out.println("Fehler");
+		e.printStackTrace();
 		return 1;
 	}
 }

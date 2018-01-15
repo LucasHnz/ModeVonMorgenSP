@@ -3,12 +3,9 @@ package Backend;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,8 +15,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
-
-import AdministratorVerwaltung.AdministratorSammlung;
 
 /**
  * 

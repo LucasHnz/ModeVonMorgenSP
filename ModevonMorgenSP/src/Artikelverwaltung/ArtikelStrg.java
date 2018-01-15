@@ -308,7 +308,7 @@ public class ArtikelStrg {
 			Artikelsammlung.füllenSammlung(rs3, "Kleidung");
 			
 		}catch(SQLException e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}finally {
 			try {
 				if(stmt !=null) 

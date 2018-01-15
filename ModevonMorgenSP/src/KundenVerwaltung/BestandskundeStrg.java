@@ -5,9 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import AdministratorVerwaltung.AdministratorSammlung;
-import Artikelverwaltung.Artikelsammlung;
-
 
 public class BestandskundeStrg {
 	
@@ -231,7 +228,7 @@ public static void aktualisierePSS(int pss, int nutzernr) {
 			BestandskundeSammlung.fülleSammlung(rs);
 	
 		}catch(SQLException e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}finally {
 			try {
 				if(stmt !=null) 

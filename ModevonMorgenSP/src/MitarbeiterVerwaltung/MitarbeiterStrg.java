@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import AdministratorVerwaltung.Administrator;
-
 public class MitarbeiterStrg {
 	
 	public static void entferneMitarbeiter(int nutzernr) {
