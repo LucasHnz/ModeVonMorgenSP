@@ -582,7 +582,7 @@ public class GUIArtikelFormular extends JFrame {
 				String Notiz = null;
 				String[] Lieferanten = taLieferanten.getText().split(";");
 				double Preis = Double.parseDouble(textFieldPreis.getText().replace(',', '.'));
-				int Rabatt = 0;
+				int Rabatt = Artikelsammlung.getArtikel(Artikelnummer).getRabatt();
 				int Schuhgröße = 0;
 				String Farbe = null;
 				String Größe = null;
