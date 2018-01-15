@@ -207,47 +207,53 @@ public class GUIKontoVerwalten extends JPanel{
 		@SuppressWarnings("deprecation")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			if(textField_Nachname.getText() != kunde.getNachname()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereNachname(textField_Nachname.getText(),kunde.getNutzernr());
+			if(textField_Nachname.getText().equals("") || textField_Vorname.getText().equals("") || textField_Mail.getText().equals("") || 
+					textField_Straﬂe.getText().equals("")|| textField_Ort.getText().equals("") || textField_PLZ.getText().equals("") ||
+					textField_IBAN.getText().equals("") || textField_Passwort.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Alle Felder m¸ssen ausgef¸llt sein", "Fehler", JOptionPane.ERROR_MESSAGE);				
 			}
-			if(textField_Vorname.getText() != kunde.getVorname()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_Vorname.getText(),kunde.getNutzernr());
+			else {
+			
+				if(textField_Nachname.getText() != kunde.getNachname()) {
+					KundenVerwaltung.BestandskundeStrg.aktualisiereNachname(textField_Nachname.getText(),kunde.getNutzernr());
+				}
+				if(textField_Vorname.getText() != kunde.getVorname())  {
+					KundenVerwaltung.BestandskundeStrg.aktualisiereVorname(textField_Vorname.getText(),kunde.getNutzernr());
+				}
+				
+				if(textField_Mail.getText() != kunde.getEmail()) {
+					KundenVerwaltung.BestandskundeStrg.aktualisiereEmail(textField_Mail.getText(),kunde.getNutzernr());
+				}
+				
+				if(textField_Straﬂe.getText() != kunde.getStraﬂe()) {
+					KundenVerwaltung.BestandskundeStrg.aktualisiereStraﬂe(textField_Straﬂe.getText(),kunde.getNutzernr());
+				}
+			
+				if(textField_Ort.getText() != kunde.getOrt()) {
+					KundenVerwaltung.BestandskundeStrg.aktualisiereOrt(textField_Ort.getText(),kunde.getNutzernr());
+				}
+			
+				if(textField_PLZ.getText() != String.valueOf(kunde.getPlz())) {
+					KundenVerwaltung.BestandskundeStrg.aktualisierePLZ(textField_PLZ.getText(),kunde.getNutzernr());
+				}
+			
+				if(textField_IBAN.getText() != kunde.getIban()) {
+					KundenVerwaltung.BestandskundeStrg.aktualisiereIBAN(textField_IBAN.getText(),kunde.getNutzernr());
+				}
+				
+				if(textField_Passwort.getText() != kunde.getPasswort()) {
+					KundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_Passwort.getText(),kunde.getNutzernr());
+				}
+			
+				JOptionPane.showOptionDialog(null, "ƒnderungen wurden gespeichert","Bestandskunden Bearbeitung",
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.WARNING_MESSAGE, null, 
+						new String[]{"Ok"}, "Ok"); 	
+			
+				GUI.getFenster().changePanel(new GUIKontoVerwalten());
+			
+				}
 			}
-			
-			if(textField_Mail.getText() != kunde.getEmail()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereEmail(textField_Mail.getText(),kunde.getNutzernr());
-			}
-			
-			if(textField_Straﬂe.getText() != kunde.getStraﬂe()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereStraﬂe(textField_Straﬂe.getText(),kunde.getNutzernr());
-			}
-			
-			if(textField_Ort.getText() != kunde.getOrt()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereOrt(textField_Ort.getText(),kunde.getNutzernr());
-			}
-			
-			if(textField_PLZ.getText() != String.valueOf(kunde.getPlz())) {
-				KundenVerwaltung.BestandskundeStrg.aktualisierePLZ(textField_PLZ.getText(),kunde.getNutzernr());
-			}
-			
-			if(textField_IBAN.getText() != kunde.getIban()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisiereIBAN(textField_IBAN.getText(),kunde.getNutzernr());
-			}
-			
-			if(textField_Passwort.getText() != kunde.getPasswort()) {
-				KundenVerwaltung.BestandskundeStrg.aktualisierePasswort(textField_Passwort.getText(),kunde.getNutzernr());
-			}
-			
-			JOptionPane.showOptionDialog(null, "ƒnderungen wurden gespeichert","Bestandskunden Bearbeitung",
-	                JOptionPane.YES_NO_CANCEL_OPTION,
-	                JOptionPane.WARNING_MESSAGE, null, 
-	                new String[]{"Ok"}, "Ok"); 	
-			
-			GUI.getFenster().changePanel(new GUIKontoVerwalten());
-			
-			}
-		
 		});
 
 		btnAnnehmen.setBounds(700, 476, 111, 40);
