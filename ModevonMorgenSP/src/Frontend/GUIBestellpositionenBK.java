@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Comparator;
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +16,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
 import Artikelverwaltung.Artikelsammlung;
 import Bestellverwaltung.Bestellposition;
 import Bestellverwaltung.BestellpositionSammlung;

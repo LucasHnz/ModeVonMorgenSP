@@ -1,6 +1,5 @@
 package Backend;
 
-import java.awt.EventQueue;
 import javax.swing.ListSelectionModel;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -27,7 +26,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -462,7 +460,7 @@ public class GUIArtikelliste extends JPanel {
 				try {
 					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-					GUIFileChooser chooser = new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+					new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
 				}catch (ArrayIndexOutOfBoundsException e) {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Artikelbild hochladen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,

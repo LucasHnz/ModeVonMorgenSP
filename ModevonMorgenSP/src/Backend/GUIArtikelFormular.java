@@ -4,13 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
-
 import Artikelverwaltung.Accessoires;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 import Artikelverwaltung.Kleidung;
 import Artikelverwaltung.Schuhe;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
@@ -20,12 +18,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
-import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-
 import java.awt.Font;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;

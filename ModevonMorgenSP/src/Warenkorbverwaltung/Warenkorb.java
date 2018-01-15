@@ -1,11 +1,8 @@
 package Warenkorbverwaltung;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import Artikelverwaltung.Artikel;
-import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
 /**
  * 

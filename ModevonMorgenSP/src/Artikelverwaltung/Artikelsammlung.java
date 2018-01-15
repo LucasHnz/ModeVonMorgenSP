@@ -4,12 +4,9 @@ package Artikelverwaltung;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 /**

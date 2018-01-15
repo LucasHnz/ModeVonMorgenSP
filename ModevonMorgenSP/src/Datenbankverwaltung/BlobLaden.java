@@ -1,14 +1,10 @@
 package Datenbankverwaltung;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-import javax.imageio.ImageIO;
 
 
 /**

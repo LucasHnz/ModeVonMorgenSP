@@ -16,13 +16,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import Backend.GUIBestellpositionsliste;
 import Bestellverwaltung.BestellStrg;
 import Bestellverwaltung.Bestellung;
 import Bestellverwaltung.BestellungSammlung;
 import Logverwaltung.LogStrg;
 import javax.swing.JLabel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 /**
  * 

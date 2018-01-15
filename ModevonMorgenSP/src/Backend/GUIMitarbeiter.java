@@ -1,34 +1,10 @@
 package Backend;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
-
-import Frontend.GUI;
-import Frontend.GUIAnmelden;
-import Frontend.GUIKontoBestellungen;
-import Frontend.GUIKontoVerwalten;
 import Logverwaltung.LogStrg;
-
-import java.awt.Component;
-import java.awt.Dimension;
-
-import javax.swing.JList;
 import javax.swing.JTabbedPane;
 /**
  * 
