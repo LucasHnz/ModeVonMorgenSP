@@ -33,7 +33,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class GUIHerrenSchuhe {
-	
+
 	static JButton btnAlleArtikel;
 	static JButton btnOutdoor;
 	static JButton btnSport;
@@ -42,176 +42,188 @@ public class GUIHerrenSchuhe {
 	static JPanel panelMain;
 	static public JPanel panelHerrenSchuhe;
 	static public int anzahlArtikel = 0;
-	
-	
+
+	/**
+	 * L‰dt alle Artikel vom Typ Herren Schuhe
+	 *            
+	 */
 	public static void ladeArtikel() {
-		
-		try {
-		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-		Statement stmt = con.createStatement();
-		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' ";	
-		ResultSet rs = stmt.executeQuery(sql);
-		anzahlArtikel = 0;
-		
-		while(rs.next()) {
-			int artikelnr = rs.getInt("Artikelnr");
-			panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-			anzahlArtikel = anzahlArtikel +1;
-			
-			System.out.println("Artikel ist " + artikelnr);
-		}
-		int length = anzahlArtikel / 2 * 188;
-		if (anzahlArtikel % 2 == 1)
-			length = length + 188;
-		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
-		rs.close();
-		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	public static void ladeArtikelOutdoor() {
-		
-		try {
-		Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-		Statement stmt = con.createStatement();
-		String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Outdoorschuh' ";	
-		ResultSet rs = stmt.executeQuery(sql);
-		anzahlArtikel = 0;
-		
-		while(rs.next()) {
-			int artikelnr = rs.getInt("Artikelnr");
-			panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-			anzahlArtikel = anzahlArtikel +1;
-			
-		}
-		int length = anzahlArtikel / 2 * 188;
-		if (anzahlArtikel % 2 == 1)
-			length = length + 188;
-		panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
-		rs.close();
-		Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-		
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
 
-	
-	public static void ladeArtikelSport() {
-	
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Sportschuh' ";	
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' ";
 			ResultSet rs = stmt.executeQuery(sql);
 			anzahlArtikel = 0;
-	
-			while(rs.next()) {
-				int artikelnr = rs.getInt("Artikelnr");
-				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-				anzahlArtikel = anzahlArtikel +1;
-		
-			}
-			int length = anzahlArtikel / 2 * 188;
-			if (anzahlArtikel % 2 == 1)
-				length = length + 188;
-			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
-			rs.close();
-			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-	
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	
-	}
-	
-	
-	public static void ladeArtikelHausschuhe() {
-		
-		try {
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Hausschuh' ";	
-			ResultSet rs = stmt.executeQuery(sql);
-			anzahlArtikel = 0;
-	
-			while(rs.next()) {
-				int artikelnr = rs.getInt("Artikelnr");
-				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-				anzahlArtikel = anzahlArtikel +1;
-		
-			}
-			int length = anzahlArtikel / 2 * 188;
-			if (anzahlArtikel % 2 == 1)
-				length = length + 188;
-			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
-			rs.close();
-			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-	
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	
-	}
-	
-	public static void ladeArtikelStiefel() {
-		
-		try {
-			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
-			Statement stmt = con.createStatement();
-			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Stiefel'";	
-			ResultSet rs = stmt.executeQuery(sql);
-			anzahlArtikel = 0;
-	
-			while(rs.next()) {
-				int artikelnr = rs.getInt("Artikelnr");
-				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
-				anzahlArtikel = anzahlArtikel +1;
-		
-			}
-			int length = anzahlArtikel / 2 * 188;
-			if (anzahlArtikel % 2 == 1)
-				length = length + 188;
-			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
-			rs.close();
-			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
-	
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	
-	}
-	
 
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+
+				System.out.println("Artikel ist " + artikelnr);
+			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	/**
-	 * @wbp.parser.entryPoint
+	 * L‰dt Artikel vom Typ Outdoor
+	 *            
+	 */
+	public static void ladeArtikelOutdoor() {
+
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Outdoorschuh' ";
+			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+
+			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * L‰dt Artikel vom Typ Sport
+	 *            
+	 */
+	public static void ladeArtikelSport() {
+
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Sportschuh' ";
+			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+
+			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	/**
+	 * L‰dt Artikel vom Typ Hausschuhe
+	 *            
+	 */
+	public static void ladeArtikelHausschuhe() {
+
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Hausschuh' ";
+			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+
+			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	/**
+	 * L‰dt Artikel vom Typ Stiefel
+	 */
+	public static void ladeArtikelStiefel() {
+
+		try {
+			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			Statement stmt = con.createStatement();
+			String sql = "select Artikelnr from Schuhe where geschlecht = 'M' and art = 'Stiefel'";
+			ResultSet rs = stmt.executeQuery(sql);
+			anzahlArtikel = 0;
+
+			while (rs.next()) {
+				int artikelnr = rs.getInt("Artikelnr");
+				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
+				anzahlArtikel = anzahlArtikel + 1;
+
+			}
+			int length = anzahlArtikel / 2 * 188;
+			if (anzahlArtikel % 2 == 1)
+				length = length + 188;
+			panelHerrenSchuhe.setPreferredSize(new Dimension(549, length));
+			rs.close();
+			Datenbankverwaltung.VerbindungDB.schlieﬂeVerbindung(con, stmt);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Erzeugt und liefert Frame f¸r Herren Schuhe
+	 * @returns panelMain Frame der Klasse GUIHerrenSchuhe
+	 *            
 	 */
 	public static JPanel getGUIHerrenSchuhe() {
-		
+
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
-		
-		
+
 		JPanel panelScrollPaneLinks = new JPanel();
 		panelScrollPaneLinks.setBackground(SystemColor.inactiveCaptionBorder);
 		panelScrollPaneLinks.setLayout(null);
-		
-		
+
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneLinks.setBounds(10, 97, 270, 455);
 		panelMain.add(scrollPaneLinks);
-		
-		
+
 		btnAlleArtikel = new JButton("Alle Artikel");
 		btnAlleArtikel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnAlleArtikel.setBackground(Color.WHITE);
@@ -225,8 +237,7 @@ public class GUIHerrenSchuhe {
 			}
 		});
 		panelScrollPaneLinks.add(btnAlleArtikel);
-		
-		
+
 		btnStiefel = new JButton("Stiefel");
 		btnStiefel.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnStiefel.setBackground(SystemColor.inactiveCaptionBorder);
@@ -240,8 +251,7 @@ public class GUIHerrenSchuhe {
 			}
 		});
 		panelScrollPaneLinks.add(btnStiefel);
-		
-		
+
 		btnOutdoor = new JButton("Outdoor");
 		btnOutdoor.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnOutdoor.setBackground(SystemColor.inactiveCaptionBorder);
@@ -255,8 +265,7 @@ public class GUIHerrenSchuhe {
 			}
 		});
 		panelScrollPaneLinks.add(btnOutdoor);
-	
-		
+
 		btnSport = new JButton("Sport");
 		btnSport.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnSport.setBackground(SystemColor.inactiveCaptionBorder);
@@ -270,7 +279,7 @@ public class GUIHerrenSchuhe {
 			}
 		});
 		panelScrollPaneLinks.add(btnSport);
-		
+
 		btnHausschuhe = new JButton("Hausschuh");
 		btnHausschuhe.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnHausschuhe.setBackground(SystemColor.inactiveCaptionBorder);
@@ -284,21 +293,20 @@ public class GUIHerrenSchuhe {
 			}
 		});
 		panelScrollPaneLinks.add(btnHausschuhe);
-		
-		
+
 		panelHerrenSchuhe = new JPanel();
 		panelHerrenSchuhe.setBackground(Color.WHITE);
 		panelHerrenSchuhe.setAutoscrolls(true);
-			
+
 		JScrollPane scrollPaneHerrenKleidung = new JScrollPane();
 		scrollPaneHerrenKleidung.setBounds(323, 97, 901, 455);
 		scrollPaneHerrenKleidung.setViewportView(panelHerrenSchuhe);
 		scrollPaneHerrenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneHerrenKleidung);
-		
+
 		ladeArtikel();
 		panelHerrenSchuhe.setLayout(new GridLayout(0, 2, 0, 0));
-		
+
 		panelMain.setVisible(true);
 		return panelMain;
 	}

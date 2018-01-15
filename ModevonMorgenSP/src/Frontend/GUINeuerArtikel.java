@@ -30,8 +30,7 @@ public class GUINeuerArtikel {
 	/**
 	 * Lädt und errechnet die Rabttpreise
 	 * 
-	 * @param artikelNummer
-	 *            Eindeutige Nummer des Artikels
+	 * @param artikelNummer Eindeutige Nummer des Artikels
 	 */
 	public static void ladeRabattPreis(int artikelNummer) {
 		double rabatt = Artikelsammlung.getArtikel(artikelNummer).getRabatt();
