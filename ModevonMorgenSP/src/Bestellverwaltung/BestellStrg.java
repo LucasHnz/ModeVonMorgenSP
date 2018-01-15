@@ -146,15 +146,15 @@ public class BestellStrg {
 	/**
 	 * Falk Maoro
 	 * Erstellt die Bestellpositionen zu einer vorher angelegten Bestellung. Dazu werden die Artikel und 
-	 * deren Anzahl aus dem Warenkorb in Bestellpositionen in der Datenbank gespeichert.
+	 * deren Anzahl aus dem Warenkorb in Bestellpositionen in der Datenbank gespeichert. Der commit wird 
+	 * mit der aufrufenden erstelleBestellung-Methode ausgeführt, damit keine Fehler in den Datensätzen 
+	 * auftreten.
 	 * @param bestellnr Die Bestellnummer der zugehörigen Bestellung.
 	 */
-	private static void erstelleBestellpositionen(int bestellnr) {
+	private static void erstelleBestellpositionen(Connection con, int bestellnr) throws SQLException {
 		HashMap<Integer, Integer> warenkorbMap = Warenkorb.getWarenkorb();
-		Connection con = null;
 		PreparedStatement ps = null;
 		try {
-			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			ps = con.prepareStatement("insert into Bestellposition values(?,?,?,?,?,?)");
 
 			Integer[] keys = warenkorbMap.keySet().toArray(new Integer[warenkorbMap.keySet().size()]);
@@ -184,14 +184,10 @@ public class BestellStrg {
 			JOptionPane.showMessageDialog(null, "Die Bestellung wurde erstellt", "Bestellung erstellt.",
 					JOptionPane.INFORMATION_MESSAGE);
 			Warenkorb.clearWarenkorb();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			try {
 				if (ps != null)
 					ps.close();
-				if (con != null)
-					con.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -231,6 +227,7 @@ public class BestellStrg {
 		PreparedStatement ps = null;
 		try {
 			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			con.setAutoCommit(false);
 			ps = con.prepareStatement("insert into Rechnungbestellung values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setInt(1, bestellnr);
 			ps.setInt(2, nrBK);
@@ -247,11 +244,16 @@ public class BestellStrg {
 			ps.setInt(13, rechnungsplz);
 
 			ps.executeUpdate();
+			erstelleBestellpositionen(con, bestellnr);
+			con.commit();
 			BestellungSammlung.hinzufügenBestellung(bestellung);
-			erstelleBestellpositionen(bestellnr);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
+			try{
+				con.rollback();
+			}catch(SQLException s) {
+				s.printStackTrace();
+			}
 		} finally {
 			try {
 				if (ps != null)
@@ -293,6 +295,7 @@ public class BestellStrg {
 		PreparedStatement ps = null;
 		try {
 			con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
+			con.setAutoCommit(false);
 			ps = con.prepareStatement("insert into Rechnungbestellung values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setInt(1, bestellnr);
 			ps.setNull(2, Types.NULL);
@@ -310,10 +313,15 @@ public class BestellStrg {
 
 			ps.executeUpdate(); 						
 			BestellungSammlung.hinzufügenBestellung(bestellung);
-			erstelleBestellpositionen(bestellnr);
+			erstelleBestellpositionen(con, bestellnr);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				con.rollback();
+			}catch(SQLException s) {
+				e.printStackTrace();
+			}
 		} finally {
 			try {
 				if (ps != null)

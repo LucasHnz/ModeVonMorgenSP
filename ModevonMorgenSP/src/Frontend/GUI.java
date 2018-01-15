@@ -59,11 +59,8 @@ public class GUI extends JFrame {
 			e.printStackTrace();
 		}
 		ArtikelStrg.FülleArtikelsammlung();
-		System.out.println("Artikel geladen");
 		GUIHomepage.fülleArtikelStartseite();
-		System.out.println("Startseite geladen");
 		BestandskundeStrg.FülleBestandskundeSammlung();
-		System.out.println("BK geladen");
 		gui = new GUI();
 		fenster = gui;
 		
