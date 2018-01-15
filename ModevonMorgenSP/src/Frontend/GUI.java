@@ -41,7 +41,7 @@ import KundenVerwaltung.BestandskundeStrg;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
-//AG
+
 public class GUI extends JFrame {
 	
 	static JFrame fenster;
