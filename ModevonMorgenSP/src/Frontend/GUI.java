@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import Artikelverwaltung.ArtikelStrg;
@@ -349,8 +350,9 @@ public class GUI extends JFrame {
 		btnWarenkorb.setBounds(936, 2, 48, 48);
 		panelBar.add(btnWarenkorb);
 		
-		
-		Image homebutton = new ImageIcon("src\\Icons 64x64\\house.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		URL url = GUI.class.getResource(
+                "/Icons 64x64/house.png");
+		Image homebutton = new ImageIcon(url).getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
 		btnHome = new JButton(new ImageIcon(homebutton));
 		btnHome.setContentAreaFilled(false);
 		btnHome.setToolTipText("Home");
