@@ -176,7 +176,6 @@ public class GUIDamenAccessoires {
 	public static void ladeArtikelArmbänder() {
 
 		try {
-			System.out.println("1");
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 			String sql = "select Artikelnr from Accessoires where geschlecht = 'W' and art = 'Armband'";

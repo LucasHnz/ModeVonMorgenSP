@@ -175,7 +175,6 @@ public class GUIBestellpositionsliste extends JFrame {
 				final HashMap<Integer, Bestellposition> data = BestellpositionSammlung.getBestellpositionsSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				String check = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRücksendung();
-				System.out.println(check);
 				if (check.contentEquals("Keine Rücksendung")) {
 
 					final Object optionPane = JOptionPane.showOptionDialog(null,
@@ -186,12 +185,11 @@ public class GUIBestellpositionsliste extends JFrame {
 					if (optionPane.equals(0)) {
 						
 						int i =data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getPosNr();
-						
-						System.out.println(i);
+		
 						try {
 						RücksendungVerwaltung.RücksendungStrg.erstelleRücksendung(i);
 						} catch (NullPointerException e) {
-							System.out.println("Nullpoitner");
+							System.out.println("Nullpointer");
 						}
 						
 							
@@ -259,8 +257,7 @@ public class GUIBestellpositionsliste extends JFrame {
 				try {
 					dispose();
 				} catch (ConcurrentModificationException e) {
-					System.out.println(e.getLocalizedMessage());
-					System.out.println(e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		});

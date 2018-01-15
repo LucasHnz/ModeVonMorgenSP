@@ -117,7 +117,6 @@ public class GUIAdministratorListe extends JPanel {
 		 * Holt sich die Anzahl der Reihen
 		 */
 		public int getRowCount() {
-			System.out.println(data.size());
 			return data.size();
 		}
 
@@ -224,7 +223,6 @@ public class GUIAdministratorListe extends JPanel {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Administrator Bearbeitung", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
-					System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
 			}
 		});
@@ -269,7 +267,6 @@ public class GUIAdministratorListe extends JPanel {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Administrator Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
-					System.out.println("Index Fehler, keine Zeile ausgewählt");
 			}
 			}});
 		btnLöscheAdmin.setBounds(981, 129, 209, 48);

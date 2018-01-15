@@ -127,7 +127,6 @@ public class GUIBestellungListe extends JPanel {
 				String a = null;
 				return a;
 			}catch (ArrayIndexOutOfBoundsException r) {
-				System.out.println(r.getMessage());
 				return null;
 			}
 		}
@@ -210,7 +209,6 @@ public class GUIBestellungListe extends JPanel {
 						JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 								"Bestellung Anzeigen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 								null, new String[] { "Ok"}, "Ok");
-						System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
 			}
 		});
@@ -235,7 +233,6 @@ public class GUIBestellungListe extends JPanel {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Bestellung VersandStatus ändern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
-					System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
 			}});
 		

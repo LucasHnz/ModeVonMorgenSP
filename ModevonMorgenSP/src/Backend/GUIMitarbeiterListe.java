@@ -237,7 +237,6 @@ public class GUIMitarbeiterListe extends JPanel {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Mitarbeiter Bearbeiten", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
-					System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
 			}
 		});
@@ -275,7 +274,6 @@ public class GUIMitarbeiterListe extends JPanel {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Mitarbeiter Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ok"}, "Ok");
-					System.out.println("Index Fehler, keine Zeile ausgewählt");
 				}
 			}
 		});

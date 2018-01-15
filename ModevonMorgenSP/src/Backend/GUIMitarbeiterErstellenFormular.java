@@ -272,9 +272,7 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 					String gehalt = textField_9.getText();
 					String berechtigung = "3";
 					String passwort = textField_10.getText();
-					System.out.println(passwort);
 					MitarbeiterVerwaltung.MitarbeiterStrg.hinzufügenMA(nutzernr, admin, nachname, vorname, email, straße, ort, plz, iban, gehalt, berechtigung, passwort);
-					System.out.println(nutzernr);
 					textField.setText(String.valueOf(Datenbankverwaltung.holeNächsteNummer.nächsteAdminNr()));
 					textField_2.setText("");
 					textField_3.setText("");

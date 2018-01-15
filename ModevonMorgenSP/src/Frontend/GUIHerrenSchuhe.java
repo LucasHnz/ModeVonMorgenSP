@@ -50,8 +50,6 @@ public class GUIHerrenSchuhe {
 				int artikelnr = rs.getInt("Artikelnr");
 				panelHerrenSchuhe.add(GUINeuerArtikel.neuerArtikel(artikelnr));
 				anzahlArtikel = anzahlArtikel + 1;
-
-				System.out.println("Artikel ist " + artikelnr);
 			}
 			int length = anzahlArtikel / 2 * 188;
 			if (anzahlArtikel % 2 == 1)

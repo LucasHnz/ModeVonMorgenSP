@@ -39,9 +39,6 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		
 		Administrator admin = Datenbankverwaltung.HoleDatenSatz.holeAdmin(nutzernr);
 		
-		System.out.println(admin.getNachname());
-	
-		
 		setBounds(200, 100, 365, 299);
 		setResizable(false);
 		setAlwaysOnTop(true);
@@ -123,8 +120,7 @@ public class GUIAdministratorBearbeiten extends JFrame {
 		textField.setBounds(158, 11, 161, 23);
 		panel.add(textField);
 		textField.setColumns(10);
-		
-		System.out.println(admin.getNachname());
+
 		JTextField textField_2 = new JTextField();
 
 		textField_2.setText(admin.getNachname());
