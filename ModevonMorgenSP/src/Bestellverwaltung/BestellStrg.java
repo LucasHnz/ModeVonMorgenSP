@@ -150,6 +150,7 @@ public class BestellStrg {
 	 * mit der aufrufenden erstelleBestellung-Methode ausgeführt, damit keine Fehler in den Datensätzen 
 	 * auftreten.
 	 * @param bestellnr Die Bestellnummer der zugehörigen Bestellung.
+	 * @param con Das zu der Bestellung gehörende Connection Objekt.
 	 */
 	private static void erstelleBestellpositionen(Connection con, int bestellnr) throws SQLException {
 		HashMap<Integer, Integer> warenkorbMap = Warenkorb.getWarenkorb();
