@@ -102,7 +102,7 @@ public class Artikelsammlung {
 	 * Gibt das Artkelobjekt zurück.
 	 * @param Artikelnummer Die Artikelnummer.
 	 * @return Das Artikelobjekt mit der übergebenen Artikelnummer.
-	 * @see @see Artikelverwaltung.Artikel
+	 * @see Artikelverwaltung.Artikel
 	 */
 	public static Artikel getArtikel(int Artikelnummer) {
 		return Artikelsammlung.get(Artikelnummer);

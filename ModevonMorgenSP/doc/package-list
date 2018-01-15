@@ -1,12 +1,13 @@
 AdministratorVerwaltung
 Artikelverwaltung
 Backend
-BestandskundenVerwaltung
 Bestellverwaltung
 Datenbankverwaltung
 Frontend
+KundenVerwaltung
 Logverwaltung
+MailController
 MitarbeiterVerwaltung
-RechnungVerwaltung
+RücksendungVerwaltung
 Tests
 Warenkorbverwaltung
