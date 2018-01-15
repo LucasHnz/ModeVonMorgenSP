@@ -281,7 +281,6 @@ public class GUIBestellungListe extends JPanel {
 				JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 						"Bestellung Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 						null, new String[] { "Ok" }, "Ok");
-				System.out.println("Index Fehler, keine Zeile ausgewählt");
 			}}
 		});
 		btnNewButton.setBounds(981, 129, 209, 48);
