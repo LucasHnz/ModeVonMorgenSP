@@ -36,15 +36,14 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
 public class GUIHerrenAccessoires {
-
-	JButton btnAnmelden = new JButton();
+	
 	static JButton btnAlleArtikel;
 	static JButton btnRinge;
 	static JButton btnArmbänder;
 	static JButton btnOhrringe;
 	public JFrame frame;
 	static JPanel panelMain;
-	static JPanel panelHerrenAccessoires = new JPanel();
+	static JPanel panelHerrenAccessoires;
 	static int anzahlArtikel = 0;
 
 	/**

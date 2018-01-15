@@ -34,16 +34,14 @@ import javax.swing.border.LineBorder;
 
 public class GUIDamenAccessoires {
 
-	JButton btnAnmelden = new JButton();
 	static JButton btnAlleArtikel;
 	static JButton btnKopfschmuck;
 	static JButton btnKetten;
 	static JButton btnOhrringe;
 	static JButton btnArmbänder;
 	static JButton btnRinge;
-	public JFrame frame;
-	static JPanel panelMain = new JPanel();
-	static JPanel panelDamenAccessoires = new JPanel();
+	static JPanel panelMain;
+	static JPanel panelDamenAccessoires;
 	public static int anzahlArtikel = 0;
 
 	/**

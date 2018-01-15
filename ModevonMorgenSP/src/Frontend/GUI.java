@@ -10,36 +10,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import Logverwaltung.LogStrg;
-import Warenkorbverwaltung.Warenkorb;
-
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import javax.swing.border.SoftBevelBorder;
-
-import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
-import Artikelverwaltung.Artikelsammlung;
 import Backend.GUIMitarbeiter;
 import KundenVerwaltung.BestandskundeStrg;
-
-import javax.swing.border.BevelBorder;
 import javax.swing.JLayeredPane;
 
 public class GUI extends JFrame {

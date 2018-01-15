@@ -37,11 +37,11 @@ import Warenkorbverwaltung.Warenkorb;
 
 public class GUIHerrenKleidung {
 
-	static JButton btnJacken = new JButton();
-	static JButton btnAlleArtikel = new JButton();
-	static JButton btnHandschuhe = new JButton();
-	static JButton btnHosen = new JButton();
-	static JPanel panelMain = new JPanel();
+	static JButton btnJacken;
+	static JButton btnAlleArtikel;
+	static JButton btnHandschuhe;
+	static JButton btnHosen;
+	static JPanel panelMain;
 	static public JPanel panelHerrenKleidung;
 	static public int anzahlArtikel = 0;
 
@@ -75,8 +75,6 @@ public class GUIHerrenKleidung {
 			e.printStackTrace();
 		}
 
-		GUI.getFenster().revalidate();
-		GUI.getFenster().repaint();
 	}
 	
 	/**
@@ -146,6 +144,7 @@ public class GUIHerrenKleidung {
 	 */
 	public static JPanel getGUIHerrenKleidung() {
 
+		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 0, 1234, 563);
 		panelMain.setLayout(null);
