@@ -12,8 +12,7 @@ import java.util.HashMap;
 public class BestandskundeSammlung {
 
 	static HashMap<Integer, Bestandskunde> BestandskundenSammlung = new HashMap<Integer, Bestandskunde>();
-	static HashMap<Integer, Gastkunde> GastkundenListe = new HashMap<Integer, Gastkunde>();
-
+	
 	/**
 	 * Füllt die Bestandskundensammlung mit einem übergebenen ResultSet
 	 * @param rs
@@ -66,7 +65,7 @@ public class BestandskundeSammlung {
 	 * Löscht den Bestandskunden aus der Sammlung
 	 * @param nutzernr
 	 */
-	public static void removeArtikel(int nutzernr) {
+	public static void removeKunde(int nutzernr) {
 		BestandskundenSammlung.remove(nutzernr);
 	}
 
