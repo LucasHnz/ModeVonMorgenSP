@@ -28,7 +28,6 @@ public class GUIHerrenAccessoires {
 	static JButton btnRinge;
 	static JButton btnArmbänder;
 	static JButton btnOhrringe;
-	public JFrame frame;
 	static JPanel panelMain;
 	static JPanel panelHerrenAccessoires;
 	static int anzahlArtikel = 0;

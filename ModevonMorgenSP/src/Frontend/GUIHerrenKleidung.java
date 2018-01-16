@@ -25,7 +25,6 @@ public class GUIHerrenKleidung {
 
 	static JButton btnJacken;
 	static JButton btnAlleArtikel;
-	static JButton btnHandschuhe;
 	static JButton btnHosen;
 	static JPanel panelMain;
 	static public JPanel panelHerrenKleidung;
@@ -186,12 +185,6 @@ public class GUIHerrenKleidung {
 
 		});
 		panelScrollPaneLinks.add(btnHosen);
-
-		btnHandschuhe = new JButton("Handschuhe");
-		btnHandschuhe.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnHandschuhe.setBackground(SystemColor.inactiveCaptionBorder);
-		btnHandschuhe.setBounds(10, 215, 248, 43);
-		panelScrollPaneLinks.add(btnHandschuhe);
 
 		panelHerrenKleidung = new JPanel();
 		panelHerrenKleidung.setBackground(Color.WHITE);

@@ -28,11 +28,6 @@ import Warenkorbverwaltung.Warenkorb;
  */
 public class GUIArtikel {
 	
-	JButton btnZurück = new JButton();
-	JButton btnAnmelden = new JButton();
-	public String[] damenCbList;
-	public String[] herrenCbList;
-	public String[] anmeldenCbList;
 	static JLabel lblArtikelStatus;
 	static JLabel lblArtikelTitel;
 	static JLabel lblArtikelBild;
