@@ -1,11 +1,5 @@
 package Frontend;
 
-/**
- * 
- * @author Hinz
- *
- */
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -26,7 +20,12 @@ import Artikelverwaltung.Artikelsammlung;
 import Artikelverwaltung.Kleidung;
 import Artikelverwaltung.Schuhe;
 import Warenkorbverwaltung.Warenkorb;
+/**
+ * 
+ * @author Hinz
 
+ *
+ */
 public class GUIArtikel {
 	
 	JButton btnZurück = new JButton();

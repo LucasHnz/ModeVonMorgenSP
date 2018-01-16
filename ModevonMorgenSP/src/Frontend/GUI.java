@@ -1,11 +1,5 @@
 package Frontend;
 
-/**
- * 
- * @author Hinz
- *
- */
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +21,11 @@ import Artikelverwaltung.ArtikelStrg;
 import Backend.GUIMitarbeiter;
 import KundenVerwaltung.BestandskundeStrg;
 import javax.swing.JLayeredPane;
+/**
+ * 
+ * @author Hinz
+ *
+ */
 
 public class GUI extends JFrame {
 	

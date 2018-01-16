@@ -16,7 +16,12 @@ import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
 import Artikelverwaltung.Kleidung;
 import Artikelverwaltung.Schuhe;
+/**
+ * 
+ * @author Hinz
 
+ *
+ */
 public class GUINeuerArtikel {
 
 	static JLabel lblPreis;

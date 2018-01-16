@@ -135,6 +135,7 @@ public class BestellStrg {
 			erstelleBestellungGK();
 			MailController.MailSenden.sendMail(email, "Bestätigung ihrer Bestellung",
 					"Sehr geehrter Kunde, Vielen Dank für ihre Bestellung. Ihre Bestellung wird in Kürze bearbeitet und in 5-7 Werktagen versandt. ");
+			GUI.getFenster().changePanel(GUIWarenkorb.getGUIWarenkorb());
 
 		}
 
