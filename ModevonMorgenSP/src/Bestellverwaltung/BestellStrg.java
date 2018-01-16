@@ -93,6 +93,7 @@ public class BestellStrg {
 	 * Der Nutzer bekommt die Möglichkeit, sich als Gast- oder Bestandskunde zu registrieren, oder sich anzumelden.
 	 * Nur ein angemeldeter Kunde kann schließlich bestellen. Bestandskunden bekommen zusätzlich die 
 	 * Möglichkeit, ihre Rabattpunkte einzusetzten.
+	 * 
 	 */
 	public static void bestellvorgang() {
 		if (LogStrg.getAngemeldetStatus() == 2) {				
@@ -340,9 +341,13 @@ public class BestellStrg {
 	
 	/**
 	 * Anna Gross
-	 * @param preis ,pRabatt
+	 * 
 	 * Berechnet die aktuelle Anzahl an Punkten, die ein Bestandskunde nach einer Bestellung hat. Der Kunde bekommt Punkte pro 
 	 * Bestellung gut geschrieben und die Punkte die er für eine Bestellung eingesetzt hat werden abgezogen.
+	 *
+	 * @param preis  Der Preis der Bestellung, der benötigt wird um die Punkte zu berechnen, die dem Kunden gutgeschrieben werden
+	 * @param pRabatt	Der Rabatt der vom Kunden eingelöst wird
+	 * 
 	 */
 	public static void errechnePunkte(double preis, int pRabatt) {
 		int nutzernr = LogStrg.getNutzerNr();
@@ -359,9 +364,10 @@ public class BestellStrg {
 	
 	/**
 	 * Anna Gross
-	 * @return pRabatt 
 	 * Wenn die Möglichkeit besteht Punkte in Rabatt einzulösen wird
 	 * gefragt wie viele Punkte eingelöst werden sollen.
+	 * @return pRabatt  Der Rabatt der von Kunden eingelöst werden soll
+	 * 
 	 */
 	public static int abfrageRabatt() {
 		int nutzernr = LogStrg.getNutzerNr();
@@ -373,8 +379,8 @@ public class BestellStrg {
 		while(prüfen) {
 
 			String eingabe = JOptionPane.showInputDialog(null,
-					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. Sie haben" + pssAkt
-							+ "Punkte. Sie können nicht mehr als 20 Punkte einlösen.");
+					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. Sie haben " + pssAkt
+							+ " Punkte. Sie können nicht mehr als 20 Punkte einlösen.");
 
 			if(eingabe !=  null)
 				pRabatt = Integer.parseInt(eingabe);

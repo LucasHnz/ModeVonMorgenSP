@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import javax.swing.table.TableRowSorter;
 import AdministratorVerwaltung.Administrator;
 import AdministratorVerwaltung.AdministratorSammlung;
 import AdministratorVerwaltung.AdministratorStrg;
+import Frontend.GUI;
 
 /**
  * 
@@ -270,19 +272,25 @@ public class GUIAdministratorListe extends JPanel {
 		btnLöscheAdmin.setBounds(981, 129, 209, 48);
 		add(btnLöscheAdmin);
 
-		Image AdminEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40,
+		URL editUrl = GUI.class.getResource(
+                "/Icons 64x64/repair-tools.png");
+		Image AdminEditieren = new ImageIcon(editUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblAdminEditieren = new JLabel(new ImageIcon(AdminEditieren));
 		lblAdminEditieren.setBounds(920, 70, 40, 40);
 		add(lblAdminEditieren);
 
-		Image AdminHinzufügen = new ImageIcon("src\\Icons 64x64\\plus.png").getImage().getScaledInstance(40, 40,
+		URL hinzufügenUrl = GUI.class.getResource(
+                "/Icons 64x64/plus.png");
+		Image AdminHinzufügen = new ImageIcon(hinzufügenUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblAdminHinzufügen = new JLabel(new ImageIcon(AdminHinzufügen));
 		lblAdminHinzufügen.setBounds(920, 12, 40, 40);
 		add(lblAdminHinzufügen);
 
-		Image AdminLöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40,
+		URL löschenUrl = GUI.class.getResource(
+                "/Icons 64x64/multiply.png");
+		Image AdminLöschen = new ImageIcon(löschenUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblAdminLöschen = new JLabel(new ImageIcon(AdminLöschen));
 		lblAdminLöschen.setBounds(920, 128, 40, 40);

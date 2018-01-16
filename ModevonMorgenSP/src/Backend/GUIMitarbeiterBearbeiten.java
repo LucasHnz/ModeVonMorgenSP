@@ -332,10 +332,4 @@ public class GUIMitarbeiterBearbeiten extends JFrame{
 		setVisible(true);
 		
 	}
-	
-	public static void main (String []args) throws SQLException {
-		int i = 300000001;
-		new GUIMitarbeiterBearbeiten(i);
-	}
-
 }

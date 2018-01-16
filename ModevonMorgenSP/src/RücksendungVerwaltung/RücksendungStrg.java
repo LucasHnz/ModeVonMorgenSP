@@ -8,8 +8,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+/**
+ * 
+ * @author julian
+ *
+ */
 public class RücksendungStrg {
 	
+	/**
+	 * Liefert das aktuelle Datum
+	 * @return datum
+	 */
 	public static String aktuellesDatum() {
 		
 		LocalDate date = LocalDate.now();
@@ -24,7 +33,11 @@ public class RücksendungStrg {
 		
 	}
 	
-	public static void erstelleRücksendung(int i) {
+	/**
+	 * Erstellt eine Rücksendung
+	 * @param posNr
+	 */
+	public static void erstelleRücksendung(int posNr) {
 		
 		
 		
@@ -38,7 +51,7 @@ public class RücksendungStrg {
 		Statement stmt = con.createStatement();
 		Statement stmt2 = con.createStatement();
 		Statement stmt3 = con.createStatement();
-		String SQL = "select * from bestellposition where bestellposnr ="+i;
+		String SQL = "select * from bestellposition where bestellposnr ="+posNr;
 		
 		ResultSet rs= stmt.executeQuery(SQL);
 		
@@ -46,15 +59,15 @@ public class RücksendungStrg {
 			bestellposnr = rs.getInt("Bestellnr");
 		}
 
-		String SQL2 = "insert into Rücksendung values ('"+rücksendenr+"','"+i+"','"+bestellposnr+"','"+datum+"')";
+		String SQL2 = "insert into Rücksendung values ('"+rücksendenr+"','"+posNr+"','"+bestellposnr+"','"+datum+"')";
 		
 		stmt2.executeQuery(SQL2);
 		
-		String SQL3 = "update Bestellposition set Rücksendung = 'Rücksendung' where bestellposnr ="+i;
+		String SQL3 = "update Bestellposition set Rücksendung = 'Rücksendung' where bestellposnr ="+posNr;
 		
 		stmt3.executeQuery(SQL3);
 
-		RücksendungSammlung.hinzufügenRücksendung(rücksendenr, i, bestellposnr, datum);
+		RücksendungSammlung.hinzufügenRücksendung(rücksendenr, posNr, bestellposnr, datum);
 		
 		Datenbankverwaltung.VerbindungDB.schließeVerbindung(con, stmt);
 		
@@ -68,8 +81,6 @@ public class RücksendungStrg {
 		}
 	}
 	
-	public static void main(String [] args) {
-		
-	}
+
 	
 }

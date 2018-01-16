@@ -317,8 +317,4 @@ public class GUIMitarbeiterErstellenFormular extends JFrame{
 		
 		
 	}
-	
-	public static void main (String[]args) throws SQLException {
-		new GUIMitarbeiterErstellenFormular();
-	}
 }
