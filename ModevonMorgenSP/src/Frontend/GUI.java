@@ -28,7 +28,7 @@ import javax.swing.JLayeredPane;
  */
 
 public class GUI extends JFrame {
-	//A
+	
 	static JFrame fenster;
 	static GUI gui;
 	
