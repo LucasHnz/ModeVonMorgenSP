@@ -23,7 +23,7 @@ import Logverwaltung.LogStrg;
 public class GUIBestandskundeRegistrierung extends JPanel {
 
 	/**
-	 * Registrierungsmaske für Bestandskunden
+	 * Registrierungsmaske für Bestandskunden 
 	 */
 	public GUIBestandskundeRegistrierung() {
 
