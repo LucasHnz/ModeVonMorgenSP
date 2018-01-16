@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -21,6 +22,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
+import Frontend.GUI;
 import MitarbeiterVerwaltung.Mitarbeiter;
 import MitarbeiterVerwaltung.MitarbeiterSammlung;
 
@@ -277,19 +280,25 @@ public class GUIMitarbeiterListe extends JPanel {
 		add(btnLöscheMitarbeiter);
 		setVisible(true);
 
-		Image MAEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40,
+		URL editUrl = GUI.class.getResource(
+                "/Icons 64x64/repair-tools.png");
+		Image MAEditieren = new ImageIcon(editUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblMAEditieren = new JLabel(new ImageIcon(MAEditieren));
 		lblMAEditieren.setBounds(920, 70, 40, 40);
 		add(lblMAEditieren);
 
-		Image MAHinzufügen = new ImageIcon("src\\Icons 64x64\\plus.png").getImage().getScaledInstance(40, 40,
+		URL hinzufügenUrl = GUI.class.getResource(
+                "/Icons 64x64/plus.png");
+		Image MAHinzufügen = new ImageIcon(hinzufügenUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblMAHinzufügen = new JLabel(new ImageIcon(MAHinzufügen));
 		lblMAHinzufügen.setBounds(920, 12, 40, 40);
 		add(lblMAHinzufügen);
 
-		Image MALöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40,
+		URL löschenUrl = GUI.class.getResource(
+                "/Icons 64x64/multiply.png");
+		Image MALöschen = new ImageIcon(löschenUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblMALöschen = new JLabel(new ImageIcon(MALöschen));
 		lblMALöschen.setBounds(920, 128, 40, 40);

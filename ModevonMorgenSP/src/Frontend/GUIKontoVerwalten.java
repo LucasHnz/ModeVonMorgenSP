@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.text.NumberFormat;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
@@ -194,7 +195,9 @@ public class GUIKontoVerwalten extends JPanel{
 		textField_Passwort.setBounds(650, 407, 161, 33);
 		add(textField_Passwort);
 		
-		Image Annehmen = new ImageIcon("src\\Icons 64x64\\checked.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL annehmenUrl = GUI.class.getResource(
+                "/Icons 64x64/checked.png");
+		Image Annehmen = new ImageIcon(annehmenUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblAnnehmen = new JLabel(new ImageIcon(Annehmen));
 		lblAnnehmen.setBounds(650, 476, 40, 40);
 		add(lblAnnehmen);
@@ -268,7 +271,9 @@ public class GUIKontoVerwalten extends JPanel{
 			}
 		});
 		
-		Image Abbrechen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL abbrechenUrl = GUI.class.getResource(
+                "/Icons 64x64/multiply.png");
+		Image Abbrechen = new ImageIcon(abbrechenUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblAbbrechen = new JLabel(new ImageIcon(Abbrechen));
 		lblAbbrechen.setBounds(457, 476, 40, 40);
 		add(lblAbbrechen);

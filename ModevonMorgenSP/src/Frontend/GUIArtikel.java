@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -177,10 +179,12 @@ public class GUIArtikel {
 		ImageIcon icon;
 		if(Artikelsammlung.getArtikel(artikelNummer).getImage() != null) {
 			icon = new ImageIcon(Artikelsammlung.getArtikel(artikelNummer).getImage());
-			}
-			else 
-			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
-        	Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+		}
+		else {
+			URL imgUrl = GUI.class.getResource(
+	                "/SWP-Bilder/NoPic.gif");
+			icon = new ImageIcon(imgUrl);}
+        Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         lblArtikelBild.setIcon(new ImageIcon(img));
 		
 		panel.add(lblArtikelBild);

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Comparator;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ import javax.swing.table.TableRowSorter;
 import Bestellverwaltung.BestellStrg;
 import Bestellverwaltung.Bestellung;
 import Bestellverwaltung.BestellungSammlung;
+import Frontend.GUI;
 
 public class GUIBestellungListe extends JPanel {
 	
@@ -236,17 +238,23 @@ public class GUIBestellungListe extends JPanel {
 		
 		setVisible(true);
 		
-		Image BEditieren = new ImageIcon("src\\Icons 64x64\\exchange.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL editUrl = GUI.class.getResource(
+                "/Icons 64x64/exchange.png");
+		Image BEditieren = new ImageIcon(editUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblBEditieren = new JLabel(new ImageIcon(BEditieren));
 		lblBEditieren.setBounds(920, 70, 40, 40);
 		add(lblBEditieren);
 		
-		Image BAnzeigen = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL anzeigenUrl = GUI.class.getResource(
+                "/Icons 64x64/notepad.png");
+		Image BAnzeigen = new ImageIcon(anzeigenUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblBAnzeigen = new JLabel(new ImageIcon(BAnzeigen));
 		lblBAnzeigen.setBounds(920, 12, 40, 40);
 		add(lblBAnzeigen);
 		
-		Image Blöschen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL löschenUrl = GUI.class.getResource(
+                "/Icons 64x64/multiply.png");
+		Image Blöschen = new ImageIcon(löschenUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblBlöschen = new JLabel(new ImageIcon(Blöschen));
 		lblBlöschen.setBounds(920, 128, 40, 40);
 		add(lblBlöschen);

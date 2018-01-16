@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Comparator;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
@@ -188,14 +189,17 @@ public class GUIBestellpositionenBK  extends JFrame {
 		getContentPane().add(btnZurück);
 		setVisible(true);
 
-		Image Annehmen = new ImageIcon("src\\Icons 64x64\\right-chevron.png").getImage().getScaledInstance(40, 40,
+		URL acceptUrl = GUI.class.getResource(
+                "/Icons 64x64/right-chevron.png");
+		Image Annehmen = new ImageIcon(acceptUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblArtikel = new JLabel(new ImageIcon(Annehmen));
 		lblArtikel.setBounds(720, 12, 40, 40);
 		getContentPane().add(lblArtikel);
 
-
-		Image Zurück = new ImageIcon("src\\Icons 64x64\\logout.png").getImage().getScaledInstance(40, 40,
+		URL backUrl = GUI.class.getResource(
+                "/Icons 64x64/logout.png");
+		Image Zurück = new ImageIcon(backUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblZurück = new JLabel(new ImageIcon(Zurück));
 		lblZurück.setBounds(720, 76, 40, 40);

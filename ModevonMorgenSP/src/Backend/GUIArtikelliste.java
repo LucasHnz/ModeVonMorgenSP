@@ -12,6 +12,8 @@ import javax.swing.table.TableRowSorter;
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.ArtikelStrg;
 import Artikelverwaltung.Artikelsammlung;
+import Frontend.GUI;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +21,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -193,8 +196,10 @@ public class GUIArtikelliste extends JPanel {
 					return data.get(keys[rowIndex]).getVerfügbarkeit();
 				}	
 				else if(columnIndex == 8) {
-					if(data.get(keys[rowIndex]).getNotiz() != null && data.get(keys[rowIndex]).getNotiz() != "")
-						return new ImageIcon("src\\Icons 16x16\\exclamation-mark.png");
+					if(data.get(keys[rowIndex]).getNotiz() != null && data.get(keys[rowIndex]).getNotiz() != "") {
+						URL notizUrl = GUI.class.getResource(
+				                "/Icons 16x16/exclamation-mark.png");
+						return new ImageIcon(notizUrl);}
 					else
 						return new ImageIcon();				
 				}	
@@ -248,8 +253,9 @@ public class GUIArtikelliste extends JPanel {
 		lblNeuerArtikel.setBounds(920, 12, 270, 35);
 		add(lblNeuerArtikel);
 		
-		
-		Image accessoires = new ImageIcon("src\\Icons 64x64\\glasses.png").getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
+		URL accessoiresUrl = GUI.class.getResource(
+                "/Icons 64x64/glasses.png");
+		Image accessoires = new ImageIcon(accessoiresUrl).getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
 		JButton btnNeuesAccessoir = new JButton(new ImageIcon(accessoires));
 		btnNeuesAccessoir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -262,8 +268,9 @@ public class GUIArtikelliste extends JPanel {
 		btnNeuesAccessoir.setContentAreaFilled(false);
 		add(btnNeuesAccessoir);
 		
-		
-		Image kleidung = new ImageIcon("src\\Icons 64x64\\t-shirt.png").getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
+		URL kleidungUrl = GUI.class.getResource(
+                "/Icons 64x64/t-shirt.png");
+		Image kleidung = new ImageIcon(kleidungUrl).getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
 		JButton btnNeuerKleidungsartikel = new JButton(new ImageIcon(kleidung));
 		btnNeuerKleidungsartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -276,7 +283,9 @@ public class GUIArtikelliste extends JPanel {
 		btnNeuerKleidungsartikel.setContentAreaFilled(false);
 		add(btnNeuerKleidungsartikel);
 		
-		Image schuhe = new ImageIcon("src\\Icons 64x64\\shoe.png").getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
+		URL schuheUrl = GUI.class.getResource(
+                "/Icons 64x64/shoe.png");
+		Image schuhe = new ImageIcon(schuheUrl).getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
 		JButton btnNeuerSchuhartikel = new JButton();
 		btnNeuerSchuhartikel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -309,7 +318,9 @@ public class GUIArtikelliste extends JPanel {
 		});
 		
 	
-		Image ArtikelEditieren = new ImageIcon("src\\Icons 64x64\\repair-tools.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL editUrl = GUI.class.getResource(
+                "/Icons 64x64/repair-tools.png");
+		Image ArtikelEditieren = new ImageIcon(editUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblArtikelEditieren = new JLabel(new ImageIcon(ArtikelEditieren));
 		lblArtikelEditieren.setBounds(922, 124, 40, 40);
 		add(lblArtikelEditieren);
@@ -348,7 +359,9 @@ public class GUIArtikelliste extends JPanel {
 			}
 		});
 		
-		Image ArtikelEntfernen = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL entfernenUrl = GUI.class.getResource(
+                "/Icons 64x64/multiply.png");
+		Image ArtikelEntfernen = new ImageIcon(entfernenUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblArtikelEntfernen = new JLabel(new ImageIcon(ArtikelEntfernen));
 		lblArtikelEntfernen.setBounds(922, 180, 40, 40);
 		add(lblArtikelEntfernen);
@@ -379,7 +392,9 @@ public class GUIArtikelliste extends JPanel {
 			}
 		});
 		
-		Image Rabatt = new ImageIcon("src\\Icons 64x64\\division.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL rabattUrl = GUI.class.getResource(
+                "/Icons 64x64/division.png");
+		Image Rabatt = new ImageIcon(rabattUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblRabatt = new JLabel(new ImageIcon(Rabatt));
 		lblRabatt.setBounds(922, 241, 40, 40);
 		add(lblRabatt);
@@ -415,7 +430,9 @@ public class GUIArtikelliste extends JPanel {
 				}
 			}
 		});
-		Image Notiz = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL notizUrl = GUI.class.getResource(
+                "/Icons 64x64/notepad.png");
+		Image Notiz = new ImageIcon(notizUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblNotiz = new JLabel(new ImageIcon(Notiz));
 		lblNotiz.setBounds(922, 360, 40, 40);
 		add(lblNotiz);
@@ -446,7 +463,9 @@ public class GUIArtikelliste extends JPanel {
 			}
 		});
 		
-		Image Bestand = new ImageIcon("src\\Icons 64x64\\maths.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL bestandUrl = GUI.class.getResource(
+                "/Icons 64x64/maths.png");
+		Image Bestand = new ImageIcon(bestandUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblBestand = new JLabel(new ImageIcon(Bestand));
 		lblBestand.setBounds(922, 300, 40, 40);
 		add(lblBestand);
@@ -470,7 +489,9 @@ public class GUIArtikelliste extends JPanel {
 			}
 		});
 		
-		Image Picture = new ImageIcon("src\\Icons 64x64\\landscape.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL pictureUrl = GUI.class.getResource(
+                "/Icons 64x64/landscape.png");
+		Image Picture = new ImageIcon(pictureUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblPicture = new JLabel(new ImageIcon(Picture));
 		lblPicture.setBounds(922, 420, 40, 40);
 		add(lblPicture);
