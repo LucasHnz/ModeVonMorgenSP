@@ -1,11 +1,5 @@
 package Frontend;
 
-/**
- * 
- * @author Hinz
- *
- */
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -13,7 +7,12 @@ import Logverwaltung.LogStrg;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+/**
+ * 
+ * @author Hinz
 
+ *
+ */
 public class GUIAnmelden {
 	
 	static JTextField anmeldenEmail = new JTextField();

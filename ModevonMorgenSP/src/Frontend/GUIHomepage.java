@@ -1,9 +1,5 @@
 package Frontend;
-/**
- * 
- * @author Hinz
- *
- */
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,7 +17,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import Artikelverwaltung.Artikel;
 import Artikelverwaltung.Artikelsammlung;
+/**
+ * 
+ * @author Hinz
 
+ *
+ */
 public class GUIHomepage {
 
 	private static JPanel panelMain;

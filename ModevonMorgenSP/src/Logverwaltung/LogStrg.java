@@ -1,11 +1,5 @@
 package Logverwaltung;
 
-/**
- * 
- * @author Hinz
-
- *
- */
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +7,12 @@ import java.sql.Statement;
 import Backend.GUIMitarbeiter;
 import Frontend.GUI;
 import Frontend.GUIHomepage;
+/**
+ * 
+ * @author Hinz
 
+ *
+ */
 public class LogStrg {
 
 	static int angemeldet = 0;
