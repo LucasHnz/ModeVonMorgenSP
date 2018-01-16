@@ -218,7 +218,7 @@ public class GUIArtikel {
 		
 		
 		spinnerMenge.setFont(new Font("Dialog", Font.PLAIN, 15));
-		spinnerMenge.setBounds(362, 266, 58, 35);
+		spinnerMenge.setBounds(362, 268, 67, 35);
 		panel.add(spinnerMenge);
 		
 		
