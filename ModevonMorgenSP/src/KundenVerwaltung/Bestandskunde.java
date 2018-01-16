@@ -13,7 +13,20 @@ public class Bestandskunde {
 	private int berechtigung;
 	private String passwort;
 	private int pss;
-
+/**
+ * 
+ * @param nutzernr Die einzigartige Nummer des Bestandskunden
+ * @param nachname Der Nachname des Kunden
+ * @param vorname Der Vorname des Kunden
+ * @param email Die E-Mailadresse des Kunden
+ * @param straße Die Straße in der der Kunde wohnt
+ * @param ort Der Ort in dem der Kunde wohnt 
+ * @param plz Die Postleitzahl des Ortes in dem der Kunde wohnt
+ * @param iban Die Iban des Kontos des Kunden
+ * @param berechtigung Die Berechtigung des Kunden, die er innerhalb des Shops hat
+ * @param passwort Das Passwort des Kunden, das er braucht um sich im Shop anzumelden
+ * @param pss Der Punktestand des Kunden 
+ */
 	public Bestandskunde(int nutzernr, String nachname, String vorname, String email, String straße, String ort, int plz, String iban, int berechtigung, String passwort, int pss) {
 		this.nutzernr = nutzernr;
 		this.nachname = nachname;
@@ -27,18 +40,31 @@ public class Bestandskunde {
 		this.passwort = passwort;
 		this.pss = pss;
 	}
-
+/**
+ * Gibt die Kundennummer zurück
+ * @return nutzernr
+ */
 	public int getNutzernr() {
 		return nutzernr;
 	}
-
+/**
+ * Gibt den Nachnamen des Kunden zurück
+ * @return nachname
+ */
 	public String getNachname() {
 		return nachname;
 	}
-
+/**
+ * Legt den Nachnamen des Kunden fest
+ * @param nachname
+ */
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 
 	public String getVorname() {
 		return vorname;
