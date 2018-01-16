@@ -29,7 +29,7 @@ import Warenkorbverwaltung.Warenkorb;
  *
  */
 public class GUIArtikel {
-	//AB
+	
 	static JLabel lblArtikelStatus;
 	static JLabel lblArtikelTitel;
 	static JLabel lblArtikelBild;
