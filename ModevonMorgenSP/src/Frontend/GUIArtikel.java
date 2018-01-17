@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,11 +30,6 @@ import Warenkorbverwaltung.Warenkorb;
  */
 public class GUIArtikel {
 	
-	JButton btnZurück = new JButton();
-	JButton btnAnmelden = new JButton();
-	public String[] damenCbList;
-	public String[] herrenCbList;
-	public String[] anmeldenCbList;
 	static JLabel lblArtikelStatus;
 	static JLabel lblArtikelTitel;
 	static JLabel lblArtikelBild;
@@ -177,10 +174,12 @@ public class GUIArtikel {
 		ImageIcon icon;
 		if(Artikelsammlung.getArtikel(artikelNummer).getImage() != null) {
 			icon = new ImageIcon(Artikelsammlung.getArtikel(artikelNummer).getImage());
-			}
-			else 
-			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
-        	Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+		}
+		else {
+			URL imgUrl = GUI.class.getResource(
+	                "/SWP-Bilder/NoPic.gif");
+			icon = new ImageIcon(imgUrl);}
+        Image img = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         lblArtikelBild.setIcon(new ImageIcon(img));
 		
 		panel.add(lblArtikelBild);
@@ -219,7 +218,7 @@ public class GUIArtikel {
 		
 		
 		spinnerMenge.setFont(new Font("Dialog", Font.PLAIN, 15));
-		spinnerMenge.setBounds(362, 266, 58, 35);
+		spinnerMenge.setBounds(362, 268, 67, 35);
 		panel.add(spinnerMenge);
 		
 		

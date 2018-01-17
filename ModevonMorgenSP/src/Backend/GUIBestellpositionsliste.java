@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import Bestellverwaltung.Bestellposition;
 import Bestellverwaltung.BestellpositionSammlung;
+import Frontend.GUI;
 
 /**
  * 
@@ -266,19 +268,25 @@ public class GUIBestellpositionsliste extends JFrame {
 		getContentPane().add(btnZurück);
 		setVisible(true);
 
-		Image Annehmen = new ImageIcon("src\\Icons 64x64\\checked.png").getImage().getScaledInstance(40, 40,
+		URL acceptUrl = GUI.class.getResource(
+                "/Icons 64x64/checked.png");
+		Image Annehmen = new ImageIcon(acceptUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblAnnehmen = new JLabel(new ImageIcon(Annehmen));
 		lblAnnehmen.setBounds(720, 12, 40, 40);
 		getContentPane().add(lblAnnehmen);
 
-		Image Ablehnen = new ImageIcon("src\\Icons 64x64\\warning.png").getImage().getScaledInstance(40, 40,
+		URL declineUrl = GUI.class.getResource(
+                "/Icons 64x64/warning.png");
+		Image Ablehnen = new ImageIcon(declineUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblAblehnen = new JLabel(new ImageIcon(Ablehnen));
 		lblAblehnen.setBounds(720, 82, 40, 40);
 		getContentPane().add(lblAblehnen);
 
-		Image Zurück = new ImageIcon("src\\Icons 64x64\\down-arrow.png").getImage().getScaledInstance(40, 40,
+		URL zurückUrl = GUI.class.getResource(
+                "/Icons 64x64/down-arrow.png");
+		Image Zurück = new ImageIcon(zurückUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblZurück = new JLabel(new ImageIcon(Zurück));
 		lblZurück.setBounds(720, 150, 40, 40);

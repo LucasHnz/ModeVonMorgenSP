@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -211,8 +212,12 @@ public class GUIHomepage {
 		});
 		panelMain.add(btnProduktHerren);
 
-		Image leftArrow = new ImageIcon("src\\Icons 32x32\\left-arrow.png").getImage();
-		Image rightArrow = new ImageIcon("src\\Icons 32x32\\right-chevron.png").getImage();
+		URL leftUrl = GUI.class.getResource(
+                "/Icons 32x32/left-arrow.png");
+		URL rightUrl = GUI.class.getResource(
+                "/Icons 32x32/right-chevron.png");
+		Image leftArrow = new ImageIcon(leftUrl).getImage();
+		Image rightArrow = new ImageIcon(rightUrl).getImage();
 
 		btnProduktDamenRechts = new JButton(new ImageIcon(rightArrow));
 		btnProduktDamenRechts.setContentAreaFilled(false);

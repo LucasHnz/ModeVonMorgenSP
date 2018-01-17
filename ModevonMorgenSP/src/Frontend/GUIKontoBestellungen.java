@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Comparator;
 import java.util.HashMap;
 import javax.swing.JButton;
@@ -133,7 +134,9 @@ public class GUIKontoBestellungen extends JPanel{
 		scrollpane.setViewportView(table);
 		add(scrollpane);
 		
-		Image Storno = new ImageIcon("src\\Icons 64x64\\multiply.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL stornoUrl = GUI.class.getResource(
+                "/Icons 64x64/multiply.png");
+		Image Storno = new ImageIcon(stornoUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblStorno = new JLabel(new ImageIcon(Storno));
 		lblStorno.setBounds(971, 76, 40, 40);
 		add(lblStorno);
@@ -173,7 +176,9 @@ public class GUIKontoBestellungen extends JPanel{
 		btnStoniereBestellung.setBounds(1029, 70, 187, 48);
 		add(btnStoniereBestellung);
 	
-		Image Anzeigen = new ImageIcon("src\\Icons 64x64\\notepad.png").getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		URL anzeigenUrl = GUI.class.getResource(
+                "/Icons 64x64/notepad.png");
+		Image Anzeigen = new ImageIcon(anzeigenUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		JLabel lblAnzeigen = new JLabel(new ImageIcon(Anzeigen));
 		lblAnzeigen.setBounds(971, 16, 40, 40);
 		add(lblAnzeigen);

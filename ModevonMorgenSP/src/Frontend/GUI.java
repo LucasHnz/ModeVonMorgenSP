@@ -229,9 +229,12 @@ public class GUI extends JFrame {
 		lblRechte.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRechte.setFont(new Font("Dialog", Font.BOLD, 15));
 		
-		JLabel labelLogo = new JLabel("");
+		URL logoUrl = GUI.class.getResource(
+                "/SWP-Bilder/Logo.jpg");
+		JLabel labelLogo = new JLabel();
+		Image logo = new ImageIcon(logoUrl).getImage();
 		labelLogo.setBounds(59, 0, 1248, 99);
-		labelLogo.setIcon(new ImageIcon("src\\SWP-Bilder\\Logo.jpg"));
+		labelLogo.setIcon(new ImageIcon(logo));
 		panelLogo.add(labelLogo);
 		
 		JPanel panelBar = new JPanel();
@@ -334,7 +337,9 @@ public class GUI extends JFrame {
 		});
 		panelBar.add(comboBoxAnmelden);
 		
-		Image warenkorb = new ImageIcon("src\\Icons 64x64\\shopping-cart.png").getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		URL warenkorbUrl = GUI.class.getResource(
+                "/Icons 64x64/shopping-cart.png");
+		Image warenkorb = new ImageIcon(warenkorbUrl).getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
 		btnWarenkorb = new JButton(new ImageIcon(warenkorb));
 		btnWarenkorb.setContentAreaFilled(false);
 		btnWarenkorb.setToolTipText("Warenkorb");
@@ -349,9 +354,9 @@ public class GUI extends JFrame {
 		btnWarenkorb.setBounds(936, 2, 48, 48);
 		panelBar.add(btnWarenkorb);
 		
-		URL url = GUI.class.getResource(
+		URL homeUrl = GUI.class.getResource(
                 "/Icons 64x64/house.png");
-		Image homebutton = new ImageIcon(url).getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+		Image homebutton = new ImageIcon(homeUrl).getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
 		btnHome = new JButton(new ImageIcon(homebutton));
 		btnHome.setContentAreaFilled(false);
 		btnHome.setToolTipText("Home");

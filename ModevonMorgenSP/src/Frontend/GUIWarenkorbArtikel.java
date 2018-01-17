@@ -18,6 +18,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 /**
  * 
@@ -66,8 +67,11 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		ImageIcon icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");		
 		if(a.getImage() != null)
 			icon = new ImageIcon(a.getImage());	
-		else
-			icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
+		else {
+			URL imgUrl = GUI.class.getResource(
+	                "/SWP-Bilder/NoPic.gif");
+			icon = new ImageIcon(imgUrl);
+		}	
 		Image img = icon.getImage().getScaledInstance(93, 93, Image.SCALE_SMOOTH);
 		
 		JLabel lblImage = new JLabel();
@@ -123,7 +127,9 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		btnDelete.addActionListener(this);
 		btnDelete.setOpaque(false);
 		btnDelete.setBorder(null);
-		btnDelete.setIcon(new ImageIcon("src\\Icons 32x32\\trash.png"));
+		URL deleteUrl = GUI.class.getResource(
+                "/Icons 32x32/trash.png");
+		btnDelete.setIcon(new ImageIcon(deleteUrl));
 		btnDelete.setBorder(BorderFactory.createEmptyBorder());
 		btnDelete.setContentAreaFilled(false);
 		btnDelete.setBounds(949, 26, 44, 44);
