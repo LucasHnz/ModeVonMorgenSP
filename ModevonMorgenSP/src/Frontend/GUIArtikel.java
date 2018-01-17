@@ -22,6 +22,9 @@ import Artikelverwaltung.Artikelsammlung;
 import Artikelverwaltung.Kleidung;
 import Artikelverwaltung.Schuhe;
 import Warenkorbverwaltung.Warenkorb;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 /**
  * 
  * @author Hinz
@@ -155,21 +158,22 @@ public class GUIArtikel {
 		
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
-		panelMain.setBounds(0, 0, 1234, 563);
+		panelMain.setBounds(0, 0, 1248, 570);
 		panelMain.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(null);
+		panel.setBorder(new LineBorder(new Color(70, 130, 180)));
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(251, 118, 1150, 491);
+		panel.setBounds(10, 11, 1228, 548);
 		panelMain.add(panel);
 		
 		
 		lblArtikelBild = new JLabel("");
+		lblArtikelBild.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.GRAY, null));
 		lblArtikelBild.setBackground(Color.WHITE);
 		lblArtikelBild.setHorizontalAlignment(SwingConstants.CENTER);
-		lblArtikelBild.setBounds(54, 32, 250, 250);
+		lblArtikelBild.setBounds(241, 161, 250, 250);
 	
 		ImageIcon icon;
 		if(Artikelsammlung.getArtikel(artikelNummer).getImage() != null) {
@@ -186,15 +190,15 @@ public class GUIArtikel {
 		
 		lblArtikelTitel = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getBezeichnung());
 		lblArtikelTitel.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblArtikelTitel.setBounds(362, 0, 514, 49);
+		lblArtikelTitel.setBounds(549, 129, 514, 49);
 		panel.add(lblArtikelTitel);
 		
 		lblArtikelStatus = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getVerfügbarkeit());
-		lblArtikelStatus.setBounds(372, 229, 319, 43);
+		lblArtikelStatus.setBounds(549, 356, 319, 43);
 		lblArtikelStatus.setForeground(checkStatus(artikelNummer));
 		panel.add(lblArtikelStatus);
 		lblArtikelStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		lblArtikelStatus.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblArtikelStatus.setFont(new Font("Dialog", Font.BOLD, 16));
 		
 		btnWarenkorbHinz = new JButton("In den Warenkorb");
 		btnWarenkorbHinz.setFont(new Font("Dialog", Font.PLAIN, 21));
@@ -212,36 +216,36 @@ public class GUIArtikel {
 				}
 			}																								
 		});
-		btnWarenkorbHinz.setBounds(430, 268, 208, 35);
+		btnWarenkorbHinz.setBounds(617, 397, 208, 35);
 		panel.add(btnWarenkorbHinz);
 		btnWarenkorbHinz.setBackground(SystemColor.inactiveCaptionBorder);
 		
 		
 		spinnerMenge.setFont(new Font("Dialog", Font.PLAIN, 15));
-		spinnerMenge.setBounds(362, 268, 67, 35);
+		spinnerMenge.setBounds(549, 397, 67, 35);
 		panel.add(spinnerMenge);
 		
 		
 		JLabel lblHersteller = new JLabel(Artikelsammlung.getArtikel(artikelNummer).getHersteller());
 		lblHersteller.setFont(new Font("Dialog", Font.BOLD, 15));
-		lblHersteller.setBounds(362, 51, 396, 33);
+		lblHersteller.setBounds(549, 180, 396, 33);
 		panel.add(lblHersteller);
 		
 		lblZusatz = new JLabel();
 		lblZusatz.setText(zusatzLaden(artikelNummer));
 		lblZusatz.setFont(new Font("Dialog", Font.BOLD, 17));
-		lblZusatz.setBounds(362, 81, 358, 26);
+		lblZusatz.setBounds(549, 210, 358, 26);
 		panel.add(lblZusatz);
 		
 		lblPreis = new JLabel("");
 		lblPreis.setFont(new Font("Dialog", Font.BOLD, 28));
-		lblPreis.setBounds(362, 128, 163, 43);
+		lblPreis.setBounds(549, 257, 163, 43);
 		panel.add(lblPreis);
 		
 		lblRabatt = new JLabel("");
 		lblRabatt.setForeground(Color.BLACK);
 		lblRabatt.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblRabatt.setBounds(362, 169, 163, 26);
+		lblRabatt.setBounds(549, 298, 163, 26);
 		panel.add(lblRabatt);
 		
 		ladeRabattPreis(artikelNummer);
