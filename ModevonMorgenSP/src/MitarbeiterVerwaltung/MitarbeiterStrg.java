@@ -4,8 +4,21 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * 
+ * @author Julian
+ *
+ */
 public class MitarbeiterStrg {
+	/**
+	 * Methoden dieser Klasse werden hauptsächlich für die MitarbeiterBearbeiten GUI benutzt
+	 * Primär werden hier alle Daten verändert
+	 */
 	
+	/**
+	 * entfernt einen Mitarbeiter aus der Liste und DB
+	 * @param nutzernr
+	 */
 	public static void entferneMitarbeiter(int nutzernr) {
 		
 		
@@ -24,7 +37,11 @@ public class MitarbeiterStrg {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 
+	 * @param name
+	 * @param nutzernr
+	 */
 public static void aktualisiereName(String name, int nutzernr){
 	Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 	
@@ -46,6 +63,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		
 	}
 
+/**
+ * 
+ * @param adminnr
+ * @param nutzernr
+ */
 	public static void aktualisiereAdminnr(String adminnr, int nutzernr) {
 		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try {
@@ -64,6 +86,11 @@ public static void aktualisiereName(String name, int nutzernr){
 			}
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @param nutzernr
+	 */
 	public static void aktualisiereEmail(String email, int nutzernr) {
 		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
@@ -99,6 +126,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		
 	}
 	
+	/**
+	 * 
+	 * @param ort
+	 * @param nutzernr
+	 */
 	public static void aktualisiereOrt(String ort, int nutzernr) {
 		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
@@ -151,6 +183,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 	}
 
+	/**
+	 * 
+	 * @param gehalt
+	 * @param nutzernr
+	 */
 	public static void aktualisiereGehalt(String gehalt, int nutzernr) {
 		Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
@@ -185,6 +222,11 @@ public static void aktualisiereName(String name, int nutzernr){
 		}
 	}
 	
+	/**
+	 * 
+	 * @param vorname
+	 * @param nutzernr
+	 */
 public static void aktualisiereVorname(String vorname, int nutzernr) {
 	Mitarbeiter ma = MitarbeiterSammlung.getMitarbeiter(nutzernr);
 		try{
@@ -202,6 +244,21 @@ public static void aktualisiereVorname(String vorname, int nutzernr) {
 		}
 	}
 	
+/**
+ * 
+ * @param nutzernr
+ * @param adminnr
+ * @param nachname
+ * @param vorname
+ * @param email
+ * @param straße
+ * @param ort
+ * @param plz
+ * @param iban
+ * @param gehalt
+ * @param berechtigung
+ * @param passwort
+ */
 	public static void hinzufügenMA(String nutzernr, String adminnr, String nachname, String vorname, String email, String straße, String ort, String plz, String iban, String gehalt, String berechtigung, String passwort)
 	{
 		

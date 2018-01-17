@@ -1,5 +1,10 @@
 package KundenVerwaltung;
 
+/**
+ * 
+ * @author Julian
+ *
+ */
 public class Gastkunde {
 	
 	private int nutzernr;
@@ -13,6 +18,18 @@ public class Gastkunde {
 	private String iban;
 
 
+	/**
+	 * Konstruktor für einen Gastkunden
+	 * @param nutzernr
+	 * @param nachname
+	 * @param vorname
+	 * @param email
+	 * @param straße
+	 * @param ort
+	 * @param plz
+	 * @param berechtigung
+	 * @param iban
+	 */
 	public Gastkunde(int nutzernr, String nachname, String vorname, String email, String straße, String ort, int plz, int berechtigung, String iban) {
 		this.nutzernr = nutzernr;
 		this.nachname = nachname;
@@ -100,6 +117,10 @@ public class Gastkunde {
 		return berechtigung;
 	}
 
+	/**
+	 * E-Mail mit betreff "Bier" an hinz.lucas@gmx.de, für einen Kasten Bier!
+	 * @param berechtigung
+	 */
 	public void setBerechtigung(int berechtigung) {
 		this.berechtigung = berechtigung;
 	}

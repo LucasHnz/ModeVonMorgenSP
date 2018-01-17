@@ -1,5 +1,10 @@
 package KundenVerwaltung;
 
+/**
+ * 
+ * @author Julian
+ *
+ */
 public class Bestandskunde {
 	
 	private int nutzernr;
