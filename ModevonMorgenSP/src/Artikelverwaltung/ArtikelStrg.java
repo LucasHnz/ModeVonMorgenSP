@@ -67,7 +67,6 @@ public class ArtikelStrg {
 		    	artikel1.setPreis(Preis);
 		    	artikel1.setRabatt(Rabatt);
 		    	artikel1.setVerfügbarkeit(Verfügbarkeit);
-		    	artikel1.setNotiz(Notiz);
 		    	artikel1.setFarbe(Farbe);
 		    	
 		    				
@@ -80,7 +79,6 @@ public class ArtikelStrg {
 					+ " , Preis =  " + artikel1.getPreis()
 					+ " , Rabatt =  " + artikel1.getRabatt()
 					+ " , Verfügbarkeit = '" + artikel1.getVerfügbarkeit()
-					+ "', Notiz = '" + artikel1.getNotiz()
 					+ "', farbe = '" + artikel1.getFarbe()
 					+ "'  where artikelnr =  " + artikel1.getArtikelnummer();  
 		    	}
@@ -95,7 +93,6 @@ public class ArtikelStrg {
 		    	artikel2.setPreis(Preis);
 		    	artikel2.setRabatt(Rabatt);
 		    	artikel2.setVerfügbarkeit(Verfügbarkeit);
-		    	artikel2.setNotiz(Notiz);
 		    	artikel2.setSchuhgröße(Schuhgröße);
 		    	
 		    	sqlUpdate = "update Schuhe set Bezeichnung = '" + artikel2.getBezeichnung() 
@@ -107,7 +104,6 @@ public class ArtikelStrg {
 					+ " , Preis =  " + artikel2.getPreis()
 					+ " , Rabatt =  " + artikel2.getRabatt()
 					+ " , Verfügbarkeit = '" + artikel2.getVerfügbarkeit()
-					+ "', Notiz = '" + artikel2.getNotiz()
 					+ "', schuhgröße = " + artikel2.getSchuhgröße()
 					+ "  where artikelnr =  " + artikel2.getArtikelnummer(); 
 		    	
@@ -123,7 +119,6 @@ public class ArtikelStrg {
 		    	artikel3.setPreis(Preis);
 		    	artikel3.setRabatt(Rabatt);
 		    	artikel3.setVerfügbarkeit(Verfügbarkeit);
-		    	artikel3.setNotiz(Notiz);
 		    	artikel3.setGröße(Größe);
 		    	
 		    	sqlUpdate = "update Kleidung set Bezeichnung = '" + artikel3.getBezeichnung() 
@@ -135,7 +130,6 @@ public class ArtikelStrg {
 					+ " , Preis =  " + artikel3.getPreis()
 					+ " , Rabatt =  " + artikel3.getRabatt()
 					+ " , Verfügbarkeit = '" + artikel3.getVerfügbarkeit()
-					+ "', Notiz = '" + artikel3.getNotiz()
 					+ "', größe = '" + artikel3.getGröße()
 					+ "'  where artikelnr =  " + artikel3.getArtikelnummer(); 
 		    	 }
