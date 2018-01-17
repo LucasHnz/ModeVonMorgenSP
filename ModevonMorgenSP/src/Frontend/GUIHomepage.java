@@ -164,6 +164,7 @@ public class GUIHomepage {
 	/**
 	 * Erzeugt und liefert Startseite 
 	 * @return panelMain Frame mit der Startseite
+	 * @wbp.parser.entryPoint
 	 */
 	public static JPanel getHomepage() {
 		panelMain = new JPanel();
@@ -175,7 +176,7 @@ public class GUIHomepage {
 		btnProduktDamen.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnProduktDamen.setBackground(Color.WHITE);
 		btnProduktDamen.setForeground(Color.BLACK);
-		btnProduktDamen.setBounds(249, 458, 165, 35);
+		btnProduktDamen.setBounds(248, 517, 165, 35);
 		btnProduktDamen.addActionListener(new ActionListener() {
 
 			@Override
@@ -195,7 +196,7 @@ public class GUIHomepage {
 		btnProduktHerren = new JButton("Zum Produkt");
 		btnProduktHerren.setBackground(Color.WHITE);
 		btnProduktHerren.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnProduktHerren.setBounds(774, 458, 165, 35);
+		btnProduktHerren.setBounds(774, 517, 165, 35);
 		btnProduktHerren.addActionListener(new ActionListener() {
 
 			@Override
@@ -213,9 +214,9 @@ public class GUIHomepage {
 		panelMain.add(btnProduktHerren);
 
 		URL leftUrl = GUI.class.getResource(
-                "/Icons 32x32/left-arrow.png");
+                "/Icons 32x32/back.png");
 		URL rightUrl = GUI.class.getResource(
-                "/Icons 32x32/right-chevron.png");
+                "/Icons 32x32/next.png");
 		Image leftArrow = new ImageIcon(leftUrl).getImage();
 		Image rightArrow = new ImageIcon(rightUrl).getImage();
 
@@ -284,7 +285,7 @@ public class GUIHomepage {
 		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
-		labelMainDamen.setBounds(144, 76, 380, 450);
+		labelMainDamen.setBounds(144, 60, 380, 450);
 		labelMainDamen.setIcon(new ImageIcon(img1));
 		panelMain.add(labelMainDamen);
 
@@ -292,7 +293,7 @@ public class GUIHomepage {
 		labelMainHerren.setBackground(Color.WHITE);
 		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.LIGHT_GRAY, null));
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setBounds(656, 76, 380, 450);
+		labelMainHerren.setBounds(656, 60, 380, 450);
 		labelMainHerren.setIcon(new ImageIcon(img2));
 		panelMain.add(labelMainHerren);
 

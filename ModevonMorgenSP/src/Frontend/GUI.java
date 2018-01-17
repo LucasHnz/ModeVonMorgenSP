@@ -205,6 +205,7 @@ public class GUI extends JFrame {
 	 * Erstellt Hauptfenster des Programms
 	 */
 	public GUI() {
+		layeredPane.setBackground(Color.WHITE);
 		layeredPane.setSize(1248, 563);
 		layeredPane.setLocation(0, 148);
 		frame = new JFrame();

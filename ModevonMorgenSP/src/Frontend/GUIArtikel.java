@@ -162,7 +162,7 @@ public class GUIArtikel {
 		panel.setBorder(null);
 		panel.setLayout(null);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(42, 44, 1150, 491);
+		panel.setBounds(251, 118, 1150, 491);
 		panelMain.add(panel);
 		
 		
