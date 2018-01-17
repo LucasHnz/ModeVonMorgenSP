@@ -38,6 +38,12 @@ public class BestellStrg {
 	protected Bestellung bBestellung;
 
 	// Julian
+	/**
+	 * Julian Hermann
+	 * Storniert eine Bestellung.
+	 * @param bestellungen mit bestellungen gefüllte HashMap.
+	 * @param bestellnr Die zu stornierende Bestellnummer.
+	 */
 	public static void storniereBestellung(HashMap<Integer, Bestellung> bestellungen, int bestellnr) {
 		int bnr = bestellnr;
 		try {
@@ -65,15 +71,19 @@ public class BestellStrg {
 	}
 
 	// Julian
-	public static void aktualisiereVStatus(int i) {
+	/**
+	 * Aktualisiert den Versandstatus einer Bestellung auf 'Versandt'.
+	 * @param bestellNr Die Bestellnr der Bestellung.
+	 */
+	public static void aktualisiereVStatus(int bestellNr) {
 
-		Bestellung b = BestellungSammlung.getBestellung(i);
+		Bestellung b = BestellungSammlung.getBestellung(bestellNr);
 
 		try {
 			Connection con = Datenbankverwaltung.VerbindungDB.erstelleConnection();
 			Statement stmt = con.createStatement();
 
-			String sqlbefehl = "update RechnungBestellung set versandStatus ='Versand' where bestellnr =" + i;
+			String sqlbefehl = "update RechnungBestellung set versandStatus ='Versandt' where bestellnr =" + bestellNr;
 
 			stmt.executeQuery(sqlbefehl);
 
