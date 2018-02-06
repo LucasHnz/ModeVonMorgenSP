@@ -173,7 +173,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		btnRücksAnnehmen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				try {
 				final HashMap<Integer, Bestellposition> data = BestellpositionSammlung.getBestellpositionsSammlung();
 				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
 				String check = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRücksendung();
@@ -214,6 +214,10 @@ public class GUIBestellpositionsliste extends JFrame {
 							"Rücksendung Existiert bereits", JOptionPane.YES_NO_CANCEL_OPTION,
 							JOptionPane.WARNING_MESSAGE, null, new String[] { "Ok" }, "Ok");
 					dispose();
+				}}catch(ArrayIndexOutOfBoundsException g) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Bestellung Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok" }, "Ok");
 				}
 			}
 		});
@@ -227,6 +231,11 @@ public class GUIBestellpositionsliste extends JFrame {
 		btnRücksAblehnen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
+				final HashMap<Integer, Bestellposition> data = BestellpositionSammlung.getBestellpositionsSammlung();
+				Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
+				String check = data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRücksendung();
+				if (check.contentEquals("Keine Rücksendung")) {
 				
 				final Object optionPane = JOptionPane.showOptionDialog(null,
 						"Sie sind dabei eine Rücksendung abzulehnen! \nFortfahren ?", "Rücksendung Ablehnen",
@@ -246,8 +255,25 @@ public class GUIBestellpositionsliste extends JFrame {
 							JOptionPane.ERROR_MESSAGE);
 				}
 
+			
 			}
-		});
+				
+				else if ( check.contentEquals("Rücksendung")){
+					JOptionPane.showOptionDialog(null, "Für diese Bestellposition existiert bereits eine Rücksendung!",
+							"Rücksendung Abgelehnt", JOptionPane.YES_NO_CANCEL_OPTION,
+					
+							JOptionPane.WARNING_MESSAGE, null, new String[] { "Ok" }, "Ok");
+					dispose();
+					}
+				}catch(ArrayIndexOutOfBoundsException g) {
+					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
+							"Bestellung Löschen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, new String[] { "Ok" }, "Ok");
+				}
+			}
+			}
+			
+		);
 		getContentPane().add(btnRücksAblehnen);
 
 		/**
