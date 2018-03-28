@@ -39,7 +39,7 @@ public class GUI extends JFrame {
 	
 	public JButton btnWarenkorb;
 	public JButton btnHome;
-	public JLabel lblRechte;
+	public JLabel lblAngemeldet;
 	public JComboBox comboBoxHerren = new JComboBox();
 	public JComboBox comboBoxDamen = new JComboBox();
 	public static JComboBox comboBoxAnmelden = new JComboBox();
@@ -161,8 +161,12 @@ public class GUI extends JFrame {
 	 * Setzt Text um anzuzeigen welche Rechte man besitzt
 	 * @param recht Bestimmt welche Funktionen und Rechte hat
 	 */
-	public void setRechteAnzeigen(String recht) {
-		lblRechte.setText(recht);
+	public void setAngemeldet(String name) {
+		if(name != null) {
+			lblAngemeldet.setText("Hallo " +name);
+		}
+		else 
+			lblAngemeldet.setText("");
 		frame.revalidate();
 		frame.repaint();
 	}
@@ -222,13 +226,13 @@ public class GUI extends JFrame {
 		frame.getContentPane().add(panelLogo);
 		panelLogo.setLayout(null);
 		
-		lblRechte = new JLabel("");
-		lblRechte.setBounds(1046, 73, 172, 20);
-		panelLogo.add(lblRechte);
-		lblRechte.setText(LogStrg.getRechte());
-		lblRechte.setForeground(Color.BLACK);
-		lblRechte.setHorizontalAlignment(SwingConstants.LEFT);
-		lblRechte.setFont(new Font("Dialog", Font.BOLD, 15));
+		lblAngemeldet = new JLabel("");
+		lblAngemeldet.setBounds(1046, 73, 172, 20);
+		panelLogo.add(lblAngemeldet);
+		lblAngemeldet.setText(LogStrg.getRechte());
+		lblAngemeldet.setForeground(Color.BLACK);
+		lblAngemeldet.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAngemeldet.setFont(new Font("Dialog", Font.BOLD, 15));
 		
 		URL logoUrl = GUI.class.getResource(
                 "/SWP-Bilder/Logo.jpg");
@@ -255,15 +259,18 @@ public class GUI extends JFrame {
 				String auswahl = (String) comboBoxDamen.getSelectedItem();
 						
 					if(auswahl == "Kleidung"){
-						changePanel(GUIDamenKleidung.getGUIDamenKleidung());	
+						changePanel(GUIDamenKleidung.getGUIDamenKleidung());
+						comboBoxHerren.setSelectedIndex(0);
 					}
 						  
 					if(auswahl == "Schuhe"){
 						changePanel(GUIDamenSchuhe.getGUIDamenSchuhe());
+						comboBoxHerren.setSelectedIndex(0);
 					}
 							
 					if(auswahl == "Accessoires"){
-						changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());		
+						changePanel(GUIDamenAccessoires.getGUIDamenAccessoires());
+						comboBoxHerren.setSelectedIndex(0);
 					}
 				}
 		
@@ -284,14 +291,17 @@ public class GUI extends JFrame {
 				    
 					if(auswahl == "Kleidung"){
 						changePanel(GUIHerrenKleidung.getGUIHerrenKleidung()); 
+						comboBoxDamen.setSelectedIndex(0);
 				    }
 				  
 					if(auswahl == "Schuhe"){
-						changePanel(GUIHerrenSchuhe.getGUIHerrenSchuhe());			 			  
+						changePanel(GUIHerrenSchuhe.getGUIHerrenSchuhe());
+						comboBoxDamen.setSelectedIndex(0);
 					}
 					
 					if(auswahl == "Accessoires"){
 						changePanel(GUIHerrenAccessoires.getGUIHerrenAccessoires());
+						comboBoxDamen.setSelectedIndex(0);
 					}
 				}
 				
@@ -348,7 +358,9 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			  changePanel(GUIWarenkorb.getGUIWarenkorb());
+				comboBoxDamen.setSelectedIndex(0);
+				comboBoxHerren.setSelectedIndex(0);
+				changePanel(GUIWarenkorb.getGUIWarenkorb());
 			}
 			
 		});
@@ -365,6 +377,8 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comboBoxDamen.setSelectedIndex(0);
+				comboBoxHerren.setSelectedIndex(0);
 				GUIHomepage.zurücksetzenArtikel();
 				changePanel(GUIHomepage.getHomepage());
 				

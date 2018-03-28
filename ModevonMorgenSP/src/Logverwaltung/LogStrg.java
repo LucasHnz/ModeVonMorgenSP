@@ -15,12 +15,13 @@ import Frontend.GUIHomepage;
  */
 public class LogStrg {
 
-	static int angemeldet = 0;
-	static String recht = " ";
-	static int nutzerNr = 0;
-	static String[] anmeldenCbListAbgemeldet = { "Anmelden" };
-	static String[] anmeldenCbListAngemeldet = { "Meine Bestellungen", "Konto verwalten", "Abmelden" };
-	static String[] anmeldenCbListMitarbeiter = { "Verwaltung", "Abmelden" };
+	private static int angemeldet = 0;
+	private static String recht = " ";
+	private static int nutzerNr = 0;
+	private static String name = "";
+	private static String[] anmeldenCbListAbgemeldet = { "Anmelden" };
+	private static String[] anmeldenCbListAngemeldet = { "Meine Bestellungen", "Konto verwalten", "Abmelden" };
+	private static String[] anmeldenCbListMitarbeiter = { "Verwaltung", "Abmelden" };
 
 	/**
 	 * Gleicht die Anmeldedaten mit der Datenbank ab und meldet den Benutzer an.
@@ -52,8 +53,9 @@ public class LogStrg {
 				setAnmeldeStatus(2);
 				setRecht("Angemeldet");
 				setNutzerNr(rs1.getInt("nutzernr"));
+				setName(rs1.getString("vorname") + " " + rs1.getString("nachname"));
 				GUI.comboBoxAbfrage();
-				GUI.getFenster().setRechteAnzeigen(recht);
+				GUI.getFenster().setAngemeldet(name);
 				GUI.getFenster().removeLogPanel();
 				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 			}
@@ -62,8 +64,9 @@ public class LogStrg {
 				setAnmeldeStatus(3);
 				setRecht("Angemeldet als Mitarbeiter");
 				setNutzerNr(rs2.getInt("nutzernr"));
+				setName(rs2.getString("vorname") + " " + rs2.getString("nachname"));
 				GUI.comboBoxAbfrage();
-				GUI.getFenster().setRechteAnzeigen(recht);
+				GUI.getFenster().setAngemeldet(name);
 				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
 				GUI.getFenster().removeLogPanel();
 			}
@@ -72,8 +75,9 @@ public class LogStrg {
 				setAnmeldeStatus(4);
 				setRecht("Angemeldet als Admin");
 				setNutzerNr(rs3.getInt("nutzernr"));
+				setName(rs3.getString("vorname") + " " + rs3.getString("nachname"));
 				GUI.comboBoxAbfrage();
-				GUI.getFenster().setRechteAnzeigen(recht);
+				GUI.getFenster().setAngemeldet(name);
 				GUI.getFenster().changePanel(GUIMitarbeiter.getGUIMitarbeiter());
 				GUI.getFenster().removeLogPanel();
 			}
@@ -109,10 +113,11 @@ public class LogStrg {
 	public static void abmelden() {
 		GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 		setRecht(" ");
+		setName(null);
 		setAnmeldeStatus(0);
 		setNutzerNr(0);
 		GUI.comboBoxAbfrage();
-		GUI.getFenster().setRechteAnzeigen(recht);
+		GUI.getFenster().setAngemeldet(name);
 	}
 	
 	/**
@@ -161,6 +166,13 @@ public class LogStrg {
 	 */
 	public static void setNutzerNr(int nr) {
 		nutzerNr = nr;
+	}
+	
+	public static void setName(String name) {
+		LogStrg.name = name;
+	}
+	public static String getName() {
+		return LogStrg.name;
 	}
 
 }

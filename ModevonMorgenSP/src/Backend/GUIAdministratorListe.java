@@ -38,7 +38,7 @@ public class GUIAdministratorListe extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = { "Nutzer Nummer", "Nachname", "Vorname", "EMail", "Straﬂe", "Ort", "PLZ", "IBAN",
+	private String[] columnNames = { "Nutzernummer", "Nachname", "Vorname", "E-Mail", "Straﬂe", "Ort", "PLZ", "IBAN",
 			"Gehalt", "Passwort" };
 	private myTableModel model;										
 
@@ -161,6 +161,42 @@ public class GUIAdministratorListe extends JPanel {
 				String a = null;
 				return a;
 			}
+		}
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
+		public Class getColumnClass(int columnIndex){
+			if(columnIndex == 0) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 1) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 2) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 3) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 4) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 5) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 6) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 7) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 8) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 9) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else 
+				return null;
 		}
 
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -303,9 +339,9 @@ public class GUIAdministratorListe extends JPanel {
 	public void setStructure() {					//
 		table.setDragEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(110);
-		table.getColumnModel().getColumn(1).setPreferredWidth(110);
+		table.getColumnModel().getColumn(1).setPreferredWidth(75);
 		table.getColumnModel().getColumn(2).setPreferredWidth(80);
-		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		table.getColumnModel().getColumn(3).setPreferredWidth(110);
 		table.getColumnModel().getColumn(4).setPreferredWidth(80);
 		table.getColumnModel().getColumn(5).setPreferredWidth(80);
 		table.getColumnModel().getColumn(6).setPreferredWidth(80);

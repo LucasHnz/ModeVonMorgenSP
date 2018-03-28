@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
@@ -128,11 +129,12 @@ public class GUIWarenkorbArtikel extends JPanel implements ActionListener {
 		btnDelete.setOpaque(false);
 		btnDelete.setBorder(null);
 		URL deleteUrl = GUI.class.getResource(
-                "/Icons 32x32/trash.png");
-		btnDelete.setIcon(new ImageIcon(deleteUrl));
+                "/Icons 64x64/trash.png");
+		Image icon2 = new ImageIcon(deleteUrl).getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH);
+		btnDelete.setIcon(new ImageIcon(icon2));
 		btnDelete.setBorder(BorderFactory.createEmptyBorder());
 		btnDelete.setContentAreaFilled(false);
-		btnDelete.setBounds(949, 26, 44, 44);
+		btnDelete.setBounds(949, 26, 45, 45);
 		add(btnDelete);
 		
 		spinnerAnzahl.addChangeListener(new ChangeListener() {

@@ -60,7 +60,7 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 		chooser = new JFileChooser();
 		chooser.addChoosableFileFilter(filter);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 423, 184);
+		setBounds(100, 100, 415, 215);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,54 +69,59 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 
 		btnDurchsuchen = new JButton("Durchsuchen...");
 		btnDurchsuchen.setFont(new Font("Dialog", Font.PLAIN, 11));
-		btnDurchsuchen.setBounds(47, 60, 206, 23);
+		btnDurchsuchen.setBounds(52, 86, 206, 33);
 		contentPane.add(btnDurchsuchen);
 		btnDurchsuchen.addActionListener(this);
 		
 		URL SearchUrl = GUI.class.getResource(
                 "/Icons 64x64/search.png");
-		Image SearchImg = new ImageIcon(SearchUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		Image SearchImg = new ImageIcon(SearchUrl).getImage().getScaledInstance(33, 33, Image.SCALE_SMOOTH);
 		JLabel SearchLbl = new JLabel(new ImageIcon(SearchImg));
-		SearchLbl.setBounds(10, 55, 33, 33);
+		SearchLbl.setBounds(15, 86, 33, 33);
 		contentPane.add(SearchLbl);
 
 		btnAbbrechen = new JButton("Abbrechen");
 		btnAbbrechen.setFont(new Font("Dialog", Font.PLAIN, 11));
-		btnAbbrechen.setBounds(146, 121, 107, 23);
+		btnAbbrechen.setBounds(151, 136, 107, 33);
 		contentPane.add(btnAbbrechen);
 		btnAbbrechen.addActionListener(this);
 		
 		tfDatei = new JTextField();
 		tfDatei.setFont(new Font("Dialog", Font.PLAIN, 11));
-		tfDatei.setBounds(47, 12, 206, 37);
+		tfDatei.setBounds(52, 38, 206, 37);
 		contentPane.add(tfDatei);
 		tfDatei.setColumns(10);
 		
 		JLabel lblDatei = new JLabel("Datei:");
 		lblDatei.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblDatei.setBounds(10, 11, 46, 38);
+		lblDatei.setBounds(15, 37, 46, 38);
 		contentPane.add(lblDatei);
 		
 		lblImage = new JLabel("");
 		lblImage.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.GRAY, null));
 		lblImage.setBackground(Color.WHITE);
 		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImage.setBounds(268, 12, 132, 132);
+		lblImage.setBounds(264, 38, 132, 132);
 		updateImage(Artikelsammlung.getArtikel(Artikelnummer).getImage());
 		contentPane.add(lblImage);
 				
 		btnHochladen = new JButton("Hochladen");
 		btnHochladen.setFont(new Font("Dialog", Font.PLAIN, 11));
-		btnHochladen.setBounds(47, 121, 89, 23);
+		btnHochladen.setBounds(52, 136, 89, 33);
 		btnHochladen.addActionListener(this);
 		contentPane.add(btnHochladen);
 		
 		URL UploadUrl = GUI.class.getResource(
-                "/Icons 64x64/search.png");
-		Image UploadImg = new ImageIcon(UploadUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel UploadLbl = new JLabel(new ImageIcon(SearchImg));
-		UploadLbl.setBounds(10, 116, 33, 33);
+                "/Icons 64x64/folder.png");
+		Image UploadImg = new ImageIcon(UploadUrl).getImage().getScaledInstance(33, 33, Image.SCALE_SMOOTH);
+		JLabel UploadLbl = new JLabel(new ImageIcon(UploadImg));
+		UploadLbl.setBounds(15, 136, 33, 33);
 		contentPane.add(UploadLbl);
+		
+		JLabel lblBezeichnung = new JLabel(Artikelsammlung.getArtikel(Artikelnummer).getBezeichnung());
+		lblBezeichnung.setFont(new Font("Dialog", Font.BOLD, 15));
+		lblBezeichnung.setBounds(15, 6, 243, 20);
+		contentPane.add(lblBezeichnung);
 		
 		setVisible(true);
 	}

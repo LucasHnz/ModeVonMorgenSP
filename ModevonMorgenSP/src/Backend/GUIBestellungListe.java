@@ -35,7 +35,7 @@ public class GUIBestellungListe extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollpane;
-	private String[] columnNames = {"Bestell Nr", "Gastkunden Nr","Bestandskunden Nr", "IBAN", "Nachname", "Vorname", "Gesamtpreis (Ä)", "Rabatt (%)", "Datum","Versandstatus", "Ort","Straﬂe","PLZ"};
+	private String[] columnNames = {"Bestell Nr", "Kundennummer", "Nachname", "Vorname", "Preis (Ä)", "Rabatt (%)", "Datum", "Status", "Ort", "Straﬂe","PLZ"};
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -71,6 +71,45 @@ public class GUIBestellungListe extends JPanel {
 		public int getRowCount() {
 			return data.size();
 		}
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
+		public Class getColumnClass(int columnIndex){
+			if(columnIndex == 0) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 1) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 2) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 3) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 4) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 5) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 6) {
+				return getValueAt(0, columnIndex).getClass();
+			}	
+			else if(columnIndex == 7) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 8) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 9) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else if(columnIndex == 10) {
+				return getValueAt(0, columnIndex).getClass();
+			}
+			else 
+				return null;
+		}
 		
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
@@ -80,42 +119,38 @@ public class GUIBestellungListe extends JPanel {
 				}
 				
 				else if (columnIndex ==1) {
-					return data.get(keys[rowIndex]).getNutzernrgk();
-				}
-				
-				else if (columnIndex == 2) {
-					return data.get(keys[rowIndex]).getNutzernrbk();
-				}
-				else if(columnIndex == 3) {
-					return data.get(keys[rowIndex]).getIban();
+					if(data.get(keys[rowIndex]).getNutzernrgk() != 0)
+						return data.get(keys[rowIndex]).getNutzernrgk();
+					else
+						return data.get(keys[rowIndex]).getNutzernrbk();
 				}		
-				else if(columnIndex == 4) {
+				else if(columnIndex == 2) {
 					return data.get(keys[rowIndex]).getNachname();
 				}	
-				else if(columnIndex == 5) {
+				else if(columnIndex == 3) {
 					return data.get(keys[rowIndex]).getVorname();
 				}	
-				else if(columnIndex == 6) {
+				else if(columnIndex == 4) {
 					return data.get(keys[rowIndex]).getGesamtpreis();
 				}	
-				else if(columnIndex == 7) {
+				else if(columnIndex == 5) {
 					return data.get(keys[rowIndex]).getErabatt();
 				}	
-				else if(columnIndex == 8) {
+				else if(columnIndex == 6) {
 					return data.get(keys[rowIndex]).getDatum();
 				}
-				else if (columnIndex == 9) {
+				else if (columnIndex == 7) {
 					return data.get(keys[rowIndex]).getVersandstatus();
 				}
-				else if ( columnIndex == 10) {
+				else if ( columnIndex == 8) {
 					return data.get(keys[rowIndex]).getRechnungsort();
 				}
 				
-				else if ( columnIndex == 11 ) {
+				else if ( columnIndex == 9 ) {
 					return data.get(keys[rowIndex]).getRechnungsstrasse();
 				}
 				
-				else if ( columnIndex == 12 ) {
+				else if ( columnIndex == 10 ) {
 					return data.get(keys[rowIndex]).getRechnungsplz();
 				}
 				else
@@ -149,18 +184,17 @@ public class GUIBestellungListe extends JPanel {
 		table = new JTable(new myTableModel(BestellungSammlung.getBestellungSammlung(), columnNames));
 		table.setFillsViewportHeight(true);
 		table.setDragEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(110);
-		table.getColumnModel().getColumn(1).setPreferredWidth(110);
-		table.getColumnModel().getColumn(2).setPreferredWidth(110);
-		table.getColumnModel().getColumn(3).setPreferredWidth(110);
-		table.getColumnModel().getColumn(4).setPreferredWidth(60);
-		table.getColumnModel().getColumn(5).setPreferredWidth(60);
-		table.getColumnModel().getColumn(6).setPreferredWidth(60);
-		table.getColumnModel().getColumn(7).setPreferredWidth(60);
-		table.getColumnModel().getColumn(8).setPreferredWidth(60);
+		table.getColumnModel().getColumn(0).setPreferredWidth(80);
+		table.getColumnModel().getColumn(1).setPreferredWidth(90);
+		table.getColumnModel().getColumn(2).setPreferredWidth(68);
+		table.getColumnModel().getColumn(3).setPreferredWidth(68);
+		table.getColumnModel().getColumn(4).setPreferredWidth(55);
+		table.getColumnModel().getColumn(5).setPreferredWidth(62);
+		table.getColumnModel().getColumn(6).setPreferredWidth(80);
+		table.getColumnModel().getColumn(7).setPreferredWidth(80);
+		table.getColumnModel().getColumn(8).setPreferredWidth(80);
 		table.getColumnModel().getColumn(9).setPreferredWidth(60);
-		table.getColumnModel().getColumn(10).setPreferredWidth(60);
-		table.getColumnModel().getColumn(10).setPreferredWidth(60);
+		table.getColumnModel().getColumn(10).setPreferredWidth(40);
 		
 		Comparator<Integer> intcomp = new Comparator<Integer>() {
 			@Override
@@ -173,9 +207,22 @@ public class GUIBestellungListe extends JPanel {
 					return 0;
 			}		
 		};
+		Comparator<Double> doublecomp = new Comparator<Double>() {
+			@Override
+			public int compare(Double o1, Double o2) {
+				if(o1 > o2)
+					return 1;
+				else if(o1 < o2)
+					return -1;
+				else
+					return 0;
+			}
+		};
 		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
-		sorter.setComparator(8, intcomp);
+		sorter.setComparator(4, doublecomp);
+		sorter.setComparator(5, intcomp);
+		sorter.setComparator(10, intcomp);
 		table.setRowSorter(sorter);
 		table.getRowSorter().toggleSortOrder(0);
 		table.setRowSelectionAllowed(true);
