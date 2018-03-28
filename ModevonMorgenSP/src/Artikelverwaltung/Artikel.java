@@ -212,7 +212,8 @@ public abstract class Artikel implements Comparable<Artikel> {
 	 * @param image Das Produktbild als BufferedImage.
 	 */
 	public void setImage(BufferedImage image) {
-		this.image = image;
+		//this.image = null;
+		this.image = image; 
 	}
 	/**
 	 * Gibt das Image des Artikels zurück.

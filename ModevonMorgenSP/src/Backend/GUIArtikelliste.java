@@ -1,6 +1,8 @@
 package Backend;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.LookAndFeel;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import javax.swing.JPanel;
@@ -17,6 +19,7 @@ import Frontend.GUI;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -29,6 +32,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -42,6 +46,7 @@ public class GUIArtikelliste extends JPanel {
 	private JScrollPane scrollpane;
 	private String[] columnNames = {"ArtNr", "Bezeichung", "Hersteller", "Art", "Bestand", "Preis: €", "Rabatt: %", "Verfügbarkeit", "Notiz"};
 	private myTableModel model;
+	GUIFileChooser chooser = null;
 
 	Comparator<Double> doublecomp = new Comparator<Double>() {
 		@Override
@@ -479,8 +484,16 @@ public class GUIArtikelliste extends JPanel {
 				try {
 					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-					new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-				}catch (ArrayIndexOutOfBoundsException e) {
+					LookAndFeel previousLF = UIManager.getLookAndFeel();
+				    try {
+				        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				        chooser = new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
+						
+				        UIManager.setLookAndFeel(previousLF);
+				    }catch (Exception e5) {
+				    	e5.printStackTrace();
+				    }	
+					}catch (ArrayIndexOutOfBoundsException e) {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Artikelbild hochladen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
