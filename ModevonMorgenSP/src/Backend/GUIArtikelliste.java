@@ -484,16 +484,8 @@ public class GUIArtikelliste extends JPanel {
 				try {
 					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
 					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-					LookAndFeel previousLF = UIManager.getLookAndFeel();
-				    try {
-				        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				        chooser = new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-						
-				        UIManager.setLookAndFeel(previousLF);
-				    }catch (Exception e5) {
-				    	e5.printStackTrace();
-				    }	
-					}catch (ArrayIndexOutOfBoundsException e) {
+					new GUIFileChooser(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());	
+				}catch (ArrayIndexOutOfBoundsException e) {
 					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
 							"Artikelbild hochladen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, new String[] { "Ok"}, "Ok");
