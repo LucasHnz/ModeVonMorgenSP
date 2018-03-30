@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -44,12 +45,14 @@ public class GUINeuerArtikel {
 		double neuerPreis = preis - rabattPreis2;
 		neuerPreis = Math.round(neuerPreis * 10) / 10.0;
 
+		DecimalFormat df = new DecimalFormat("#.00");
+
 		if (rabatt == 0) {
-			lblPreis.setText(preis + " €");
+			lblPreis.setText(df.format(preis)  + " €");
 		}
 		if (rabatt > 0) {
-			lblPreis.setText(neuerPreis + " €");
-			lblRabattPreis.setText("Statt: " + preis + " €");
+			lblPreis.setText(df.format(neuerPreis) + " €");
+			lblRabattPreis.setText("Statt: " + df.format(preis) + " €");
 			lblRabattPreis.setForeground(Color.RED);
 		}
 

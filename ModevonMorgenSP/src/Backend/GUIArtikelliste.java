@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -172,7 +173,7 @@ public class GUIArtikelliste extends JPanel {
 		 */
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-			
+			DecimalFormat df = new DecimalFormat("#.00");
 			try {
 				if(columnIndex == 0) {
 					int i = keys[rowIndex];

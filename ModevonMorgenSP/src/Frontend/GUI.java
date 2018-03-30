@@ -238,7 +238,7 @@ public class GUI extends JFrame {
                 "/SWP-Bilder/Logo.jpg");
 		JLabel labelLogo = new JLabel();
 		Image logo = new ImageIcon(logoUrl).getImage();
-		labelLogo.setBounds(59, 0, 1248, 99);
+		labelLogo.setBounds(0, 0, 1248, 99);
 		labelLogo.setIcon(new ImageIcon(logo));
 		panelLogo.add(labelLogo);
 		

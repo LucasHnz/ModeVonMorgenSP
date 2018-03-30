@@ -40,14 +40,15 @@ public class GUIMitarbeiter{
 		
 		tabbedPane.addTab("Artikelverwaltung", new GUIArtikelliste() );
 		tabbedPane.addTab("Bestellungen", new GUIBestellungListe());
+		tabbedPane.addTab("Bestandskunden", new GUIKundenListe());
 		
 		if(LogStrg.getAngemeldetStatus() == 4) {
-			tabbedPane.addTab("Administratoren", new GUIAdministratorListe());
 			try {
 				tabbedPane.addTab("Mitarbeiter", new GUIMitarbeiterListe());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			tabbedPane.addTab("Administratoren", new GUIAdministratorListe());
 		}
 		panel.setVisible(true);
 		

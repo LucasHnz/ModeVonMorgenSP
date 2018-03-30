@@ -127,12 +127,12 @@ public class GUIHomepage {
 
 			if (Artikelsammlung.getArtikel(ausgewählteArtikel.get(i)).getImage() != null) {
 				icon = new ImageIcon(Artikelsammlung.getArtikel(ausgewählteArtikel.get(i)).getImage());
-				img = icon.getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH);
+				img = icon.getImage().getScaledInstance(430, 430, Image.SCALE_SMOOTH);
 
 			}
 			if (Artikelsammlung.getArtikel(ausgewählteArtikel.get(i)).getImage() == null) {
 				icon = new ImageIcon("src/SWP-Bilder/NoPic.gif");
-				img = icon.getImage().getScaledInstance(380, 450, Image.SCALE_SMOOTH);
+				img = icon.getImage().getScaledInstance(430, 430, Image.SCALE_SMOOTH);
 
 			}
 
@@ -176,7 +176,7 @@ public class GUIHomepage {
 		btnProduktDamen.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnProduktDamen.setBackground(Color.WHITE);
 		btnProduktDamen.setForeground(Color.BLACK);
-		btnProduktDamen.setBounds(284, 517, 165, 35);
+		btnProduktDamen.setBounds(256, 517, 165, 35);
 		btnProduktDamen.addActionListener(new ActionListener() {
 
 			@Override
@@ -196,7 +196,7 @@ public class GUIHomepage {
 		btnProduktHerren = new JButton("Zum Produkt");
 		btnProduktHerren.setBackground(Color.WHITE);
 		btnProduktHerren.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnProduktHerren.setBounds(810, 517, 165, 35);
+		btnProduktHerren.setBounds(825, 517, 165, 35);
 		btnProduktHerren.addActionListener(new ActionListener() {
 
 			@Override
@@ -223,7 +223,7 @@ public class GUIHomepage {
 		btnProduktDamenRechts = new JButton(new ImageIcon(rightArrow));
 		btnProduktDamenRechts.setContentAreaFilled(false);
 		btnProduktDamenRechts.setBackground(Color.WHITE);
-		btnProduktDamenRechts.setBounds(572, 260, 32, 32);
+		btnProduktDamenRechts.setBounds(568, 260, 32, 32);
 		btnProduktDamenRechts.addActionListener(new ActionListener() {
 
 			@Override
@@ -238,7 +238,7 @@ public class GUIHomepage {
 		btnProduktDamenLinks = new JButton(new ImageIcon(leftArrow));
 		btnProduktDamenLinks.setContentAreaFilled(false);
 		btnProduktDamenLinks.setBackground(Color.WHITE);
-		btnProduktDamenLinks.setBounds(136, 260, 32, 32);
+		btnProduktDamenLinks.setBounds(96, 260, 32, 32);
 		btnProduktDamenLinks.addActionListener(new ActionListener() {
 
 			@Override
@@ -253,7 +253,7 @@ public class GUIHomepage {
 		btnProduktHerrenRechts = new JButton(new ImageIcon(rightArrow));
 		btnProduktHerrenRechts.setContentAreaFilled(false);
 		btnProduktHerrenRechts.setBackground(Color.WHITE);
-		btnProduktHerrenRechts.setBounds(1084, 260, 32, 32);
+		btnProduktHerrenRechts.setBounds(1120, 260, 32, 32);
 		btnProduktHerrenRechts.addActionListener(new ActionListener() {
 
 			@Override
@@ -285,7 +285,7 @@ public class GUIHomepage {
 		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.GRAY, null));
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
-		labelMainDamen.setBounds(180, 60, 380, 450);
+		labelMainDamen.setBounds(126, 60, 430, 430);
 		labelMainDamen.setIcon(new ImageIcon(img1));
 		panelMain.add(labelMainDamen);
 
@@ -293,7 +293,7 @@ public class GUIHomepage {
 		labelMainHerren.setBackground(Color.WHITE);
 		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.GRAY, null));
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setBounds(692, 60, 380, 450);
+		labelMainHerren.setBounds(692, 60, 430, 430);
 		labelMainHerren.setIcon(new ImageIcon(img2));
 		panelMain.add(labelMainHerren);
 
