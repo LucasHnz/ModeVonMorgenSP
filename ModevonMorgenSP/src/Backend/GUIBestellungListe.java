@@ -15,7 +15,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -36,6 +38,7 @@ public class GUIBestellungListe extends JPanel {
 	private JTable table;
 	private JScrollPane scrollpane;
 	private String[] columnNames = {"Bestell Nr", "Kundennummer", "Nachname", "Vorname", "Preis (Ä)", "Rabatt (%)", "Datum", "Status", "Ort", "Straﬂe","PLZ"};
+	TableRowSorter<TableModel> sorter = null;
 
 	private class myTableModel extends AbstractTableModel{
 
@@ -219,7 +222,7 @@ public class GUIBestellungListe extends JPanel {
 			}
 		};
 		
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+		sorter = new TableRowSorter<TableModel>(table.getModel());
 		sorter.setComparator(4, doublecomp);
 		sorter.setComparator(5, intcomp);
 		sorter.setComparator(10, intcomp);

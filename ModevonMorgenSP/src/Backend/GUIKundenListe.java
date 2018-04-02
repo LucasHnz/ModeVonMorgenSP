@@ -233,145 +233,26 @@ public class GUIKundenListe  extends JPanel {
 		setStructure();
 		
 		scrollpane = new JScrollPane();
-		scrollpane.setBounds(10, 11, 900, 490);
+		scrollpane.setBounds(10, 11, 1180, 490);
 		scrollpane.setViewportView(table);
 		add(scrollpane);
-				
-		
-		JButton btnEditiereArtikel = new JButton("Artikel editieren");
-		btnEditiereArtikel.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnEditiereArtikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-					new GUIArtikelFormular(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-					
-				}catch (ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
-							"Artikel editieren", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
-							null, new String[] { "Ok"}, "Ok");
-				}
-			}
-		});
 		
 	
 		URL editUrl = GUI.class.getResource(
                 "/Icons 64x64/repair-tools.png");
 		Image ArtikelEditieren = new ImageIcon(editUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblArtikelEditieren = new JLabel(new ImageIcon(ArtikelEditieren));
-		lblArtikelEditieren.setBounds(921, 15, 40, 40);
-		add(lblArtikelEditieren);
-		btnEditiereArtikel.setBounds(975, 11, 215, 48);
-		add(btnEditiereArtikel);
-		
-		JButton btnEntferneArtikel = new JButton("Artikel entfernen");
-		btnEntferneArtikel.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnEntferneArtikel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					
-					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-				
-					final Object optionPane = JOptionPane.showConfirmDialog(null,
-							"Wollen Sie den Artikel: \n" + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBezeichnung() 
-							+ "\nArtikelnummer: " + data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer()
-							+ "\nwirklich löschen?", "Abfrage",
-							JOptionPane.YES_NO_OPTION);
-					
-					if(optionPane.equals(0)) {
-						ArtikelStrg.entferneArtikel(data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-						model.fireTableStructureChanged();
-						setStructure();
-						JOptionPane.showMessageDialog(null,  "Artikel wurde gelöscht.", "Information", JOptionPane.INFORMATION_MESSAGE);
-					}else if(optionPane.equals(1)) {
-						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-					}	
-					
-				}catch (ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
-							"Artikel entfernen", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
-							null, new String[] { "Ok"}, "Ok");
-				}
-			}
-		});
 		
 		URL entfernenUrl = GUI.class.getResource(
                 "/Icons 64x64/multiply.png");
 		Image ArtikelEntfernen = new ImageIcon(entfernenUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblArtikelEntfernen = new JLabel(new ImageIcon(ArtikelEntfernen));
-		lblArtikelEntfernen.setBounds(921, 71, 40, 40);
-		add(lblArtikelEntfernen);
-		btnEntferneArtikel.setBounds(975, 70, 215, 48);
-		add(btnEntferneArtikel);
-		
-		JButton btnRabatt = new JButton("Rabatt ändern");
-		btnRabatt.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnRabatt.addActionListener(new ActionListener() {
-			final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-			Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Rabatt: " 
-								+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt() + " %", "Rabatt ändern", 
-								JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getRabatt());
-					if(optionPane != null) {
-						ArtikelStrg.aktualisiereRabatt(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-						JOptionPane.showMessageDialog(null,  "Rabatt wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-					}else if(optionPane == null) {
-						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-					}	
-				}catch (ArrayIndexOutOfBoundsException e) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
-							"Rabatt ändern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
-							null, new String[] { "Ok"}, "Ok");
-				}	
-			}
-		});
 		
 		URL rabattUrl = GUI.class.getResource(
                 "/Icons 64x64/division.png");
 		Image Rabatt = new ImageIcon(rabattUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblRabatt = new JLabel(new ImageIcon(Rabatt));
-		lblRabatt.setBounds(921, 132, 40, 40);
-		add(lblRabatt);
-		btnRabatt.setBounds(975, 129, 215, 48);
-		add(btnRabatt);
-		
-			
-		JButton btnBestand = new JButton("Bestand ändern");
-		btnBestand.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnBestand.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					final HashMap<Integer, Artikel> data = Artikelsammlung.getArtikelsammlung();
-					Integer[] keys = data.keySet().toArray(new Integer[data.keySet().size()]);
-					final String optionPane = (String) JOptionPane.showInputDialog(scrollpane, "Aktueller Bestand: " 
-							+ data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand(), "Bestand ändern", 
-							JOptionPane.INFORMATION_MESSAGE, null, null, data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getBestand() );
-					if(optionPane != null) {
-						ArtikelStrg.aktualisiereBestand(Integer.parseInt(optionPane), data.get(keys[table.convertRowIndexToModel(table.getSelectedRow())]).getArtikelnummer());
-						JOptionPane.showMessageDialog(null,  "Bestand wurde geändert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-					}else if(optionPane == null) {
-						JOptionPane.showMessageDialog(null,  "Vorgang abgebrochen!", "Abbruch", JOptionPane.ERROR_MESSAGE);
-					}	
-				}catch (ArrayIndexOutOfBoundsException e1) {
-					JOptionPane.showOptionDialog(null, "Bitte wählen Sie eine Zeile aus!",
-							"Bestand ändern", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
-							null, new String[] { "Ok"}, "Ok");
-				}
-			}
-		});
 		
 		URL bestandUrl = GUI.class.getResource(
                 "/Icons 64x64/maths.png");
 		Image Bestand = new ImageIcon(bestandUrl).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		JLabel lblBestand = new JLabel(new ImageIcon(Bestand));
-		lblBestand.setBounds(921, 191, 40, 40);
-		add(lblBestand);
-		btnBestand.setBounds(975, 188, 215, 48);
-		add(btnBestand);
 
 	
 		setVisible(true);

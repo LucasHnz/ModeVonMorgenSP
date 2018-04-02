@@ -128,8 +128,8 @@ public class BestellStrg {
 					"Bestellvorgang", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
 					options[0]);
 			if (optionPane == 0) {
-				JOptionPane.showMessageDialog(null, "Bitte anmelden und Bestellung wiederholen", "Bitte anmelden",
-						JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog(null, "Bitte anmelden und Bestellung wiederholen", "Bitte anmelden",
+				//		JOptionPane.INFORMATION_MESSAGE);
 				GUI.getFenster().öffnenAnmeldefenster(); 
 			} else if (optionPane == 1) {
 				JOptionPane.showMessageDialog(null, "Bitte registrieren und Bestellung wiederholen", "Bitte anmelden",
@@ -389,8 +389,8 @@ public class BestellStrg {
 		while(prüfen) {
 
 			String eingabe = JOptionPane.showInputDialog(null,
-					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. Sie haben " + pssAkt
-							+ " Punkte. Sie können nicht mehr als 20 Punkte einlösen.");
+					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. \n Sie haben " + pssAkt
+							+ " Punkte. \n Es können maximal 20 Punkte eingelöst werden.");
 
 			if(eingabe !=  null)
 				pRabatt = Integer.parseInt(eingabe);

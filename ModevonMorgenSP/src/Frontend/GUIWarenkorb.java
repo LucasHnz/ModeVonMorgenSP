@@ -30,21 +30,6 @@ public class GUIWarenkorb {
 	static String Gesamtpreis;
 	static JLabel lblGesamtpreis;
 	
-	public static void main(String[] args) {
-		ArtikelStrg.FülleArtikelsammlung();
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000001), 3);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000002), 3);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000003), 10);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000005), 10);
-		Warenkorb.ArtikelHinzufügen(Artikelsammlung.getArtikel(500000006), 10);
-		try{
-			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-		}catch(Throwable e) {
-			e.printStackTrace();
-		}
-
-		getGUIWarenkorb();
-	}
 	/**
 	 * Zeigt dem Nutzer seinen Warenkorb an. 
 	 * @return
