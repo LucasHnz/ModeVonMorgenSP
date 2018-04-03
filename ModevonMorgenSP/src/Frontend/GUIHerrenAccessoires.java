@@ -157,6 +157,7 @@ public class GUIHerrenAccessoires {
 	 * Erzeugt und liefert das Frame für Herren Accessoires
 	 * 
 	 * @returns panelMain Frame der Klasse GUIHerrenAccessoires
+	 * @wbp.parser.entryPoint
 	 */
 	static JPanel getGUIHerrenAccessoires() {
 
@@ -171,7 +172,7 @@ public class GUIHerrenAccessoires {
 
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneLinks.setBounds(10, 97, 270, 455);
+		scrollPaneLinks.setBounds(10, 11, 270, 541);
 		panelMain.add(scrollPaneLinks);
 
 		btnAlleArtikel = new JButton("Alle Artikel");
@@ -235,7 +236,7 @@ public class GUIHerrenAccessoires {
 		panelHerrenAccessoires.setAutoscrolls(true);
 
 		JScrollPane scrollPaneHerrenSchuhe = new JScrollPane();
-		scrollPaneHerrenSchuhe.setBounds(323, 97, 901, 455);
+		scrollPaneHerrenSchuhe.setBounds(323, 11, 901, 541);
 		scrollPaneHerrenSchuhe.setViewportView(panelHerrenAccessoires);
 		scrollPaneHerrenSchuhe.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneHerrenSchuhe);

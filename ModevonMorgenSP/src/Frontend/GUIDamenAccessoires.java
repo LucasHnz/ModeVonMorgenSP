@@ -227,6 +227,7 @@ public class GUIDamenAccessoires {
 	/**
 	 * Erstellt und Liefert Fenster für DamenAccessoires
 	 * @return panelMain Frame für DamenAccessoires
+	 * @wbp.parser.entryPoint
 	 */
 	static JPanel getGUIDamenAccessoires() {
 
@@ -241,7 +242,7 @@ public class GUIDamenAccessoires {
 
 		JScrollPane scrollPaneDamenAccessoiresLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneDamenAccessoiresLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneDamenAccessoiresLinks.setBounds(10, 97, 270, 455);
+		scrollPaneDamenAccessoiresLinks.setBounds(10, 11, 270, 541);
 		panelMain.add(scrollPaneDamenAccessoiresLinks);
 
 		btnAlleArtikel = new JButton("Alle Artikel");
@@ -333,7 +334,7 @@ public class GUIDamenAccessoires {
 		panelDamenAccessoires.setAutoscrolls(true);
 
 		JScrollPane scrollPaneDamenAccessoires = new JScrollPane();
-		scrollPaneDamenAccessoires.setBounds(323, 97, 901, 455);
+		scrollPaneDamenAccessoires.setBounds(323, 11, 901, 541);
 		scrollPaneDamenAccessoires.setViewportView(panelDamenAccessoires);
 		scrollPaneDamenAccessoires.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneDamenAccessoires);

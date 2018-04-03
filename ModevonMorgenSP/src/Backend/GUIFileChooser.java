@@ -59,6 +59,12 @@ public class GUIFileChooser extends JFrame implements ActionListener {
 				
 		chooser = new JFileChooser();
 		chooser.addChoosableFileFilter(filter);
+		chooser.addChoosableFileFilter(new ImageFilter());
+        chooser.setAcceptAllFileFilterUsed(false);
+        chooser.setAccessory(new ImagePreview(chooser));
+        String home = System.getProperty("user.home");
+        chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 415, 215);
 		setResizable(false);

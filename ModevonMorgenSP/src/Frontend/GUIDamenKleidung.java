@@ -133,6 +133,7 @@ public class GUIDamenKleidung {
 	/**
 	 * Erzeugt und liefert das Frame für DamenKleidung
 	 * @returns panelMain Fenster für DamenKleidung
+	 * @wbp.parser.entryPoint
 	 */
 	static JPanel getGUIDamenKleidung() {
 
@@ -147,7 +148,7 @@ public class GUIDamenKleidung {
 
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneLinks.setBounds(10, 97, 270, 455);
+		scrollPaneLinks.setBounds(10, 11, 270, 541);
 		panelMain.add(scrollPaneLinks);
 
 		btnAlleArtikel = new JButton("Alle Artikel");
@@ -197,7 +198,7 @@ public class GUIDamenKleidung {
 		panelDamenKleidung.setAutoscrolls(true);
 
 		JScrollPane scrollPaneDamenKleidung = new JScrollPane();
-		scrollPaneDamenKleidung.setBounds(323, 97, 901, 455);
+		scrollPaneDamenKleidung.setBounds(323, 11, 901, 541);
 		scrollPaneDamenKleidung.setViewportView(panelDamenKleidung);
 		scrollPaneDamenKleidung.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneDamenKleidung);

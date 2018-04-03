@@ -128,6 +128,7 @@ public class GUIDamenSchuhe {
 	 * Erzeugt und Liefert Frame der Klasse DamenSchuhe
 	 * 
 	 * @returns panelMain Frame für DamenSchuhe
+	 * @wbp.parser.entryPoint
 	 */
 	static JPanel getGUIDamenSchuhe() {
 
@@ -142,7 +143,7 @@ public class GUIDamenSchuhe {
 
 		JScrollPane scrollPaneLinks = new JScrollPane(panelScrollPaneLinks);
 		scrollPaneLinks.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneLinks.setBounds(10, 97, 270, 455);
+		scrollPaneLinks.setBounds(10, 11, 270, 541);
 		panelMain.add(scrollPaneLinks);
 
 		btnAlleArtikel = new JButton("Alle Artikel");
@@ -192,7 +193,7 @@ public class GUIDamenSchuhe {
 		panelDamenSchuhe.setAutoscrolls(true);
 
 		JScrollPane scrollPaneDamenSchuhe = new JScrollPane();
-		scrollPaneDamenSchuhe.setBounds(323, 97, 901, 455);
+		scrollPaneDamenSchuhe.setBounds(323, 11, 901, 541);
 		scrollPaneDamenSchuhe.setViewportView(panelDamenSchuhe);
 		scrollPaneDamenSchuhe.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panelMain.add(scrollPaneDamenSchuhe);

@@ -46,6 +46,8 @@ public class GUIHomepage {
 	static Image img2;
 	static Image img3;
 	static Image img4;
+	static JLabel lblLinks;
+	static JLabel lblRechts;
 
 	/**
 	 * Setzt den Zähler zurück, der dabei hilft die Artikel auf der Homepage(Startseite) auseinander zu halten         
@@ -63,6 +65,7 @@ public class GUIHomepage {
 		if (p > 1)
 			p = 1;
 		labelMainDamen.setIcon(new ImageIcon(img3));
+		lblLinks.setText(Artikelsammlung.getArtikel(artNr3).getBezeichnung());
 
 	}
 	
@@ -74,6 +77,7 @@ public class GUIHomepage {
 		if (p < 0)
 			p = 0;
 		labelMainDamen.setIcon(new ImageIcon(img1));
+		lblLinks.setText(Artikelsammlung.getArtikel(artNr1).getBezeichnung());
 
 	}
 	
@@ -85,6 +89,7 @@ public class GUIHomepage {
 		if (q > 1)
 			q = 1;
 		labelMainHerren.setIcon(new ImageIcon(img4));
+		lblRechts.setText(Artikelsammlung.getArtikel(artNr4).getBezeichnung());
 	}
 	
 	/**
@@ -95,6 +100,7 @@ public class GUIHomepage {
 		if (q < 0)
 			q = 0;
 		labelMainHerren.setIcon(new ImageIcon(img2));
+		lblRechts.setText(Artikelsammlung.getArtikel(artNr2).getBezeichnung());
 	}
 	
 	/**
@@ -167,6 +173,7 @@ public class GUIHomepage {
 	 * @wbp.parser.entryPoint
 	 */
 	public static JPanel getHomepage() {
+		fülleArtikelStartseite();
 		panelMain = new JPanel();
 		panelMain.setBackground(Color.WHITE);
 		panelMain.setBounds(0, 0, 1248, 563);
@@ -223,7 +230,7 @@ public class GUIHomepage {
 		btnProduktDamenRechts = new JButton(new ImageIcon(rightArrow));
 		btnProduktDamenRechts.setContentAreaFilled(false);
 		btnProduktDamenRechts.setBackground(Color.WHITE);
-		btnProduktDamenRechts.setBounds(568, 260, 32, 32);
+		btnProduktDamenRechts.setBounds(567, 230, 32, 32);
 		btnProduktDamenRechts.addActionListener(new ActionListener() {
 
 			@Override
@@ -238,7 +245,7 @@ public class GUIHomepage {
 		btnProduktDamenLinks = new JButton(new ImageIcon(leftArrow));
 		btnProduktDamenLinks.setContentAreaFilled(false);
 		btnProduktDamenLinks.setBackground(Color.WHITE);
-		btnProduktDamenLinks.setBounds(96, 260, 32, 32);
+		btnProduktDamenLinks.setBounds(95, 230, 32, 32);
 		btnProduktDamenLinks.addActionListener(new ActionListener() {
 
 			@Override
@@ -253,7 +260,7 @@ public class GUIHomepage {
 		btnProduktHerrenRechts = new JButton(new ImageIcon(rightArrow));
 		btnProduktHerrenRechts.setContentAreaFilled(false);
 		btnProduktHerrenRechts.setBackground(Color.WHITE);
-		btnProduktHerrenRechts.setBounds(1120, 260, 32, 32);
+		btnProduktHerrenRechts.setBounds(1131, 230, 32, 32);
 		btnProduktHerrenRechts.addActionListener(new ActionListener() {
 
 			@Override
@@ -268,7 +275,7 @@ public class GUIHomepage {
 		btnProduktHerrenLinks = new JButton(new ImageIcon(leftArrow));
 		btnProduktHerrenLinks.setBackground(Color.WHITE);
 		btnProduktHerrenLinks.setContentAreaFilled(false);
-		btnProduktHerrenLinks.setBounds(648, 260, 32, 32);
+		btnProduktHerrenLinks.setBounds(647, 230, 32, 32);
 		btnProduktHerrenLinks.addActionListener(new ActionListener() {
 
 			@Override
@@ -285,7 +292,7 @@ public class GUIHomepage {
 		labelMainDamen.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.GRAY, null));
 		labelMainDamen.setHorizontalAlignment(SwingConstants.CENTER);
 		labelMainDamen.setVerticalAlignment(SwingConstants.TOP);
-		labelMainDamen.setBounds(126, 60, 430, 430);
+		labelMainDamen.setBounds(125, 30, 430, 430);
 		labelMainDamen.setIcon(new ImageIcon(img1));
 		panelMain.add(labelMainDamen);
 
@@ -293,11 +300,24 @@ public class GUIHomepage {
 		labelMainHerren.setBackground(Color.WHITE);
 		labelMainHerren.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, Color.GRAY, null));
 		labelMainHerren.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMainHerren.setBounds(692, 60, 430, 430);
+		labelMainHerren.setBounds(691, 30, 430, 430);
 		labelMainHerren.setIcon(new ImageIcon(img2));
 		panelMain.add(labelMainHerren);
+		
+		lblLinks = new JLabel();
+		lblLinks.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblLinks.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLinks.setBounds(135, 471, 409, 35);
+		lblLinks.setText(Artikelsammlung.getArtikel(artNr1).getBezeichnung());
+		panelMain.add(lblLinks);
+		
+		lblRechts = new JLabel();
+		lblRechts.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblRechts.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRechts.setBounds(701, 471, 409, 35);
+		lblRechts.setText(Artikelsammlung.getArtikel(artNr2).getBezeichnung());
+		panelMain.add(lblRechts);
 
 		return panelMain;
 	}
-
 }

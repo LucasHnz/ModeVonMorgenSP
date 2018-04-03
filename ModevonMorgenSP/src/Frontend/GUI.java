@@ -59,7 +59,6 @@ public class GUI extends JFrame {
 			e.printStackTrace();
 		}
 		ArtikelStrg.FülleArtikelsammlung();
-		GUIHomepage.fülleArtikelStartseite();
 		BestandskundeStrg.FülleBestandskundeSammlung();
 		gui = new GUI();
 		fenster = gui;
@@ -207,6 +206,8 @@ public class GUI extends JFrame {
 	}
 	/**
 	 * Erstellt Hauptfenster des Programms
+	 * * @wbp.parser.entryPoint
+	 *
 	 */
 	public GUI() {
 		layeredPane.setBackground(Color.WHITE);
