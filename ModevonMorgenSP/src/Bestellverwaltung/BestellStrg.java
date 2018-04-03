@@ -389,7 +389,7 @@ public class BestellStrg {
 		while(prüfen) {
 
 			String eingabe = JOptionPane.showInputDialog(null,
-					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. \n Sie haben " + pssAkt
+					"Sie haben die Möglichkeit Punkte in Rabatt einzulösen. \nSie haben " + pssAkt
 							+ " Punkte. \n Es können maximal 20 Punkte eingelöst werden.");
 
 			if(eingabe !=  null)
