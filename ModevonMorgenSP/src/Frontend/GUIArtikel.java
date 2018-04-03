@@ -167,7 +167,7 @@ public class GUIArtikel {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(70, 130, 180)));
 		panel.setLayout(null);
-		panel.setBackground(new Color(224, 255, 255));
+		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(10, 11, 1228, 548);
 		panelMain.add(panel);
 		
