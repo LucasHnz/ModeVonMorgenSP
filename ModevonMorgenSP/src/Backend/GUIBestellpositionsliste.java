@@ -157,7 +157,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		table.setVisible(true);
 
 		scrollpane = new JScrollPane();
-		scrollpane.setBounds(10, 11, 700, 390);
+		scrollpane.setBounds(10, 11, 668, 390);
 		scrollpane.setVisible(true);
 		getContentPane().setLayout(null);
 		scrollpane.setViewportView(table);
@@ -169,7 +169,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		 * Button um eine Rücksendung anzunehmen
 		 */
 		JButton btnRücksAnnehmen = new JButton("R\u00FCcksendung Annehmen");
-		btnRücksAnnehmen.setBounds(776, 11, 177, 48);
+		btnRücksAnnehmen.setBounds(738, 11, 215, 48);
 		btnRücksAnnehmen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRücksAnnehmen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -227,7 +227,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		 * Button um eine Rücksendung abzulehnen
 		 */
 		JButton btnRücksAblehnen = new JButton("R\u00FCcksendung Ablehnen");
-		btnRücksAblehnen.setBounds(776, 81, 177, 48);
+		btnRücksAblehnen.setBounds(738, 81, 215, 48);
 		btnRücksAblehnen.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRücksAblehnen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -281,7 +281,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		 */
 		JButton btnZurück = new JButton("Beenden");
 		btnZurück.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnZurück.setBounds(776, 149, 177, 48);
+		btnZurück.setBounds(738, 149, 215, 48);
 		btnZurück.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -299,7 +299,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		Image Annehmen = new ImageIcon(acceptUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblAnnehmen = new JLabel(new ImageIcon(Annehmen));
-		lblAnnehmen.setBounds(720, 12, 40, 40);
+		lblAnnehmen.setBounds(688, 11, 40, 40);
 		getContentPane().add(lblAnnehmen);
 
 		URL declineUrl = GUI.class.getResource(
@@ -307,7 +307,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		Image Ablehnen = new ImageIcon(declineUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblAblehnen = new JLabel(new ImageIcon(Ablehnen));
-		lblAblehnen.setBounds(720, 82, 40, 40);
+		lblAblehnen.setBounds(688, 81, 40, 40);
 		getContentPane().add(lblAblehnen);
 
 		URL zurückUrl = GUI.class.getResource(
@@ -315,7 +315,7 @@ public class GUIBestellpositionsliste extends JFrame {
 		Image Zurück = new ImageIcon(zurückUrl).getImage().getScaledInstance(40, 40,
 				Image.SCALE_SMOOTH);
 		JLabel lblZurück = new JLabel(new ImageIcon(Zurück));
-		lblZurück.setBounds(720, 150, 40, 40);
+		lblZurück.setBounds(688, 149, 40, 40);
 		getContentPane().add(lblZurück);
 	}
 
