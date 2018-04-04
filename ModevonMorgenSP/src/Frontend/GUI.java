@@ -113,10 +113,12 @@ public class GUI extends JFrame {
 		
 		if(status == 2) {
 			//Bestandskunde
+			String item = "Optionen";
 			String item1 = "Meine Bestellungen";
 			String item2 = "Konto verwalten";
 			String item3 = "Abmelden";
 			comboBoxAnmelden.removeAllItems();
+			comboBoxAnmelden.addItem(item);
 			comboBoxAnmelden.addItem(item1);
 			comboBoxAnmelden.addItem(item2);
 			comboBoxAnmelden.addItem(item3);

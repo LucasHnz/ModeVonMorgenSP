@@ -19,9 +19,7 @@ public class LogStrg {
 	private static String recht = " ";
 	private static int nutzerNr = 0;
 	private static String name = "";
-	private static String[] anmeldenCbListAbgemeldet = { "Anmelden" };
-	private static String[] anmeldenCbListAngemeldet = { "Meine Bestellungen", "Konto verwalten", "Abmelden" };
-	private static String[] anmeldenCbListMitarbeiter = { "Verwaltung", "Abmelden" };
+
 
 	/**
 	 * Gleicht die Anmeldedaten mit der Datenbank ab und meldet den Benutzer an.
@@ -57,7 +55,7 @@ public class LogStrg {
 				GUI.comboBoxAbfrage();
 				GUI.getFenster().setAngemeldet(name);
 				GUI.getFenster().removeLogPanel();
-				GUI.getFenster().changePanel(GUIHomepage.getHomepage());
+				//GUI.getFenster().changePanel(GUIHomepage.getHomepage());
 			}
 
 			else if (rs2.next()) {
