@@ -197,7 +197,7 @@ public class GUIBestellpositionsliste extends JFrame {
 						}
 						
 							
-						MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde, Hoffentlich finden Sie eine alternative");
+						//MailController.MailSenden.sendMail("julian-hermann@outlook.de","Bestätigung ihrer Rücksendung","Sehr geehrter Kunde, Hoffentlich finden Sie eine alternative");
 
 						JOptionPane.showOptionDialog(null, "Rücksendung Angenommen!",
 								"Rücksendung Angenommen", JOptionPane.YES_NO_CANCEL_OPTION,
